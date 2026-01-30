@@ -2,74 +2,68 @@ import { motion } from 'framer-motion';
 
 export const ProblemSection = () => {
   const problems = [
-    'Companies overpay for routine contracts that don\'t require deep legal expertise.',
-    'Skilled lawyers spend valuable time on low-risk documents that could be handled more efficiently.',
-    'Extended turnaround times slow down business decisions and deal closures.',
+    {
+      number: '01',
+      title: 'Overpaying for routine work',
+      description: 'Companies pay premium rates for contracts that don\'t require deep legal expertise.',
+    },
+    {
+      number: '02', 
+      title: 'Misallocated expertise',
+      description: 'Skilled lawyers spend valuable time on low-risk documents that could be handled more efficiently.',
+    },
+    {
+      number: '03',
+      title: 'Slow turnaround times',
+      description: 'Extended review cycles slow down business decisions and delay deal closures.',
+    },
   ];
 
   return (
     <section 
-      className="bg-[#1E293B] text-white py-24 md:py-32"
+      className="bg-[#0F172A] py-24 md:py-32"
       data-testid="problem-section"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-          {/* Left - Image */}
-          <motion.div 
-            className="lg:col-span-5"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="relative aspect-[4/5] rounded-[4px] overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=600&q=80"
-                alt="Stacks of legal documents representing contract complexity"
-                className="w-full h-full object-cover opacity-80"
-              />
-              <div className="absolute inset-0 bg-[#1E293B]/30" />
-            </div>
-          </motion.div>
+        {/* Header */}
+        <motion.div
+          className="max-w-2xl mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <p className="text-sm font-medium text-[#94A3B8] tracking-wide uppercase mb-4">
+            The Problem
+          </p>
+          <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-white">
+            Not every contract deserves the same attention.
+          </h2>
+        </motion.div>
 
-          {/* Right - Content */}
-          <div className="lg:col-span-7 flex flex-col justify-center">
+        {/* Problems Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {problems.map((problem, index) => (
             <motion.div
+              key={problem.number}
+              className="relative p-8 rounded-xl border border-[#1E293B] bg-[#1E293B]/30 hover:bg-[#1E293B]/50 transition-colors duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              data-testid={`problem-item-${index}`}
             >
-              <span className="text-xs font-mono uppercase tracking-widest text-white/50 mb-6 block">
-                The Problem
+              <span className="text-xs font-mono text-[#64748B] mb-4 block">
+                {problem.number}
               </span>
-              
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif tracking-tight leading-tight text-white mb-8">
-                Not every contract deserves the same attention.
-              </h2>
-              
-              <div className="space-y-6">
-                {problems.map((problem, index) => (
-                  <motion.div
-                    key={index}
-                    className="flex items-start gap-4"
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
-                    data-testid={`problem-item-${index}`}
-                  >
-                    <span className="flex-shrink-0 w-6 h-6 rounded-full border border-white/30 flex items-center justify-center text-xs font-mono text-white/60">
-                      {index + 1}
-                    </span>
-                    <p className="text-base md:text-lg font-sans leading-relaxed text-white/80">
-                      {problem}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
+              <h3 className="text-lg font-semibold text-white mb-3">
+                {problem.title}
+              </h3>
+              <p className="text-[15px] leading-relaxed text-[#94A3B8]">
+                {problem.description}
+              </p>
             </motion.div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

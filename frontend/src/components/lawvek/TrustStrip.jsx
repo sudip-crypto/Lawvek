@@ -11,7 +11,7 @@ export const TrustStrip = () => {
 
   return (
     <section 
-      className="bg-white border-y border-[#E2E8F0] py-6 md:py-8"
+      className="bg-[#FAFAFA] border-y border-[#E2E8F0] py-6"
       data-testid="trust-strip-section"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -25,15 +25,17 @@ export const TrustStrip = () => {
           {trustItems.map((item, index) => (
             <motion.div
               key={item.text}
-              className="flex items-center gap-3 text-[#475569]"
+              className="flex items-center gap-2.5"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
               data-testid={`trust-item-${index}`}
             >
-              <item.icon className="h-4 w-4 text-[#1E293B]" strokeWidth={1.5} />
-              <span className="text-sm font-medium">{item.text}</span>
+              <div className="w-8 h-8 rounded-lg bg-white border border-[#E2E8F0] flex items-center justify-center">
+                <item.icon className="h-4 w-4 text-[#475569]" strokeWidth={1.5} />
+              </div>
+              <span className="text-sm font-medium text-[#475569]">{item.text}</span>
             </motion.div>
           ))}
         </motion.div>

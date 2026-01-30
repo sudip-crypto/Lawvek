@@ -2,57 +2,58 @@ import { motion } from 'framer-motion';
 import { Lock, ShieldCheck, Eye, Key } from 'lucide-react';
 
 export const SecuritySection = () => {
-  const securityFeatures = [
-    { icon: Lock, text: 'Confidential by default' },
-    { icon: ShieldCheck, text: 'Encrypted document handling' },
-    { icon: Eye, text: 'No training on customer data without consent' },
-    { icon: Key, text: 'Clear access controls' },
+  const features = [
+    { icon: Lock, title: 'Confidential by default', description: 'Your data stays private' },
+    { icon: ShieldCheck, title: 'Encrypted handling', description: 'End-to-end security' },
+    { icon: Eye, title: 'No training without consent', description: 'You control your data' },
+    { icon: Key, title: 'Access controls', description: 'Granular permissions' },
   ];
 
   return (
     <section 
       id="security"
-      className="bg-[#F1F5F9] py-24 md:py-32"
+      className="bg-[#0F172A] py-24 md:py-32"
       data-testid="security-section"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <motion.div
-          className="text-center max-w-2xl mx-auto"
+          className="text-center max-w-2xl mx-auto mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <span className="text-xs font-mono uppercase tracking-widest text-[#475569]/70 mb-6 block">
+          <p className="text-sm font-medium text-[#94A3B8] tracking-wide uppercase mb-4">
             Security & Trust
-          </span>
-          
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif tracking-tight leading-tight text-[#1A1A1A] mb-8">
+          </p>
+          <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-white mb-4">
             Your documents are safe with us.
           </h2>
-          
-          <p className="text-base md:text-lg font-sans leading-relaxed text-[#475569] mb-12">
-            Enterprise-grade security designed for legal professionals who handle sensitive information every day.
+          <p className="text-[15px] text-[#94A3B8]">
+            Enterprise-grade security for legal professionals handling sensitive information.
           </p>
         </motion.div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
-          {securityFeatures.map((feature, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {features.map((feature, index) => (
             <motion.div
-              key={feature.text}
-              className="bg-white border border-[#E2E8F0] p-6 rounded-[4px] text-center hover:border-[#94A3B8] transition-colors duration-300"
+              key={feature.title}
+              className="p-6 rounded-xl border border-[#1E293B] bg-[#1E293B]/30 text-center hover:bg-[#1E293B]/50 transition-colors duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
               data-testid={`security-feature-${index}`}
             >
-              <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-[#F9F9F9] flex items-center justify-center">
-                <feature.icon className="h-5 w-5 text-[#1E293B]" strokeWidth={1.5} />
+              <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-[#1E293B] border border-[#334155] flex items-center justify-center">
+                <feature.icon className="h-5 w-5 text-[#94A3B8]" strokeWidth={1.5} />
               </div>
-              <p className="text-sm font-medium text-[#1A1A1A]">
-                {feature.text}
+              <h3 className="text-sm font-semibold text-white mb-1">
+                {feature.title}
+              </h3>
+              <p className="text-xs text-[#64748B]">
+                {feature.description}
               </p>
             </motion.div>
           ))}

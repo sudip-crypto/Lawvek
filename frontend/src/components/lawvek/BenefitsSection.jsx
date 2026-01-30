@@ -10,7 +10,7 @@ export const BenefitsSection = () => {
     },
     {
       icon: DollarSign,
-      title: 'Lower cost for routine documents',
+      title: 'Lower costs',
       description: 'Pay only for the expertise each contract actually requires.',
     },
     {
@@ -20,39 +20,39 @@ export const BenefitsSection = () => {
     },
     {
       icon: UserCog,
-      title: 'Attorney verification when needed',
-      description: 'US-licensed attorney sign-off available for high-stakes documents.',
+      title: 'Attorney verification',
+      description: 'US-licensed attorney sign-off for high-stakes documents.',
     },
     {
       icon: FileText,
-      title: 'Clear redlines in Word format',
-      description: 'Receive actionable feedback you can implement immediately.',
+      title: 'Clear redlines',
+      description: 'Receive actionable feedback in Word format.',
     },
     {
       icon: ClipboardList,
-      title: 'Audit trail and accountability',
-      description: 'Full documentation of every review step and decision.',
+      title: 'Full audit trail',
+      description: 'Documentation of every review step and decision.',
     },
   ];
 
   return (
     <section 
-      className="bg-[#F9F9F9] py-24 md:py-32"
+      className="bg-white py-24 md:py-32"
       data-testid="benefits-section"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Header */}
         <motion.div
-          className="max-w-3xl mb-16 md:mb-20"
+          className="max-w-2xl mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <span className="text-xs font-mono uppercase tracking-widest text-[#475569]/70 mb-6 block">
+          <p className="text-sm font-medium text-[#64748B] tracking-wide uppercase mb-4">
             Benefits
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif tracking-tight leading-tight text-[#1A1A1A]">
+          </p>
+          <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-[#0F172A]">
             What you get
           </h2>
         </motion.div>
@@ -62,18 +62,20 @@ export const BenefitsSection = () => {
           {benefits.map((benefit, index) => (
             <motion.div
               key={benefit.title}
-              className="bg-white border border-[#E2E8F0] p-8 rounded-[4px] hover:border-[#94A3B8] transition-colors duration-300"
+              className="group p-6 rounded-xl border border-[#E2E8F0] bg-[#FAFAFA] hover:border-[#CBD5E1] hover:shadow-sm transition-all duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
               data-testid={`benefit-card-${index}`}
             >
-              <benefit.icon className="h-6 w-6 text-[#1E293B] mb-5" strokeWidth={1.5} />
-              <h3 className="text-lg font-sans font-medium text-[#1A1A1A] mb-3">
+              <div className="w-10 h-10 rounded-lg bg-white border border-[#E2E8F0] flex items-center justify-center mb-4 group-hover:border-[#CBD5E1] transition-colors">
+                <benefit.icon className="h-5 w-5 text-[#475569]" strokeWidth={1.5} />
+              </div>
+              <h3 className="text-base font-semibold text-[#0F172A] mb-2">
                 {benefit.title}
               </h3>
-              <p className="text-base font-sans leading-relaxed text-[#475569]">
+              <p className="text-[15px] leading-relaxed text-[#64748B]">
                 {benefit.description}
               </p>
             </motion.div>

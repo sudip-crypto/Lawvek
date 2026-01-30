@@ -7,8 +7,8 @@ export const ApproachSection = () => {
       number: '01',
       icon: BarChart3,
       title: 'Complexity Scoring',
-      description: 'AI analyzes structure, clauses, jurisdiction, and deviations. Assigns a clear complexity level.',
-      tags: ['Low', 'Medium', 'High', 'Critical'],
+      description: 'AI analyzes structure, clauses, jurisdiction, and deviations to assign a clear complexity level.',
+      highlight: ['Low', 'Medium', 'High', 'Critical'],
     },
     {
       number: '02',
@@ -25,12 +25,12 @@ export const ApproachSection = () => {
     {
       number: '03',
       icon: Clock,
-      title: 'Predictable Pricing & Speed',
-      description: 'Know what you\'re paying before you start. No surprises.',
+      title: 'Predictable Pricing',
+      description: 'Know what you\'re paying before you start. No surprises, no hourly billing.',
       items: [
         'Fixed pricing upfront',
         'Clear turnaround times',
-        'No hourly billing',
+        'Transparent process',
       ],
     },
   ];
@@ -38,87 +38,81 @@ export const ApproachSection = () => {
   return (
     <section 
       id="approach"
-      className="bg-[#F9F9F9] py-24 md:py-32"
+      className="bg-white py-24 md:py-32"
       data-testid="approach-section"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Header */}
         <motion.div
-          className="max-w-3xl mb-16 md:mb-20"
+          className="max-w-2xl mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <span className="text-xs font-mono uppercase tracking-widest text-[#475569]/70 mb-6 block">
+          <p className="text-sm font-medium text-[#64748B] tracking-wide uppercase mb-4">
             Our Approach
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif tracking-tight leading-tight text-[#1A1A1A]">
+          </p>
+          <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-[#0F172A]">
             We review contracts intelligently.
           </h2>
         </motion.div>
 
-        {/* Steps */}
-        <div className="space-y-12 md:space-y-0 md:grid md:grid-cols-3 md:gap-8 lg:gap-12">
+        {/* Steps Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {steps.map((step, index) => (
             <motion.div
               key={step.number}
-              className="relative"
+              className="group relative bg-[#FAFAFA] border border-[#E2E8F0] rounded-xl p-8 hover:border-[#CBD5E1] hover:shadow-sm transition-all duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               data-testid={`approach-step-${index}`}
             >
-              {/* Card */}
-              <div className="bg-white border border-[#E2E8F0] p-8 rounded-[4px] hover:border-[#94A3B8] transition-colors duration-300 h-full">
-                {/* Number & Icon */}
-                <div className="flex items-center justify-between mb-6">
-                  <span className="text-xs font-mono text-[#475569]/50">
-                    {step.number}
-                  </span>
-                  <step.icon className="h-5 w-5 text-[#1E293B]" strokeWidth={1.5} />
+              {/* Header */}
+              <div className="flex items-center justify-between mb-6">
+                <span className="text-xs font-mono text-[#94A3B8]">
+                  {step.number}
+                </span>
+                <div className="w-10 h-10 rounded-lg bg-white border border-[#E2E8F0] flex items-center justify-center group-hover:border-[#CBD5E1] transition-colors">
+                  <step.icon className="h-5 w-5 text-[#475569]" strokeWidth={1.5} />
                 </div>
-
-                {/* Title */}
-                <h3 className="text-xl md:text-2xl font-sans font-medium tracking-tight text-[#1A1A1A] mb-4">
-                  {step.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-base font-sans leading-relaxed text-[#475569] mb-6">
-                  {step.description}
-                </p>
-
-                {/* Tags or Items */}
-                {step.tags && (
-                  <div className="flex flex-wrap gap-2">
-                    {step.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs font-mono px-3 py-1.5 bg-[#F1F5F9] text-[#475569] rounded-[2px]"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                {step.items && (
-                  <ul className="space-y-2">
-                    {step.items.map((item, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-[#475569]">
-                        <span className="w-1 h-1 rounded-full bg-[#1E293B] mt-2 flex-shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                )}
               </div>
 
-              {/* Connector line (hidden on mobile) */}
-              {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-1/2 -right-4 lg:-right-6 w-8 lg:w-12 h-px bg-[#E2E8F0]" />
+              {/* Title */}
+              <h3 className="text-xl font-semibold text-[#0F172A] mb-3">
+                {step.title}
+              </h3>
+
+              {/* Description */}
+              <p className="text-[15px] leading-relaxed text-[#64748B] mb-6">
+                {step.description}
+              </p>
+
+              {/* Highlights or Items */}
+              {step.highlight && (
+                <div className="flex flex-wrap gap-2">
+                  {step.highlight.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-xs font-medium px-3 py-1.5 bg-white border border-[#E2E8F0] text-[#475569] rounded-md"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              {step.items && (
+                <ul className="space-y-2.5">
+                  {step.items.map((item, i) => (
+                    <li key={i} className="flex items-start gap-3 text-[15px] text-[#64748B]">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#CBD5E1] mt-2 flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               )}
             </motion.div>
           ))}
