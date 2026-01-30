@@ -5,27 +5,27 @@ export const HowItWorksSection = () => {
     { 
       number: '01',
       title: 'Upload', 
-      description: 'Submit your contract securely through our encrypted portal',
+      description: 'Securely submit your contract',
     },
     { 
       number: '02',
       title: 'AI Analysis', 
-      description: 'Our AI instantly analyzes complexity, clauses, and risk factors',
+      description: 'Instant complexity scoring',
     },
     { 
       number: '03',
       title: 'Expert Review', 
-      description: 'Human verification applied based on contract complexity',
+      description: 'Right-sized human oversight',
     },
     { 
       number: '04',
       title: 'Attorney Sign-off', 
-      description: 'Optional US-licensed attorney certification for high-stakes deals',
+      description: 'Optional legal certification',
     },
     { 
       number: '05',
       title: 'Delivery', 
-      description: 'Receive clear redlines and recommendations in Word format',
+      description: 'Clear redlines in hours',
     },
   ];
 
@@ -44,20 +44,20 @@ export const HowItWorksSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-sm font-medium text-[#94A3B8] tracking-wide uppercase mb-4">
+          <p className="text-sm font-medium text-emerald-400 tracking-wide uppercase mb-4">
             Process
           </p>
           <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-white mb-4">
-            How it works
+            Simple. Fast. Transparent.
           </h2>
           <p className="text-base text-[#94A3B8]">
-            A streamlined process designed for clarity and speed
+            From upload to delivery in hours, not days.
           </p>
         </motion.div>
 
         {/* Timeline */}
         <div className="relative">
-          {/* Horizontal connecting line (desktop) */}
+          {/* Horizontal connecting line */}
           <div className="hidden lg:block absolute top-8 left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-[#334155] to-transparent" />
           
           {/* Steps */}
@@ -73,21 +73,16 @@ export const HowItWorksSection = () => {
                 data-testid={`workflow-step-${index}`}
               >
                 {/* Number circle */}
-                <div className="relative z-10 mx-auto w-16 h-16 rounded-full bg-[#1E293B] border border-[#334155] flex items-center justify-center mb-6 group-hover:border-[#475569] group-hover:bg-[#1E293B]/80 transition-all duration-300">
+                <div className="relative z-10 mx-auto w-16 h-16 rounded-full bg-gradient-to-b from-[#1E293B] to-[#0F172A] border border-[#334155] flex items-center justify-center mb-6 group-hover:border-emerald-500/50 transition-all duration-300">
                   <span className="text-lg font-semibold text-white">{step.number}</span>
                 </div>
-                
-                {/* Arrow connector (mobile) */}
-                {index < steps.length - 1 && (
-                  <div className="md:hidden absolute left-1/2 -translate-x-1/2 top-16 w-px h-8 bg-gradient-to-b from-[#334155] to-transparent" />
-                )}
                 
                 {/* Content */}
                 <div className="text-center">
                   <h3 className="text-lg font-semibold text-white mb-2">
                     {step.title}
                   </h3>
-                  <p className="text-sm leading-relaxed text-[#94A3B8] max-w-[200px] mx-auto">
+                  <p className="text-sm leading-relaxed text-[#94A3B8]">
                     {step.description}
                   </p>
                 </div>
@@ -96,16 +91,16 @@ export const HowItWorksSection = () => {
           </div>
         </div>
 
-        {/* Bottom highlight */}
+        {/* Bottom CTA */}
         <motion.div 
-          className="mt-16 pt-12 border-t border-[#1E293B] text-center"
+          className="mt-16 text-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
-          <p className="text-sm text-[#64748B]">
-            You always know what you're paying for and why.
+          <p className="text-sm text-[#64748B] mb-6">
+            Average turnaround: 2-4 hours for standard contracts
           </p>
         </motion.div>
       </div>

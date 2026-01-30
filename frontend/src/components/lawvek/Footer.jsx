@@ -1,76 +1,106 @@
 import { motion } from 'framer-motion';
+import { Linkedin, Twitter } from 'lucide-react';
 
 export const Footer = () => {
-  const links = [
-    { label: 'Product', href: '#approach' },
-    { label: 'Security', href: '#security' },
-    { label: 'Terms', href: '#' },
-    { label: 'Privacy', href: '#' },
-  ];
+  const links = {
+    product: [
+      { label: 'Features', href: '#approach' },
+      { label: 'How It Works', href: '#how-it-works' },
+      { label: 'Pricing', href: '#cta' },
+      { label: 'Security', href: '#security' },
+    ],
+    company: [
+      { label: 'About', href: '#' },
+      { label: 'Careers', href: '#' },
+      { label: 'Blog', href: '#' },
+      { label: 'Contact', href: '#cta' },
+    ],
+    legal: [
+      { label: 'Privacy Policy', href: '#' },
+      { label: 'Terms of Service', href: '#' },
+      { label: 'Cookie Policy', href: '#' },
+    ],
+  };
 
   return (
     <footer 
-      className="bg-[#FAFAFA] border-t border-[#E2E8F0] py-12"
+      className="bg-[#0F172A] pt-16 pb-8"
       data-testid="footer-section"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          {/* Logo */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-          >
-            <a href="/" className="text-lg font-semibold text-[#0F172A] tracking-tight">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+          {/* Brand */}
+          <div className="col-span-2 md:col-span-1">
+            <a href="/" className="text-xl font-semibold text-white tracking-tight">
               Lawvek
             </a>
-          </motion.div>
-
-          {/* Links */}
-          <motion.nav
-            className="flex flex-wrap items-center justify-center gap-8"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-          >
-            {links.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-sm font-medium text-[#64748B] hover:text-[#0F172A] transition-colors"
-                data-testid={`footer-link-${link.label.toLowerCase()}`}
-              >
-                {link.label}
+            <p className="mt-4 text-sm text-[#64748B] leading-relaxed">
+              Intelligent contract review for modern legal teams.
+            </p>
+            <div className="flex gap-4 mt-6">
+              <a href="#" className="w-10 h-10 rounded-lg bg-[#1E293B] border border-[#334155] flex items-center justify-center text-[#64748B] hover:text-white hover:border-[#475569] transition-colors">
+                <Linkedin className="w-4 h-4" />
               </a>
-            ))}
-          </motion.nav>
+              <a href="#" className="w-10 h-10 rounded-lg bg-[#1E293B] border border-[#334155] flex items-center justify-center text-[#64748B] hover:text-white hover:border-[#475569] transition-colors">
+                <Twitter className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
 
-          {/* Year */}
-          <motion.span
-            className="text-sm text-[#94A3B8]"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-          >
-            © {new Date().getFullYear()}
-          </motion.span>
+          {/* Product */}
+          <div>
+            <h4 className="text-sm font-semibold text-white mb-4">Product</h4>
+            <ul className="space-y-3">
+              {links.product.map((link) => (
+                <li key={link.label}>
+                  <a href={link.href} className="text-sm text-[#64748B] hover:text-white transition-colors">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h4 className="text-sm font-semibold text-white mb-4">Company</h4>
+            <ul className="space-y-3">
+              {links.company.map((link) => (
+                <li key={link.label}>
+                  <a href={link.href} className="text-sm text-[#64748B] hover:text-white transition-colors">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h4 className="text-sm font-semibold text-white mb-4">Legal</h4>
+            <ul className="space-y-3">
+              {links.legal.map((link) => (
+                <li key={link.label}>
+                  <a href={link.href} className="text-sm text-[#64748B] hover:text-white transition-colors">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
-        {/* Disclaimer */}
-        <motion.div
-          className="mt-8 pt-8 border-t border-[#E2E8F0] text-center"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.3 }}
-        >
-          <p className="text-xs text-[#94A3B8] max-w-2xl mx-auto leading-relaxed">
-            Lawvek provides AI-assisted contract analysis. Legal advice is provided only by licensed attorneys where explicitly engaged.
-          </p>
-        </motion.div>
+        {/* Bottom */}
+        <div className="pt-8 border-t border-[#1E293B]">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-xs text-[#64748B]">
+              © {new Date().getFullYear()} Lawvek, Inc. All rights reserved.
+            </p>
+            <p className="text-xs text-[#64748B] text-center max-w-xl">
+              Lawvek provides AI-assisted contract analysis. Legal advice is provided only by licensed attorneys where explicitly engaged.
+            </p>
+          </div>
+        </div>
       </div>
     </footer>
   );

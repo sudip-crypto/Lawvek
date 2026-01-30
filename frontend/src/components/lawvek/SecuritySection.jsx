@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
-import { Lock, ShieldCheck, Eye, Key } from 'lucide-react';
+import { Shield, Lock, Eye, Server } from 'lucide-react';
 
 export const SecuritySection = () => {
   const features = [
-    { icon: Lock, title: 'Confidential by default', description: 'Your data stays private' },
-    { icon: ShieldCheck, title: 'Encrypted handling', description: 'End-to-end security' },
-    { icon: Eye, title: 'No training without consent', description: 'You control your data' },
-    { icon: Key, title: 'Access controls', description: 'Granular permissions' },
+    { icon: Shield, title: 'SOC 2 Type II', description: 'Certified compliance' },
+    { icon: Lock, title: 'AES-256 Encryption', description: 'Data at rest & transit' },
+    { icon: Eye, title: 'Zero Data Training', description: 'Your data stays yours' },
+    { icon: Server, title: 'US Data Centers', description: 'Enterprise infrastructure' },
   ];
 
   return (
@@ -23,14 +23,14 @@ export const SecuritySection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-sm font-medium text-[#94A3B8] tracking-wide uppercase mb-4">
-            Security & Trust
+          <p className="text-sm font-medium text-emerald-400 tracking-wide uppercase mb-4">
+            Security & Compliance
           </p>
           <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-white mb-4">
-            Your documents are safe with us.
+            Enterprise-grade security.
           </h2>
-          <p className="text-[15px] text-[#94A3B8]">
-            Enterprise-grade security for legal professionals handling sensitive information.
+          <p className="text-base text-[#94A3B8]">
+            Built for legal teams that handle sensitive information every day.
           </p>
         </motion.div>
 
@@ -39,25 +39,40 @@ export const SecuritySection = () => {
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
-              className="p-6 rounded-xl border border-[#1E293B] bg-[#1E293B]/30 text-center hover:bg-[#1E293B]/50 transition-colors duration-300"
+              className="p-6 rounded-2xl border border-[#1E293B] bg-gradient-to-b from-[#1E293B]/50 to-transparent text-center hover:border-[#334155] transition-colors duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
               data-testid={`security-feature-${index}`}
             >
-              <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-[#1E293B] border border-[#334155] flex items-center justify-center">
-                <feature.icon className="h-5 w-5 text-[#94A3B8]" strokeWidth={1.5} />
+              <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-[#1E293B] border border-[#334155] flex items-center justify-center">
+                <feature.icon className="h-6 w-6 text-emerald-400" strokeWidth={1.5} />
               </div>
-              <h3 className="text-sm font-semibold text-white mb-1">
+              <h3 className="text-base font-semibold text-white mb-1">
                 {feature.title}
               </h3>
-              <p className="text-xs text-[#64748B]">
+              <p className="text-sm text-[#64748B]">
                 {feature.description}
               </p>
             </motion.div>
           ))}
         </div>
+
+        {/* Compliance badges */}
+        <motion.div 
+          className="mt-12 flex flex-wrap justify-center items-center gap-8"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <span className="text-sm font-medium text-[#64748B]">GDPR Compliant</span>
+          <span className="text-[#334155]">•</span>
+          <span className="text-sm font-medium text-[#64748B]">CCPA Ready</span>
+          <span className="text-[#334155]">•</span>
+          <span className="text-sm font-medium text-[#64748B]">HIPAA Available</span>
+        </motion.div>
       </div>
     </section>
   );
