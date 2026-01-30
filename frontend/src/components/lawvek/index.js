@@ -1,0 +1,11 @@
+export { Header } from './Header';
+export { HeroSection } from './HeroSection';
+export { TrustStrip } from './TrustStrip';
+export { ProblemSection } from './ProblemSection';
+export { ApproachSection } from './ApproachSection';
+export { HowItWorksSection } from './HowItWorksSection';
+export { BenefitsSection } from './BenefitsSection';
+export { WhyItWorksSection } from './WhyItWorksSection';
+export { SecuritySection } from './SecuritySection';
+export { CTASection } from './CTASection';
+export { Footer } from './Footer';
