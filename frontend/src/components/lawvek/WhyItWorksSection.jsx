@@ -35,7 +35,7 @@ export const WhyItWorksSection = () => {
               The Model
             </p>
             <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-[#0F172A] mb-6">
-              Every contract needs attention. Not the same attention.
+              Every contract needs attention. But not the same expertise.
             </h2>
             <p className="text-[15px] leading-relaxed text-[#64748B]">
               Our approach acknowledges a simple truth: treating all contracts the same wastes resources and slows everyone down.
