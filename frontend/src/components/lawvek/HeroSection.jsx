@@ -109,11 +109,11 @@ export const HeroSection = () => {
                     </div>
                     <div className="p-4 bg-[#F8FAFC] rounded-lg border border-[#E2E8F0]">
                       <p className="text-xs text-[#64748B] mb-1">Recommended Review</p>
-                      <p className="text-lg font-semibold text-[#0F172A]">AI + Paralegal</p>
+                      <p className="text-lg font-semibold text-[#0F172A]">AI + Paralegal + Licensed Lawyers</p>
                     </div>
                     <div className="p-4 bg-[#F8FAFC] rounded-lg border border-[#E2E8F0]">
                       <p className="text-xs text-[#64748B] mb-1">Estimated Cost</p>
-                      <p className="text-lg font-semibold text-[#0F172A]">$149</p>
+                      <p className="text-lg font-semibold text-[#0F172A]">Fixed Price</p>
                     </div>
                   </div>
                   
