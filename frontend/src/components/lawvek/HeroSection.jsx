@@ -4,23 +4,19 @@ import { ArrowRight, ArrowDown } from 'lucide-react';
 export const HeroSection = () => {
   return (
     <section 
-      className="relative min-h-screen flex items-center overflow-hidden bg-[#FAFAFA]"
+      className="relative min-h-screen flex items-center overflow-hidden"
       data-testid="hero-section"
     >
-      {/* Subtle grid pattern background */}
-      <div 
-        className="absolute inset-0 opacity-[0.4]"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(226, 232, 240, 0.5) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(226, 232, 240, 0.5) 1px, transparent 1px)
-          `,
-          backgroundSize: '60px 60px'
-        }}
-      />
-      
-      {/* Gradient accent */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#1E293B]/[0.03] to-transparent" />
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80"
+          alt="Premium architectural background"
+          className="w-full h-full object-cover"
+        />
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#FAFAFA] via-[#FAFAFA]/95 to-[#FAFAFA]/30" />
+      </div>
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full">
@@ -32,7 +28,7 @@ export const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-[#E2E8F0] rounded-full mb-8 shadow-sm">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm border border-[#E2E8F0] rounded-full mb-8 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               <span className="text-xs font-medium text-[#475569] tracking-wide">
                 AI-Powered Contract Review
@@ -51,7 +47,7 @@ export const HeroSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 mb-16">
               <motion.a
                 href="#cta"
-                className="inline-flex items-center justify-center bg-[#0F172A] text-white px-8 py-4 rounded-lg hover:bg-[#1E293B] transition-all duration-300 font-medium text-sm tracking-wide group"
+                className="inline-flex items-center justify-center bg-[#0F172A] text-white px-8 py-4 rounded-lg hover:bg-[#1E293B] transition-all duration-300 font-medium text-sm tracking-wide shadow-lg group"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 data-testid="hero-primary-cta"
@@ -61,7 +57,7 @@ export const HeroSection = () => {
               </motion.a>
               <motion.a
                 href="#how-it-works"
-                className="inline-flex items-center justify-center bg-white border border-[#E2E8F0] text-[#0F172A] px-8 py-4 rounded-lg hover:bg-[#F8FAFC] hover:border-[#CBD5E1] transition-all duration-300 font-medium text-sm tracking-wide"
+                className="inline-flex items-center justify-center bg-white/80 backdrop-blur-sm border border-[#E2E8F0] text-[#0F172A] px-8 py-4 rounded-lg hover:bg-white transition-all duration-300 font-medium text-sm tracking-wide"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 data-testid="hero-secondary-cta"
@@ -90,7 +86,7 @@ export const HeroSection = () => {
             </div>
           </motion.div>
           
-          {/* Right - Visual Element */}
+          {/* Right - Product Card (visible on larger screens) */}
           <motion.div
             className="relative hidden lg:block"
             initial={{ opacity: 0, scale: 0.95 }}
@@ -99,7 +95,7 @@ export const HeroSection = () => {
           >
             <div className="relative aspect-square max-w-md ml-auto">
               {/* Main card */}
-              <div className="absolute inset-0 bg-white rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.08)] border border-[#E2E8F0] p-8">
+              <div className="absolute inset-0 bg-white/90 backdrop-blur-md rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] border border-white/50 p-8">
                 <div className="h-full flex flex-col">
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-3 h-3 rounded-full bg-emerald-400" />
@@ -130,7 +126,7 @@ export const HeroSection = () => {
                 </div>
               </div>
               
-              {/* Floating elements */}
+              {/* Floating badge */}
               <motion.div 
                 className="absolute -top-4 -right-4 bg-white rounded-xl shadow-lg border border-[#E2E8F0] p-4"
                 animate={{ y: [0, -8, 0] }}
@@ -159,7 +155,7 @@ export const HeroSection = () => {
       >
         <motion.a
           href="#approach"
-          className="flex flex-col items-center gap-2 text-[#94A3B8] hover:text-[#64748B] transition-colors"
+          className="flex flex-col items-center gap-2 text-[#64748B] hover:text-[#0F172A] transition-colors"
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
