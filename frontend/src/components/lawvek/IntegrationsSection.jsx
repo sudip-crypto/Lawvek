@@ -49,7 +49,7 @@ export const IntegrationsSection = () => {
 
   return (
     <section 
-      className="bg-[#0F172A] py-24 md:py-32 overflow-hidden"
+      className="bg-[#FAFAFA] py-24 md:py-32 overflow-hidden border-y border-[#E2E8F0]"
       data-testid="integrations-section"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -61,16 +61,16 @@ export const IntegrationsSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-sm font-semibold text-emerald-400 tracking-wide uppercase mb-4">
+            <p className="text-sm font-semibold text-emerald-600 tracking-wide uppercase mb-4">
               Integrations
             </p>
-            <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-white mb-6">
+            <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-[#0F172A] mb-6">
               We live in your workflow.
             </h2>
-            <p className="text-base text-[#94A3B8] leading-relaxed mb-6">
+            <p className="text-base text-[#64748B] leading-relaxed mb-6">
               Lawvek connects directly to the tools you already use and quietly keeps everything in sync behind the scenes. It processes your contracts continuously and turns them into clear, reliable insights.
             </p>
-            <p className="text-base text-[#94A3B8] leading-relaxed mb-10">
+            <p className="text-base text-[#64748B] leading-relaxed mb-10">
               Instead of switching between platforms, Lawvek shows up where your team already works — so contract review stays accurate and out of your way.
             </p>
             
@@ -79,7 +79,7 @@ export const IntegrationsSection = () => {
               {integrations.map((integration) => (
                 <div 
                   key={integration.name}
-                  className="flex items-center gap-2 px-3 py-1.5 bg-[#1E293B] border border-[#334155] rounded-full text-sm text-[#94A3B8]"
+                  className="flex items-center gap-2 px-3 py-1.5 bg-white border border-[#E2E8F0] rounded-full text-sm text-[#64748B] shadow-sm"
                 >
                   <span style={{ color: integration.color }}>{integration.icon}</span>
                   <span>{integration.name}</span>
@@ -89,7 +89,7 @@ export const IntegrationsSection = () => {
             
             <motion.a
               href="#cta"
-              className="inline-flex items-center justify-center bg-white text-[#0F172A] px-8 py-4 rounded-lg hover:bg-[#F8FAFC] transition-all duration-300 font-semibold text-sm group"
+              className="inline-flex items-center justify-center bg-[#0F172A] text-white px-8 py-4 rounded-lg hover:bg-[#1E293B] transition-all duration-300 font-semibold text-sm group"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               data-testid="integrations-cta"
@@ -109,21 +109,21 @@ export const IntegrationsSection = () => {
           >
             <div className="relative w-[420px] h-[420px]">
               {/* Outer glow ring */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-500/10 via-transparent to-emerald-500/10 animate-spin" style={{ animationDuration: '20s' }} />
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-500/5 via-transparent to-emerald-500/5 animate-spin" style={{ animationDuration: '20s' }} />
               
               {/* Orbital rings */}
               <motion.div 
-                className="absolute inset-4 rounded-full border border-[#1E293B]"
+                className="absolute inset-4 rounded-full border border-[#E2E8F0]"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
               />
               <motion.div 
-                className="absolute inset-16 rounded-full border border-[#334155]"
+                className="absolute inset-16 rounded-full border border-[#CBD5E1]"
                 animate={{ rotate: -360 }}
                 transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
               />
               <motion.div 
-                className="absolute inset-28 rounded-full border border-dashed border-[#334155]/50"
+                className="absolute inset-28 rounded-full border border-dashed border-[#CBD5E1]/50"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
               />
@@ -131,7 +131,7 @@ export const IntegrationsSection = () => {
               {/* Central Hub */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
                 <motion.div 
-                  className="w-28 h-28 rounded-2xl bg-gradient-to-br from-[#1E293B] to-[#0F172A] shadow-2xl shadow-emerald-500/20 flex items-center justify-center border border-[#334155]"
+                  className="w-28 h-28 rounded-2xl bg-gradient-to-br from-[#0F172A] to-[#1E293B] shadow-2xl flex items-center justify-center border border-[#334155]"
                   animate={{ 
                     boxShadow: [
                       '0 0 40px rgba(16, 185, 129, 0.1)',
@@ -193,7 +193,7 @@ export const IntegrationsSection = () => {
                       
                       {/* Icon container */}
                       <motion.div 
-                        className="w-12 h-12 rounded-xl bg-[#1E293B] border border-[#334155] flex items-center justify-center cursor-pointer shadow-lg"
+                        className="w-12 h-12 rounded-xl bg-white border border-[#E2E8F0] flex items-center justify-center cursor-pointer shadow-md"
                         style={{ color: integration.color }}
                         whileHover={{ 
                           scale: 1.2, 
@@ -207,7 +207,7 @@ export const IntegrationsSection = () => {
                       
                       {/* Tooltip */}
                       <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                        <span className="text-xs text-[#94A3B8] bg-[#0F172A] px-2 py-1 rounded border border-[#334155]">
+                        <span className="text-xs text-[#64748B] bg-white px-2 py-1 rounded border border-[#E2E8F0] shadow-sm">
                           {integration.name}
                         </span>
                       </div>
@@ -219,9 +219,9 @@ export const IntegrationsSection = () => {
               {/* Animated connection lines */}
               <svg className="absolute inset-0 w-full h-full pointer-events-none">
                 <defs>
-                  <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <linearGradient id="lineGradientLight" x1="0%" y1="0%" x2="100%" y2="0%">
                     <stop offset="0%" stopColor="#10B981" stopOpacity="0" />
-                    <stop offset="50%" stopColor="#10B981" stopOpacity="0.5" />
+                    <stop offset="50%" stopColor="#10B981" stopOpacity="0.3" />
                     <stop offset="100%" stopColor="#10B981" stopOpacity="0" />
                   </linearGradient>
                 </defs>
@@ -237,10 +237,10 @@ export const IntegrationsSection = () => {
                       y1="210"
                       x2={x}
                       y2={y}
-                      stroke="url(#lineGradient)"
+                      stroke="url(#lineGradientLight)"
                       strokeWidth="1"
                       initial={{ pathLength: 0, opacity: 0 }}
-                      whileInView={{ pathLength: 1, opacity: 0.3 }}
+                      whileInView={{ pathLength: 1, opacity: 0.5 }}
                       viewport={{ once: true }}
                       transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
                     />
