@@ -31,7 +31,7 @@ export const HeroSection = () => {
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm border border-[#E2E8F0] rounded-full mb-8 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               <span className="text-xs font-medium text-[#475569] tracking-wide">
-                Trusted by 500+ legal teams
+                Lawyer Assisted AI
               </span>
             </div>
             
