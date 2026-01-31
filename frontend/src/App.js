@@ -8,6 +8,7 @@ import {
   HowItWorksSection,
   BenefitsSection,
   SecuritySection,
+  IntegrationsSection,
   CTASection,
   Footer,
 } from "@/components/lawvek";
@@ -22,6 +23,7 @@ const LandingPage = () => {
         <ApproachSection />
         <HowItWorksSection />
         <BenefitsSection />
+        <IntegrationsSection />
         <SecuritySection />
         <CTASection />
       </main>
