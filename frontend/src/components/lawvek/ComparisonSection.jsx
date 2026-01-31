@@ -18,7 +18,7 @@ export const ComparisonSection = () => {
 
   return (
     <section 
-      className="bg-[#F1F5F9] py-24 md:py-32"
+      className="bg-[#0F172A] py-24 md:py-32"
       data-testid="comparison-section"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -30,7 +30,7 @@ export const ComparisonSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-[#0F172A]">
+          <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-white">
             Lawvek vs Traditional Law Firm
           </h2>
         </motion.div>
@@ -39,13 +39,13 @@ export const ComparisonSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {/* Lawvek Card */}
           <motion.div
-            className="bg-white rounded-2xl p-8 border-2 border-[#0F172A] shadow-lg"
+            className="bg-[#1E293B] rounded-2xl p-8 border border-emerald-500/30"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="text-2xl font-semibold text-[#0F172A] mb-8">
+            <h3 className="text-2xl font-semibold text-white mb-8">
               Lawvek
             </h3>
             <ul className="space-y-6">
@@ -58,10 +58,10 @@ export const ComparisonSection = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: 0.1 * index }}
                 >
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center mt-0.5">
-                    <Check className="w-4 h-4 text-emerald-600" strokeWidth={2.5} />
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center mt-0.5">
+                    <Check className="w-4 h-4 text-emerald-400" strokeWidth={2.5} />
                   </div>
-                  <span className="text-base text-[#374151] leading-relaxed">
+                  <span className="text-base text-[#CBD5E1] leading-relaxed">
                     {benefit}
                   </span>
                 </motion.li>
@@ -71,13 +71,13 @@ export const ComparisonSection = () => {
 
           {/* Traditional Law Firm Card */}
           <motion.div
-            className="bg-white rounded-2xl p-8 border border-[#E2E8F0] shadow-sm"
+            className="bg-[#1E293B]/50 rounded-2xl p-8 border border-[#334155]"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="text-2xl font-semibold text-[#0F172A] mb-8">
+            <h3 className="text-2xl font-semibold text-white mb-8">
               Traditional Law Firm
             </h3>
             <ul className="space-y-6">
@@ -90,10 +90,10 @@ export const ComparisonSection = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: 0.1 * index }}
                 >
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-red-100 flex items-center justify-center mt-0.5">
-                    <X className="w-4 h-4 text-red-500" strokeWidth={2.5} />
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center mt-0.5">
+                    <X className="w-4 h-4 text-red-400" strokeWidth={2.5} />
                   </div>
-                  <span className="text-base text-[#6B7280] leading-relaxed">
+                  <span className="text-base text-[#94A3B8] leading-relaxed">
                     {drawback}
                   </span>
                 </motion.li>
