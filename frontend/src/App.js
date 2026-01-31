@@ -3,12 +3,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
   Header,
   HeroSection,
-  TrustStrip,
   ProblemSection,
   ApproachSection,
   HowItWorksSection,
   BenefitsSection,
-  WhyItWorksSection,
   SecuritySection,
   CTASection,
   Footer,
@@ -20,12 +18,10 @@ const LandingPage = () => {
       <Header />
       <main>
         <HeroSection />
-        <TrustStrip />
         <ProblemSection />
         <ApproachSection />
         <HowItWorksSection />
         <BenefitsSection />
-        <WhyItWorksSection />
         <SecuritySection />
         <CTASection />
       </main>
