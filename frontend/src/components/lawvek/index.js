@@ -7,5 +7,6 @@ export { HowItWorksSection } from './HowItWorksSection';
 export { BenefitsSection } from './BenefitsSection';
 export { WhyItWorksSection } from './WhyItWorksSection';
 export { SecuritySection } from './SecuritySection';
+export { IntegrationsSection } from './IntegrationsSection';
 export { CTASection } from './CTASection';
 export { Footer } from './Footer';
