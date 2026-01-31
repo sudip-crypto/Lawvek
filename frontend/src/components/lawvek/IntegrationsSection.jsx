@@ -48,6 +48,22 @@ export const IntegrationsSection = () => {
     )},
   ];
 
+  // Left path definitions - curves from icons to parallel horizontal lines entering the hub
+  const leftPaths = [
+    "M 55 70 C 100 70, 140 200, 200 200 L 220 200",      // Top icon
+    "M 55 145 C 100 145, 140 215, 200 215 L 220 215",    // Second icon
+    "M 55 220 C 120 220, 160 230, 200 230 L 220 230",    // Middle icon
+    "M 55 295 C 100 295, 140 245, 200 245 L 220 245",    // Fourth icon
+    "M 55 370 C 100 370, 140 260, 200 260 L 220 260",    // Bottom icon
+  ];
+
+  // Right path definitions - parallel horizontal lines from hub curving out to icons
+  const rightPaths = [
+    "M 280 215 L 300 215 C 360 215, 400 130, 445 130",   // Top icon
+    "M 280 230 L 300 230 C 340 230, 400 230, 445 230",   // Middle icon
+    "M 280 245 L 300 245 C 360 245, 400 330, 445 330",   // Bottom icon
+  ];
+
   return (
     <section 
       className="bg-[#FAFAFA] py-24 md:py-32 overflow-hidden border-y border-[#E2E8F0]"
@@ -95,74 +111,66 @@ export const IntegrationsSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="relative w-full h-[500px]">
+            <div className="relative w-[500px] h-[460px]">
               {/* SVG Paths and Animations */}
-              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 500 500" fill="none">
-                {/* Left paths */}
-                <path d="M 80 50 Q 80 250, 250 250" stroke="#E2E8F0" strokeWidth="2" fill="none" />
-                <path d="M 80 130 Q 120 130, 120 250 Q 120 250, 250 250" stroke="#E2E8F0" strokeWidth="2" fill="none" />
-                <path d="M 80 210 Q 160 210, 160 250 Q 160 250, 250 250" stroke="#E2E8F0" strokeWidth="2" fill="none" />
-                <path d="M 80 290 Q 160 290, 160 250 Q 160 250, 250 250" stroke="#E2E8F0" strokeWidth="2" fill="none" />
-                <path d="M 80 370 Q 120 370, 120 250 Q 120 250, 250 250" stroke="#E2E8F0" strokeWidth="2" fill="none" />
-                
-                {/* Right paths */}
-                <path d="M 250 250 Q 380 250, 420 130" stroke="#E2E8F0" strokeWidth="2" fill="none" />
-                <path d="M 250 250 Q 340 250, 420 250" stroke="#E2E8F0" strokeWidth="2" fill="none" />
-                <path d="M 250 250 Q 380 250, 420 370" stroke="#E2E8F0" strokeWidth="2" fill="none" />
-
-                {/* Animated dots on left paths */}
-                {[0, 1, 2, 3, 4].map((i) => (
-                  <motion.circle
-                    key={`left-dot-${i}`}
-                    r="4"
-                    fill="#10B981"
-                    initial={{ opacity: 0 }}
-                    animate={{
-                      opacity: [0, 1, 1, 0],
-                      offsetDistance: ['0%', '100%'],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      delay: i * 0.4,
-                      ease: "easeInOut",
-                    }}
-                    style={{
-                      offsetPath: `path('M 80 ${50 + i * 80} Q ${80 + i * 20} ${50 + i * 80}, ${120 + i * 20} 250 Q ${160 + i * 20} 250, 250 250')`,
-                    }}
-                  />
+              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 500 460" fill="none">
+                {/* Left curved paths */}
+                {leftPaths.map((path, index) => (
+                  <g key={`left-path-${index}`}>
+                    <path d={path} stroke="#E2E8F0" strokeWidth="2" fill="none" />
+                    <motion.circle
+                      r="5"
+                      fill="#10B981"
+                      initial={{ opacity: 0 }}
+                      animate={{
+                        opacity: [0, 1, 1, 0],
+                        offsetDistance: ['0%', '100%'],
+                      }}
+                      transition={{
+                        duration: 2.5,
+                        repeat: Infinity,
+                        delay: index * 0.3,
+                        ease: "easeInOut",
+                      }}
+                      style={{
+                        offsetPath: `path('${path}')`,
+                      }}
+                    />
+                  </g>
                 ))}
 
-                {/* Animated dots on right paths */}
-                {[0, 1, 2].map((i) => (
-                  <motion.circle
-                    key={`right-dot-${i}`}
-                    r="4"
-                    fill="#10B981"
-                    initial={{ opacity: 0 }}
-                    animate={{
-                      opacity: [0, 1, 1, 0],
-                      offsetDistance: ['0%', '100%'],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      delay: 1 + i * 0.4,
-                      ease: "easeInOut",
-                    }}
-                    style={{
-                      offsetPath: `path('M 250 250 Q ${340 + i * 20} 250, 420 ${130 + i * 120}')`,
-                    }}
-                  />
+                {/* Right curved paths */}
+                {rightPaths.map((path, index) => (
+                  <g key={`right-path-${index}`}>
+                    <path d={path} stroke="#E2E8F0" strokeWidth="2" fill="none" />
+                    <motion.circle
+                      r="5"
+                      fill="#10B981"
+                      initial={{ opacity: 0 }}
+                      animate={{
+                        opacity: [0, 1, 1, 0],
+                        offsetDistance: ['0%', '100%'],
+                      }}
+                      transition={{
+                        duration: 2.5,
+                        repeat: Infinity,
+                        delay: 1.2 + index * 0.3,
+                        ease: "easeInOut",
+                      }}
+                      style={{
+                        offsetPath: `path('${path}')`,
+                      }}
+                    />
+                  </g>
                 ))}
               </svg>
 
               {/* Left Integration Icons */}
-              <div className="absolute left-0 top-0 bottom-0 flex flex-col justify-center gap-4">
+              <div className="absolute left-0 top-0 bottom-0 flex flex-col justify-between py-8">
                 {leftIntegrations.map((integration, index) => (
                   <motion.div
                     key={integration.name}
-                    className="w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-md hover:scale-110 transition-all duration-300 cursor-pointer"
+                    className="w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer"
                     style={{ backgroundColor: integration.bg, color: integration.color }}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -178,26 +186,26 @@ export const IntegrationsSection = () => {
               {/* Central Hub */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
                 <motion.div 
-                  className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#1E3A5F] to-[#0F172A] shadow-xl flex items-center justify-center"
+                  className="w-24 h-24 rounded-2xl bg-gradient-to-br from-[#1E3A5F] to-[#0F172A] shadow-xl flex items-center justify-center"
                   animate={{ 
                     boxShadow: [
-                      '0 4px 20px rgba(16, 185, 129, 0.1)',
-                      '0 4px 30px rgba(16, 185, 129, 0.2)',
-                      '0 4px 20px rgba(16, 185, 129, 0.1)',
+                      '0 4px 30px rgba(16, 185, 129, 0.15)',
+                      '0 4px 50px rgba(16, 185, 129, 0.25)',
+                      '0 4px 30px rgba(16, 185, 129, 0.15)',
                     ]
                   }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 >
-                  <span className="text-3xl font-serif text-white italic">L</span>
+                  <span className="text-4xl font-serif text-white italic">L</span>
                 </motion.div>
               </div>
 
               {/* Right Integration Icons */}
-              <div className="absolute right-0 top-0 bottom-0 flex flex-col justify-center gap-4">
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 flex flex-col justify-center gap-16">
                 {rightIntegrations.map((integration, index) => (
                   <motion.div
                     key={integration.name}
-                    className="w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-md hover:scale-110 transition-all duration-300 cursor-pointer"
+                    className="w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer"
                     style={{ backgroundColor: integration.bg, color: integration.color }}
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -209,30 +217,6 @@ export const IntegrationsSection = () => {
                   </motion.div>
                 ))}
               </div>
-
-              {/* Flowing particles effect */}
-              {[...Array(8)].map((_, i) => (
-                <motion.div
-                  key={`particle-${i}`}
-                  className="absolute w-2 h-2 rounded-full bg-emerald-400"
-                  style={{
-                    left: '50%',
-                    top: '50%',
-                  }}
-                  animate={{
-                    x: [0, (i % 2 === 0 ? -150 : 150) + Math.random() * 50],
-                    y: [0, -200 + i * 50],
-                    opacity: [0, 1, 0],
-                    scale: [0, 1, 0],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    delay: i * 0.3,
-                    ease: "easeOut",
-                  }}
-                />
-              ))}
             </div>
           </motion.div>
         </div>
