@@ -71,6 +71,7 @@ export const HeroSection = () => {
               {[
                 { value: '3hrs', label: 'Avg. turnaround' },
                 { value: '80%', label: 'Cost reduction' },
+                { value: '90%', label: 'TAT reduction' },
               ].map((stat, i) => (
                 <motion.div 
                   key={stat.label}
