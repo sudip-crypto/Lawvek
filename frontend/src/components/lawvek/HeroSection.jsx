@@ -69,8 +69,8 @@ export const HeroSection = () => {
             {/* Stats */}
             <div className="flex gap-10 lg:gap-12">
               {[
-                { value: '2hrs', label: 'Avg. turnaround' },
-                { value: '60%', label: 'Cost reduction' },
+                { value: '3hrs', label: 'Avg. turnaround' },
+                { value: '80%', label: 'Cost reduction' },
                 { value: '$2.4M', label: 'Saved for clients' },
               ].map((stat, i) => (
                 <motion.div 
