@@ -37,7 +37,7 @@ export const HeroSection = () => {
             
             <h1 className="text-[2.75rem] sm:text-5xl lg:text-[3.5rem] font-serif tracking-[-0.02em] leading-[1.1] text-[#0F172A] mb-6">
               Contract review{' '}
-              <span className="text-[#475569]">without hourly billing.</span>
+              <span className="text-[#1E293B]">without hourly billing.</span>
             </h1>
             
             <p className="text-lg font-sans leading-relaxed text-[#64748B] max-w-lg mb-10">
