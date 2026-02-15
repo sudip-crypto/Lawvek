@@ -9,6 +9,31 @@ export const SecuritySection = () => {
     { icon: Server, title: 'US Data Centers', description: 'Enterprise infrastructure' },
   ];
 
+  // Staggered animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
+    }
+  };
+
   return (
     <section 
       id="security"
@@ -23,9 +48,15 @@ export const SecuritySection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-sm font-medium text-emerald-400 tracking-wide uppercase mb-4">
+          <motion.p 
+            className="text-sm font-medium text-emerald-400 tracking-wide uppercase mb-4"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
             Security & Compliance
-          </p>
+          </motion.p>
           <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-white mb-4">
             Enterprise-grade security.
           </h2>
@@ -34,21 +65,32 @@ export const SecuritySection = () => {
           </p>
         </motion.div>
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Features Grid with staggered reveal */}
+        <motion.div 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
-              className="p-6 rounded-2xl border border-[#1E293B] bg-gradient-to-b from-[#1E293B]/50 to-transparent text-center hover:border-[#334155] transition-colors duration-300"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className="group p-6 rounded-2xl border border-[#1E293B] bg-gradient-to-b from-[#1E293B]/50 to-transparent text-center hover:border-emerald-500/30 transition-colors duration-300"
+              variants={cardVariants}
+              whileHover={{ 
+                y: -4, 
+                transition: { duration: 0.2 } 
+              }}
               data-testid={`security-feature-${index}`}
             >
-              <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-[#1E293B] border border-[#334155] flex items-center justify-center">
+              <motion.div 
+                className="w-14 h-14 mx-auto mb-4 rounded-xl bg-[#1E293B] border border-[#334155] flex items-center justify-center group-hover:bg-emerald-500/10 group-hover:border-emerald-500/30 transition-all duration-300"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ duration: 0.2 }}
+              >
                 <feature.icon className="h-6 w-6 text-emerald-400" strokeWidth={1.5} />
-              </div>
+              </motion.div>
               <h3 className="text-base font-semibold text-white mb-1">
                 {feature.title}
               </h3>
@@ -57,21 +99,26 @@ export const SecuritySection = () => {
               </p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Compliance badges */}
+        {/* Compliance badges with subtle animation */}
         <motion.div 
           className="mt-12 flex flex-wrap justify-center items-center gap-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
         >
-          <span className="text-sm font-medium text-[#64748B]">GDPR Compliant</span>
-          <span className="text-[#334155]">•</span>
-          <span className="text-sm font-medium text-[#64748B]">CCPA Ready</span>
-          <span className="text-[#334155]">•</span>
-          <span className="text-sm font-medium text-[#64748B]">HIPAA Available</span>
+          {['GDPR Compliant', 'CCPA Ready', 'HIPAA Available'].map((badge, i) => (
+            <motion.span 
+              key={badge}
+              className="text-sm font-medium text-[#64748B] hover:text-emerald-400 transition-colors duration-300 cursor-default"
+              whileHover={{ scale: 1.05 }}
+            >
+              {badge}
+              {i < 2 && <span className="ml-8 text-[#334155]">•</span>}
+            </motion.span>
+          ))}
         </motion.div>
       </div>
     </section>
