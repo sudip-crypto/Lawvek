@@ -93,11 +93,11 @@ export const Header = ({ onOpenModal }) => {
               </div>
             </nav>
 
-            {/* Desktop CTA - Premium Futuristic style */}
+            {/* Desktop CTA - Pill shape uniform */}
             <div className="hidden md:flex items-center">
               <motion.button
                 onClick={onOpenModal}
-                className="group relative flex items-center gap-2.5 bg-[#0F172A] text-white px-5 py-2.5 rounded-xl overflow-hidden font-semibold text-[13px] transition-all duration-300"
+                className="group relative flex items-center gap-2.5 bg-[#0F172A] text-white px-5 py-2.5 rounded-full overflow-hidden font-medium text-[13px] transition-all duration-300"
                 data-testid="header-cta"
                 whileHover={{ scale: 1.02, boxShadow: '0 8px 25px rgba(15,23,42,0.2)' }}
                 whileTap={{ scale: 0.98 }}
@@ -105,7 +105,7 @@ export const Header = ({ onOpenModal }) => {
                 {/* Shimmer effect */}
                 <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                 <span className="relative z-10">Get Priority Access</span>
-                <ArrowRight className="relative z-10 w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" strokeWidth={2.5} />
+                <ArrowRight className="relative z-10 w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" strokeWidth={2} />
               </motion.button>
             </div>
 
