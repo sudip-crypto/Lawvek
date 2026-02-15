@@ -59,7 +59,7 @@ export const HeroSection = ({ onOpenModal }) => {
               
               {/* Subtle trust note */}
               <p className="mt-5 text-[13px] text-[#94A3B8] tracking-wide">
-                No credit card required · 2 min setup
+                No credit card required
               </p>
             </div>
             
