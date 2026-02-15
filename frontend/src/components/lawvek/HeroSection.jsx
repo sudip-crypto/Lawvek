@@ -88,66 +88,177 @@ export const HeroSection = ({ onOpenModal }) => {
             </div>
           </motion.div>
           
-          {/* Right - Product Card */}
+          {/* Right - Premium Product Card */}
           <motion.div
             className="relative hidden lg:block"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="relative aspect-square max-w-md ml-auto">
+            <div className="relative max-w-[420px] ml-auto">
               {/* Main card */}
-              <div className="absolute inset-0 bg-white/95 backdrop-blur-md rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] border border-white/50 p-8">
-                <div className="h-full flex flex-col">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-3 h-3 rounded-full bg-emerald-400" />
-                    <span className="text-sm font-medium text-[#0F172A]">Contract Analysis Complete</span>
-                  </div>
-                  
-                  <div className="flex-1 space-y-4">
-                    <div className="p-4 bg-[#F8FAFC] rounded-xl border border-[#E2E8F0]">
-                      <p className="text-xs text-[#64748B] mb-1">Complexity Score</p>
-                      <div className="flex items-center justify-between">
-                        <p className="text-lg font-semibold text-[#0F172A]">Medium</p>
-                        <div className="flex gap-1">
-                          <div className="w-2 h-2 rounded-full bg-emerald-400" />
-                          <div className="w-2 h-2 rounded-full bg-emerald-400" />
-                          <div className="w-2 h-2 rounded-full bg-[#E2E8F0]" />
-                        </div>
+              <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] border border-white/60 overflow-hidden">
+                
+                {/* Header with gradient */}
+                <div className="bg-gradient-to-r from-[#0F172A] to-[#1E293B] px-6 py-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur flex items-center justify-center">
+                        <FileText className="w-5 h-5 text-white" />
+                      </div>
+                      <div>
+                        <p className="text-white font-semibold text-sm">NDA_Agreement_v2.pdf</p>
+                        <p className="text-white/60 text-xs">Uploaded 2 mins ago</p>
                       </div>
                     </div>
-                    <div className="p-4 bg-[#F8FAFC] rounded-xl border border-[#E2E8F0]">
-                      <p className="text-xs text-[#64748B] mb-1">Recommended Review</p>
-                      <p className="text-lg font-semibold text-[#0F172A]">AI + Paralegal + Licensed Lawyers</p>
-                    </div>
-                    <div className="p-4 bg-[#F8FAFC] rounded-xl border border-[#E2E8F0]">
-                      <p className="text-xs text-[#64748B] mb-1">Pricing</p>
-                      <p className="text-lg font-semibold text-[#0F172A]">Fixed Price</p>
-                    </div>
+                    <motion.div 
+                      className="flex items-center gap-1.5 bg-emerald-500/20 text-emerald-400 px-3 py-1.5 rounded-full text-xs font-medium"
+                      animate={{ scale: [1, 1.02, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      Analysis Complete
+                    </motion.div>
                   </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-6 space-y-4">
                   
-                  <div className="mt-6 pt-6 border-t border-[#E2E8F0]">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-[#64748B]">Turnaround</span>
-                      <span className="text-sm font-semibold text-emerald-600">~4 hours</span>
+                  {/* Complexity Score with Progress */}
+                  <div className="bg-gradient-to-br from-[#F8FAFC] to-white rounded-2xl border border-[#E2E8F0]/80 p-4 hover:shadow-md transition-shadow duration-300 cursor-default">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center">
+                          <BarChart3 className="w-4 h-4 text-amber-600" />
+                        </div>
+                        <div>
+                          <p className="text-xs font-medium text-[#64748B] uppercase tracking-wide">Complexity Score</p>
+                          <p className="text-lg font-bold text-[#0F172A]">Medium</p>
+                        </div>
+                      </div>
+                      <span className="text-xs font-semibold text-amber-600 bg-amber-50 px-2 py-1 rounded-md">Level 2/3</span>
+                    </div>
+                    {/* Progress bar */}
+                    <div className="flex gap-1.5">
+                      <motion.div 
+                        className="h-1.5 flex-1 rounded-full bg-emerald-500"
+                        initial={{ width: 0 }}
+                        animate={{ width: '100%' }}
+                        transition={{ duration: 0.8, delay: 0.5 }}
+                      />
+                      <motion.div 
+                        className="h-1.5 flex-1 rounded-full bg-amber-500"
+                        initial={{ width: 0 }}
+                        animate={{ width: '100%' }}
+                        transition={{ duration: 0.8, delay: 0.7 }}
+                      />
+                      <div className="h-1.5 flex-1 rounded-full bg-[#E2E8F0]" />
                     </div>
                   </div>
+
+                  {/* Review Team */}
+                  <div className="bg-gradient-to-br from-[#F8FAFC] to-white rounded-2xl border border-[#E2E8F0]/80 p-4 hover:shadow-md transition-shadow duration-300 cursor-default">
+                    <div className="flex items-center gap-2.5 mb-3">
+                      <div className="w-8 h-8 rounded-lg bg-violet-100 flex items-center justify-center">
+                        <Users className="w-4 h-4 text-violet-600" />
+                      </div>
+                      <p className="text-xs font-medium text-[#64748B] uppercase tracking-wide">Recommended Review Team</p>
+                    </div>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="inline-flex items-center gap-1.5 bg-[#0F172A] text-white text-xs font-medium px-3 py-1.5 rounded-full">
+                        <Sparkles className="w-3 h-3" />
+                        AI Analysis
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 bg-violet-600 text-white text-xs font-medium px-3 py-1.5 rounded-full">
+                        <Users className="w-3 h-3" />
+                        Paralegal
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 bg-emerald-600 text-white text-xs font-medium px-3 py-1.5 rounded-full">
+                        <Shield className="w-3 h-3" />
+                        Licensed Lawyer
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Pricing & Turnaround Row */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="bg-gradient-to-br from-[#F8FAFC] to-white rounded-2xl border border-[#E2E8F0]/80 p-4 hover:shadow-md transition-shadow duration-300 cursor-default">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-7 h-7 rounded-lg bg-emerald-100 flex items-center justify-center">
+                          <DollarSign className="w-3.5 h-3.5 text-emerald-600" />
+                        </div>
+                        <p className="text-xs font-medium text-[#64748B] uppercase tracking-wide">Pricing</p>
+                      </div>
+                      <p className="text-lg font-bold text-[#0F172A]">$249</p>
+                      <p className="text-xs text-emerald-600 font-medium">Fixed • No surprises</p>
+                    </div>
+                    
+                    <div className="bg-gradient-to-br from-[#F8FAFC] to-white rounded-2xl border border-[#E2E8F0]/80 p-4 hover:shadow-md transition-shadow duration-300 cursor-default">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-7 h-7 rounded-lg bg-blue-100 flex items-center justify-center">
+                          <Clock className="w-3.5 h-3.5 text-blue-600" />
+                        </div>
+                        <p className="text-xs font-medium text-[#64748B] uppercase tracking-wide">Turnaround</p>
+                      </div>
+                      <p className="text-lg font-bold text-[#0F172A]">~4 hours</p>
+                      <p className="text-xs text-blue-600 font-medium">Express delivery</p>
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* Footer CTA */}
+                <div className="px-6 pb-6">
+                  <motion.button 
+                    className="w-full bg-gradient-to-r from-[#0F172A] to-[#1E293B] text-white py-3.5 rounded-xl font-medium text-sm flex items-center justify-center gap-2 hover:shadow-lg transition-shadow duration-300"
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.99 }}
+                  >
+                    <Zap className="w-4 h-4" />
+                    Start Review Now
+                    <ArrowRight className="w-4 h-4" />
+                  </motion.button>
                 </div>
               </div>
               
-              {/* Floating badge */}
+              {/* Floating Verified Badge */}
               <motion.div 
-                className="absolute -top-4 -right-4 bg-white rounded-xl shadow-lg border border-[#E2E8F0] px-4 py-3"
-                animate={{ y: [0, -8, 0] }}
+                className="absolute -top-3 -right-3 bg-white rounded-2xl shadow-lg border border-[#E2E8F0] px-4 py-2.5"
+                animate={{ y: [0, -6, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               >
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center">
-                    <svg className="w-4 h-4 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-500 flex items-center justify-center shadow-sm">
+                    <CheckCircle2 className="w-4 h-4 text-white" strokeWidth={2.5} />
                   </div>
-                  <span className="text-sm font-medium text-[#0F172A]">Verified</span>
+                  <div>
+                    <span className="text-sm font-semibold text-[#0F172A]">Verified</span>
+                    <p className="text-[10px] text-[#64748B]">SOC 2 Compliant</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Floating Activity Badge */}
+              <motion.div 
+                className="absolute -bottom-2 -left-3 bg-white rounded-2xl shadow-lg border border-[#E2E8F0] px-4 py-2.5"
+                animate={{ y: [0, 6, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              >
+                <div className="flex items-center gap-2">
+                  <div className="flex -space-x-2">
+                    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-400 to-blue-500 border-2 border-white flex items-center justify-center text-[8px] font-bold text-white">JD</div>
+                    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-violet-400 to-violet-500 border-2 border-white flex items-center justify-center text-[8px] font-bold text-white">SK</div>
+                    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-500 border-2 border-white flex items-center justify-center text-[8px] font-bold text-white">+3</div>
+                  </div>
+                  <div>
+                    <span className="text-xs font-semibold text-[#0F172A]">12 reviews</span>
+                    <p className="text-[10px] text-[#64748B]">completed today</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
                 </div>
               </motion.div>
             </div>
