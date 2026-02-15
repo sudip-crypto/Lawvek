@@ -35,6 +35,31 @@ export const BenefitsSection = () => {
     },
   ];
 
+  // Staggered container animation
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
+    }
+  };
+
   return (
     <section 
       className="bg-[#0F172A] py-24 md:py-32"
@@ -60,21 +85,33 @@ export const BenefitsSection = () => {
           </p>
         </motion.div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Grid with staggered reveal */}
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+        >
           {benefits.map((benefit, index) => (
             <motion.div
               key={benefit.title}
               className="group p-6 rounded-2xl border border-[#1E293B] bg-gradient-to-b from-[#1E293B]/50 to-transparent hover:border-[#334155] transition-all duration-300"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
+              variants={cardVariants}
+              whileHover={{ 
+                y: -6, 
+                borderColor: 'rgba(16, 185, 129, 0.3)',
+                transition: { duration: 0.2 } 
+              }}
               data-testid={`benefit-card-${index}`}
             >
-              <div className="w-12 h-12 rounded-xl bg-[#1E293B] border border-[#334155] flex items-center justify-center mb-4 group-hover:bg-emerald-500/10 group-hover:border-emerald-500/30 transition-colors">
+              <motion.div 
+                className="w-12 h-12 rounded-xl bg-[#1E293B] border border-[#334155] flex items-center justify-center mb-4 group-hover:bg-emerald-500/10 group-hover:border-emerald-500/30 transition-colors"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ duration: 0.2 }}
+              >
                 <benefit.icon className="h-5 w-5 text-[#94A3B8] group-hover:text-emerald-400 transition-colors" strokeWidth={1.5} />
-              </div>
+              </motion.div>
               <h3 className="text-lg font-semibold text-white mb-2">
                 {benefit.title}
               </h3>
@@ -83,7 +120,7 @@ export const BenefitsSection = () => {
               </p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
