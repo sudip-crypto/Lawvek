@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronDown, ArrowRight } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 
-export const EarlyAccessModal = ({ isOpen, onClose }) => {
+export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -13,6 +13,7 @@ export const EarlyAccessModal = ({ isOpen, onClose }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const spotsRemaining = 50 - queueCount;
 
   const companySizes = [
     '1-10 employees',
@@ -38,6 +39,10 @@ export const EarlyAccessModal = ({ isOpen, onClose }) => {
     await new Promise(resolve => setTimeout(resolve, 1200));
     setIsSubmitting(false);
     setIsSubmitted(true);
+    // Call the onSuccess callback to increment queue
+    if (onSuccess) {
+      onSuccess();
+    }
   };
 
   const handleClose = () => {
