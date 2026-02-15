@@ -228,8 +228,8 @@ export const HeroSection = ({ onOpenModal }) => {
                 animate={{ y: [0, -6, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               >
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-500 flex items-center justify-center shadow-sm">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-full bg-[#0F172A] flex items-center justify-center">
                     <CheckCircle2 className="w-4 h-4 text-white" strokeWidth={2.5} />
                   </div>
                   <div>
@@ -245,11 +245,11 @@ export const HeroSection = ({ onOpenModal }) => {
                 animate={{ y: [0, 6, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
               >
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2.5">
                   <div className="flex -space-x-2">
-                    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-400 to-blue-500 border-2 border-white flex items-center justify-center text-[8px] font-bold text-white">JD</div>
-                    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-violet-400 to-violet-500 border-2 border-white flex items-center justify-center text-[8px] font-bold text-white">SK</div>
-                    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-500 border-2 border-white flex items-center justify-center text-[8px] font-bold text-white">+3</div>
+                    <div className="w-6 h-6 rounded-full bg-[#0F172A] border-2 border-white flex items-center justify-center text-[8px] font-bold text-white">JD</div>
+                    <div className="w-6 h-6 rounded-full bg-[#334155] border-2 border-white flex items-center justify-center text-[8px] font-bold text-white">SK</div>
+                    <div className="w-6 h-6 rounded-full bg-[#64748B] border-2 border-white flex items-center justify-center text-[8px] font-bold text-white">+3</div>
                   </div>
                   <div>
                     <span className="text-xs font-semibold text-[#0F172A]">12 reviews</span>
