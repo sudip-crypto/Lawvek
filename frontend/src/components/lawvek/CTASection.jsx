@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Play } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export const CTASection = ({ onOpenModal }) => {
   return (
@@ -18,12 +18,12 @@ export const CTASection = ({ onOpenModal }) => {
         >
           {/* Background decoration */}
           <div className="absolute top-0 left-0 w-full h-full opacity-10">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl" />
+            <div className="absolute top-0 right-0 w-96 h-96 bg-slate-400 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-slate-500 rounded-full blur-3xl" />
           </div>
           
           <div className="relative z-10 max-w-2xl mx-auto">
-            <p className="text-sm font-medium text-emerald-400 tracking-wide uppercase mb-4">
+            <p className="text-sm font-medium text-[#94A3B8] tracking-wide uppercase mb-4">
               Get Started
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif tracking-tight text-white mb-6">
@@ -33,32 +33,28 @@ export const CTASection = ({ onOpenModal }) => {
               Join the waitlist and be first to experience AI-powered legal services.
             </p>
             
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <motion.button
-                onClick={onOpenModal}
-                className="inline-flex items-center justify-center bg-white text-[#0F172A] px-8 py-4 rounded-xl hover:bg-[#F8FAFC] transition-colors duration-200 font-semibold text-sm group shadow-lg"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                data-testid="cta-upload-button"
-              >
-                Get Priority Access
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" strokeWidth={2} />
-              </motion.button>
+            {/* Premium CTA Button - Uniform style */}
+            <motion.button
+              onClick={onOpenModal}
+              className="group relative inline-flex items-center gap-3 bg-white text-[#0F172A] px-8 py-4 rounded-2xl font-semibold text-base overflow-hidden transition-all duration-500"
+              whileHover={{ scale: 1.02, boxShadow: '0 20px 40px rgba(255,255,255,0.15)' }}
+              whileTap={{ scale: 0.98 }}
+              data-testid="cta-upload-button"
+            >
+              {/* Shimmer effect */}
+              <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-[#0F172A]/5 to-transparent" />
               
-              <motion.a
-                href="#how-it-works"
-                className="inline-flex items-center justify-center bg-transparent border border-[#334155] text-white px-8 py-4 rounded-xl hover:bg-[#1E293B] hover:border-[#475569] transition-all duration-200 font-medium text-sm group"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                data-testid="cta-talk-button"
-              >
-                <Play className="mr-2 h-4 w-4" strokeWidth={2} />
-                Watch Demo
-              </motion.a>
-            </div>
+              {/* Button content */}
+              <span className="relative z-10 flex items-center gap-3">
+                <span>Get Priority Access</span>
+                <span className="flex items-center justify-center w-8 h-8 rounded-xl bg-[#0F172A]/10 group-hover:bg-[#0F172A]/20 transition-colors duration-300">
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" strokeWidth={2.5} />
+                </span>
+              </span>
+            </motion.button>
 
             <p className="mt-8 text-xs text-[#64748B]">
-              Join 500+ legal teams on the waitlist • No credit card required
+              Limited to first 50 legal teams
             </p>
           </div>
         </motion.div>
