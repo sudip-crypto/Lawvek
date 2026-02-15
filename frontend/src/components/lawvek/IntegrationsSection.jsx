@@ -49,7 +49,7 @@ export const IntegrationsSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="relative w-[500px] h-[420px]">
+            <div className="relative w-[500px] h-[450px]">
               
               {/* Left Integration Icons */}
               {/* Slack */}
