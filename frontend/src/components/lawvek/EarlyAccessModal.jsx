@@ -294,37 +294,3 @@ export const EarlyAccessModal = ({ isOpen, onClose }) => {
     </AnimatePresence>
   );
 };
-                        transition={{ delay: 0.4 }}
-                      >
-                        You're on the list
-                      </motion.h2>
-                      <motion.p 
-                        className="text-slate-400 text-base mb-8 max-w-xs mx-auto"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5 }}
-                      >
-                        We'll reach out within 24 hours with your exclusive access details.
-                      </motion.p>
-                      <motion.button
-                        onClick={handleClose}
-                        className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.6 }}
-                        whileHover={{ x: 3 }}
-                      >
-                        Done
-                        <ArrowRight className="w-4 h-4" />
-                      </motion.button>
-                    </motion.div>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
-  );
-};
