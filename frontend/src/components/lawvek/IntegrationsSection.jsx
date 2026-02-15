@@ -208,27 +208,27 @@ export const IntegrationsSection = () => {
               </div>
 
               {/* SVG Paths - Connected to icons */}
-              <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 500 420" fill="none">
+              <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 500 450" fill="none">
                 {/* Left paths - from icon centers to hub */}
-                <path d="M 56 55 C 130 55, 180 185, 200 195 L 238 210" stroke="#E2E8F0" strokeWidth="2" fill="none" />
-                <path d="M 56 132 C 130 132, 170 190, 200 200 L 238 210" stroke="#E2E8F0" strokeWidth="2" fill="none" />
-                <path d="M 56 209 C 140 209, 180 210, 238 210" stroke="#E2E8F0" strokeWidth="2" fill="none" />
-                <path d="M 56 286 C 130 286, 170 220, 200 220 L 238 210" stroke="#E2E8F0" strokeWidth="2" fill="none" />
-                <path d="M 56 363 C 130 363, 180 235, 200 225 L 238 210" stroke="#E2E8F0" strokeWidth="2" fill="none" />
+                <path d="M 56 55 C 130 55, 180 200, 200 210 L 238 225" stroke="#E2E8F0" strokeWidth="2" fill="none" />
+                <path d="M 56 132 C 130 132, 170 205, 200 215 L 238 225" stroke="#E2E8F0" strokeWidth="2" fill="none" />
+                <path d="M 56 209 C 140 209, 180 225, 238 225" stroke="#E2E8F0" strokeWidth="2" fill="none" />
+                <path d="M 56 286 C 130 286, 170 235, 200 235 L 238 225" stroke="#E2E8F0" strokeWidth="2" fill="none" />
+                <path d="M 56 347 C 130 347, 180 250, 200 240 L 238 225" stroke="#E2E8F0" strokeWidth="2" fill="none" />
                 
                 {/* Right paths - from hub to icon centers */}
-                <path d="M 262 210 L 300 195 C 350 175, 400 75, 444 75" stroke="#E2E8F0" strokeWidth="2" fill="none" />
-                <path d="M 262 210 L 300 200 C 350 190, 400 179, 444 179" stroke="#E2E8F0" strokeWidth="2" fill="none" />
-                <path d="M 262 210 L 300 220 C 350 230, 400 283, 444 283" stroke="#E2E8F0" strokeWidth="2" fill="none" />
-                <path d="M 262 210 L 300 225 C 350 245, 400 387, 444 387" stroke="#E2E8F0" strokeWidth="2" fill="none" />
+                <path d="M 262 225 L 300 210 C 350 190, 400 75, 444 75" stroke="#E2E8F0" strokeWidth="2" fill="none" />
+                <path d="M 262 225 L 300 215 C 350 205, 400 179, 444 179" stroke="#E2E8F0" strokeWidth="2" fill="none" />
+                <path d="M 262 225 L 300 235 C 350 245, 400 283, 444 283" stroke="#E2E8F0" strokeWidth="2" fill="none" />
+                <path d="M 262 225 L 300 240 C 350 260, 400 367, 444 367" stroke="#E2E8F0" strokeWidth="2" fill="none" />
 
                 {/* Animated dots on left paths */}
                 {[
-                  "M 56 55 C 130 55, 180 185, 200 195 L 238 210",
-                  "M 56 132 C 130 132, 170 190, 200 200 L 238 210",
-                  "M 56 209 C 140 209, 180 210, 238 210",
-                  "M 56 286 C 130 286, 170 220, 200 220 L 238 210",
-                  "M 56 363 C 130 363, 180 235, 200 225 L 238 210",
+                  "M 56 55 C 130 55, 180 200, 200 210 L 238 225",
+                  "M 56 132 C 130 132, 170 205, 200 215 L 238 225",
+                  "M 56 209 C 140 209, 180 225, 238 225",
+                  "M 56 286 C 130 286, 170 235, 200 235 L 238 225",
+                  "M 56 347 C 130 347, 180 250, 200 240 L 238 225",
                 ].map((path, index) => (
                   <motion.circle
                     key={`left-dot-${index}`}
@@ -253,10 +253,10 @@ export const IntegrationsSection = () => {
 
                 {/* Animated dots on right paths */}
                 {[
-                  "M 262 210 L 300 195 C 350 175, 400 75, 444 75",
-                  "M 262 210 L 300 200 C 350 190, 400 179, 444 179",
-                  "M 262 210 L 300 220 C 350 230, 400 283, 444 283",
-                  "M 262 210 L 300 225 C 350 245, 400 387, 444 387",
+                  "M 262 225 L 300 210 C 350 190, 400 75, 444 75",
+                  "M 262 225 L 300 215 C 350 205, 400 179, 444 179",
+                  "M 262 225 L 300 235 C 350 245, 400 283, 444 283",
+                  "M 262 225 L 300 240 C 350 260, 400 367, 444 367",
                 ].map((path, index) => (
                   <motion.circle
                     key={`right-dot-${index}`}
