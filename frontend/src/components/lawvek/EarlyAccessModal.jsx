@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronDown, Shield, Zap, Users, ArrowRight } from 'lucide-react';
+import { X, ChevronDown, ArrowRight } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 
 export const EarlyAccessModal = ({ isOpen, onClose }) => {
