@@ -66,44 +66,41 @@ export const Header = ({ onOpenModal }) => {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${scrolled ? 'bg-white/80 backdrop-blur-xl shadow-[0_1px_3px_rgba(0,0,0,0.05)]' : 'bg-transparent'}`}>
+      <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${scrolled ? 'bg-white/95 backdrop-blur-xl shadow-[0_1px_3px_rgba(0,0,0,0.05)]' : 'bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
             <a href="/" className="flex items-center z-50 group" data-testid="header-logo">
-              <span className={`text-xl font-semibold tracking-tight transition-all duration-300 ${mobileMenuOpen ? 'text-white' : 'text-[#0F172A] group-hover:text-[#1E293B]'}`}>
+              <span className={`text-xl font-semibold tracking-tight transition-all duration-300 ${mobileMenuOpen ? 'text-white' : scrolled ? 'text-[#0F172A]' : 'text-white'}`}>
                 Lawvek
               </span>
             </a>
 
-            {/* Desktop Navigation - Premium styled */}
-            <nav className="hidden md:flex items-center" data-testid="desktop-nav">
-              <div className="flex items-center bg-[#F8FAFC]/80 backdrop-blur-sm rounded-full px-2 py-1.5 border border-[#E2E8F0]/50">
-                {navLinks.map((link, index) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    className="relative px-5 py-2 text-[13px] font-medium text-[#64748B] hover:text-[#0F172A] transition-all duration-300 group"
-                    data-testid={`nav-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
-                  >
-                    <span className="relative z-10">{link.label}</span>
-                    <span className="absolute inset-0 rounded-full bg-white opacity-0 group-hover:opacity-100 shadow-sm transition-all duration-300 scale-95 group-hover:scale-100" />
-                  </a>
-                ))}
-              </div>
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center gap-8" data-testid="desktop-nav">
+              {navLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className={`text-[13px] font-medium transition-all duration-300 ${scrolled ? 'text-[#64748B] hover:text-[#0F172A]' : 'text-white/70 hover:text-white'}`}
+                  data-testid={`nav-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
+                >
+                  {link.label}
+                </a>
+              ))}
             </nav>
 
-            {/* Desktop CTA - Pill shape uniform */}
+            {/* Desktop CTA */}
             <div className="hidden md:flex items-center">
               <motion.button
                 onClick={onOpenModal}
-                className="group relative flex items-center gap-2.5 bg-[#0F172A] text-white px-5 py-2.5 rounded-full overflow-hidden font-medium text-[13px] transition-all duration-300"
+                className={`group relative flex items-center gap-2.5 px-5 py-2.5 rounded-full overflow-hidden font-medium text-[13px] transition-all duration-300 ${scrolled ? 'bg-[#0F172A] text-white' : 'bg-white text-[#0F172A]'}`}
                 data-testid="header-cta"
-                whileHover={{ scale: 1.02, boxShadow: '0 8px 25px rgba(15,23,42,0.2)' }}
+                whileHover={{ scale: 1.02, boxShadow: scrolled ? '0 8px 25px rgba(15,23,42,0.2)' : '0 8px 25px rgba(255,255,255,0.3)' }}
                 whileTap={{ scale: 0.98 }}
               >
                 {/* Shimmer effect */}
-                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                <span className={`absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent ${scrolled ? 'via-white/10' : 'via-[#0F172A]/5'} to-transparent`} />
                 <span className="relative z-10">Get Priority Access</span>
                 <ArrowRight className="relative z-10 w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" strokeWidth={2} />
               </motion.button>
