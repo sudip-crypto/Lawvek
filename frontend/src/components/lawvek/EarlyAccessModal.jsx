@@ -164,70 +164,58 @@ export const EarlyAccessModal = ({ isOpen, onClose }) => {
                           className="relative" 
                           ref={dropdownRef}
                         >
-                          <label className="block text-slate-300 text-sm font-medium mb-2.5">
+                          <label className="block text-slate-300 text-sm font-medium mb-2">
                             Company Size
                           </label>
                           <input type="hidden" value={formData.companySize} required />
                           <button
                             type="button"
                             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                            className={`w-full bg-white/[0.03] border rounded-xl px-4 py-3.5 text-left flex items-center justify-between transition-all duration-300 cursor-pointer ${
+                            className={`w-full bg-slate-900/50 border rounded-lg px-4 py-3 text-left flex items-center justify-between transition-all cursor-pointer ${
                               isDropdownOpen 
-                                ? 'border-emerald-500/50 ring-2 ring-emerald-500/20 bg-white/[0.05]' 
-                                : 'border-white/10 hover:border-white/20'
-                            } ${formData.companySize ? 'text-white' : 'text-slate-600'}`}
+                                ? 'border-emerald-500 ring-1 ring-emerald-500/30' 
+                                : 'border-slate-700 hover:border-slate-600'
+                            } ${formData.companySize ? 'text-white' : 'text-slate-500'}`}
                           >
                             <span>{formData.companySize || 'Select team size'}</span>
-                            <ChevronDown className={`w-5 h-5 text-slate-500 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                            <ChevronDown className={`w-4 h-4 text-slate-500 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
                           </button>
                           
                           <AnimatePresence>
                             {isDropdownOpen && (
                               <motion.div
-                                initial={{ opacity: 0, y: -8, scale: 0.98 }}
-                                animate={{ opacity: 1, y: 0, scale: 1 }}
-                                exit={{ opacity: 0, y: -8, scale: 0.98 }}
-                                transition={{ duration: 0.2 }}
-                                className="absolute z-50 w-full mt-2 bg-[#0C1220] border border-white/10 rounded-xl shadow-2xl overflow-hidden max-h-52 overflow-y-auto scrollbar-thin"
+                                initial={{ opacity: 0, y: -5 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -5 }}
+                                transition={{ duration: 0.15 }}
+                                className="absolute z-50 w-full mt-1.5 bg-slate-900 border border-slate-700 rounded-lg shadow-xl overflow-hidden max-h-48 overflow-y-auto scrollbar-thin"
                               >
                                 {companySizes.map((size, index) => (
                                   <button
                                     key={size}
                                     type="button"
                                     onClick={() => selectCompanySize(size)}
-                                    className={`w-full px-4 py-3 text-left transition-all duration-200 flex items-center justify-between ${
+                                    className={`w-full px-4 py-2.5 text-sm text-left transition-colors flex items-center justify-between ${
                                       formData.companySize === size 
                                         ? 'bg-emerald-500/10 text-emerald-400' 
-                                        : 'text-slate-300 hover:bg-white/5 hover:text-white'
-                                    } ${index !== companySizes.length - 1 ? 'border-b border-white/5' : ''}`}
+                                        : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                                    } ${index !== companySizes.length - 1 ? 'border-b border-slate-800' : ''}`}
                                   >
                                     <span>{size}</span>
                                     {formData.companySize === size && (
-                                      <motion.svg 
-                                        initial={{ scale: 0 }}
-                                        animate={{ scale: 1 }}
-                                        className="w-4 h-4 text-emerald-400" 
-                                        fill="none" 
-                                        viewBox="0 0 24 24" 
-                                        stroke="currentColor"
-                                      >
+                                      <svg className="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                                      </motion.svg>
+                                      </svg>
                                     )}
                                   </button>
                                 ))}
                               </motion.div>
                             )}
                           </AnimatePresence>
-                        </motion.div>
+                        </div>
 
                         {/* Newsletter Checkbox */}
-                        <motion.div 
-                          className="flex items-start gap-3 pt-2"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ delay: 0.4 }}
-                        >
+                        <div className="flex items-start gap-3 pt-1">
                           <div className="relative">
                             <input
                               type="checkbox"
