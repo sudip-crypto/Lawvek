@@ -62,27 +62,25 @@ export const EarlyAccessModal = ({ isOpen, onClose }) => {
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.2 }}
             >
-            <div className="bg-[#0F172A] border border-[#1E293B] rounded-2xl shadow-2xl overflow-hidden">
-              {/* Close button */}
+            <div className="bg-[#0F172A] border border-[#1E293B] rounded-2xl shadow-2xl overflow-hidden relative">
+              {/* Close button - inside dialog at top right */}
               <button
                 onClick={handleClose}
-                className="absolute top-4 right-4 text-[#64748B] hover:text-white transition-colors z-10"
+                className="absolute top-4 right-4 text-[#64748B] hover:text-white transition-colors z-10 w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#1E293B]"
+                data-testid="modal-close-btn"
               >
                 <X className="w-5 h-5" />
               </button>
 
               {!isSubmitted ? (
-                <div className="p-8">
+                <div className="p-8 pt-12">
                   {/* Header */}
                   <div className="mb-8">
-                    <p className="text-emerald-400 text-sm font-semibold tracking-wide uppercase mb-2">
-                      Early Access
-                    </p>
                     <h2 className="text-2xl md:text-3xl font-serif text-white mb-3">
-                      Get early access to Lawvek
+                      Get priority access to Lawvek
                     </h2>
                     <p className="text-[#94A3B8] text-sm">
-                      Join the waitlist and be first to experience AI-powered legal services.
+                      Secure Your Spot and Be First to Access AI-Powered Legal Services.
                     </p>
                   </div>
 
