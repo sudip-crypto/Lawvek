@@ -177,7 +177,7 @@ export const IntegrationsSection = () => {
               
               {/* DocuSign */}
               <motion.div 
-                className="absolute right-0 top-[360px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-white"
+                className="absolute right-0 top-[340px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-white"
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
