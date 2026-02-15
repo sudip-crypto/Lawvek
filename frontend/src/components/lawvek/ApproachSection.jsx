@@ -4,24 +4,24 @@ import { BarChart3, GitBranch, DollarSign } from 'lucide-react';
 export const ApproachSection = () => {
   const steps = [
     {
-      number: '1',
+      number: '01',
       icon: BarChart3,
       title: 'Intelligent Scoring',
       description: 'AI analyzes clauses, jurisdiction, and risk to assign complexity.',
       points: ['Low complexity', 'Medium risk', 'High priority'],
     },
     {
-      number: '2',
+      number: '02',
       icon: GitBranch,
       title: 'Right-Sized Workflow',
       description: 'Each contract gets the appropriate level of expert review.',
       points: ['AI-only review', 'AI + Paralegal', 'Full legal team'],
     },
     {
-      number: '3',
+      number: '03',
       icon: DollarSign,
       title: 'Predictable Pricing',
-      description: 'Know exactly what you\'ll pay upfront. No hourly billing.',
+      description: 'Know exactly what you\'ll pay upfront. No hourly billing surprises.',
       points: ['Fixed pricing', 'Clear timelines', 'No surprises'],
     },
   ];
@@ -76,7 +76,7 @@ export const ApproachSection = () => {
           </p>
         </motion.div>
 
-        {/* Steps Grid - Staggered Animation */}
+        {/* Steps Grid */}
         <motion.div 
           className="grid grid-cols-1 md:grid-cols-3 gap-5"
           variants={containerVariants}
@@ -87,34 +87,39 @@ export const ApproachSection = () => {
           {steps.map((step, index) => (
             <motion.div
               key={step.number}
-              className="group bg-[#1E293B]/50 border border-[#334155] rounded-2xl p-7 hover:border-[#475569] hover:bg-[#1E293B] transition-all duration-300 flex flex-col"
+              className="group bg-[#1E293B]/50 border border-[#334155] rounded-2xl p-7 hover:border-[#475569] hover:bg-[#1E293B] transition-all duration-300 flex flex-col h-full"
               variants={cardVariants}
               whileHover={{ y: -4, transition: { duration: 0.2 } }}
               data-testid={`approach-step-${index}`}
             >
-              {/* Header Row - Number, Title, Icon */}
-              <div className="flex items-center gap-4 mb-5">
-                <span className="text-2xl font-bold text-white/80 font-serif italic">
-                  {step.number}
-                </span>
-                <h3 className="flex-1 text-lg font-bold text-white">
+              {/* Top Section - Fixed Height */}
+              <div className="h-[180px] flex flex-col">
+                {/* Header Row - Number + Icon */}
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-sm font-medium text-white/40 tracking-widest">
+                    {step.number}
+                  </span>
+                  <div className="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                    <step.icon className="h-5 w-5 text-amber-400" strokeWidth={1.5} />
+                  </div>
+                </div>
+
+                {/* Title */}
+                <h3 className="text-xl font-semibold text-white mb-3">
                   {step.title}
                 </h3>
-                <div className="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center group-hover:scale-105 transition-transform duration-300 flex-shrink-0">
-                  <step.icon className="h-5 w-5 text-amber-400" strokeWidth={1.5} />
-                </div>
+
+                {/* Description */}
+                <p className="text-sm leading-relaxed text-white/50">
+                  {step.description}
+                </p>
               </div>
 
-              {/* Description - Fixed height for alignment */}
-              <p className="text-sm leading-relaxed text-white/60 min-h-[60px]">
-                {step.description}
-              </p>
-
-              {/* Divider - Consistent position */}
+              {/* Divider - Always at same position */}
               <div className="border-t border-[#334155] my-5" />
 
-              {/* Points */}
-              <div className="space-y-2.5">
+              {/* Points - Bottom section */}
+              <div className="space-y-3 flex-1">
                 {step.points.map((point, i) => (
                   <motion.div 
                     key={i} 
@@ -124,7 +129,7 @@ export const ApproachSection = () => {
                     viewport={{ once: true }}
                     transition={{ delay: 0.4 + (index * 0.1) + (i * 0.05) }}
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400 flex-shrink-0" />
                     <span className="text-sm text-white/50">{point}</span>
                   </motion.div>
                 ))}
