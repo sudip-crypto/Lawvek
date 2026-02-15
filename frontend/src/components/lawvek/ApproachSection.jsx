@@ -26,30 +26,6 @@ export const ApproachSection = () => {
     },
   ];
 
-  // Staggered animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94]
-      }
-    }
-  };
-
   return (
     <section 
       id="approach"
@@ -77,23 +53,20 @@ export const ApproachSection = () => {
         </motion.div>
 
         {/* Steps Grid */}
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-5"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {steps.map((step, index) => (
             <motion.div
               key={step.number}
-              className="group bg-[#1E293B]/50 border border-[#334155] rounded-2xl p-7 hover:border-[#475569] hover:bg-[#1E293B] transition-all duration-300 flex flex-col h-full"
-              variants={cardVariants}
+              className="group bg-[#1E293B]/50 border border-[#334155] rounded-2xl p-7 hover:border-[#475569] hover:bg-[#1E293B] transition-all duration-300 flex flex-col"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -4, transition: { duration: 0.2 } }}
               data-testid={`approach-step-${index}`}
             >
-              {/* Top Section - Fixed Height */}
-              <div className="h-[180px] flex flex-col">
+              {/* Top Section - Fixed Height for alignment */}
+              <div className="h-[160px] flex flex-col">
                 {/* Header Row - Number + Icon */}
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-sm font-medium text-white/40 tracking-widest">
@@ -119,24 +92,20 @@ export const ApproachSection = () => {
               <div className="border-t border-[#334155] my-5" />
 
               {/* Points - Bottom section */}
-              <div className="space-y-3 flex-1">
+              <div className="space-y-3">
                 {step.points.map((point, i) => (
-                  <motion.div 
+                  <div 
                     key={i} 
                     className="flex items-center gap-3"
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4 + (index * 0.1) + (i * 0.05) }}
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-amber-400 flex-shrink-0" />
                     <span className="text-sm text-white/50">{point}</span>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
