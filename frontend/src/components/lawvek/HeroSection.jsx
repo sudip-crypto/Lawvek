@@ -120,7 +120,7 @@ export const HeroSection = ({ onOpenModal }) => {
                   {[
                     { label: 'AI-powered analysis', value: 'Instant' },
                     { label: 'Expert legal review', value: 'Included' },
-                    { label: 'Turnaround time', value: '4 hours' },
+                    { label: 'Turnaround time', value: '3 hours' },
                     { label: 'Revisions', value: 'Unlimited' },
                   ].map((item, i) => (
                     <div key={i} className="flex items-center justify-between">
