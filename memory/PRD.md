@@ -35,20 +35,34 @@ Build a modern, minimal, highly professional website for an AI-first contract re
 - [x] All data-testid attributes
 
 **December 31, 2025:**
-- [x] Integrations Section with 9 logos (Slack, Gmail, Teams, Ironclad, SpotDraft, Google Docs, Word, Outlook, DocuSign)
-- [x] Comparison Section (Lawvek vs Traditional Law Firm - dark theme)
-- [x] Changed CTAs from "Login/Start Free Trial" to "Get Priority Access/Watch Demo"
-- [x] Early Access Modal (waitlist form with name, email, company size)
+- [x] Integrations Section with 9 logos
+- [x] Comparison Section (Lawvek vs Traditional Law Firm)
+- [x] Changed CTAs to "Get Priority Access/Watch Demo"
+- [x] Early Access Modal (waitlist form)
 - [x] Modal positioned correctly (centered with backdrop blur)
-- [x] All integration logos visible (fixed container height issue)
 
 **February 15, 2026:**
-- [x] Redesigned Hero Section CTA button to premium, minimal style
-  - Removed bulky dark gradient box with glow effects
-  - Changed to clean rounded pill button with subtle shadow
-  - Single line text "Get Priority Access" with arrow icon
-  - Subtle hover effect (lift + enhanced shadow)
-  - Trust text moved below: "No credit card required · 2 min setup"
+- [x] Premium Hero CTA button redesign (pill shape, subtle hover)
+- [x] Premium navbar with pill-shaped nav container and uniform CTA
+- [x] Impactful stats section (3hrs, 80%, 90%) with visual hierarchy
+- [x] Premium pricing card ($50/contract, 3 hour turnaround)
+- [x] Uniform Approach Section (3 compact boxes, same structure)
+- [x] **Queue Counter Feature:**
+  - Shows "X in queue" next to CTA button
+  - Shows "Y spots left" (limited to 50 users)
+  - Increments on form submission
+  - Persisted in localStorage
+  - Success modal shows queue position (#38 in queue)
+- [x] Data consistency fix (turnaround: 3 hours everywhere)
+- [x] Removed "No credit card required" text
+- [x] Modal shows "Only X spots left" with urgency badge
+
+## Key Metrics (Consistent Across Site)
+- Turnaround time: 3 hours
+- Cost reduction: 80%
+- TAT reduction: 90%
+- Starting price: $50/contract
+- Queue limit: 50 users
 
 ## Prioritized Backlog
 ### P0 (Critical)
@@ -66,30 +80,24 @@ Build a modern, minimal, highly professional website for an AI-first contract re
 - Case studies page
 - Watch Demo video modal
 
-## Next Tasks
-1. Integrate email capture for Early Access form (backend API)
-2. Add working file upload modal
-3. Add meta tags for SEO
-4. Implement Watch Demo video modal
-
 ## Technical Architecture
 ```
 /app/frontend/
 ├── src/
 │   ├── components/lawvek/
-│   │   ├── ApproachSection.jsx
+│   │   ├── ApproachSection.jsx (uniform 3-box layout)
 │   │   ├── BenefitsSection.jsx
-│   │   ├── ComparisonSection.jsx (dark theme)
+│   │   ├── ComparisonSection.jsx
 │   │   ├── CTASection.jsx
-│   │   ├── EarlyAccessModal.jsx (centered modal)
+│   │   ├── EarlyAccessModal.jsx (queue counter, limited spots)
 │   │   ├── Footer.jsx
-│   │   ├── Header.jsx
-│   │   ├── HeroSection.jsx
-│   │   ├── HowItWorksSection.jsx (Slack animation)
-│   │   ├── IntegrationsSection.jsx (9 logos)
+│   │   ├── Header.jsx (premium navbar)
+│   │   ├── HeroSection.jsx (queue counter, pricing card)
+│   │   ├── HowItWorksSection.jsx
+│   │   ├── IntegrationsSection.jsx
 │   │   ├── ProblemSection.jsx
 │   │   ├── SecuritySection.jsx
 │   │   ├── TrustStrip.jsx
 │   │   └── WhyItWorksSection.jsx
-│   └── App.js (modal state management)
+│   └── App.js (queue state management with localStorage)
 ```
