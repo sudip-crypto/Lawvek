@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, ArrowDown, Sparkles } from 'lucide-react';
+import { ArrowRight, ArrowDown } from 'lucide-react';
 
 export const HeroSection = ({ onOpenModal }) => {
   return (
