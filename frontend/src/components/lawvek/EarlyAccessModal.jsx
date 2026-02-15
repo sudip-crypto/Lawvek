@@ -262,52 +262,38 @@ export const EarlyAccessModal = ({ isOpen, onClose }) => {
                         <a href="#" className="text-slate-500 hover:text-emerald-400 underline underline-offset-2 transition-colors">Terms</a>
                         {' '}and{' '}
                         <a href="#" className="text-slate-500 hover:text-emerald-400 underline underline-offset-2 transition-colors">Privacy Policy</a>
-                      </motion.p>
+                      </p>
                     </div>
                   ) : (
-                    /* Success State - Premium */
-                    <motion.div 
-                      className="p-10 text-center"
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.4 }}
-                    >
-                      {/* Success animation */}
-                      <motion.div 
-                        className="relative w-20 h-20 mx-auto mb-8"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ type: "spring", duration: 0.6, delay: 0.1 }}
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 rounded-full animate-pulse" />
-                        <div className="absolute inset-2 bg-gradient-to-br from-emerald-500/30 to-cyan-500/30 rounded-full" />
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <motion.svg 
-                            className="w-10 h-10 text-emerald-400" 
-                            fill="none" 
-                            viewBox="0 0 24 24" 
-                            stroke="currentColor"
-                            initial={{ pathLength: 0 }}
-                            animate={{ pathLength: 1 }}
-                            transition={{ duration: 0.5, delay: 0.3 }}
-                          >
-                            <motion.path 
-                              strokeLinecap="round" 
-                              strokeLinejoin="round" 
-                              strokeWidth={2.5} 
-                              d="M5 13l4 4L19 7"
-                              initial={{ pathLength: 0 }}
-                              animate={{ pathLength: 1 }}
-                              transition={{ duration: 0.5, delay: 0.3 }}
-                            />
-                          </motion.svg>
-                        </div>
-                      </motion.div>
+                    /* Success State */
+                    <div className="p-8 text-center">
+                      <div className="w-16 h-16 mx-auto mb-6 bg-emerald-500/20 rounded-full flex items-center justify-center">
+                        <svg className="w-8 h-8 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
                       
-                      <motion.h2 
-                        className="text-2xl md:text-3xl font-serif text-white mb-3"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
+                      <h2 className="text-2xl font-serif text-white mb-2">You're on the list</h2>
+                      <p className="text-slate-400 text-sm mb-6">
+                        We'll reach out within 24 hours with your access details.
+                      </p>
+                      <button
+                        onClick={handleClose}
+                        className="text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors inline-flex items-center gap-1"
+                      >
+                        Done
+                        <ArrowRight className="w-4 h-4" />
+                      </button>
+                    </div>
+                  )}
+                </div>
+            </motion.div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+};
                         transition={{ delay: 0.4 }}
                       >
                         You're on the list
