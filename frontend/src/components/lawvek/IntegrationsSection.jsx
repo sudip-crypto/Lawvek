@@ -2,58 +2,6 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
 export const IntegrationsSection = () => {
-  const leftIntegrations = [
-    { name: 'Slack', color: '#E01E5A', bg: '#FDF2F4', icon: (
-      <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-        <path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/>
-      </svg>
-    )},
-    { name: 'Gmail', color: '#EA4335', bg: '#FEF2F2', icon: (
-      <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-        <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
-      </svg>
-    )},
-    { name: 'MS Teams', color: '#6264A7', bg: '#F3F3FA', icon: (
-      <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-        <path d="M20.625 8.073c1.688 0 3.063-1.406 3.063-3.136S22.313 1.8 20.625 1.8s-3.063 1.406-3.063 3.137 1.375 3.136 3.063 3.136zM12.89 7.5h7.875c.619 0 1.125.506 1.125 1.125v5.063c0 2.481-2.019 4.5-4.5 4.5h-.563v3.938c0 .103-.084.187-.188.187h-1.875c-.103 0-.188-.084-.188-.187v-3.938h-.562a4.506 4.506 0 0 1-4.5-4.5V8.625c0-.619.506-1.125 1.125-1.125h2.25zm-1.125-1.688c1.654 0 3-1.378 3-3.093S13.419.626 11.765.626s-3 1.378-3 3.093 1.346 3.093 3 3.093z"/>
-      </svg>
-    )},
-    { name: 'Ironclad', color: '#1a1a1a', bg: '#F5F5F5', icon: (
-      <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-        <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18l6.9 3.45L12 11.08 5.1 7.63 12 4.18zM4 8.82l7 3.5v7.36l-7-3.5V8.82zm9 10.86v-7.36l7-3.5v7.36l-7 3.5z"/>
-      </svg>
-    )},
-    { name: 'SpotDraft', color: '#6366F1', bg: '#EEF2FF', icon: (
-      <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-        <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2"/>
-        <circle cx="12" cy="12" r="4" fill="currentColor"/>
-      </svg>
-    )},
-  ];
-
-  const rightIntegrations = [
-    { name: 'Google Docs', color: '#4285F4', bg: '#EFF6FF', icon: (
-      <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-        <path d="M14.727 6.727H14V0H4.91c-.905 0-1.637.732-1.637 1.636v20.728c0 .904.732 1.636 1.636 1.636h14.182c.904 0 1.636-.732 1.636-1.636V6.727h-6zm-.545 10.455H7.09v-1.364h7.09v1.364zm2.727-3.273H7.091v-1.364h9.818v1.364zm0-3.273H7.091V9.273h9.818v1.363z"/>
-      </svg>
-    )},
-    { name: 'MS Word', color: '#2B579A', bg: '#EFF6FF', icon: (
-      <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-        <path d="M23.004 1.5q.41 0 .703.293t.293.703v19.008q0 .41-.293.703t-.703.293H6.996q-.41 0-.703-.293T6 21.504V18H.996q-.41 0-.703-.293T0 17.004V6.996q0-.41.293-.703T.996 6H6V2.496q0-.41.293-.703t.703-.293zM6.035 11.203l1.442 4.735h1.64l1.57-7.876H9.036l-.937 4.653-1.325-4.5H5.38l-1.406 4.523-.938-4.676H1.312l1.57 7.876h1.641z"/>
-      </svg>
-    )},
-    { name: 'Outlook', color: '#0078D4', bg: '#EFF6FF', icon: (
-      <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-        <path d="M24 7.387v10.478c0 .23-.08.424-.238.576-.158.154-.352.23-.58.23h-8.547v-6.959l1.6 1.229c.102.078.214.116.336.116.121 0 .233-.038.336-.116l6.855-5.344c.078-.053.153-.076.228-.076.12 0 .238.061.35.183V7.39zM24 5.5c0 .208-.07.388-.212.539l-7.77 6.058-1.382-1.06V5.5h9.126c.228 0 .422.076.581.228.158.152.237.346.237.575v-.803z"/>
-      </svg>
-    )},
-    { name: 'DocuSign', color: '#FFCC00', bg: '#FFFBEB', icon: (
-      <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-7.332 7.332a.75.75 0 01-1.06 0l-3.396-3.396a.75.75 0 111.06-1.06l2.866 2.866 6.802-6.802a.75.75 0 111.06 1.06z"/>
-      </svg>
-    )},
-  ];
-
   return (
     <section 
       className="bg-[#FAFAFA] py-24 md:py-32 overflow-hidden border-y border-[#E2E8F0]"
@@ -102,60 +50,145 @@ export const IntegrationsSection = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <div className="relative w-[500px] h-[420px]">
-              {/* Left Integration Icons - Positioned absolutely */}
-              <div className="absolute left-0 top-[28px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10" style={{ backgroundColor: '#FDF2F4', color: '#E01E5A' }}>
-                <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-                  <path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/>
-                </svg>
-              </div>
               
-              <div className="absolute left-0 top-[105px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10" style={{ backgroundColor: '#FEF2F2', color: '#EA4335' }}>
-                <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-                  <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
+              {/* Left Integration Icons */}
+              {/* Slack */}
+              <motion.div 
+                className="absolute left-0 top-[28px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-white"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                title="Slack"
+              >
+                <svg viewBox="0 0 24 24" className="w-7 h-7" fill="none">
+                  <path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zm1.271 0a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z" fill="#E01E5A"/>
+                  <path d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zm0 1.271a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z" fill="#36C5F0"/>
+                  <path d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zm-1.27 0a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z" fill="#2EB67D"/>
+                  <path d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zm0-1.27a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z" fill="#ECB22E"/>
                 </svg>
-              </div>
+              </motion.div>
               
-              <div className="absolute left-0 top-[182px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10" style={{ backgroundColor: '#F3F3FA', color: '#6264A7' }}>
-                <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-                  <path d="M20.625 8.073c1.688 0 3.063-1.406 3.063-3.136S22.313 1.8 20.625 1.8s-3.063 1.406-3.063 3.137 1.375 3.136 3.063 3.136z"/>
+              {/* Gmail */}
+              <motion.div 
+                className="absolute left-0 top-[105px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-white"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.15 }}
+                title="Gmail"
+              >
+                <svg viewBox="0 0 24 24" className="w-7 h-7" fill="none">
+                  <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z" fill="#EA4335"/>
                 </svg>
-              </div>
+              </motion.div>
               
-              <div className="absolute left-0 top-[259px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10" style={{ backgroundColor: '#F5F5F5', color: '#1a1a1a' }}>
-                <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-                  <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18l6.9 3.45L12 11.08 5.1 7.63 12 4.18z"/>
+              {/* MS Teams */}
+              <motion.div 
+                className="absolute left-0 top-[182px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-white"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+                title="Microsoft Teams"
+              >
+                <svg viewBox="0 0 24 24" className="w-7 h-7" fill="#6264A7">
+                  <path d="M20.625 8.073c1.125 0 2.063-.938 2.063-2.136s-.938-2.137-2.063-2.137-2.063.938-2.063 2.137.938 2.136 2.063 2.136zm-5.625 0h6c.413 0 .75.337.75.75v4.5c0 1.654-1.346 3-3 3h-.375v3.427a.188.188 0 0 1-.188.188h-1.124a.188.188 0 0 1-.188-.188v-3.427H16.5a3.004 3.004 0 0 1-3-3v-4.5c0-.413.337-.75.75-.75h.75zm-3-1.125c1.24 0 2.25-1.01 2.25-2.324S13.24 2.3 12 2.3s-2.25 1.01-2.25 2.324S10.76 6.948 12 6.948zM1.125 8.25h9c.619 0 1.125.506 1.125 1.125v5.625a4.504 4.504 0 0 1-4.5 4.5H6.375v4.313a.188.188 0 0 1-.188.188H4.313a.188.188 0 0 1-.188-.188V19.5h-.375a4.504 4.504 0 0 1-4.5-4.5V9.375C-.75 8.756.506 8.25 1.125 8.25z"/>
                 </svg>
-              </div>
+              </motion.div>
               
-              <div className="absolute left-0 top-[336px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10" style={{ backgroundColor: '#EEF2FF', color: '#6366F1' }}>
-                <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-                  <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2"/>
-                  <circle cx="12" cy="12" r="4" fill="currentColor"/>
+              {/* Ironclad */}
+              <motion.div 
+                className="absolute left-0 top-[259px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-white"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.25 }}
+                title="Ironclad"
+              >
+                <svg viewBox="0 0 24 24" className="w-7 h-7" fill="#1a1a1a">
+                  <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18l6.9 3.45L12 11.08 5.1 7.63 12 4.18zM4 8.82l7 3.5v7.36l-7-3.5V8.82zm9 10.86v-7.36l7-3.5v7.36l-7 3.5z"/>
                 </svg>
-              </div>
+              </motion.div>
+              
+              {/* SpotDraft */}
+              <motion.div 
+                className="absolute left-0 top-[336px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-white"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+                title="SpotDraft"
+              >
+                <svg viewBox="0 0 24 24" className="w-7 h-7">
+                  <circle cx="12" cy="12" r="9" fill="none" stroke="#6366F1" strokeWidth="2"/>
+                  <circle cx="12" cy="12" r="4" fill="#6366F1"/>
+                </svg>
+              </motion.div>
 
               {/* Right Integration Icons */}
-              <div className="absolute right-0 top-[48px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10" style={{ backgroundColor: '#EFF6FF', color: '#4285F4' }}>
-                <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-                  <path d="M14.727 6.727H14V0H4.91c-.905 0-1.637.732-1.637 1.636v20.728c0 .904.732 1.636 1.636 1.636h14.182c.904 0 1.636-.732 1.636-1.636V6.727h-6z"/>
+              {/* Google Docs */}
+              <motion.div 
+                className="absolute right-0 top-[48px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-white"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                title="Google Docs"
+              >
+                <svg viewBox="0 0 24 24" className="w-7 h-7">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" fill="#4285F4"/>
+                  <path d="M14 2v6h6" fill="#A1C2FA"/>
+                  <path d="M16 13H8v-1h8v1zm0 3H8v-1h8v1zm-2 3H8v-1h6v1z" fill="white"/>
                 </svg>
-              </div>
+              </motion.div>
               
-              <div className="absolute right-0 top-[152px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10" style={{ backgroundColor: '#EFF6FF', color: '#2B579A' }}>
-                <span className="text-lg font-bold">W</span>
-              </div>
-              
-              <div className="absolute right-0 top-[256px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10" style={{ backgroundColor: '#EFF6FF', color: '#0078D4' }}>
-                <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-                  <path d="M24 7.387v10.478c0 .23-.08.424-.238.576-.158.154-.352.23-.58.23h-8.547v-6.959l1.6 1.229c.102.078.214.116.336.116.121 0 .233-.038.336-.116l6.855-5.344c.078-.053.153-.076.228-.076.12 0 .238.061.35.183V7.39z"/>
+              {/* MS Word */}
+              <motion.div 
+                className="absolute right-0 top-[152px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-white"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.15 }}
+                title="Microsoft Word"
+              >
+                <svg viewBox="0 0 24 24" className="w-7 h-7">
+                  <rect x="2" y="4" width="20" height="16" rx="2" fill="#2B579A"/>
+                  <text x="12" y="15" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold" fontFamily="Arial">W</text>
                 </svg>
-              </div>
+              </motion.div>
               
-              <div className="absolute right-0 top-[360px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10" style={{ backgroundColor: '#FFFBEB', color: '#FFCC00' }}>
-                <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-7.332 7.332a.75.75 0 01-1.06 0l-3.396-3.396a.75.75 0 111.06-1.06l2.866 2.866 6.802-6.802a.75.75 0 111.06 1.06z"/>
+              {/* Outlook */}
+              <motion.div 
+                className="absolute right-0 top-[256px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-white"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+                title="Outlook"
+              >
+                <svg viewBox="0 0 24 24" className="w-7 h-7">
+                  <rect x="2" y="4" width="20" height="16" rx="2" fill="#0078D4"/>
+                  <path d="M12 13l8-5H4l8 5z" fill="#28A8EA"/>
+                  <ellipse cx="8" cy="12" rx="4" ry="5" fill="#0559C9"/>
+                  <text x="8" y="14" textAnchor="middle" fill="white" fontSize="6" fontWeight="bold" fontFamily="Arial">O</text>
                 </svg>
-              </div>
+              </motion.div>
+              
+              {/* DocuSign */}
+              <motion.div 
+                className="absolute right-0 top-[360px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-white"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.25 }}
+                title="DocuSign"
+              >
+                <svg viewBox="0 0 24 24" className="w-7 h-7">
+                  <circle cx="12" cy="12" r="10" fill="#FFCC00"/>
+                  <path d="M17.894 8.221l-7.332 7.332a.75.75 0 01-1.06 0l-3.396-3.396a.75.75 0 111.06-1.06l2.866 2.866 6.802-6.802a.75.75 0 111.06 1.06z" fill="white"/>
+                </svg>
+              </motion.div>
 
               {/* Central Hub */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
