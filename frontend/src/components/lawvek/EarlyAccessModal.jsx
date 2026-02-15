@@ -102,29 +102,13 @@ export const EarlyAccessModal = ({ isOpen, onClose }) => {
                     </div>
 
                     {/* Header */}
-                    <div className="mb-5 pr-8">
+                    <div className="mb-6 pr-8">
                       <h2 className="text-2xl font-serif text-white mb-2">
                         Request Priority Access
                       </h2>
                       <p className="text-slate-400 text-sm">
                         Join leading teams already transforming their contract workflows with AI.
                       </p>
-                    </div>
-
-                    {/* Trust Indicators - compact */}
-                    <div className="flex flex-wrap gap-x-4 gap-y-2 mb-6 pb-5 border-b border-slate-800">
-                        <div className="flex items-center gap-1.5 text-slate-500 text-xs">
-                          <Shield className="w-3.5 h-3.5 text-emerald-500" />
-                          <span>SOC 2</span>
-                        </div>
-                        <div className="flex items-center gap-1.5 text-slate-500 text-xs">
-                          <Zap className="w-3.5 h-3.5 text-amber-500" />
-                          <span>24hr Setup</span>
-                        </div>
-                        <div className="flex items-center gap-1.5 text-slate-500 text-xs">
-                          <Users className="w-3.5 h-3.5 text-cyan-500" />
-                          <span>500+ Teams</span>
-                        </div>
                     </div>
 
                       {/* Form */}
