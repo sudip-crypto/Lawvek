@@ -63,21 +63,26 @@ export const HeroSection = ({ onOpenModal }) => {
               </p>
             </div>
             
-            {/* Stats */}
-            <div className="flex gap-10 lg:gap-12">
+            {/* Stats - Enterprise Grade with Visual Impact */}
+            <div className="flex gap-0">
               {[
-                { value: '3hrs', label: 'Avg. turnaround' },
-                { value: '80%', label: 'Cost reduction' },
-                { value: '90%', label: 'TAT reduction' },
+                { value: '3', unit: 'hrs', label: 'Avg. turnaround', sublabel: 'Industry avg: 72hrs' },
+                { value: '80', unit: '%', label: 'Cost reduction', sublabel: 'vs traditional firms' },
+                { value: '90', unit: '%', label: 'TAT reduction', sublabel: 'Faster delivery' },
               ].map((stat, i) => (
                 <motion.div 
                   key={stat.label}
+                  className={`relative flex-1 px-6 py-5 ${i !== 2 ? 'border-r border-[#E2E8F0]' : ''} ${i === 0 ? 'pl-0' : ''}`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
+                  transition={{ duration: 0.6, delay: 0.5 + i * 0.15 }}
                 >
-                  <p className="text-2xl font-semibold text-[#0F172A]">{stat.value}</p>
-                  <p className="text-sm text-[#64748B] mt-1">{stat.label}</p>
+                  <div className="flex items-baseline gap-0.5">
+                    <span className="text-4xl lg:text-5xl font-bold text-[#0F172A] tracking-tight">{stat.value}</span>
+                    <span className="text-xl lg:text-2xl font-bold text-[#0F172A]">{stat.unit}</span>
+                  </div>
+                  <p className="text-sm font-medium text-[#334155] mt-2">{stat.label}</p>
+                  <p className="text-xs text-[#94A3B8] mt-0.5">{stat.sublabel}</p>
                 </motion.div>
               ))}
             </div>
