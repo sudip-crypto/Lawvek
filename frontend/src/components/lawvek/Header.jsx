@@ -66,39 +66,45 @@ export const Header = ({ onOpenModal }) => {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm' : 'bg-transparent'}`}>
+      <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${scrolled ? 'bg-white/80 backdrop-blur-xl shadow-[0_1px_3px_rgba(0,0,0,0.05)]' : 'bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <a href="/" className="flex items-center z-50" data-testid="header-logo">
-              <span className={`text-xl font-semibold tracking-tight transition-colors ${mobileMenuOpen ? 'text-white' : 'text-[#0F172A]'}`}>
+            <a href="/" className="flex items-center z-50 group" data-testid="header-logo">
+              <span className={`text-xl font-semibold tracking-tight transition-all duration-300 ${mobileMenuOpen ? 'text-white' : 'text-[#0F172A] group-hover:text-[#1E293B]'}`}>
                 Lawvek
               </span>
             </a>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-8" data-testid="desktop-nav">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-sm font-medium text-[#64748B] hover:text-[#0F172A] transition-colors duration-200"
-                  data-testid={`nav-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
-                >
-                  {link.label}
-                </a>
-              ))}
+            {/* Desktop Navigation - Premium styled */}
+            <nav className="hidden md:flex items-center" data-testid="desktop-nav">
+              <div className="flex items-center bg-[#F8FAFC]/80 backdrop-blur-sm rounded-full px-2 py-1.5 border border-[#E2E8F0]/50">
+                {navLinks.map((link, index) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="relative px-5 py-2 text-[13px] font-medium text-[#64748B] hover:text-[#0F172A] transition-all duration-300 group"
+                    data-testid={`nav-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
+                  >
+                    <span className="relative z-10">{link.label}</span>
+                    <span className="absolute inset-0 rounded-full bg-white opacity-0 group-hover:opacity-100 shadow-sm transition-all duration-300 scale-95 group-hover:scale-100" />
+                  </a>
+                ))}
+              </div>
             </nav>
 
-            {/* Desktop CTA */}
-            <div className="hidden md:flex items-center gap-4">
-              <button
+            {/* Desktop CTA - Uniform with Hero button */}
+            <div className="hidden md:flex items-center">
+              <motion.button
                 onClick={onOpenModal}
-                className="bg-[#0F172A] text-white px-5 py-2.5 rounded-lg hover:bg-[#1E293B] transition-colors duration-200 font-medium text-sm"
+                className="group flex items-center gap-2.5 bg-[#0F172A] text-white px-5 py-2.5 rounded-full hover:bg-[#1E293B] transition-all duration-300 font-medium text-[13px] shadow-[0_1px_2px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_12px_rgba(15,23,42,0.15)]"
                 data-testid="header-cta"
+                whileHover={{ y: -1 }}
+                whileTap={{ scale: 0.98 }}
               >
-                Get Priority Access
-              </button>
+                <span>Get Priority Access</span>
+                <ArrowRight className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-300" strokeWidth={2} />
+              </motion.button>
             </div>
 
             {/* Mobile Menu Button */}
