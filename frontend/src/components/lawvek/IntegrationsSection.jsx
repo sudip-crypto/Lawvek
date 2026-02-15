@@ -54,23 +54,6 @@ export const IntegrationsSection = () => {
     )},
   ];
 
-  // Left path definitions - curves from icons to parallel horizontal lines entering the hub
-  const leftPaths = [
-    "M 55 50 C 100 50, 140 200, 200 200 L 220 200",
-    "M 55 120 C 100 120, 140 210, 200 210 L 220 210",
-    "M 55 190 C 120 190, 160 220, 200 220 L 220 220",
-    "M 55 260 C 100 260, 140 230, 200 230 L 220 230",
-    "M 55 330 C 100 330, 140 240, 200 240 L 220 240",
-  ];
-
-  // Right path definitions - parallel horizontal lines from hub curving out to icons
-  const rightPaths = [
-    "M 280 205 L 300 205 C 360 205, 400 100, 445 100",
-    "M 280 215 L 300 215 C 340 215, 400 175, 445 175",
-    "M 280 225 L 300 225 C 340 225, 400 250, 445 250",
-    "M 280 235 L 300 235 C 360 235, 400 325, 445 325",
-  ];
-
   return (
     <section 
       className="bg-[#FAFAFA] py-24 md:py-32 overflow-hidden border-y border-[#E2E8F0]"
@@ -119,80 +102,63 @@ export const IntegrationsSection = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <div className="relative w-[500px] h-[420px]">
-              {/* SVG Paths and Animations */}
-              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 500 420" fill="none">
-                {/* Left curved paths */}
-                {leftPaths.map((path, index) => (
-                  <g key={`left-path-${index}`}>
-                    <path d={path} stroke="#E2E8F0" strokeWidth="2" fill="none" />
-                    <motion.circle
-                      r="5"
-                      fill="#10B981"
-                      initial={{ opacity: 0 }}
-                      animate={{
-                        opacity: [0, 1, 1, 0],
-                        offsetDistance: ['0%', '100%'],
-                      }}
-                      transition={{
-                        duration: 2.5,
-                        repeat: Infinity,
-                        delay: index * 0.3,
-                        ease: "easeInOut",
-                      }}
-                      style={{
-                        offsetPath: `path('${path}')`,
-                      }}
-                    />
-                  </g>
-                ))}
+              {/* Left Integration Icons - Positioned absolutely */}
+              <div className="absolute left-0 top-[28px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10" style={{ backgroundColor: '#FDF2F4', color: '#E01E5A' }}>
+                <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
+                  <path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/>
+                </svg>
+              </div>
+              
+              <div className="absolute left-0 top-[105px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10" style={{ backgroundColor: '#FEF2F2', color: '#EA4335' }}>
+                <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
+                  <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
+                </svg>
+              </div>
+              
+              <div className="absolute left-0 top-[182px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10" style={{ backgroundColor: '#F3F3FA', color: '#6264A7' }}>
+                <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
+                  <path d="M20.625 8.073c1.688 0 3.063-1.406 3.063-3.136S22.313 1.8 20.625 1.8s-3.063 1.406-3.063 3.137 1.375 3.136 3.063 3.136z"/>
+                </svg>
+              </div>
+              
+              <div className="absolute left-0 top-[259px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10" style={{ backgroundColor: '#F5F5F5', color: '#1a1a1a' }}>
+                <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
+                  <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18l6.9 3.45L12 11.08 5.1 7.63 12 4.18z"/>
+                </svg>
+              </div>
+              
+              <div className="absolute left-0 top-[336px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10" style={{ backgroundColor: '#EEF2FF', color: '#6366F1' }}>
+                <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
+                  <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2"/>
+                  <circle cx="12" cy="12" r="4" fill="currentColor"/>
+                </svg>
+              </div>
 
-                {/* Right curved paths */}
-                {rightPaths.map((path, index) => (
-                  <g key={`right-path-${index}`}>
-                    <path d={path} stroke="#E2E8F0" strokeWidth="2" fill="none" />
-                    <motion.circle
-                      r="5"
-                      fill="#10B981"
-                      initial={{ opacity: 0 }}
-                      animate={{
-                        opacity: [0, 1, 1, 0],
-                        offsetDistance: ['0%', '100%'],
-                      }}
-                      transition={{
-                        duration: 2.5,
-                        repeat: Infinity,
-                        delay: 1.2 + index * 0.3,
-                        ease: "easeInOut",
-                      }}
-                      style={{
-                        offsetPath: `path('${path}')`,
-                      }}
-                    />
-                  </g>
-                ))}
-              </svg>
-
-              {/* Left Integration Icons */}
-              <div className="absolute left-0 top-0 bottom-0 flex flex-col justify-between py-4">
-                {leftIntegrations.map((integration, index) => (
-                  <motion.div
-                    key={integration.name}
-                    className="w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer"
-                    style={{ backgroundColor: integration.bg, color: integration.color }}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: 0.1 * index }}
-                    whileHover={{ borderColor: integration.color }}
-                    title={integration.name}
-                  >
-                    {integration.icon}
-                  </motion.div>
-                ))}
+              {/* Right Integration Icons */}
+              <div className="absolute right-0 top-[48px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10" style={{ backgroundColor: '#EFF6FF', color: '#4285F4' }}>
+                <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
+                  <path d="M14.727 6.727H14V0H4.91c-.905 0-1.637.732-1.637 1.636v20.728c0 .904.732 1.636 1.636 1.636h14.182c.904 0 1.636-.732 1.636-1.636V6.727h-6z"/>
+                </svg>
+              </div>
+              
+              <div className="absolute right-0 top-[152px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10" style={{ backgroundColor: '#EFF6FF', color: '#2B579A' }}>
+                <span className="text-lg font-bold">W</span>
+              </div>
+              
+              <div className="absolute right-0 top-[256px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10" style={{ backgroundColor: '#EFF6FF', color: '#0078D4' }}>
+                <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
+                  <path d="M24 7.387v10.478c0 .23-.08.424-.238.576-.158.154-.352.23-.58.23h-8.547v-6.959l1.6 1.229c.102.078.214.116.336.116.121 0 .233-.038.336-.116l6.855-5.344c.078-.053.153-.076.228-.076.12 0 .238.061.35.183V7.39z"/>
+                </svg>
+              </div>
+              
+              <div className="absolute right-0 top-[360px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10" style={{ backgroundColor: '#FFFBEB', color: '#FFCC00' }}>
+                <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-7.332 7.332a.75.75 0 01-1.06 0l-3.396-3.396a.75.75 0 111.06-1.06l2.866 2.866 6.802-6.802a.75.75 0 111.06 1.06z"/>
+                </svg>
               </div>
 
               {/* Central Hub */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
                 <motion.div 
                   className="w-24 h-24 rounded-2xl bg-gradient-to-br from-[#1E3A5F] to-[#0F172A] shadow-xl flex items-center justify-center"
                   animate={{ 
@@ -208,24 +174,78 @@ export const IntegrationsSection = () => {
                 </motion.div>
               </div>
 
-              {/* Right Integration Icons */}
-              <div className="absolute right-0 top-0 bottom-0 flex flex-col justify-between py-6">
-                {rightIntegrations.map((integration, index) => (
-                  <motion.div
-                    key={integration.name}
-                    className="w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer"
-                    style={{ backgroundColor: integration.bg, color: integration.color }}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: 0.1 * index }}
-                    whileHover={{ borderColor: integration.color }}
-                    title={integration.name}
-                  >
-                    {integration.icon}
-                  </motion.div>
+              {/* SVG Paths - Connected to icons */}
+              <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 500 420" fill="none">
+                {/* Left paths - from icon centers to hub */}
+                <path d="M 56 55 C 130 55, 180 185, 200 195 L 238 210" stroke="#E2E8F0" strokeWidth="2" fill="none" />
+                <path d="M 56 132 C 130 132, 170 190, 200 200 L 238 210" stroke="#E2E8F0" strokeWidth="2" fill="none" />
+                <path d="M 56 209 C 140 209, 180 210, 238 210" stroke="#E2E8F0" strokeWidth="2" fill="none" />
+                <path d="M 56 286 C 130 286, 170 220, 200 220 L 238 210" stroke="#E2E8F0" strokeWidth="2" fill="none" />
+                <path d="M 56 363 C 130 363, 180 235, 200 225 L 238 210" stroke="#E2E8F0" strokeWidth="2" fill="none" />
+                
+                {/* Right paths - from hub to icon centers */}
+                <path d="M 262 210 L 300 195 C 350 175, 400 75, 444 75" stroke="#E2E8F0" strokeWidth="2" fill="none" />
+                <path d="M 262 210 L 300 200 C 350 190, 400 179, 444 179" stroke="#E2E8F0" strokeWidth="2" fill="none" />
+                <path d="M 262 210 L 300 220 C 350 230, 400 283, 444 283" stroke="#E2E8F0" strokeWidth="2" fill="none" />
+                <path d="M 262 210 L 300 225 C 350 245, 400 387, 444 387" stroke="#E2E8F0" strokeWidth="2" fill="none" />
+
+                {/* Animated dots on left paths */}
+                {[
+                  "M 56 55 C 130 55, 180 185, 200 195 L 238 210",
+                  "M 56 132 C 130 132, 170 190, 200 200 L 238 210",
+                  "M 56 209 C 140 209, 180 210, 238 210",
+                  "M 56 286 C 130 286, 170 220, 200 220 L 238 210",
+                  "M 56 363 C 130 363, 180 235, 200 225 L 238 210",
+                ].map((path, index) => (
+                  <motion.circle
+                    key={`left-dot-${index}`}
+                    r="5"
+                    fill="#10B981"
+                    initial={{ opacity: 0 }}
+                    animate={{
+                      opacity: [0, 1, 1, 0],
+                      offsetDistance: ['0%', '100%'],
+                    }}
+                    transition={{
+                      duration: 2.5,
+                      repeat: Infinity,
+                      delay: index * 0.3,
+                      ease: "easeInOut",
+                    }}
+                    style={{
+                      offsetPath: `path('${path}')`,
+                    }}
+                  />
                 ))}
-              </div>
+
+                {/* Animated dots on right paths */}
+                {[
+                  "M 262 210 L 300 195 C 350 175, 400 75, 444 75",
+                  "M 262 210 L 300 200 C 350 190, 400 179, 444 179",
+                  "M 262 210 L 300 220 C 350 230, 400 283, 444 283",
+                  "M 262 210 L 300 225 C 350 245, 400 387, 444 387",
+                ].map((path, index) => (
+                  <motion.circle
+                    key={`right-dot-${index}`}
+                    r="5"
+                    fill="#10B981"
+                    initial={{ opacity: 0 }}
+                    animate={{
+                      opacity: [0, 1, 1, 0],
+                      offsetDistance: ['0%', '100%'],
+                    }}
+                    transition={{
+                      duration: 2.5,
+                      repeat: Infinity,
+                      delay: 1.2 + index * 0.3,
+                      ease: "easeInOut",
+                    }}
+                    style={{
+                      offsetPath: `path('${path}')`,
+                    }}
+                  />
+                ))}
+              </svg>
             </div>
           </motion.div>
         </div>
