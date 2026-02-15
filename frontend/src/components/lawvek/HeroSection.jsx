@@ -50,38 +50,34 @@ export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
             <div className="mb-16">
               <motion.button
                 onClick={onOpenModal}
-                className="group relative inline-flex items-center gap-3 px-8 py-4 bg-[#0F172A] text-white rounded-2xl font-semibold text-base overflow-hidden transition-all duration-500"
-                whileHover={{ scale: 1.02, boxShadow: '0 20px 40px rgba(15,23,42,0.25)' }}
+                className="group relative inline-flex items-center gap-3 px-7 py-3.5 bg-[#0F172A] text-white rounded-full font-medium text-[15px] overflow-hidden transition-all duration-500"
+                whileHover={{ scale: 1.02, boxShadow: '0 15px 35px rgba(15,23,42,0.2)' }}
                 whileTap={{ scale: 0.98 }}
                 data-testid="hero-primary-cta"
               >
-                {/* Animated gradient border */}
-                <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#0F172A] via-[#334155] to-[#0F172A] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
                 {/* Shimmer effect */}
                 <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                 
                 {/* Button content */}
-                <span className="relative z-10 flex items-center gap-3">
-                  <span>Get Priority Access</span>
-                  <span className="flex items-center justify-center w-8 h-8 rounded-xl bg-white/10 group-hover:bg-white/20 transition-colors duration-300">
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" strokeWidth={2.5} />
-                  </span>
-                </span>
+                <span className="relative z-10">Get Priority Access</span>
+                <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" strokeWidth={2} />
               </motion.button>
               
-              {/* Urgency Spots Left - Clean and Premium */}
+              {/* Urgency Spots Left - Premium styling */}
               <motion.div 
-                className="mt-5 inline-flex items-center gap-2"
+                className="mt-6 flex items-center gap-3"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
               >
-                <span className="flex items-center gap-1.5 text-sm">
-                  <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
-                  <span className="font-semibold text-amber-600">{spotsRemaining} spots left</span>
-                </span>
-                <span className="text-[13px] text-[#94A3B8]">— limited early access</span>
+                <div className="flex items-center gap-2 px-4 py-2 bg-amber-50 border border-amber-200 rounded-full">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-500 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                  </span>
+                  <span className="text-sm font-bold text-amber-700">{spotsRemaining} spots left</span>
+                </div>
+                <span className="text-sm text-[#64748B]">Limited early access</span>
               </motion.div>
             </div>
             
