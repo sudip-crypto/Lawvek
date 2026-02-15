@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, ArrowDown, Play } from 'lucide-react';
+import { ArrowRight, ArrowDown, Sparkles } from 'lucide-react';
 
 export const HeroSection = ({ onOpenModal }) => {
   return (
@@ -44,27 +44,53 @@ export const HeroSection = ({ onOpenModal }) => {
               AI-powered contract review with the right level of human legal oversight — fast, transparent, and cost-effective.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 mb-16">
+            {/* Premium Single CTA */}
+            <div className="mb-16">
               <motion.button
                 onClick={onOpenModal}
-                className="inline-flex items-center justify-center bg-[#0F172A] text-white px-8 py-4 rounded-lg hover:bg-[#1E293B] transition-all duration-300 font-medium text-sm tracking-wide shadow-lg group"
+                className="group relative inline-flex items-center justify-center overflow-hidden"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 data-testid="hero-primary-cta"
               >
-                Get Priority Access
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" strokeWidth={2} />
+                {/* Animated gradient border */}
+                <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-emerald-500 via-cyan-500 to-emerald-500 bg-[length:200%_100%] animate-gradient-x" />
+                
+                {/* Inner background */}
+                <span className="absolute inset-[2px] rounded-[14px] bg-[#0F172A] group-hover:bg-[#0A0F1A] transition-colors duration-300" />
+                
+                {/* Button content */}
+                <span className="relative flex items-center gap-4 px-10 py-5">
+                  <span className="flex flex-col items-start">
+                    <span className="text-white font-semibold text-lg tracking-tight">
+                      Get Priority Access
+                    </span>
+                    <span className="text-emerald-400/80 text-xs font-medium">
+                      Join 500+ legal teams
+                    </span>
+                  </span>
+                  
+                  <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-cyan-500 shadow-lg shadow-emerald-500/25 group-hover:shadow-emerald-500/40 transition-shadow duration-300">
+                    <ArrowRight className="w-5 h-5 text-white group-hover:translate-x-0.5 transition-transform duration-300" strokeWidth={2.5} />
+                  </span>
+                </span>
               </motion.button>
-              <motion.a
-                href="#how-it-works"
-                className="inline-flex items-center justify-center bg-white/80 backdrop-blur-sm border border-[#E2E8F0] text-[#0F172A] px-8 py-4 rounded-lg hover:bg-white transition-all duration-300 font-medium text-sm tracking-wide group"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                data-testid="hero-secondary-cta"
-              >
-                <Play className="mr-2 h-4 w-4" strokeWidth={2} />
-                Watch Demo
-              </motion.a>
+              
+              {/* Trust indicators below CTA */}
+              <div className="flex items-center gap-6 mt-6">
+                <div className="flex items-center gap-2 text-[#64748B] text-sm">
+                  <svg className="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>No credit card</span>
+                </div>
+                <div className="flex items-center gap-2 text-[#64748B] text-sm">
+                  <svg className="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Setup in 2 mins</span>
+                </div>
+              </div>
             </div>
             
             {/* Stats */}
