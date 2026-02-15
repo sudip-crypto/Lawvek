@@ -57,7 +57,7 @@ export const ApproachSection = () => {
           {steps.map((step, index) => (
             <motion.div
               key={step.number}
-              className="group bg-[#1E293B]/50 border border-[#334155] rounded-2xl p-7 hover:border-[#475569] hover:bg-[#1E293B] transition-all duration-300 flex flex-col"
+              className="group bg-[#1E293B]/50 border border-[#334155] rounded-2xl p-7 hover:border-[#475569] hover:bg-[#1E293B] transition-all duration-300"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
@@ -65,33 +65,30 @@ export const ApproachSection = () => {
               whileHover={{ y: -4, transition: { duration: 0.2 } }}
               data-testid={`approach-step-${index}`}
             >
-              {/* Top Section - Fixed Height for alignment */}
-              <div className="h-[160px] flex flex-col">
-                {/* Header Row - Number + Icon */}
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-sm font-medium text-white/40 tracking-widest">
-                    {step.number}
-                  </span>
-                  <div className="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                    <step.icon className="h-5 w-5 text-amber-400" strokeWidth={1.5} />
-                  </div>
+              {/* Header Row - Number + Icon */}
+              <div className="flex items-center justify-between mb-5">
+                <span className="text-sm font-medium text-white/40 tracking-widest">
+                  {step.number}
+                </span>
+                <div className="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                  <step.icon className="h-5 w-5 text-amber-400" strokeWidth={1.5} />
                 </div>
-
-                {/* Title */}
-                <h3 className="text-xl font-semibold text-white mb-3">
-                  {step.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-sm leading-relaxed text-white/50">
-                  {step.description}
-                </p>
               </div>
 
-              {/* Divider - Always at same position */}
+              {/* Title - Single line */}
+              <h3 className="text-xl font-semibold text-white mb-3 h-7">
+                {step.title}
+              </h3>
+
+              {/* Description - Fixed 3 lines height */}
+              <p className="text-sm leading-relaxed text-white/50 h-[63px] line-clamp-3">
+                {step.description}
+              </p>
+
+              {/* Divider */}
               <div className="border-t border-[#334155] my-5" />
 
-              {/* Points - Bottom section */}
+              {/* Points */}
               <div className="space-y-3">
                 {step.points.map((point, i) => (
                   <div 
