@@ -76,7 +76,7 @@ export const EarlyAccessModal = ({ isOpen, onClose }) => {
                 <div className="p-8 pt-12">
                   {/* Header */}
                   <div className="mb-8">
-                    <h2 className="text-2xl md:text-3xl font-serif text-white mb-3">
+                    <h2 className="text-2xl md:text-3xl font-serif text-white mb-3 whitespace-nowrap">
                       Get priority access to Lawvek
                     </h2>
                     <p className="text-[#94A3B8] text-sm">
@@ -116,28 +116,29 @@ export const EarlyAccessModal = ({ isOpen, onClose }) => {
                       />
                     </div>
 
-                    {/* Company Size */}
-                    <div>
+                    {/* Company Size - Custom styled dropdown */}
+                    <div className="relative">
                       <label className="block text-white text-sm font-medium mb-2">
                         Company Size
                       </label>
-                      <select
-                        value={formData.companySize}
-                        onChange={(e) => setFormData({ ...formData, companySize: e.target.value })}
-                        required
-                        className="w-full bg-[#1E293B] border border-[#334155] rounded-lg px-4 py-3 text-white focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors appearance-none cursor-pointer"
-                        style={{
-                          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748B'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
-                          backgroundRepeat: 'no-repeat',
-                          backgroundPosition: 'right 12px center',
-                          backgroundSize: '20px',
-                        }}
-                      >
-                        <option value="" disabled className="text-[#64748B]">Select company size</option>
-                        {companySizes.map((size) => (
-                          <option key={size} value={size} className="bg-[#1E293B]">{size}</option>
-                        ))}
-                      </select>
+                      <div className="relative">
+                        <select
+                          value={formData.companySize}
+                          onChange={(e) => setFormData({ ...formData, companySize: e.target.value })}
+                          required
+                          className="w-full bg-[#1E293B] border border-[#334155] rounded-lg px-4 py-3 text-white focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors appearance-none cursor-pointer [&>option]:bg-[#1E293B] [&>option]:text-white [&>option]:py-2"
+                        >
+                          <option value="" disabled className="bg-[#1E293B] text-[#64748B]">Select company size</option>
+                          {companySizes.map((size) => (
+                            <option key={size} value={size} className="bg-[#1E293B] text-white py-2">{size}</option>
+                          ))}
+                        </select>
+                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#64748B]">
+                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </div>
+                      </div>
                     </div>
 
                     {/* Subscribe checkbox */}
