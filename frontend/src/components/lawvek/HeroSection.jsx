@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, ArrowDown } from 'lucide-react';
+import { ArrowRight, ArrowDown, FileText, Shield, Clock, Zap, CheckCircle2, BarChart3, Users, DollarSign, Sparkles } from 'lucide-react';
 
 export const HeroSection = ({ onOpenModal }) => {
   return (
