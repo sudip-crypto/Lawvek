@@ -129,80 +129,80 @@ export const HeroSection = ({ onOpenModal }) => {
                   <div className="bg-gradient-to-br from-[#F8FAFC] to-white rounded-2xl border border-[#E2E8F0]/80 p-4 hover:shadow-md transition-shadow duration-300 cursor-default">
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-center gap-2.5">
-                        <div className="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center">
-                          <BarChart3 className="w-4 h-4 text-amber-600" />
+                        <div className="w-9 h-9 rounded-xl bg-[#0F172A]/5 flex items-center justify-center">
+                          <BarChart3 className="w-4 h-4 text-[#0F172A]" />
                         </div>
                         <div>
-                          <p className="text-xs font-medium text-[#64748B] uppercase tracking-wide">Complexity Score</p>
-                          <p className="text-lg font-bold text-[#0F172A]">Medium</p>
+                          <p className="text-[10px] font-semibold text-[#94A3B8] uppercase tracking-wider">Complexity Score</p>
+                          <p className="text-base font-bold text-[#0F172A]">Medium</p>
                         </div>
                       </div>
-                      <span className="text-xs font-semibold text-amber-600 bg-amber-50 px-2 py-1 rounded-md">Level 2/3</span>
+                      <span className="text-[10px] font-bold text-[#64748B] bg-[#F1F5F9] px-2.5 py-1 rounded-md tracking-wide">2 of 3</span>
                     </div>
-                    {/* Progress bar */}
+                    {/* Progress bar - unified slate tones */}
                     <div className="flex gap-1.5">
                       <motion.div 
-                        className="h-1.5 flex-1 rounded-full bg-emerald-500"
+                        className="h-1 flex-1 rounded-full bg-[#0F172A]"
                         initial={{ width: 0 }}
                         animate={{ width: '100%' }}
                         transition={{ duration: 0.8, delay: 0.5 }}
                       />
                       <motion.div 
-                        className="h-1.5 flex-1 rounded-full bg-amber-500"
+                        className="h-1 flex-1 rounded-full bg-[#64748B]"
                         initial={{ width: 0 }}
                         animate={{ width: '100%' }}
                         transition={{ duration: 0.8, delay: 0.7 }}
                       />
-                      <div className="h-1.5 flex-1 rounded-full bg-[#E2E8F0]" />
+                      <div className="h-1 flex-1 rounded-full bg-[#E2E8F0]" />
                     </div>
                   </div>
 
-                  {/* Review Team */}
+                  {/* Review Team - Unified monochrome style */}
                   <div className="bg-gradient-to-br from-[#F8FAFC] to-white rounded-2xl border border-[#E2E8F0]/80 p-4 hover:shadow-md transition-shadow duration-300 cursor-default">
                     <div className="flex items-center gap-2.5 mb-3">
-                      <div className="w-8 h-8 rounded-lg bg-violet-100 flex items-center justify-center">
-                        <Users className="w-4 h-4 text-violet-600" />
+                      <div className="w-9 h-9 rounded-xl bg-[#0F172A]/5 flex items-center justify-center">
+                        <Users className="w-4 h-4 text-[#0F172A]" />
                       </div>
-                      <p className="text-xs font-medium text-[#64748B] uppercase tracking-wide">Recommended Review Team</p>
+                      <p className="text-[10px] font-semibold text-[#94A3B8] uppercase tracking-wider">Review Team</p>
                     </div>
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="inline-flex items-center gap-1.5 bg-[#0F172A] text-white text-xs font-medium px-3 py-1.5 rounded-full">
+                      <span className="inline-flex items-center gap-1.5 bg-[#0F172A] text-white text-[11px] font-medium px-3 py-1.5 rounded-full">
                         <Sparkles className="w-3 h-3" />
-                        AI Analysis
+                        AI
                       </span>
-                      <span className="inline-flex items-center gap-1.5 bg-violet-600 text-white text-xs font-medium px-3 py-1.5 rounded-full">
+                      <span className="inline-flex items-center gap-1.5 bg-[#334155] text-white text-[11px] font-medium px-3 py-1.5 rounded-full">
                         <Users className="w-3 h-3" />
                         Paralegal
                       </span>
-                      <span className="inline-flex items-center gap-1.5 bg-emerald-600 text-white text-xs font-medium px-3 py-1.5 rounded-full">
+                      <span className="inline-flex items-center gap-1.5 bg-[#64748B] text-white text-[11px] font-medium px-3 py-1.5 rounded-full">
                         <Shield className="w-3 h-3" />
-                        Licensed Lawyer
+                        Lawyer
                       </span>
                     </div>
                   </div>
 
-                  {/* Pricing & Turnaround Row */}
+                  {/* Pricing & Turnaround Row - unified styling */}
                   <div className="grid grid-cols-2 gap-3">
                     <div className="bg-gradient-to-br from-[#F8FAFC] to-white rounded-2xl border border-[#E2E8F0]/80 p-4 hover:shadow-md transition-shadow duration-300 cursor-default">
                       <div className="flex items-center gap-2 mb-2">
-                        <div className="w-7 h-7 rounded-lg bg-emerald-100 flex items-center justify-center">
-                          <DollarSign className="w-3.5 h-3.5 text-emerald-600" />
+                        <div className="w-8 h-8 rounded-xl bg-[#0F172A]/5 flex items-center justify-center">
+                          <DollarSign className="w-3.5 h-3.5 text-[#0F172A]" />
                         </div>
-                        <p className="text-xs font-medium text-[#64748B] uppercase tracking-wide">Pricing</p>
+                        <p className="text-[10px] font-semibold text-[#94A3B8] uppercase tracking-wider">Pricing</p>
                       </div>
                       <p className="text-lg font-bold text-[#0F172A]">$249</p>
-                      <p className="text-xs text-emerald-600 font-medium">Fixed • No surprises</p>
+                      <p className="text-[11px] text-[#64748B] font-medium">Fixed rate</p>
                     </div>
                     
                     <div className="bg-gradient-to-br from-[#F8FAFC] to-white rounded-2xl border border-[#E2E8F0]/80 p-4 hover:shadow-md transition-shadow duration-300 cursor-default">
                       <div className="flex items-center gap-2 mb-2">
-                        <div className="w-7 h-7 rounded-lg bg-blue-100 flex items-center justify-center">
-                          <Clock className="w-3.5 h-3.5 text-blue-600" />
+                        <div className="w-8 h-8 rounded-xl bg-[#0F172A]/5 flex items-center justify-center">
+                          <Clock className="w-3.5 h-3.5 text-[#0F172A]" />
                         </div>
-                        <p className="text-xs font-medium text-[#64748B] uppercase tracking-wide">Turnaround</p>
+                        <p className="text-[10px] font-semibold text-[#94A3B8] uppercase tracking-wider">Turnaround</p>
                       </div>
-                      <p className="text-lg font-bold text-[#0F172A]">~4 hours</p>
-                      <p className="text-xs text-blue-600 font-medium">Express delivery</p>
+                      <p className="text-lg font-bold text-[#0F172A]">~4 hrs</p>
+                      <p className="text-[11px] text-[#64748B] font-medium">Express</p>
                     </div>
                   </div>
 
