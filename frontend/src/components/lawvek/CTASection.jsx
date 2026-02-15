@@ -33,24 +33,19 @@ export const CTASection = ({ onOpenModal }) => {
               Join the waitlist and be first to experience AI-powered legal services.
             </p>
             
-            {/* Premium CTA Button - Uniform style */}
+            {/* Premium CTA Button - Pill shape uniform */}
             <motion.button
               onClick={onOpenModal}
-              className="group relative inline-flex items-center gap-3 bg-white text-[#0F172A] px-8 py-4 rounded-2xl font-semibold text-base overflow-hidden transition-all duration-500"
-              whileHover={{ scale: 1.02, boxShadow: '0 20px 40px rgba(255,255,255,0.15)' }}
+              className="group relative inline-flex items-center gap-3 bg-white text-[#0F172A] px-8 py-4 rounded-full font-medium text-base overflow-hidden transition-all duration-500"
+              whileHover={{ scale: 1.02, boxShadow: '0 15px 35px rgba(255,255,255,0.2)' }}
               whileTap={{ scale: 0.98 }}
               data-testid="cta-upload-button"
             >
               {/* Shimmer effect */}
               <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-[#0F172A]/5 to-transparent" />
               
-              {/* Button content */}
-              <span className="relative z-10 flex items-center gap-3">
-                <span>Get Priority Access</span>
-                <span className="flex items-center justify-center w-8 h-8 rounded-xl bg-[#0F172A]/10 group-hover:bg-[#0F172A]/20 transition-colors duration-300">
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" strokeWidth={2.5} />
-                </span>
-              </span>
+              <span className="relative z-10">Get Lawvek Today</span>
+              <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" strokeWidth={2} />
             </motion.button>
 
             <p className="mt-8 text-xs text-[#64748B]">
