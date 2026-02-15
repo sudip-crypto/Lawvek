@@ -253,18 +253,3 @@ export const Header = ({ onOpenModal }) => {
     </>
   );
 };
-                  </button>
-                  
-                  {/* Footer text */}
-                  <p className="text-center text-slate-500 text-sm mt-6">
-                    Join 500+ teams transforming contracts with AI
-                  </p>
-                </motion.div>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-    </>
-  );
-};
