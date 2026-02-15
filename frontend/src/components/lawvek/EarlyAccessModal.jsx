@@ -100,9 +100,11 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
                   <div className="p-6 md:p-8">
                     {/* Header row with badge */}
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30">
-                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                        <span className="text-emerald-400 text-[11px] font-semibold tracking-wide uppercase">Limited Access</span>
+                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30">
+                        <div className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                        <span className="text-amber-400 text-[11px] font-semibold tracking-wide uppercase">
+                          {spotsRemaining > 0 ? `Only ${spotsRemaining} spots left` : 'Waitlist Full'}
+                        </span>
                       </div>
                     </div>
 
@@ -112,7 +114,7 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
                         Request Priority Access
                       </h2>
                       <p className="text-slate-400 text-sm">
-                        Join leading teams already transforming their contract workflows with AI.
+                        Limited to first 50 legal teams. Join the queue now.
                       </p>
                     </div>
 
