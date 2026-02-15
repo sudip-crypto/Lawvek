@@ -26,6 +26,30 @@ export const ApproachSection = () => {
     },
   ];
 
+  // Staggered animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
+    }
+  };
+
   return (
     <section 
       id="approach"
@@ -52,50 +76,62 @@ export const ApproachSection = () => {
           </p>
         </motion.div>
 
-        {/* Steps Grid - Uniform compact cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {/* Steps Grid - Staggered Animation */}
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-3 gap-5"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           {steps.map((step, index) => (
             <motion.div
               key={step.number}
-              className="group bg-[#1E293B]/50 border border-[#334155] rounded-2xl p-7 hover:border-[#475569] hover:bg-[#1E293B] transition-all duration-300"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group bg-[#1E293B]/50 border border-[#334155] rounded-2xl p-7 hover:border-[#475569] hover:bg-[#1E293B] transition-all duration-300 flex flex-col"
+              variants={cardVariants}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
               data-testid={`approach-step-${index}`}
             >
-              {/* Header */}
-              <div className="flex items-center justify-between mb-6">
-                <span className="text-2xl font-bold text-white">
+              {/* Header Row - Number, Title, Icon */}
+              <div className="flex items-center gap-4 mb-5">
+                <span className="text-2xl font-bold text-white/80 font-serif italic">
                   {step.number}
                 </span>
-                <div className="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                <h3 className="flex-1 text-lg font-bold text-white">
+                  {step.title}
+                </h3>
+                <div className="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center group-hover:scale-105 transition-transform duration-300 flex-shrink-0">
                   <step.icon className="h-5 w-5 text-amber-400" strokeWidth={1.5} />
                 </div>
               </div>
 
-              {/* Title */}
-              <h3 className="text-lg font-bold text-white mb-2">
-                {step.title}
-              </h3>
-
-              {/* Description */}
-              <p className="text-sm leading-relaxed text-white/60 mb-6">
+              {/* Description - Fixed height for alignment */}
+              <p className="text-sm leading-relaxed text-white/60 min-h-[60px]">
                 {step.description}
               </p>
 
-              {/* Points - Uniform 3 points each */}
-              <div className="space-y-2.5 pt-5 border-t border-[#334155]">
+              {/* Divider - Consistent position */}
+              <div className="border-t border-[#334155] my-5" />
+
+              {/* Points */}
+              <div className="space-y-2.5">
                 {step.points.map((point, i) => (
-                  <div key={i} className="flex items-center gap-3">
+                  <motion.div 
+                    key={i} 
+                    className="flex items-center gap-3"
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.4 + (index * 0.1) + (i * 0.05) }}
+                  >
                     <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
                     <span className="text-sm text-white/50">{point}</span>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
