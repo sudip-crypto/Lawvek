@@ -65,22 +65,20 @@ export const ApproachSection = () => {
               whileHover={{ y: -4, transition: { duration: 0.2 } }}
               data-testid={`approach-step-${index}`}
             >
-              {/* Header Row - Number + Icon */}
-              <div className="flex items-center justify-between mb-5">
-                <span className="text-sm font-medium text-white/40 tracking-widest">
+              {/* Header Row - Number + Title + Icon */}
+              <div className="flex items-center gap-4 mb-5">
+                <span className="text-sm font-medium text-white/40 tracking-widest flex-shrink-0">
                   {step.number}
                 </span>
-                <div className="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                  <step.icon className="h-5 w-5 text-amber-400" strokeWidth={1.5} />
+                <h3 className="text-base font-semibold text-white flex-1 truncate">
+                  {step.title}
+                </h3>
+                <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center group-hover:scale-105 transition-transform duration-300 flex-shrink-0">
+                  <step.icon className="h-4 w-4 text-amber-400" strokeWidth={1.5} />
                 </div>
               </div>
 
-              {/* Title - Single line */}
-              <h3 className="text-xl font-semibold text-white mb-3 h-7">
-                {step.title}
-              </h3>
-
-              {/* Description - Fixed 3 lines height */}
+              {/* Description - Fixed height */}
               <p className="text-sm leading-relaxed text-white/50 h-[63px] line-clamp-3">
                 {step.description}
               </p>
