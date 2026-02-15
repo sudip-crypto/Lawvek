@@ -46,7 +46,7 @@ export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
               AI-powered contract review with the right level of human legal oversight — fast, transparent, and cost-effective.
             </p>
             
-            {/* Premium CTA */}
+            {/* Premium CTA with Queue Counter */}
             <div className="mb-16">
               <motion.button
                 onClick={onOpenModal}
@@ -59,10 +59,23 @@ export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
                 <ArrowRight className="w-4 h-4 opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-300" strokeWidth={2} />
               </motion.button>
               
-              {/* Subtle trust note */}
-              <p className="mt-5 text-[13px] text-[#94A3B8] tracking-wide">
-                No credit card required
-              </p>
+              {/* Queue Counter - Premium style */}
+              <motion.div 
+                className="mt-5 inline-flex items-center gap-3"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+              >
+                <div className="flex items-center gap-2 px-3 py-1.5 bg-[#0F172A]/5 rounded-full border border-[#E2E8F0]">
+                  <Users className="w-3.5 h-3.5 text-[#0F172A]" />
+                  <span className="text-sm font-semibold text-[#0F172A]">{queueCount}</span>
+                  <span className="text-sm text-[#64748B]">in queue</span>
+                </div>
+                <span className="text-[13px] text-[#64748B]">·</span>
+                <span className="text-[13px] font-medium text-[#0F172A]">
+                  {spotsRemaining > 0 ? `${spotsRemaining} spots left` : 'Waitlist full'}
+                </span>
+              </motion.div>
             </div>
             
             {/* Stats - Enterprise Grade with Visual Impact */}
