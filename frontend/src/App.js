@@ -1,5 +1,6 @@
 import "@/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 import {
   Header,
   HeroSection,
@@ -11,15 +12,21 @@ import {
   ComparisonSection,
   SecuritySection,
   CTASection,
+  EarlyAccessModal,
   Footer,
 } from "@/components/lawvek";
 
 const LandingPage = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <div className="min-h-screen bg-[#F9F9F9]" data-testid="landing-page">
-      <Header />
+      <Header onOpenModal={openModal} />
       <main>
-        <HeroSection />
+        <HeroSection onOpenModal={openModal} />
         <ProblemSection />
         <ApproachSection />
         <HowItWorksSection />
@@ -27,9 +34,10 @@ const LandingPage = () => {
         <IntegrationsSection />
         <ComparisonSection />
         <SecuritySection />
-        <CTASection />
+        <CTASection onOpenModal={openModal} />
       </main>
       <Footer />
+      <EarlyAccessModal isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
 };

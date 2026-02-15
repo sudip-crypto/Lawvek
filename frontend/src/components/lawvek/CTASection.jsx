@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Play } from 'lucide-react';
 
-export const CTASection = () => {
+export const CTASection = ({ onOpenModal }) => {
   return (
     <section 
       id="cta"
@@ -30,32 +30,35 @@ export const CTASection = () => {
               Ready to transform your contract workflow?
             </h2>
             <p className="text-base md:text-lg text-[#94A3B8] mb-10">
-              Start your free trial today. No credit card required.
+              Join the waitlist and be first to experience AI-powered legal services.
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <motion.button
+                onClick={onOpenModal}
                 className="inline-flex items-center justify-center bg-white text-[#0F172A] px-8 py-4 rounded-xl hover:bg-[#F8FAFC] transition-colors duration-200 font-semibold text-sm group shadow-lg"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 data-testid="cta-upload-button"
               >
-                Start free trial
+                Get Priority Access
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" strokeWidth={2} />
               </motion.button>
               
-              <motion.button
-                className="inline-flex items-center justify-center bg-transparent border border-[#334155] text-white px-8 py-4 rounded-xl hover:bg-[#1E293B] hover:border-[#475569] transition-all duration-200 font-medium text-sm"
+              <motion.a
+                href="#how-it-works"
+                className="inline-flex items-center justify-center bg-transparent border border-[#334155] text-white px-8 py-4 rounded-xl hover:bg-[#1E293B] hover:border-[#475569] transition-all duration-200 font-medium text-sm group"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 data-testid="cta-talk-button"
               >
-                Schedule demo
-              </motion.button>
+                <Play className="mr-2 h-4 w-4" strokeWidth={2} />
+                Watch Demo
+              </motion.a>
             </div>
 
             <p className="mt-8 text-xs text-[#64748B]">
-              14-day free trial • No credit card required • Cancel anytime
+              Join 500+ legal teams on the waitlist • No credit card required
             </p>
           </div>
         </motion.div>

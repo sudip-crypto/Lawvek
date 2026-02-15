@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, ArrowDown } from 'lucide-react';
+import { ArrowRight, ArrowDown, Play } from 'lucide-react';
 
-export const HeroSection = () => {
+export const HeroSection = ({ onOpenModal }) => {
   return (
     <section 
       className="relative min-h-screen flex items-center overflow-hidden"
@@ -45,24 +45,25 @@ export const HeroSection = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-16">
-              <motion.a
-                href="#cta"
+              <motion.button
+                onClick={onOpenModal}
                 className="inline-flex items-center justify-center bg-[#0F172A] text-white px-8 py-4 rounded-lg hover:bg-[#1E293B] transition-all duration-300 font-medium text-sm tracking-wide shadow-lg group"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 data-testid="hero-primary-cta"
               >
-                Start free trial
+                Get Priority Access
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" strokeWidth={2} />
-              </motion.a>
+              </motion.button>
               <motion.a
                 href="#how-it-works"
-                className="inline-flex items-center justify-center bg-white/80 backdrop-blur-sm border border-[#E2E8F0] text-[#0F172A] px-8 py-4 rounded-lg hover:bg-white transition-all duration-300 font-medium text-sm tracking-wide"
+                className="inline-flex items-center justify-center bg-white/80 backdrop-blur-sm border border-[#E2E8F0] text-[#0F172A] px-8 py-4 rounded-lg hover:bg-white transition-all duration-300 font-medium text-sm tracking-wide group"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 data-testid="hero-secondary-cta"
               >
-                Watch demo
+                <Play className="mr-2 h-4 w-4" strokeWidth={2} />
+                Watch Demo
               </motion.a>
             </div>
             

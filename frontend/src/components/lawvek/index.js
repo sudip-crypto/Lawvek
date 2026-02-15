@@ -10,4 +10,5 @@ export { SecuritySection } from './SecuritySection';
 export { IntegrationsSection } from './IntegrationsSection';
 export { ComparisonSection } from './ComparisonSection';
 export { CTASection } from './CTASection';
+export { EarlyAccessModal } from './EarlyAccessModal';
 export { Footer } from './Footer';
