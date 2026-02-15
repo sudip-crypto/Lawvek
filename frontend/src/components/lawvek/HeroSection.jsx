@@ -152,15 +152,18 @@ export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
                   ))}
                 </div>
 
-                {/* CTA */}
+                {/* CTA - Uniform style */}
                 <div className="px-8 pb-8">
                   <motion.button 
-                    className="w-full bg-[#0F172A] text-white py-4 rounded-2xl font-medium text-sm flex items-center justify-center gap-2 hover:bg-[#1E293B] transition-colors duration-300"
-                    whileHover={{ scale: 1.01 }}
+                    onClick={onOpenModal}
+                    className="group relative w-full bg-[#0F172A] text-white py-4 rounded-2xl font-semibold text-sm flex items-center justify-center gap-2 overflow-hidden transition-all duration-300"
+                    whileHover={{ scale: 1.01, boxShadow: '0 8px 25px rgba(15,23,42,0.2)' }}
                     whileTap={{ scale: 0.99 }}
                   >
-                    Get Started
-                    <ArrowRight className="w-4 h-4" />
+                    {/* Shimmer effect */}
+                    <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                    <span className="relative z-10">Get Started</span>
+                    <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" strokeWidth={2.5} />
                   </motion.button>
                 </div>
               </div>
