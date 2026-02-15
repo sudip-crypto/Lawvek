@@ -264,7 +264,7 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
                         </svg>
                       </div>
                       
-                      <h2 className="text-2xl font-serif text-white mb-2">You're on the list</h2>
+                      <h2 className="text-2xl font-serif text-white mb-2">You're #{queueCount} in queue</h2>
                       <p className="text-slate-400 text-sm mb-6">
                         We'll reach out within 24 hours with your access details.
                       </p>
