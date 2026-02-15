@@ -216,75 +216,48 @@ export const EarlyAccessModal = ({ isOpen, onClose }) => {
 
                         {/* Newsletter Checkbox */}
                         <div className="flex items-start gap-3 pt-1">
-                          <div className="relative">
-                            <input
-                              type="checkbox"
-                              id="subscribe"
-                              checked={formData.subscribe}
-                              onChange={(e) => setFormData({ ...formData, subscribe: e.target.checked })}
-                              className="peer sr-only"
-                            />
-                            <label 
-                              htmlFor="subscribe"
-                              className="w-5 h-5 rounded-md border border-white/20 bg-white/5 flex items-center justify-center cursor-pointer transition-all duration-200 peer-checked:bg-emerald-500 peer-checked:border-emerald-500"
-                            >
-                              <svg className="w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                              </svg>
-                            </label>
-                          </div>
-                          <label htmlFor="subscribe" className="text-slate-500 text-sm cursor-pointer leading-relaxed">
-                            Keep me updated on product news and exclusive offers
+                          <input
+                            type="checkbox"
+                            id="subscribe"
+                            checked={formData.subscribe}
+                            onChange={(e) => setFormData({ ...formData, subscribe: e.target.checked })}
+                            className="mt-0.5 w-4 h-4 rounded border-slate-600 bg-slate-800 text-emerald-500 focus:ring-emerald-500 focus:ring-offset-0 cursor-pointer"
+                          />
+                          <label htmlFor="subscribe" className="text-slate-500 text-sm cursor-pointer">
+                            Keep me updated on product news
                           </label>
-                        </motion.div>
+                        </div>
 
-                        {/* Submit Button - Premium gradient */}
-                        <motion.div
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.45 }}
-                          className="pt-3"
-                        >
+                        {/* Submit Button */}
+                        <div className="pt-2">
                           <motion.button
                             type="submit"
                             disabled={isSubmitting}
-                            className="relative w-full group overflow-hidden rounded-xl font-semibold py-4 transition-all duration-300 disabled:cursor-not-allowed"
+                            className="w-full bg-gradient-to-r from-emerald-500 to-emerald-400 text-slate-900 font-semibold py-3 rounded-lg hover:from-emerald-400 hover:to-emerald-300 transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                             whileHover={{ scale: 1.01 }}
                             whileTap={{ scale: 0.99 }}
                             data-testid="modal-submit-btn"
                           >
-                            {/* Button gradient background */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 via-emerald-400 to-cyan-500 transition-all duration-300 group-hover:opacity-90" />
-                            <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 via-cyan-400 to-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                            
-                            {/* Button content */}
-                            <span className="relative flex items-center justify-center gap-2 text-slate-900 font-semibold">
-                              {isSubmitting ? (
-                                <>
-                                  <svg className="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
-                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                                  </svg>
-                                  Processing...
-                                </>
-                              ) : (
-                                <>
-                                  Request Access
-                                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                                </>
-                              )}
-                            </span>
+                            {isSubmitting ? (
+                              <>
+                                <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+                                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                                </svg>
+                                Processing...
+                              </>
+                            ) : (
+                              <>
+                                Request Access
+                                <ArrowRight className="w-4 h-4" />
+                              </>
+                            )}
                           </motion.button>
-                        </motion.div>
+                        </div>
                       </form>
 
                       {/* Footer */}
-                      <motion.p 
-                        className="text-slate-600 text-xs text-center mt-6"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.5 }}
-                      >
+                      <p className="text-slate-600 text-xs text-center mt-5">
                         By continuing, you agree to our{' '}
                         <a href="#" className="text-slate-500 hover:text-emerald-400 underline underline-offset-2 transition-colors">Terms</a>
                         {' '}and{' '}
