@@ -82,25 +82,26 @@ export const EarlyAccessModal = ({ isOpen, onClose }) => {
               transition={{ duration: 0.2 }}
             >
             <div className="bg-[#0F172A] border border-[#1E293B] rounded-2xl shadow-2xl overflow-hidden relative">
-              {/* Close button - inside dialog at top right */}
-              <button
-                onClick={handleClose}
-                className="absolute top-4 right-4 text-[#64748B] hover:text-white transition-colors z-10 w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#1E293B]"
-                data-testid="modal-close-btn"
-              >
-                <X className="w-5 h-5" />
-              </button>
-
               {!isSubmitted ? (
-                <div className="p-8 pt-12">
-                  {/* Header */}
-                  <div className="mb-8">
-                    <h2 className="text-2xl md:text-3xl font-serif text-white mb-3 whitespace-nowrap">
-                      Get priority access to Lawvek
-                    </h2>
-                    <p className="text-[#94A3B8] text-sm">
-                      Secure Your Spot and Be First to Access AI-Powered Legal Services.
-                    </p>
+                <div className="p-8">
+                  {/* Header with inline close button */}
+                  <div className="flex items-start justify-between gap-4 mb-6">
+                    <div className="flex-1">
+                      <h2 className="text-2xl md:text-3xl font-serif text-white mb-2">
+                        Request priority access
+                      </h2>
+                      <p className="text-[#94A3B8] text-sm">
+                        Secure Your Spot and Be First to Access AI-Powered Legal Services.
+                      </p>
+                    </div>
+                    {/* Close button - inline with heading */}
+                    <button
+                      onClick={handleClose}
+                      className="flex-shrink-0 text-[#64748B] hover:text-white transition-all duration-200 w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#1E293B] hover:rotate-90 mt-1"
+                      data-testid="modal-close-btn"
+                    >
+                      <X className="w-5 h-5" strokeWidth={2.5} />
+                    </button>
                   </div>
 
                   {/* Form */}
