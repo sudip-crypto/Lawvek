@@ -36,7 +36,7 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F9F9F9]" data-testid="landing-page">
+    <div className="min-h-screen bg-[#0A0F1A]" data-testid="landing-page">
       <Header onOpenModal={openModal} />
       <main>
         <HeroSection onOpenModal={openModal} queueCount={queueCount} />
