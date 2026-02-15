@@ -46,35 +46,42 @@ export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
               AI-powered contract review with the right level of human legal oversight — fast, transparent, and cost-effective.
             </p>
             
-            {/* Premium CTA with Queue Counter */}
+            {/* Premium CTA with Urgency Indicator */}
             <div className="mb-16">
               <motion.button
                 onClick={onOpenModal}
-                className="group relative inline-flex items-center gap-3 px-7 py-3.5 bg-[#0F172A] text-white rounded-full font-medium text-[15px] tracking-[-0.01em] shadow-[0_1px_2px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_30px_rgba(15,23,42,0.12)] transition-all duration-300 ease-out"
-                whileHover={{ y: -2 }}
+                className="group relative inline-flex items-center gap-3 px-8 py-4 bg-[#0F172A] text-white rounded-2xl font-semibold text-base overflow-hidden transition-all duration-500"
+                whileHover={{ scale: 1.02, boxShadow: '0 20px 40px rgba(15,23,42,0.25)' }}
                 whileTap={{ scale: 0.98 }}
                 data-testid="hero-primary-cta"
               >
-                <span>Get Priority Access</span>
-                <ArrowRight className="w-4 h-4 opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-300" strokeWidth={2} />
+                {/* Animated gradient border */}
+                <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#0F172A] via-[#334155] to-[#0F172A] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Shimmer effect */}
+                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                
+                {/* Button content */}
+                <span className="relative z-10 flex items-center gap-3">
+                  <span>Get Priority Access</span>
+                  <span className="flex items-center justify-center w-8 h-8 rounded-xl bg-white/10 group-hover:bg-white/20 transition-colors duration-300">
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" strokeWidth={2.5} />
+                  </span>
+                </span>
               </motion.button>
               
-              {/* Queue Counter - Premium style */}
+              {/* Urgency Spots Left - Clean and Premium */}
               <motion.div 
-                className="mt-5 inline-flex items-center gap-3"
+                className="mt-5 inline-flex items-center gap-2"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
               >
-                <div className="flex items-center gap-2 px-3 py-1.5 bg-[#0F172A]/5 rounded-full border border-[#E2E8F0]">
-                  <Users className="w-3.5 h-3.5 text-[#0F172A]" />
-                  <span className="text-sm font-semibold text-[#0F172A]">{queueCount}</span>
-                  <span className="text-sm text-[#64748B]">in queue</span>
-                </div>
-                <span className="text-[13px] text-[#64748B]">·</span>
-                <span className="text-[13px] font-medium text-[#0F172A]">
-                  {spotsRemaining > 0 ? `${spotsRemaining} spots left` : 'Waitlist full'}
+                <span className="flex items-center gap-1.5 text-sm">
+                  <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
+                  <span className="font-semibold text-amber-600">{spotsRemaining} spots left</span>
                 </span>
+                <span className="text-[13px] text-[#94A3B8]">— limited early access</span>
               </motion.div>
             </div>
             
