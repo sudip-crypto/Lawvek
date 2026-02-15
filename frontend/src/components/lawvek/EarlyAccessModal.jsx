@@ -199,6 +199,7 @@ export const EarlyAccessModal = ({ isOpen, onClose }) => {
                 </div>
               )}
             </div>
+            </motion.div>
           </motion.div>
         </>
       )}
