@@ -112,34 +112,26 @@ export const EarlyAccessModal = ({ isOpen, onClose }) => {
                     </div>
 
                     {/* Trust Indicators - compact */}
-                    <div className="flex flex-wrap gap-x-4 gap-y-2 mb-6 pb-5 border-b border-slate-800"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.2 }}
-                      >
-                        <div className="flex items-center gap-2 text-slate-500 text-sm">
-                          <Shield className="w-4 h-4 text-emerald-500" />
-                          <span>SOC 2 Compliant</span>
+                    <div className="flex flex-wrap gap-x-4 gap-y-2 mb-6 pb-5 border-b border-slate-800">
+                        <div className="flex items-center gap-1.5 text-slate-500 text-xs">
+                          <Shield className="w-3.5 h-3.5 text-emerald-500" />
+                          <span>SOC 2</span>
                         </div>
-                        <div className="flex items-center gap-2 text-slate-500 text-sm">
-                          <Zap className="w-4 h-4 text-amber-500" />
-                          <span>24hr Onboarding</span>
+                        <div className="flex items-center gap-1.5 text-slate-500 text-xs">
+                          <Zap className="w-3.5 h-3.5 text-amber-500" />
+                          <span>24hr Setup</span>
                         </div>
-                        <div className="flex items-center gap-2 text-slate-500 text-sm">
-                          <Users className="w-4 h-4 text-cyan-500" />
+                        <div className="flex items-center gap-1.5 text-slate-500 text-xs">
+                          <Users className="w-3.5 h-3.5 text-cyan-500" />
                           <span>500+ Teams</span>
                         </div>
-                      </motion.div>
+                    </div>
 
                       {/* Form */}
-                      <form onSubmit={handleSubmit} className="space-y-5">
+                      <form onSubmit={handleSubmit} className="space-y-4">
                         {/* Name Field */}
-                        <motion.div
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.25 }}
-                        >
-                          <label className="block text-slate-300 text-sm font-medium mb-2.5">
+                        <div>
+                          <label className="block text-slate-300 text-sm font-medium mb-2">
                             Full Name
                           </label>
                           <input
@@ -148,17 +140,13 @@ export const EarlyAccessModal = ({ isOpen, onClose }) => {
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                             required
-                            className="w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500/50 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white/[0.05] transition-all duration-300"
+                            className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30 transition-all"
                           />
-                        </motion.div>
+                        </div>
 
                         {/* Email Field */}
-                        <motion.div
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.3 }}
-                        >
-                          <label className="block text-slate-300 text-sm font-medium mb-2.5">
+                        <div>
+                          <label className="block text-slate-300 text-sm font-medium mb-2">
                             Work Email
                           </label>
                           <input
@@ -167,17 +155,14 @@ export const EarlyAccessModal = ({ isOpen, onClose }) => {
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                             required
-                            className="w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500/50 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white/[0.05] transition-all duration-300"
+                            className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30 transition-all"
                           />
-                        </motion.div>
+                        </div>
 
                         {/* Company Size Dropdown */}
-                        <motion.div 
+                        <div 
                           className="relative" 
                           ref={dropdownRef}
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.35 }}
                         >
                           <label className="block text-slate-300 text-sm font-medium mb-2.5">
                             Company Size
