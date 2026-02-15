@@ -54,7 +54,7 @@ export const IntegrationsSection = () => {
               {/* Left Integration Icons */}
               {/* Slack */}
               <motion.div 
-                className="absolute left-0 top-[28px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-white"
+                className="absolute left-0 top-[28px] w-14 h-14 rounded-xl border border-[#334155] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-[#1E293B]"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -71,7 +71,7 @@ export const IntegrationsSection = () => {
               
               {/* Gmail */}
               <motion.div 
-                className="absolute left-0 top-[105px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-white"
+                className="absolute left-0 top-[105px] w-14 h-14 rounded-xl border border-[#334155] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-[#1E293B]"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -85,7 +85,7 @@ export const IntegrationsSection = () => {
               
               {/* MS Teams */}
               <motion.div 
-                className="absolute left-0 top-[182px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-white"
+                className="absolute left-0 top-[182px] w-14 h-14 rounded-xl border border-[#334155] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-[#1E293B]"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -99,21 +99,21 @@ export const IntegrationsSection = () => {
               
               {/* Ironclad */}
               <motion.div 
-                className="absolute left-0 top-[259px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-white"
+                className="absolute left-0 top-[259px] w-14 h-14 rounded-xl border border-[#334155] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-[#1E293B]"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.25 }}
                 title="Ironclad"
               >
-                <svg viewBox="0 0 24 24" className="w-7 h-7" fill="#1a1a1a">
+                <svg viewBox="0 0 24 24" className="w-7 h-7" fill="#94A3B8">
                   <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18l6.9 3.45L12 11.08 5.1 7.63 12 4.18zM4 8.82l7 3.5v7.36l-7-3.5V8.82zm9 10.86v-7.36l7-3.5v7.36l-7 3.5z"/>
                 </svg>
               </motion.div>
               
               {/* SpotDraft */}
               <motion.div 
-                className="absolute left-0 top-[320px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-white"
+                className="absolute left-0 top-[320px] w-14 h-14 rounded-xl border border-[#334155] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-[#1E293B]"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -129,7 +129,7 @@ export const IntegrationsSection = () => {
               {/* Right Integration Icons */}
               {/* Google Docs */}
               <motion.div 
-                className="absolute right-0 top-[48px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-white"
+                className="absolute right-0 top-[48px] w-14 h-14 rounded-xl border border-[#334155] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-[#1E293B]"
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -145,7 +145,7 @@ export const IntegrationsSection = () => {
               
               {/* MS Word */}
               <motion.div 
-                className="absolute right-0 top-[152px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-white"
+                className="absolute right-0 top-[152px] w-14 h-14 rounded-xl border border-[#334155] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-[#1E293B]"
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -160,7 +160,7 @@ export const IntegrationsSection = () => {
               
               {/* Outlook */}
               <motion.div 
-                className="absolute right-0 top-[256px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-white"
+                className="absolute right-0 top-[256px] w-14 h-14 rounded-xl border border-[#334155] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-[#1E293B]"
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -177,7 +177,7 @@ export const IntegrationsSection = () => {
               
               {/* DocuSign */}
               <motion.div 
-                className="absolute right-0 top-[340px] w-14 h-14 rounded-xl border border-[#E2E8F0] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-white"
+                className="absolute right-0 top-[340px] w-14 h-14 rounded-xl border border-[#334155] flex items-center justify-center shadow-sm hover:shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer z-10 bg-[#1E293B]"
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -193,12 +193,12 @@ export const IntegrationsSection = () => {
               {/* Central Hub */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
                 <motion.div 
-                  className="w-24 h-24 rounded-2xl bg-gradient-to-br from-[#1E3A5F] to-[#0F172A] shadow-xl flex items-center justify-center"
+                  className="w-24 h-24 rounded-2xl bg-gradient-to-br from-[#1E3A5F] to-[#0F172A] shadow-xl flex items-center justify-center border border-[#334155]"
                   animate={{ 
                     boxShadow: [
-                      '0 4px 30px rgba(16, 185, 129, 0.15)',
-                      '0 4px 50px rgba(16, 185, 129, 0.25)',
-                      '0 4px 30px rgba(16, 185, 129, 0.15)',
+                      '0 4px 30px rgba(245, 158, 11, 0.15)',
+                      '0 4px 50px rgba(245, 158, 11, 0.25)',
+                      '0 4px 30px rgba(245, 158, 11, 0.15)',
                     ]
                   }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
@@ -210,17 +210,17 @@ export const IntegrationsSection = () => {
               {/* SVG Paths - Connected to icons */}
               <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 500 450" fill="none">
                 {/* Left paths - from icon centers to hub */}
-                <path d="M 56 55 C 130 55, 180 200, 200 210 L 238 225" stroke="#E2E8F0" strokeWidth="2" fill="none" />
-                <path d="M 56 132 C 130 132, 170 205, 200 215 L 238 225" stroke="#E2E8F0" strokeWidth="2" fill="none" />
-                <path d="M 56 209 C 140 209, 180 225, 238 225" stroke="#E2E8F0" strokeWidth="2" fill="none" />
-                <path d="M 56 286 C 130 286, 170 235, 200 235 L 238 225" stroke="#E2E8F0" strokeWidth="2" fill="none" />
-                <path d="M 56 347 C 130 347, 180 250, 200 240 L 238 225" stroke="#E2E8F0" strokeWidth="2" fill="none" />
+                <path d="M 56 55 C 130 55, 180 200, 200 210 L 238 225" stroke="#334155" strokeWidth="2" fill="none" />
+                <path d="M 56 132 C 130 132, 170 205, 200 215 L 238 225" stroke="#334155" strokeWidth="2" fill="none" />
+                <path d="M 56 209 C 140 209, 180 225, 238 225" stroke="#334155" strokeWidth="2" fill="none" />
+                <path d="M 56 286 C 130 286, 170 235, 200 235 L 238 225" stroke="#334155" strokeWidth="2" fill="none" />
+                <path d="M 56 347 C 130 347, 180 250, 200 240 L 238 225" stroke="#334155" strokeWidth="2" fill="none" />
                 
                 {/* Right paths - from hub to icon centers */}
-                <path d="M 262 225 L 300 210 C 350 190, 400 75, 444 75" stroke="#E2E8F0" strokeWidth="2" fill="none" />
-                <path d="M 262 225 L 300 215 C 350 205, 400 179, 444 179" stroke="#E2E8F0" strokeWidth="2" fill="none" />
-                <path d="M 262 225 L 300 235 C 350 245, 400 283, 444 283" stroke="#E2E8F0" strokeWidth="2" fill="none" />
-                <path d="M 262 225 L 300 240 C 350 260, 400 367, 444 367" stroke="#E2E8F0" strokeWidth="2" fill="none" />
+                <path d="M 262 225 L 300 210 C 350 190, 400 75, 444 75" stroke="#334155" strokeWidth="2" fill="none" />
+                <path d="M 262 225 L 300 215 C 350 205, 400 179, 444 179" stroke="#334155" strokeWidth="2" fill="none" />
+                <path d="M 262 225 L 300 235 C 350 245, 400 283, 444 283" stroke="#334155" strokeWidth="2" fill="none" />
+                <path d="M 262 225 L 300 240 C 350 260, 400 367, 444 367" stroke="#334155" strokeWidth="2" fill="none" />
 
                 {/* Animated dots on left paths */}
                 {[
@@ -233,7 +233,7 @@ export const IntegrationsSection = () => {
                   <motion.circle
                     key={`left-dot-${index}`}
                     r="5"
-                    fill="#10B981"
+                    fill="#F59E0B"
                     initial={{ opacity: 0 }}
                     animate={{
                       opacity: [0, 1, 1, 0],
@@ -261,7 +261,7 @@ export const IntegrationsSection = () => {
                   <motion.circle
                     key={`right-dot-${index}`}
                     r="5"
-                    fill="#10B981"
+                    fill="#F59E0B"
                     initial={{ opacity: 0 }}
                     animate={{
                       opacity: [0, 1, 1, 0],
