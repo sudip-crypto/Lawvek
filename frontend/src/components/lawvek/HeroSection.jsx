@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, ArrowDown, FileText, CheckCircle2, Users } from 'lucide-react';
+import { ArrowRight, ArrowDown, FileText, CheckCircle2 } from 'lucide-react';
 
 export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
   const spotsRemaining = 50 - queueCount;
