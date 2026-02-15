@@ -29,7 +29,7 @@ export const ApproachSection = () => {
   return (
     <section 
       id="approach"
-      className="bg-[#FAFAFA] py-24 md:py-32"
+      className="bg-[#0A0F1A] py-24 md:py-32"
       data-testid="approach-section"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -41,13 +41,13 @@ export const ApproachSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-sm font-medium text-[#64748B] tracking-wide uppercase mb-4">
+          <p className="text-sm font-medium text-amber-400 tracking-wide uppercase mb-4">
             Our Solution
           </p>
-          <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-[#0F172A] mb-4">
+          <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-white mb-4">
             Intelligent contract review.
           </h2>
-          <p className="text-base text-[#64748B]">
+          <p className="text-base text-white/60">
             We match each contract with the right level of expertise — saving you time and money.
           </p>
         </motion.div>
@@ -57,7 +57,7 @@ export const ApproachSection = () => {
           {steps.map((step, index) => (
             <motion.div
               key={step.number}
-              className="group bg-white border border-[#E2E8F0] rounded-2xl p-7 hover:shadow-lg hover:border-[#CBD5E1] transition-all duration-300"
+              className="group bg-[#1E293B]/50 border border-[#334155] rounded-2xl p-7 hover:border-[#475569] hover:bg-[#1E293B] transition-all duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -66,30 +66,30 @@ export const ApproachSection = () => {
             >
               {/* Header */}
               <div className="flex items-center justify-between mb-6">
-                <span className="text-2xl font-bold text-[#0F172A]">
+                <span className="text-2xl font-bold text-white">
                   {step.number}
                 </span>
-                <div className="w-11 h-11 rounded-xl bg-[#0F172A] flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                  <step.icon className="h-5 w-5 text-white" strokeWidth={1.5} />
+                <div className="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                  <step.icon className="h-5 w-5 text-amber-400" strokeWidth={1.5} />
                 </div>
               </div>
 
               {/* Title */}
-              <h3 className="text-lg font-bold text-[#0F172A] mb-2">
+              <h3 className="text-lg font-bold text-white mb-2">
                 {step.title}
               </h3>
 
               {/* Description */}
-              <p className="text-sm leading-relaxed text-[#64748B] mb-6">
+              <p className="text-sm leading-relaxed text-white/60 mb-6">
                 {step.description}
               </p>
 
               {/* Points - Uniform 3 points each */}
-              <div className="space-y-2.5 pt-5 border-t border-[#F1F5F9]">
+              <div className="space-y-2.5 pt-5 border-t border-[#334155]">
                 {step.points.map((point, i) => (
                   <div key={i} className="flex items-center gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#0F172A]" />
-                    <span className="text-sm text-[#475569]">{point}</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                    <span className="text-sm text-white/50">{point}</span>
                   </div>
                 ))}
               </div>

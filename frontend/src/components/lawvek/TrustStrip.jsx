@@ -11,7 +11,7 @@ export const TrustStrip = () => {
 
   return (
     <section 
-      className="bg-white border-y border-[#E2E8F0] py-8"
+      className="bg-[#0A0F1A] border-y border-[#1E293B] py-8"
       data-testid="trust-strip-section"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -21,14 +21,14 @@ export const TrustStrip = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-xs font-medium text-[#94A3B8] text-center uppercase tracking-wider mb-6">
+          <p className="text-xs font-medium text-white/40 text-center uppercase tracking-wider mb-6">
             Featured in
           </p>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
             {logos.map((logo, index) => (
               <motion.div
                 key={logo.name}
-                className="text-xl md:text-2xl font-serif text-[#CBD5E1] hover:text-[#94A3B8] transition-colors duration-300 cursor-default"
+                className="text-xl md:text-2xl font-serif text-white/30 hover:text-white/50 transition-colors duration-300 cursor-default"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

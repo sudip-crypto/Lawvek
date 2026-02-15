@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 export const IntegrationsSection = () => {
   return (
     <section 
-      className="bg-[#FAFAFA] py-24 md:py-32 overflow-hidden border-y border-[#E2E8F0]"
+      className="bg-[#0F172A] py-24 md:py-32 overflow-hidden border-y border-[#1E293B]"
       data-testid="integrations-section"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -16,27 +16,27 @@ export const IntegrationsSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-sm font-semibold text-emerald-600 tracking-wide uppercase mb-4">
+            <p className="text-sm font-semibold text-emerald-400 tracking-wide uppercase mb-4">
               Integrations
             </p>
-            <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-[#0F172A] mb-6">
+            <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-white mb-6">
               We live in your workflow.
             </h2>
-            <p className="text-base text-[#64748B] leading-relaxed mb-6">
+            <p className="text-base text-[#94A3B8] leading-relaxed mb-6">
               Lawvek connects directly to the tools you already use — from Slack and email to your CLM platform. We process your contracts continuously and turn them into clear, reliable insights.
             </p>
-            <p className="text-base text-[#64748B] leading-relaxed mb-10">
+            <p className="text-base text-[#94A3B8] leading-relaxed mb-10">
               Whether you use Ironclad, SpotDraft, or any other contract management system, Lawvek integrates seamlessly into your existing workflow.
             </p>
             
             <motion.a
               href="#cta"
-              className="inline-flex items-center justify-center bg-[#0F172A] text-white px-8 py-4 rounded-lg hover:bg-[#1E293B] transition-all duration-300 font-semibold text-sm group"
+              className="inline-flex items-center justify-center bg-white text-[#0F172A] px-8 py-4 rounded-full hover:bg-white/90 transition-all duration-300 font-semibold text-sm group"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               data-testid="integrations-cta"
             >
-              Get Lawvek Today
+              Get Priority Access
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" strokeWidth={2} />
             </motion.a>
           </motion.div>

@@ -18,7 +18,7 @@ export const WhyItWorksSection = () => {
 
   return (
     <section 
-      className="bg-[#FAFAFA] py-24 md:py-32 border-y border-[#E2E8F0]"
+      className="bg-[#0A0F1A] py-24 md:py-32 border-y border-[#1E293B]"
       data-testid="why-it-works-section"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -30,10 +30,10 @@ export const WhyItWorksSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-sm font-medium text-emerald-600 tracking-wide uppercase mb-4">
+          <p className="text-sm font-medium text-amber-400 tracking-wide uppercase mb-4">
             Results
           </p>
-          <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-[#0F172A]">
+          <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-white">
             Every contract needs attention. But not the same expertise.
           </h2>
         </motion.div>
@@ -48,31 +48,31 @@ export const WhyItWorksSection = () => {
         >
           {stats.map((stat, index) => (
             <div key={stat.label} className="text-center">
-              <p className="text-3xl md:text-4xl font-semibold text-[#0F172A] mb-1">{stat.value}</p>
-              <p className="text-sm text-[#64748B]">{stat.label}</p>
+              <p className="text-3xl md:text-4xl font-semibold text-white mb-1">{stat.value}</p>
+              <p className="text-sm text-[#94A3B8]">{stat.label}</p>
             </div>
           ))}
         </motion.div>
 
         {/* Testimonial */}
         <motion.div
-          className="max-w-3xl mx-auto bg-white rounded-2xl border border-[#E2E8F0] p-8 md:p-12"
+          className="max-w-3xl mx-auto bg-[#1E293B]/50 rounded-2xl border border-[#334155] p-8 md:p-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <Quote className="w-10 h-10 text-emerald-200 mb-6" strokeWidth={1} />
-          <blockquote className="text-xl md:text-2xl font-serif text-[#0F172A] leading-relaxed mb-8">
+          <Quote className="w-10 h-10 text-amber-500/30 mb-6" strokeWidth={1} />
+          <blockquote className="text-xl md:text-2xl font-serif text-white leading-relaxed mb-8">
             "{testimonial.quote}"
           </blockquote>
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-white font-semibold">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-[#0F172A] font-semibold">
               {testimonial.author.split(' ').map(n => n[0]).join('')}
             </div>
             <div>
-              <p className="font-semibold text-[#0F172A]">{testimonial.author}</p>
-              <p className="text-sm text-[#64748B]">{testimonial.role}, {testimonial.company}</p>
+              <p className="font-semibold text-white">{testimonial.author}</p>
+              <p className="text-sm text-[#94A3B8]">{testimonial.role}, {testimonial.company}</p>
             </div>
           </div>
         </motion.div>
