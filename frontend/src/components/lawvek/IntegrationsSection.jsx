@@ -18,14 +18,15 @@ export const IntegrationsSection = () => {
         <path d="M20.625 8.073c1.688 0 3.063-1.406 3.063-3.136S22.313 1.8 20.625 1.8s-3.063 1.406-3.063 3.137 1.375 3.136 3.063 3.136zM12.89 7.5h7.875c.619 0 1.125.506 1.125 1.125v5.063c0 2.481-2.019 4.5-4.5 4.5h-.563v3.938c0 .103-.084.187-.188.187h-1.875c-.103 0-.188-.084-.188-.187v-3.938h-.562a4.506 4.506 0 0 1-4.5-4.5V8.625c0-.619.506-1.125 1.125-1.125h2.25zm-1.125-1.688c1.654 0 3-1.378 3-3.093S13.419.626 11.765.626s-3 1.378-3 3.093 1.346 3.093 3 3.093z"/>
       </svg>
     )},
-    { name: 'MS Word', color: '#2B579A', bg: '#EFF6FF', icon: (
+    { name: 'Ironclad', color: '#1a1a1a', bg: '#F5F5F5', icon: (
       <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-        <path d="M23.004 1.5q.41 0 .703.293t.293.703v19.008q0 .41-.293.703t-.703.293H6.996q-.41 0-.703-.293T6 21.504V18H.996q-.41 0-.703-.293T0 17.004V6.996q0-.41.293-.703T.996 6H6V2.496q0-.41.293-.703t.703-.293zM6.035 11.203l1.442 4.735h1.64l1.57-7.876H9.036l-.937 4.653-1.325-4.5H5.38l-1.406 4.523-.938-4.676H1.312l1.57 7.876h1.641z"/>
+        <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18l6.9 3.45L12 11.08 5.1 7.63 12 4.18zM4 8.82l7 3.5v7.36l-7-3.5V8.82zm9 10.86v-7.36l7-3.5v7.36l-7 3.5z"/>
       </svg>
     )},
-    { name: 'Yahoo', color: '#6001D2', bg: '#F5F3FF', icon: (
+    { name: 'SpotDraft', color: '#6366F1', bg: '#EEF2FF', icon: (
       <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-        <path d="M12.913 12.958l2.607 6.564h-3.71l-2.479-6.564H6.857L3.591 6.478H0l5.67 13.044H3.076L4.381 24h7.079l-1.16-4.478h2.308L17.16 6.478h3.405L24 0h-3.665z"/>
+        <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2"/>
+        <circle cx="12" cy="12" r="4" fill="currentColor"/>
       </svg>
     )},
   ];
@@ -36,9 +37,9 @@ export const IntegrationsSection = () => {
         <path d="M14.727 6.727H14V0H4.91c-.905 0-1.637.732-1.637 1.636v20.728c0 .904.732 1.636 1.636 1.636h14.182c.904 0 1.636-.732 1.636-1.636V6.727h-6zm-.545 10.455H7.09v-1.364h7.09v1.364zm2.727-3.273H7.091v-1.364h9.818v1.364zm0-3.273H7.091V9.273h9.818v1.363z"/>
       </svg>
     )},
-    { name: 'Discord', color: '#5865F2', bg: '#EEF2FF', icon: (
+    { name: 'MS Word', color: '#2B579A', bg: '#EFF6FF', icon: (
       <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+        <path d="M23.004 1.5q.41 0 .703.293t.293.703v19.008q0 .41-.293.703t-.703.293H6.996q-.41 0-.703-.293T6 21.504V18H.996q-.41 0-.703-.293T0 17.004V6.996q0-.41.293-.703T.996 6H6V2.496q0-.41.293-.703t.703-.293zM6.035 11.203l1.442 4.735h1.64l1.57-7.876H9.036l-.937 4.653-1.325-4.5H5.38l-1.406 4.523-.938-4.676H1.312l1.57 7.876h1.641z"/>
       </svg>
     )},
     { name: 'Outlook', color: '#0078D4', bg: '#EFF6FF', icon: (
@@ -46,22 +47,28 @@ export const IntegrationsSection = () => {
         <path d="M24 7.387v10.478c0 .23-.08.424-.238.576-.158.154-.352.23-.58.23h-8.547v-6.959l1.6 1.229c.102.078.214.116.336.116.121 0 .233-.038.336-.116l6.855-5.344c.078-.053.153-.076.228-.076.12 0 .238.061.35.183V7.39zM24 5.5c0 .208-.07.388-.212.539l-7.77 6.058-1.382-1.06V5.5h9.126c.228 0 .422.076.581.228.158.152.237.346.237.575v-.803z"/>
       </svg>
     )},
+    { name: 'DocuSign', color: '#FFCC00', bg: '#FFFBEB', icon: (
+      <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
+        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-7.332 7.332a.75.75 0 01-1.06 0l-3.396-3.396a.75.75 0 111.06-1.06l2.866 2.866 6.802-6.802a.75.75 0 111.06 1.06z"/>
+      </svg>
+    )},
   ];
 
   // Left path definitions - curves from icons to parallel horizontal lines entering the hub
   const leftPaths = [
-    "M 55 70 C 100 70, 140 200, 200 200 L 220 200",      // Top icon
-    "M 55 145 C 100 145, 140 215, 200 215 L 220 215",    // Second icon
-    "M 55 220 C 120 220, 160 230, 200 230 L 220 230",    // Middle icon
-    "M 55 295 C 100 295, 140 245, 200 245 L 220 245",    // Fourth icon
-    "M 55 370 C 100 370, 140 260, 200 260 L 220 260",    // Bottom icon
+    "M 55 50 C 100 50, 140 200, 200 200 L 220 200",
+    "M 55 120 C 100 120, 140 210, 200 210 L 220 210",
+    "M 55 190 C 120 190, 160 220, 200 220 L 220 220",
+    "M 55 260 C 100 260, 140 230, 200 230 L 220 230",
+    "M 55 330 C 100 330, 140 240, 200 240 L 220 240",
   ];
 
   // Right path definitions - parallel horizontal lines from hub curving out to icons
   const rightPaths = [
-    "M 280 215 L 300 215 C 360 215, 400 130, 445 130",   // Top icon
-    "M 280 230 L 300 230 C 340 230, 400 230, 445 230",   // Middle icon
-    "M 280 245 L 300 245 C 360 245, 400 330, 445 330",   // Bottom icon
+    "M 280 205 L 300 205 C 360 205, 400 100, 445 100",
+    "M 280 215 L 300 215 C 340 215, 400 175, 445 175",
+    "M 280 225 L 300 225 C 340 225, 400 250, 445 250",
+    "M 280 235 L 300 235 C 360 235, 400 325, 445 325",
   ];
 
   return (
@@ -85,10 +92,10 @@ export const IntegrationsSection = () => {
               We live in your workflow.
             </h2>
             <p className="text-base text-[#64748B] leading-relaxed mb-6">
-              Lawvek connects directly to the tools you already use and quietly keeps everything in sync behind the scenes. It processes your contracts continuously and turns them into clear, reliable insights.
+              Lawvek connects directly to the tools you already use — from Slack and email to your CLM platform. We process your contracts continuously and turn them into clear, reliable insights.
             </p>
             <p className="text-base text-[#64748B] leading-relaxed mb-10">
-              Instead of switching between platforms, Lawvek shows up where your team already works — so contract review stays accurate and out of your way.
+              Whether you use Ironclad, SpotDraft, or any other contract management system, Lawvek integrates seamlessly into your existing workflow.
             </p>
             
             <motion.a
@@ -111,9 +118,9 @@ export const IntegrationsSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="relative w-[500px] h-[460px]">
+            <div className="relative w-[500px] h-[420px]">
               {/* SVG Paths and Animations */}
-              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 500 460" fill="none">
+              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 500 420" fill="none">
                 {/* Left curved paths */}
                 {leftPaths.map((path, index) => (
                   <g key={`left-path-${index}`}>
@@ -166,7 +173,7 @@ export const IntegrationsSection = () => {
               </svg>
 
               {/* Left Integration Icons */}
-              <div className="absolute left-0 top-0 bottom-0 flex flex-col justify-between py-8">
+              <div className="absolute left-0 top-0 bottom-0 flex flex-col justify-between py-4">
                 {leftIntegrations.map((integration, index) => (
                   <motion.div
                     key={integration.name}
@@ -177,6 +184,7 @@ export const IntegrationsSection = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.1 * index }}
                     whileHover={{ borderColor: integration.color }}
+                    title={integration.name}
                   >
                     {integration.icon}
                   </motion.div>
@@ -201,7 +209,7 @@ export const IntegrationsSection = () => {
               </div>
 
               {/* Right Integration Icons */}
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 flex flex-col justify-center gap-16">
+              <div className="absolute right-0 top-0 bottom-0 flex flex-col justify-between py-6">
                 {rightIntegrations.map((integration, index) => (
                   <motion.div
                     key={integration.name}
@@ -212,6 +220,7 @@ export const IntegrationsSection = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.1 * index }}
                     whileHover={{ borderColor: integration.color }}
+                    title={integration.name}
                   >
                     {integration.icon}
                   </motion.div>
