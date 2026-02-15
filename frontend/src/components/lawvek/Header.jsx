@@ -191,43 +191,68 @@ export const Header = ({ onOpenModal }) => {
                       </div>
                     </motion.a>
                   ))}
-
-                  {/* Watch Demo Link */}
-                  <motion.a
-                    href="#how-it-works"
-                    className="group py-4 border-b border-white/10"
-                    onClick={() => setMobileMenuOpen(false)}
-                    custom={3}
-                    variants={itemVariants}
-                    initial="closed"
-                    animate="open"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-                          <Play className="w-4 h-4 text-white fill-white" />
-                        </div>
-                        <span className="text-2xl font-serif text-white group-hover:text-emerald-400 transition-colors">
-                          Watch Demo
-                        </span>
-                      </div>
-                      <ArrowRight className="w-5 h-5 text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all" />
-                    </div>
-                  </motion.a>
                 </nav>
 
-                {/* CTA Button */}
+                {/* Premium CTA Section */}
                 <motion.div
-                  custom={4}
+                  custom={3}
                   variants={itemVariants}
                   initial="closed"
                   animate="open"
                   className="mt-auto"
                 >
-                  <button
+                  {/* Social proof */}
+                  <div className="flex items-center justify-center gap-2 mb-4">
+                    <div className="flex -space-x-2">
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-cyan-400 border-2 border-[#0F172A] flex items-center justify-center text-[10px] font-bold text-slate-900">JD</div>
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-400 to-purple-400 border-2 border-[#0F172A] flex items-center justify-center text-[10px] font-bold text-slate-900">SK</div>
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-400 border-2 border-[#0F172A] flex items-center justify-center text-[10px] font-bold text-slate-900">MR</div>
+                    </div>
+                    <span className="text-slate-400 text-sm">500+ teams joined</span>
+                  </div>
+
+                  {/* Main CTA Button */}
+                  <motion.button
                     onClick={() => {
                       setMobileMenuOpen(false);
                       onOpenModal();
+                    }}
+                    className="relative w-full group overflow-hidden rounded-2xl"
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {/* Animated gradient background */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 via-emerald-400 to-cyan-400 animate-gradient-x" />
+                    
+                    {/* Shine effect */}
+                    <div className="absolute inset-0 opacity-0 group-active:opacity-30 bg-white transition-opacity" />
+                    
+                    {/* Button content */}
+                    <div className="relative px-8 py-5 flex items-center justify-center gap-3">
+                      <span className="text-slate-900 font-bold text-lg tracking-tight">
+                        Get Priority Access
+                      </span>
+                      <div className="w-8 h-8 rounded-full bg-slate-900/20 flex items-center justify-center">
+                        <ArrowRight className="w-4 h-4 text-slate-900" />
+                      </div>
+                    </div>
+                  </motion.button>
+
+                  {/* Trust badge */}
+                  <div className="flex items-center justify-center gap-2 mt-4 text-slate-500 text-xs">
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                    <span>No credit card required</span>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
+  );
+};
                     }}
                     className="w-full bg-gradient-to-r from-emerald-500 to-emerald-400 text-slate-900 font-semibold py-4 rounded-xl flex items-center justify-center gap-2 active:scale-[0.98] transition-transform"
                   >
