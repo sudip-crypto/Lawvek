@@ -73,61 +73,46 @@ export const EarlyAccessModal = ({ isOpen, onClose }) => {
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="w-full max-w-lg"
-              initial={{ opacity: 0, scale: 0.95, y: 30 }}
+              className="w-full max-w-md"
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 30 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             >
-              {/* Main Card with subtle gradient border */}
-              <div className="relative group">
-                {/* Glow effect */}
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500/20 via-cyan-500/20 to-emerald-500/20 rounded-2xl blur-lg opacity-60 group-hover:opacity-80 transition duration-500" />
+              {/* Main Card */}
+              <div className="relative bg-[#0B1120] border border-slate-800 rounded-xl shadow-2xl overflow-hidden">
                 
-                <div className="relative bg-gradient-to-b from-[#0C1220] to-[#0A0F1A] border border-white/10 rounded-2xl shadow-2xl overflow-hidden">
-                  
-                  {/* Close button - premium floating style */}
-                  <motion.button
-                    onClick={handleClose}
-                    className="absolute top-5 right-5 z-20 text-slate-500 hover:text-white transition-all duration-300 w-9 h-9 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    data-testid="modal-close-btn"
-                  >
-                    <X className="w-4 h-4" strokeWidth={2} />
-                  </motion.button>
+                {/* Close button - clearly visible */}
+                <button
+                  onClick={handleClose}
+                  className="absolute top-4 right-4 z-20 text-slate-400 hover:text-white transition-colors w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800"
+                  data-testid="modal-close-btn"
+                >
+                  <X className="w-5 h-5" strokeWidth={2} />
+                </button>
 
-                  {!isSubmitted ? (
-                    <div className="p-8 md:p-10">
-                      {/* Premium Badge */}
-                      <motion.div 
-                        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6"
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                      >
+                {!isSubmitted ? (
+                  <div className="p-6 md:p-8">
+                    {/* Header row with badge */}
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30">
                         <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                        <span className="text-emerald-400 text-xs font-medium tracking-wide uppercase">Limited Access</span>
-                      </motion.div>
+                        <span className="text-emerald-400 text-[11px] font-semibold tracking-wide uppercase">Limited Access</span>
+                      </div>
+                    </div>
 
-                      {/* Header */}
-                      <motion.div 
-                        className="mb-8"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.15 }}
-                      >
-                        <h2 className="text-3xl md:text-4xl font-serif text-white mb-3 leading-tight">
-                          Request Priority Access
-                        </h2>
-                        <p className="text-slate-400 text-base leading-relaxed">
-                          Join leading legal teams already transforming their contract workflows with AI.
-                        </p>
-                      </motion.div>
+                    {/* Header */}
+                    <div className="mb-5 pr-8">
+                      <h2 className="text-2xl font-serif text-white mb-2">
+                        Request Priority Access
+                      </h2>
+                      <p className="text-slate-400 text-sm">
+                        Join leading teams already transforming their contract workflows with AI.
+                      </p>
+                    </div>
 
-                      {/* Trust Indicators */}
-                      <motion.div 
-                        className="flex flex-wrap gap-4 mb-8 pb-8 border-b border-white/5"
+                    {/* Trust Indicators - compact */}
+                    <div className="flex flex-wrap gap-x-4 gap-y-2 mb-6 pb-5 border-b border-slate-800"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.2 }}
