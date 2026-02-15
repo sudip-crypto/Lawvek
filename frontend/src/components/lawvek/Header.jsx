@@ -253,11 +253,6 @@ export const Header = ({ onOpenModal }) => {
     </>
   );
 };
-                    }}
-                    className="w-full bg-gradient-to-r from-emerald-500 to-emerald-400 text-slate-900 font-semibold py-4 rounded-xl flex items-center justify-center gap-2 active:scale-[0.98] transition-transform"
-                  >
-                    Get Priority Access
-                    <ArrowRight className="w-4 h-4" />
                   </button>
                   
                   {/* Footer text */}
