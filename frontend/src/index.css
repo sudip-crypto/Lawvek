@@ -92,6 +92,20 @@
     background-color: #475569;
 }
 
+/* Animated gradient for premium buttons */
+@keyframes gradient-x {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.animate-gradient-x {
+    animation: gradient-x 3s ease infinite;
+}
+
 @layer base {
     [data-debug-wrapper="true"] {
         display: contents !important;
