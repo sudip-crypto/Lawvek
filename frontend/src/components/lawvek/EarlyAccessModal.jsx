@@ -161,14 +161,15 @@ export const EarlyAccessModal = ({ isOpen, onClose }) => {
                       className="w-full bg-[#F8FAFC] text-[#0F172A] font-semibold py-3.5 rounded-lg hover:bg-white transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
                       whileHover={{ scale: 1.01 }}
                       whileTap={{ scale: 0.99 }}
+                      data-testid="modal-submit-btn"
                     >
-                      {isSubmitting ? 'Joining...' : 'Join the Waitlist'}
+                      {isSubmitting ? 'Submitting...' : 'Get Priority Access'}
                     </motion.button>
                   </form>
 
                   {/* Footer */}
                   <p className="text-[#64748B] text-xs text-center mt-6">
-                    By joining, you agree to our{' '}
+                    By signing up, you agree to our{' '}
                     <a href="#" className="text-[#94A3B8] hover:text-white underline">Terms of Service</a>
                     {' '}and{' '}
                     <a href="#" className="text-[#94A3B8] hover:text-white underline">Privacy Policy</a>.
