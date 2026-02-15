@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
-import { useState } from 'react';
+import { X, ChevronDown } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
 
 export const EarlyAccessModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
@@ -11,6 +11,8 @@ export const EarlyAccessModal = ({ isOpen, onClose }) => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const companySizes = [
     '1-10 employees',
@@ -19,6 +21,17 @@ export const EarlyAccessModal = ({ isOpen, onClose }) => {
     '201-500 employees',
     '500+ employees',
   ];
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,7 +45,13 @@ export const EarlyAccessModal = ({ isOpen, onClose }) => {
   const handleClose = () => {
     setIsSubmitted(false);
     setFormData({ name: '', email: '', companySize: '', subscribe: false });
+    setIsDropdownOpen(false);
     onClose();
+  };
+
+  const selectCompanySize = (size) => {
+    setFormData({ ...formData, companySize: size });
+    setIsDropdownOpen(false);
   };
 
   return (
