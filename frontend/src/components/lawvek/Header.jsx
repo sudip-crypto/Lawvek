@@ -92,13 +92,6 @@ export const Header = ({ onOpenModal }) => {
 
             {/* Desktop CTA */}
             <div className="hidden md:flex items-center gap-4">
-              <a
-                href="#how-it-works"
-                className="text-sm font-medium text-[#64748B] hover:text-[#0F172A] transition-colors duration-200"
-                data-testid="header-demo"
-              >
-                Watch Demo
-              </a>
               <button
                 onClick={onOpenModal}
                 className="bg-[#0F172A] text-white px-5 py-2.5 rounded-lg hover:bg-[#1E293B] transition-colors duration-200 font-medium text-sm"
