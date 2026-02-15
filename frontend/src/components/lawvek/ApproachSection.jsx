@@ -1,34 +1,28 @@
 import { motion } from 'framer-motion';
-import { BarChart3, GitBranch, DollarSign, ArrowRight } from 'lucide-react';
+import { BarChart3, GitBranch, DollarSign } from 'lucide-react';
 
 export const ApproachSection = () => {
   const steps = [
     {
-      number: '01',
+      number: '1',
       icon: BarChart3,
       title: 'Intelligent Scoring',
-      description: 'Our AI analyzes structure, clauses, jurisdiction, and risk factors to assign a complexity score.',
-      metric: '4',
-      metricLabel: 'Complexity levels',
-      pointers: ['Low', 'Medium', 'High', 'Critical'],
+      description: 'AI analyzes clauses, jurisdiction, and risk to assign complexity.',
+      points: ['Low complexity', 'Medium risk', 'High priority'],
     },
     {
-      number: '02',
+      number: '2',
       icon: GitBranch,
       title: 'Right-Sized Workflow',
-      description: 'Each contract is routed to the appropriate level of review based on its actual needs.',
-      metric: '3',
-      metricLabel: 'Review tiers',
-      pointers: ['AI-only review', 'AI + Paralegal', 'Full legal review'],
+      description: 'Each contract gets the appropriate level of expert review.',
+      points: ['AI-only review', 'AI + Paralegal', 'Full legal team'],
     },
     {
-      number: '03',
+      number: '3',
       icon: DollarSign,
       title: 'Predictable Pricing',
-      description: 'Know exactly what you\'ll pay before you start. No surprises, no hourly billing.',
-      metric: '0',
-      metricLabel: 'Hidden fees',
-      pointers: ['Fixed pricing', 'Clear timelines', 'Full transparency'],
+      description: 'Know exactly what you\'ll pay upfront. No hourly billing.',
+      points: ['Fixed pricing', 'Clear timelines', 'No surprises'],
     },
   ];
 
@@ -58,55 +52,47 @@ export const ApproachSection = () => {
           </p>
         </motion.div>
 
-        {/* Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Steps Grid - Uniform compact cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {steps.map((step, index) => (
             <motion.div
               key={step.number}
-              className="group relative bg-white border border-[#E2E8F0] rounded-2xl p-8 hover:border-[#CBD5E1] hover:shadow-xl transition-all duration-500"
+              className="group bg-white border border-[#E2E8F0] rounded-2xl p-7 hover:shadow-lg hover:border-[#CBD5E1] transition-all duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               data-testid={`approach-step-${index}`}
             >
-              {/* Header with number and icon */}
-              <div className="flex items-center justify-between mb-8">
-                <span className="text-xs font-mono font-semibold text-[#94A3B8] tracking-wider">
+              {/* Header */}
+              <div className="flex items-center justify-between mb-6">
+                <span className="text-2xl font-bold text-[#0F172A]">
                   {step.number}
                 </span>
-                <div className="w-12 h-12 rounded-2xl bg-[#0F172A] flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                <div className="w-11 h-11 rounded-xl bg-[#0F172A] flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                   <step.icon className="h-5 w-5 text-white" strokeWidth={1.5} />
                 </div>
               </div>
 
               {/* Title */}
-              <h3 className="text-xl font-bold text-[#0F172A] mb-3 tracking-tight">
+              <h3 className="text-lg font-bold text-[#0F172A] mb-2">
                 {step.title}
               </h3>
 
               {/* Description */}
-              <p className="text-[15px] leading-relaxed text-[#64748B] mb-8">
+              <p className="text-sm leading-relaxed text-[#64748B] mb-6">
                 {step.description}
               </p>
 
-              {/* Key Metric */}
-              <div className="flex items-baseline gap-2 mb-6 pb-6 border-b border-[#E2E8F0]">
-                <span className="text-4xl font-bold text-[#0F172A]">{step.metric}</span>
-                <span className="text-sm font-medium text-[#64748B]">{step.metricLabel}</span>
-              </div>
-
-              {/* Uniform Pointers */}
-              <ul className="space-y-3">
-                {step.pointers.map((pointer, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm text-[#475569]">
-                    <span className="w-5 h-5 rounded-md bg-[#F1F5F9] flex items-center justify-center flex-shrink-0">
-                      <ArrowRight className="w-3 h-3 text-[#0F172A]" />
-                    </span>
-                    {pointer}
-                  </li>
+              {/* Points - Uniform 3 points each */}
+              <div className="space-y-2.5 pt-5 border-t border-[#F1F5F9]">
+                {step.points.map((point, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0F172A]" />
+                    <span className="text-sm text-[#475569]">{point}</span>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </motion.div>
           ))}
         </div>
