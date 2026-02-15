@@ -88,173 +88,70 @@ export const HeroSection = ({ onOpenModal }) => {
             </div>
           </motion.div>
           
-          {/* Right - Premium Product Card */}
+          {/* Right - Premium Minimal Card */}
           <motion.div
             className="relative hidden lg:block"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="relative max-w-[420px] ml-auto">
-              {/* Main card */}
-              <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] border border-white/60 overflow-hidden">
+            <div className="relative max-w-[380px] ml-auto">
+              {/* Main card - Clean glass effect */}
+              <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.08)] border border-white/80 overflow-hidden">
                 
-                {/* Header with gradient */}
-                <div className="bg-gradient-to-r from-[#0F172A] to-[#1E293B] px-6 py-4">
+                {/* Header - Minimal */}
+                <div className="px-8 pt-8 pb-6 border-b border-[#F1F5F9]">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur flex items-center justify-center">
-                        <FileText className="w-5 h-5 text-white" />
-                      </div>
-                      <div>
-                        <p className="text-white font-semibold text-sm">NDA_Agreement_v2.pdf</p>
-                        <p className="text-white/60 text-xs">Uploaded 2 mins ago</p>
+                    <div>
+                      <p className="text-[11px] font-semibold text-[#94A3B8] uppercase tracking-widest mb-1">Starting from</p>
+                      <div className="flex items-baseline gap-1">
+                        <span className="text-4xl font-bold text-[#0F172A] tracking-tight">$50</span>
+                        <span className="text-base font-medium text-[#64748B]">/contract</span>
                       </div>
                     </div>
-                    <motion.div 
-                      className="flex items-center gap-1.5 bg-emerald-500/20 text-emerald-400 px-3 py-1.5 rounded-full text-xs font-medium"
-                      animate={{ scale: [1, 1.02, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      Analysis Complete
-                    </motion.div>
+                    <div className="w-12 h-12 rounded-2xl bg-[#0F172A] flex items-center justify-center">
+                      <FileText className="w-5 h-5 text-white" />
+                    </div>
                   </div>
                 </div>
 
-                {/* Content */}
-                <div className="p-6 space-y-4">
-                  
-                  {/* Complexity Score with Progress */}
-                  <div className="bg-gradient-to-br from-[#F8FAFC] to-white rounded-2xl border border-[#E2E8F0]/80 p-4 hover:shadow-md transition-shadow duration-300 cursor-default">
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex items-center gap-2.5">
-                        <div className="w-9 h-9 rounded-xl bg-[#0F172A]/5 flex items-center justify-center">
-                          <BarChart3 className="w-4 h-4 text-[#0F172A]" />
-                        </div>
-                        <div>
-                          <p className="text-[10px] font-semibold text-[#94A3B8] uppercase tracking-wider">Complexity Score</p>
-                          <p className="text-base font-bold text-[#0F172A]">Medium</p>
-                        </div>
-                      </div>
-                      <span className="text-[10px] font-bold text-[#64748B] bg-[#F1F5F9] px-2.5 py-1 rounded-md tracking-wide">2 of 3</span>
+                {/* Features - Ultra minimal list */}
+                <div className="px-8 py-6 space-y-4">
+                  {[
+                    { label: 'AI-powered analysis', value: 'Instant' },
+                    { label: 'Expert legal review', value: 'Included' },
+                    { label: 'Turnaround time', value: '4 hours' },
+                    { label: 'Revisions', value: 'Unlimited' },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center justify-between">
+                      <span className="text-sm text-[#64748B]">{item.label}</span>
+                      <span className="text-sm font-semibold text-[#0F172A]">{item.value}</span>
                     </div>
-                    {/* Progress bar - unified slate tones */}
-                    <div className="flex gap-1.5">
-                      <motion.div 
-                        className="h-1 flex-1 rounded-full bg-[#0F172A]"
-                        initial={{ width: 0 }}
-                        animate={{ width: '100%' }}
-                        transition={{ duration: 0.8, delay: 0.5 }}
-                      />
-                      <motion.div 
-                        className="h-1 flex-1 rounded-full bg-[#64748B]"
-                        initial={{ width: 0 }}
-                        animate={{ width: '100%' }}
-                        transition={{ duration: 0.8, delay: 0.7 }}
-                      />
-                      <div className="h-1 flex-1 rounded-full bg-[#E2E8F0]" />
-                    </div>
-                  </div>
-
-                  {/* Review Team - Unified monochrome style */}
-                  <div className="bg-gradient-to-br from-[#F8FAFC] to-white rounded-2xl border border-[#E2E8F0]/80 p-4 hover:shadow-md transition-shadow duration-300 cursor-default">
-                    <div className="flex items-center gap-2.5 mb-3">
-                      <div className="w-9 h-9 rounded-xl bg-[#0F172A]/5 flex items-center justify-center">
-                        <Users className="w-4 h-4 text-[#0F172A]" />
-                      </div>
-                      <p className="text-[10px] font-semibold text-[#94A3B8] uppercase tracking-wider">Review Team</p>
-                    </div>
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span className="inline-flex items-center gap-1.5 bg-[#0F172A] text-white text-[11px] font-medium px-3 py-1.5 rounded-full">
-                        <Sparkles className="w-3 h-3" />
-                        AI
-                      </span>
-                      <span className="inline-flex items-center gap-1.5 bg-[#334155] text-white text-[11px] font-medium px-3 py-1.5 rounded-full">
-                        <Users className="w-3 h-3" />
-                        Paralegal
-                      </span>
-                      <span className="inline-flex items-center gap-1.5 bg-[#64748B] text-white text-[11px] font-medium px-3 py-1.5 rounded-full">
-                        <Shield className="w-3 h-3" />
-                        Lawyer
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Pricing & Turnaround Row - unified styling */}
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="bg-gradient-to-br from-[#F8FAFC] to-white rounded-2xl border border-[#E2E8F0]/80 p-4 hover:shadow-md transition-shadow duration-300 cursor-default">
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="w-8 h-8 rounded-xl bg-[#0F172A]/5 flex items-center justify-center">
-                          <DollarSign className="w-3.5 h-3.5 text-[#0F172A]" />
-                        </div>
-                        <p className="text-[10px] font-semibold text-[#94A3B8] uppercase tracking-wider">Pricing</p>
-                      </div>
-                      <p className="text-lg font-bold text-[#0F172A]">$249</p>
-                      <p className="text-[11px] text-[#64748B] font-medium">Fixed rate</p>
-                    </div>
-                    
-                    <div className="bg-gradient-to-br from-[#F8FAFC] to-white rounded-2xl border border-[#E2E8F0]/80 p-4 hover:shadow-md transition-shadow duration-300 cursor-default">
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="w-8 h-8 rounded-xl bg-[#0F172A]/5 flex items-center justify-center">
-                          <Clock className="w-3.5 h-3.5 text-[#0F172A]" />
-                        </div>
-                        <p className="text-[10px] font-semibold text-[#94A3B8] uppercase tracking-wider">Turnaround</p>
-                      </div>
-                      <p className="text-lg font-bold text-[#0F172A]">~4 hrs</p>
-                      <p className="text-[11px] text-[#64748B] font-medium">Express</p>
-                    </div>
-                  </div>
-
+                  ))}
                 </div>
 
-                {/* Footer CTA */}
-                <div className="px-6 pb-6">
+                {/* CTA */}
+                <div className="px-8 pb-8">
                   <motion.button 
-                    className="w-full bg-gradient-to-r from-[#0F172A] to-[#1E293B] text-white py-3.5 rounded-xl font-medium text-sm flex items-center justify-center gap-2 hover:shadow-lg transition-shadow duration-300"
+                    className="w-full bg-[#0F172A] text-white py-4 rounded-2xl font-medium text-sm flex items-center justify-center gap-2 hover:bg-[#1E293B] transition-colors duration-300"
                     whileHover={{ scale: 1.01 }}
                     whileTap={{ scale: 0.99 }}
                   >
-                    <Zap className="w-4 h-4" />
-                    Start Review Now
+                    Get Started
                     <ArrowRight className="w-4 h-4" />
                   </motion.button>
                 </div>
               </div>
               
-              {/* Floating Verified Badge */}
+              {/* Floating badge - simplified */}
               <motion.div 
-                className="absolute -top-3 -right-3 bg-white rounded-2xl shadow-lg border border-[#E2E8F0] px-4 py-2.5"
-                animate={{ y: [0, -6, 0] }}
+                className="absolute -top-4 -right-4 bg-white rounded-full shadow-lg border border-[#F1F5F9] px-4 py-2"
+                animate={{ y: [0, -5, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               >
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-full bg-[#0F172A] flex items-center justify-center">
-                    <CheckCircle2 className="w-4 h-4 text-white" strokeWidth={2.5} />
-                  </div>
-                  <div>
-                    <span className="text-sm font-semibold text-[#0F172A]">Verified</span>
-                    <p className="text-[10px] text-[#64748B]">SOC 2 Compliant</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Floating Activity Badge */}
-              <motion.div 
-                className="absolute -bottom-2 -left-3 bg-white rounded-2xl shadow-lg border border-[#E2E8F0] px-4 py-2.5"
-                animate={{ y: [0, 6, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              >
-                <div className="flex items-center gap-2.5">
-                  <div className="flex -space-x-2">
-                    <div className="w-6 h-6 rounded-full bg-[#0F172A] border-2 border-white flex items-center justify-center text-[8px] font-bold text-white">JD</div>
-                    <div className="w-6 h-6 rounded-full bg-[#334155] border-2 border-white flex items-center justify-center text-[8px] font-bold text-white">SK</div>
-                    <div className="w-6 h-6 rounded-full bg-[#64748B] border-2 border-white flex items-center justify-center text-[8px] font-bold text-white">+3</div>
-                  </div>
-                  <div>
-                    <span className="text-xs font-semibold text-[#0F172A]">12 reviews</span>
-                    <p className="text-[10px] text-[#64748B]">completed today</p>
-                  </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#0F172A]" strokeWidth={2.5} />
+                  <span className="text-xs font-semibold text-[#0F172A]">SOC 2 Verified</span>
                 </div>
               </motion.div>
             </div>
