@@ -172,7 +172,7 @@ export const EarlyAccessModal = ({ isOpen, onClose }) => {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -5 }}
                                 transition={{ duration: 0.15 }}
-                                className="absolute z-50 w-full mt-1.5 bg-slate-900 border border-slate-700 rounded-lg shadow-xl overflow-hidden max-h-48 overflow-y-auto scrollbar-thin"
+                                className="absolute z-50 w-full bottom-full mb-1.5 bg-slate-900 border border-slate-700 rounded-lg shadow-xl overflow-hidden"
                               >
                                 {companySizes.map((size, index) => (
                                   <button
