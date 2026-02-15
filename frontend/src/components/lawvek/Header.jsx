@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowRight, Play } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 
 export const Header = ({ onOpenModal }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
