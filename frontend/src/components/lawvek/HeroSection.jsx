@@ -106,75 +106,33 @@ export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
             </div>
           </motion.div>
           
-          {/* Right - Premium Minimal Card */}
+          {/* Right - Clean Trust Indicators */}
           <motion.div
-            className="relative hidden lg:block"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="relative hidden lg:flex flex-col justify-center"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <div className="relative max-w-[380px] ml-auto">
-              {/* Main card - Clean glass effect */}
-              <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.08)] border border-white/80 overflow-hidden">
-                
-                {/* Header - Minimal */}
-                <div className="px-8 pt-8 pb-6 border-b border-[#F1F5F9]">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-[11px] font-semibold text-[#94A3B8] uppercase tracking-widest mb-1">Starting from</p>
-                      <div className="flex items-baseline gap-1">
-                        <span className="text-4xl font-bold text-[#0F172A] tracking-tight">$50</span>
-                        <span className="text-base font-medium text-[#64748B]">/contract</span>
-                      </div>
-                    </div>
-                    <div className="w-12 h-12 rounded-2xl bg-[#0F172A] flex items-center justify-center">
-                      <FileText className="w-5 h-5 text-white" />
-                    </div>
+            <div className="space-y-5">
+              {[
+                'Licensed attorney oversight',
+                'SOC 2 Type II certified',
+                'Bank-grade encryption',
+                'GDPR & CCPA compliant',
+              ].map((item, i) => (
+                <motion.div 
+                  key={i}
+                  className="flex items-center gap-4"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
+                >
+                  <div className="w-6 h-6 rounded-full bg-[#0F172A]/5 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-3.5 h-3.5 text-[#0F172A]" strokeWidth={2.5} />
                   </div>
-                </div>
-
-                {/* Features - Ultra minimal list */}
-                <div className="px-8 py-6 space-y-4">
-                  {[
-                    { label: 'AI-powered analysis', value: 'Instant' },
-                    { label: 'Expert legal review', value: 'Included' },
-                    { label: 'Turnaround time', value: '3 hours' },
-                    { label: 'Revisions', value: 'Unlimited' },
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center justify-between">
-                      <span className="text-sm text-[#64748B]">{item.label}</span>
-                      <span className="text-sm font-semibold text-[#0F172A]">{item.value}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* CTA - Pill shape uniform */}
-                <div className="px-8 pb-8">
-                  <motion.button 
-                    onClick={onOpenModal}
-                    className="group relative w-full bg-[#0F172A] text-white py-3.5 rounded-full font-medium text-sm flex items-center justify-center gap-2 overflow-hidden transition-all duration-300"
-                    whileHover={{ scale: 1.01, boxShadow: '0 8px 25px rgba(15,23,42,0.2)' }}
-                    whileTap={{ scale: 0.99 }}
-                  >
-                    {/* Shimmer effect */}
-                    <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                    <span className="relative z-10">Get Started</span>
-                    <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" strokeWidth={2} />
-                  </motion.button>
-                </div>
-              </div>
-              
-              {/* Floating badge - simplified */}
-              <motion.div 
-                className="absolute -top-4 -right-4 bg-white rounded-full shadow-lg border border-[#F1F5F9] px-4 py-2"
-                animate={{ y: [0, -5, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#0F172A]" strokeWidth={2.5} />
-                  <span className="text-xs font-semibold text-[#0F172A]">SOC 2 Verified</span>
-                </div>
-              </motion.div>
+                  <span className="text-[15px] text-[#475569]">{item}</span>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </div>
