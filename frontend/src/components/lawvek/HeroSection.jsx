@@ -44,53 +44,23 @@ export const HeroSection = ({ onOpenModal }) => {
               AI-powered contract review with the right level of human legal oversight — fast, transparent, and cost-effective.
             </p>
             
-            {/* Premium Single CTA */}
+            {/* Premium CTA */}
             <div className="mb-16">
               <motion.button
                 onClick={onOpenModal}
-                className="group relative inline-flex items-center justify-center overflow-hidden"
-                whileHover={{ scale: 1.02 }}
+                className="group relative inline-flex items-center gap-3 px-7 py-3.5 bg-[#0F172A] text-white rounded-full font-medium text-[15px] tracking-[-0.01em] shadow-[0_1px_2px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_30px_rgba(15,23,42,0.12)] transition-all duration-300 ease-out"
+                whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 data-testid="hero-primary-cta"
               >
-                {/* Animated gradient border */}
-                <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-emerald-500 via-cyan-500 to-emerald-500 bg-[length:200%_100%] animate-gradient-x" />
-                
-                {/* Inner background */}
-                <span className="absolute inset-[2px] rounded-[14px] bg-[#0F172A] group-hover:bg-[#0A0F1A] transition-colors duration-300" />
-                
-                {/* Button content */}
-                <span className="relative flex items-center gap-4 px-10 py-5">
-                  <span className="flex flex-col items-start">
-                    <span className="text-white font-semibold text-lg tracking-tight">
-                      Get Priority Access
-                    </span>
-                    <span className="text-emerald-400/80 text-xs font-medium">
-                      Join 500+ legal teams
-                    </span>
-                  </span>
-                  
-                  <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-cyan-500 shadow-lg shadow-emerald-500/25 group-hover:shadow-emerald-500/40 transition-shadow duration-300">
-                    <ArrowRight className="w-5 h-5 text-white group-hover:translate-x-0.5 transition-transform duration-300" strokeWidth={2.5} />
-                  </span>
-                </span>
+                <span>Get Priority Access</span>
+                <ArrowRight className="w-4 h-4 opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-300" strokeWidth={2} />
               </motion.button>
               
-              {/* Trust indicators below CTA */}
-              <div className="flex items-center gap-6 mt-6">
-                <div className="flex items-center gap-2 text-[#64748B] text-sm">
-                  <svg className="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span>No credit card</span>
-                </div>
-                <div className="flex items-center gap-2 text-[#64748B] text-sm">
-                  <svg className="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span>Setup in 2 mins</span>
-                </div>
-              </div>
+              {/* Subtle trust note */}
+              <p className="mt-5 text-[13px] text-[#94A3B8] tracking-wide">
+                No credit card required · 2 min setup
+              </p>
             </div>
             
             {/* Stats */}
