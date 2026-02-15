@@ -158,7 +158,7 @@ export const EarlyAccessModal = ({ isOpen, onClose }) => {
                         <ChevronDown className={`w-5 h-5 text-[#64748B] transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
                       </button>
                       
-                      {/* Custom dropdown menu */}
+                      {/* Custom dropdown menu - scrollable */}
                       <AnimatePresence>
                         {isDropdownOpen && (
                           <motion.div
@@ -166,7 +166,7 @@ export const EarlyAccessModal = ({ isOpen, onClose }) => {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ duration: 0.15 }}
-                            className="absolute z-50 w-full mt-2 bg-[#1E293B] border border-[#334155] rounded-lg shadow-xl overflow-hidden"
+                            className="absolute z-50 w-full mt-2 bg-[#1E293B] border border-[#334155] rounded-lg shadow-xl overflow-y-auto max-h-48 scrollbar-thin scrollbar-thumb-[#334155] scrollbar-track-transparent"
                           >
                             {companySizes.map((size, index) => (
                               <button
@@ -175,7 +175,7 @@ export const EarlyAccessModal = ({ isOpen, onClose }) => {
                                 onClick={() => selectCompanySize(size)}
                                 className={`w-full px-4 py-3 text-left text-white hover:bg-[#334155] transition-colors flex items-center justify-between ${
                                   formData.companySize === size ? 'bg-[#334155]' : ''
-                                } ${index !== companySizes.length - 1 ? 'border-b border-[#334155]' : ''}`}
+                                } ${index !== companySizes.length - 1 ? 'border-b border-[#334155]/50' : ''}`}
                               >
                                 <span>{size}</span>
                                 {formData.companySize === size && (
