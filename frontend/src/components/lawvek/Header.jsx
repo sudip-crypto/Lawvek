@@ -71,7 +71,7 @@ export const Header = ({ onOpenModal }) => {
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
             <a href="/" className="flex items-center z-50 group" data-testid="header-logo">
-              <span className={`text-xl font-semibold tracking-tight transition-all duration-300 ${mobileMenuOpen ? 'text-white' : scrolled ? 'text-[#0F172A]' : 'text-white'}`}>
+              <span className={`text-xl font-semibold tracking-tight transition-all duration-300 ${mobileMenuOpen ? 'text-white' : 'text-[#1a1a1a]'}`}>
                 Lawvek
               </span>
             </a>
@@ -82,7 +82,7 @@ export const Header = ({ onOpenModal }) => {
                 <a
                   key={link.label}
                   href={link.href}
-                  className={`text-[13px] font-medium transition-all duration-300 ${scrolled ? 'text-[#64748B] hover:text-[#0F172A]' : 'text-white/70 hover:text-white'}`}
+                  className="text-[13px] font-medium text-[#666666] hover:text-[#1a1a1a] transition-all duration-300"
                   data-testid={`nav-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
                 >
                   {link.label}
@@ -94,13 +94,12 @@ export const Header = ({ onOpenModal }) => {
             <div className="hidden md:flex items-center">
               <motion.button
                 onClick={onOpenModal}
-                className={`group relative flex items-center gap-2.5 px-5 py-2.5 rounded-full overflow-hidden font-medium text-[13px] transition-all duration-300 ${scrolled ? 'bg-[#0F172A] text-white' : 'bg-white text-[#0F172A]'}`}
+                className="group relative flex items-center gap-2.5 px-5 py-2.5 rounded-full overflow-hidden font-medium text-[13px] bg-[#1a1a1a] text-white transition-all duration-300"
                 data-testid="header-cta"
-                whileHover={{ scale: 1.02, boxShadow: scrolled ? '0 8px 25px rgba(15,23,42,0.2)' : '0 8px 25px rgba(255,255,255,0.3)' }}
+                whileHover={{ scale: 1.02, boxShadow: '0 8px 25px rgba(0,0,0,0.15)' }}
                 whileTap={{ scale: 0.98 }}
               >
-                {/* Shimmer effect */}
-                <span className={`absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent ${scrolled ? 'via-white/10' : 'via-[#0F172A]/5'} to-transparent`} />
+                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                 <span className="relative z-10">Get Priority Access</span>
                 <ArrowRight className="relative z-10 w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" strokeWidth={2} />
               </motion.button>
@@ -108,7 +107,7 @@ export const Header = ({ onOpenModal }) => {
 
             {/* Mobile Menu Button */}
             <motion.button
-              className={`md:hidden p-2 z-50 rounded-lg transition-colors ${mobileMenuOpen ? 'text-white' : scrolled ? 'text-[#0F172A]' : 'text-white'}`}
+              className={`md:hidden p-2 z-50 rounded-lg transition-colors ${mobileMenuOpen ? 'text-white' : 'text-[#1a1a1a]'}`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
               data-testid="mobile-menu-toggle"
@@ -164,14 +163,8 @@ export const Header = ({ onOpenModal }) => {
               animate="open"
               exit="closed"
             >
-              {/* Dark Gradient Background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#0A0F1A] via-[#0F172A] to-[#1E293B]" />
-              
-              {/* Subtle pattern overlay */}
-              <div className="absolute inset-0 opacity-5" style={{
-                backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-                backgroundSize: '32px 32px'
-              }} />
+              {/* Dark Background */}
+              <div className="absolute inset-0 bg-[#1a1a1a]" />
 
               {/* Content */}
               <div className="relative h-full flex flex-col px-6 pt-24 pb-8">
@@ -189,16 +182,16 @@ export const Header = ({ onOpenModal }) => {
                       animate="open"
                     >
                       <div className="flex items-center justify-between">
-                        <span className="text-2xl font-serif text-white group-hover:text-emerald-400 transition-colors">
+                        <span className="text-2xl font-serif text-white group-hover:text-amber-400 transition-colors">
                           {link.label}
                         </span>
-                        <ArrowRight className="w-5 h-5 text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all" />
+                        <ArrowRight className="w-5 h-5 text-slate-500 group-hover:text-amber-400 group-hover:translate-x-1 transition-all" />
                       </div>
                     </motion.a>
                   ))}
                 </nav>
 
-                {/* Premium CTA Section */}
+                {/* CTA */}
                 <motion.div
                   custom={3}
                   variants={itemVariants}
@@ -206,49 +199,16 @@ export const Header = ({ onOpenModal }) => {
                   animate="open"
                   className="mt-auto"
                 >
-                  {/* Social proof */}
-                  <div className="flex items-center justify-center gap-2 mb-4">
-                    <div className="flex -space-x-2">
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-cyan-400 border-2 border-[#0F172A] flex items-center justify-center text-[10px] font-bold text-slate-900">JD</div>
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-400 to-purple-400 border-2 border-[#0F172A] flex items-center justify-center text-[10px] font-bold text-slate-900">SK</div>
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-400 border-2 border-[#0F172A] flex items-center justify-center text-[10px] font-bold text-slate-900">MR</div>
-                    </div>
-                    <span className="text-slate-400 text-sm">500+ teams joined</span>
-                  </div>
-
-                  {/* Main CTA Button */}
                   <motion.button
                     onClick={() => {
                       setMobileMenuOpen(false);
                       onOpenModal();
                     }}
-                    className="relative w-full group overflow-hidden rounded-2xl"
+                    className="w-full bg-white text-[#1a1a1a] rounded-full py-4 font-semibold"
                     whileTap={{ scale: 0.98 }}
                   >
-                    {/* Animated gradient background */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 via-emerald-400 to-cyan-400 animate-gradient-x" />
-                    
-                    {/* Shine effect */}
-                    <div className="absolute inset-0 opacity-0 group-active:opacity-30 bg-white transition-opacity" />
-                    
-                    {/* Button content */}
-                    <div className="relative px-8 py-5 flex items-center justify-center gap-3">
-                      <span className="text-slate-900 font-bold text-lg tracking-tight">
-                        Get Priority Access
-                      </span>
-                      <div className="w-8 h-8 rounded-full bg-slate-900/20 flex items-center justify-center">
-                        <ArrowRight className="w-4 h-4 text-slate-900" />
-                      </div>
-                    </div>
+                    Get Priority Access
                   </motion.button>
-
-                  {/* Trust badge */}
-                  <div className="flex items-center justify-center gap-2 mt-4 text-slate-500 text-xs">
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                    <span>No credit card required</span>
-                  </div>
                 </motion.div>
               </div>
             </motion.div>
