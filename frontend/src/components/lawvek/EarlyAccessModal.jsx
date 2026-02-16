@@ -368,35 +368,191 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
                     {/* Success Header */}
                     <div className="text-center mb-6">
                       <motion.div 
-                        className="w-16 h-16 mx-auto mb-4 bg-emerald-50 rounded-full flex items-center justify-center"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
+                        className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-full flex items-center justify-center shadow-sm"
+                        initial={{ scale: 0, rotate: -180 }}
+                        animate={{ scale: 1, rotate: 0 }}
                         transition={{ type: "spring", stiffness: 200, damping: 15 }}
                       >
                         <CheckCircle2 className="w-8 h-8 text-emerald-500" />
                       </motion.div>
-                      <h2 className="text-2xl font-serif text-slate-900 mb-2">Request Accepted</h2>
-                      <p className="text-slate-500 text-sm">
+                      <motion.h2 
+                        className="text-2xl font-serif text-slate-900 mb-2"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                      >
+                        Request Accepted
+                      </motion.h2>
+                      <motion.p 
+                        className="text-slate-500 text-sm"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 }}
+                      >
                         To begin onboarding, select a time that works best for you.
-                      </p>
+                      </motion.p>
                     </div>
 
-                    {/* Calendly Embed Container */}
-                    <div 
-                      ref={calendlyContainerRef}
-                      className="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"
-                      style={{ minHeight: '500px' }}
-                      data-testid="calendly-container"
+                    {/* Custom Premium Calendar */}
+                    <motion.div 
+                      className="bg-gradient-to-b from-slate-50 to-white rounded-xl border border-slate-200 overflow-hidden shadow-sm"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4 }}
                     >
-                      <div 
-                        className="calendly-inline-widget" 
-                        data-url={`${CALENDLY_URL}?hide_gdpr_banner=1&hide_landing_page_details=1&primary_color=10b981&name=${encodeURIComponent(formData.name)}&email=${encodeURIComponent(formData.email)}`}
-                        style={{ minWidth: '320px', height: '500px' }}
-                      />
-                    </div>
+                      <div className="grid md:grid-cols-2 divide-x divide-slate-200">
+                        {/* Calendar Side */}
+                        <div className="p-5">
+                          {/* Month Navigation */}
+                          <div className="flex items-center justify-between mb-4">
+                            <button
+                              onClick={() => navigateMonth(-1)}
+                              className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors"
+                            >
+                              <ChevronLeft className="w-4 h-4 text-slate-600" />
+                            </button>
+                            <span className="font-medium text-slate-900">
+                              {monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}
+                            </span>
+                            <button
+                              onClick={() => navigateMonth(1)}
+                              className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors"
+                            >
+                              <ChevronRight className="w-4 h-4 text-slate-600" />
+                            </button>
+                          </div>
+
+                          {/* Day Names */}
+                          <div className="grid grid-cols-7 gap-1 mb-2">
+                            {dayNames.map(day => (
+                              <div key={day} className="text-center text-xs font-medium text-slate-400 py-1">
+                                {day}
+                              </div>
+                            ))}
+                          </div>
+
+                          {/* Calendar Days */}
+                          <div className="grid grid-cols-7 gap-1">
+                            {calendarDays.map((dayObj, index) => (
+                              <div key={index} className="aspect-square">
+                                {dayObj ? (
+                                  <motion.button
+                                    onClick={() => !dayObj.disabled && setSelectedDate(dayObj.date)}
+                                    disabled={dayObj.disabled}
+                                    className={`w-full h-full rounded-lg text-sm font-medium transition-all ${
+                                      selectedDate?.getTime() === dayObj.date.getTime()
+                                        ? 'bg-emerald-500 text-white shadow-md shadow-emerald-200'
+                                        : dayObj.disabled
+                                          ? 'text-slate-300 cursor-not-allowed'
+                                          : 'text-slate-700 hover:bg-emerald-50 hover:text-emerald-600'
+                                    }`}
+                                    whileHover={!dayObj.disabled ? { scale: 1.1 } : {}}
+                                    whileTap={!dayObj.disabled ? { scale: 0.95 } : {}}
+                                  >
+                                    {dayObj.day}
+                                  </motion.button>
+                                ) : null}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Time Slots Side */}
+                        <div className="p-5">
+                          <div className="flex items-center gap-2 mb-4">
+                            <Clock className="w-4 h-4 text-slate-400" />
+                            <span className="font-medium text-slate-900 text-sm">
+                              {selectedDate 
+                                ? selectedDate.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
+                                : 'Select a date'}
+                            </span>
+                          </div>
+
+                          {selectedDate ? (
+                            <div className="grid grid-cols-2 gap-2 max-h-[240px] overflow-y-auto pr-1">
+                              {timeSlots.map((time, index) => (
+                                <motion.button
+                                  key={time}
+                                  onClick={() => setSelectedTime(time)}
+                                  className={`py-2.5 px-3 rounded-lg text-sm font-medium transition-all border ${
+                                    selectedTime === time
+                                      ? 'bg-emerald-500 text-white border-emerald-500 shadow-md shadow-emerald-200'
+                                      : 'bg-white text-slate-600 border-slate-200 hover:border-emerald-300 hover:text-emerald-600'
+                                  }`}
+                                  initial={{ opacity: 0, x: 20 }}
+                                  animate={{ opacity: 1, x: 0 }}
+                                  transition={{ delay: index * 0.03 }}
+                                  whileHover={{ scale: 1.02 }}
+                                  whileTap={{ scale: 0.98 }}
+                                >
+                                  {time}
+                                </motion.button>
+                              ))}
+                            </div>
+                          ) : (
+                            <div className="h-[240px] flex items-center justify-center">
+                              <div className="text-center">
+                                <Calendar className="w-10 h-10 text-slate-300 mx-auto mb-2" />
+                                <p className="text-slate-400 text-sm">Pick a date to see available times</p>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Booking Footer */}
+                      <div className="border-t border-slate-200 bg-white p-4">
+                        <div className="flex items-center justify-between">
+                          <div className="text-sm">
+                            {selectedDate && selectedTime ? (
+                              <span className="text-slate-600">
+                                <span className="font-medium text-slate-900">
+                                  {selectedDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                                </span>
+                                {' at '}
+                                <span className="font-medium text-emerald-600">{selectedTime}</span>
+                              </span>
+                            ) : (
+                              <span className="text-slate-400">30 min onboarding call</span>
+                            )}
+                          </div>
+                          <motion.button
+                            onClick={handleBooking}
+                            disabled={!selectedDate || !selectedTime || isBooking}
+                            className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-all flex items-center gap-2 ${
+                              selectedDate && selectedTime
+                                ? 'bg-slate-900 text-white hover:bg-slate-800 shadow-lg shadow-slate-900/20'
+                                : 'bg-slate-100 text-slate-400 cursor-not-allowed'
+                            }`}
+                            whileHover={selectedDate && selectedTime ? { scale: 1.02 } : {}}
+                            whileTap={selectedDate && selectedTime ? { scale: 0.98 } : {}}
+                          >
+                            {isBooking ? (
+                              <>
+                                <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+                                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                                </svg>
+                                Booking...
+                              </>
+                            ) : (
+                              <>
+                                Confirm Time
+                                <ArrowRight className="w-4 h-4" />
+                              </>
+                            )}
+                          </motion.button>
+                        </div>
+                      </div>
+                    </motion.div>
 
                     {/* Skip Option */}
-                    <p className="text-slate-400 text-xs text-center mt-4">
+                    <motion.p 
+                      className="text-slate-400 text-xs text-center mt-4"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.6 }}
+                    >
                       Can't find a suitable time?{' '}
                       <button 
                         onClick={() => setStep('confirmed')}
@@ -404,7 +560,7 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
                       >
                         We'll reach out to you instead
                       </button>
-                    </p>
+                    </motion.p>
                   </div>
                 )}
 
