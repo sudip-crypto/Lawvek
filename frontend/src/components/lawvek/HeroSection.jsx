@@ -13,6 +13,7 @@ export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
   
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
   
   return (
     <section 
@@ -20,17 +21,76 @@ export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       data-testid="hero-section"
     >
-      {/* Subtle depth overlay - transparent to let NetworkBackground show through */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Very subtle top atmospheric glow */}
-        <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-[#E8F4FC]/20 to-transparent" />
+      {/* Premium Depth Gradient Layers - Semi-transparent to show particles */}
+      <motion.div 
+        className="absolute inset-0 pointer-events-none"
+        style={{ y: bgY }}
+      >
+        {/* Sky gradient overlay - top atmospheric depth */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#E3EEF7]/70 via-[#EDF4F9]/50 to-transparent" />
         
-        {/* Soft center glow */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[900px] h-[400px] rounded-full bg-white/30 blur-3xl" />
+        {/* Horizon warmth - bottom warm glow */}
+        <div className="absolute bottom-0 left-0 right-0 h-[45%] bg-gradient-to-t from-[#FDF8F3]/60 via-[#FEF7ED]/40 to-transparent" />
         
-        {/* Subtle warm horizon */}
-        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#FEF7ED]/30 to-transparent" />
+        {/* Central radial glow - focus area */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[700px]">
+          <div className="absolute inset-0 bg-gradient-radial from-white/50 via-white/20 to-transparent rounded-full blur-3xl" />
+        </div>
+      </motion.div>
+
+      {/* Floating depth layers - ethereal clouds */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Top left cloud */}
+        <motion.div 
+          className="absolute -top-20 -left-20 w-[500px] h-[400px] rounded-full bg-gradient-to-br from-[#D6E6F2]/40 via-[#E8F1F8]/20 to-transparent blur-3xl"
+          animate={{ 
+            x: [0, 30, 0],
+            y: [0, -15, 0],
+            scale: [1, 1.05, 1],
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+        />
+        
+        {/* Top right cloud */}
+        <motion.div 
+          className="absolute -top-10 right-0 w-[450px] h-[350px] rounded-full bg-gradient-to-bl from-[#E0EBF5]/35 via-[#EDF3F9]/15 to-transparent blur-3xl"
+          animate={{ 
+            x: [0, -20, 0],
+            y: [0, 20, 0],
+            scale: [1, 1.08, 1],
+          }}
+          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+        />
+        
+        {/* Center floating orb */}
+        <motion.div 
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-gradient-to-b from-white/40 via-[#F5F9FC]/20 to-transparent blur-2xl"
+          animate={{ 
+            scale: [1, 1.1, 1],
+            opacity: [0.4, 0.6, 0.4],
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        />
+        
+        {/* Bottom warm glow */}
+        <motion.div 
+          className="absolute bottom-20 left-1/3 w-[400px] h-[300px] rounded-full bg-gradient-to-t from-[#FEF3C7]/25 via-[#FDF6E3]/15 to-transparent blur-3xl"
+          animate={{ 
+            x: [0, 25, 0],
+            y: [0, -20, 0],
+          }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 5 }}
+        />
+
+        {/* Light rays - subtle beams from top */}
+        <div className="absolute top-0 left-[20%] w-[2px] h-[350px] bg-gradient-to-b from-[#C5DAE9]/40 via-[#D6E6F2]/20 to-transparent transform -rotate-12 blur-sm" />
+        <div className="absolute top-0 left-[40%] w-[1px] h-[400px] bg-gradient-to-b from-white/30 via-white/10 to-transparent blur-sm" />
+        <div className="absolute top-0 right-[30%] w-[2px] h-[300px] bg-gradient-to-b from-[#D0E2EF]/35 via-[#E3EEF7]/15 to-transparent transform rotate-6 blur-sm" />
+        <div className="absolute top-0 right-[15%] w-[1px] h-[280px] bg-gradient-to-b from-[#E8F1F8]/40 to-transparent transform rotate-12 blur-sm" />
       </div>
+
+      {/* Bottom fade for seamless transition to ticker */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#FAFAFA] via-[#FAFAFA]/80 to-transparent pointer-events-none" />
 
       {/* Content - Centered */}
       <motion.div 
@@ -46,7 +106,7 @@ export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
           className="mb-10"
         >
           <motion.span 
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/90 backdrop-blur-sm border border-amber-200/80 rounded-full shadow-sm"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/95 backdrop-blur-sm border border-amber-200/80 rounded-full shadow-sm shadow-amber-100/50"
             whileHover={{ scale: 1.05, borderColor: 'rgba(245, 158, 11, 0.5)' }}
             transition={{ duration: 0.2 }}
           >
@@ -107,7 +167,7 @@ export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
           transition={{ duration: 0.6, delay: 0.45 }}
         >
           <motion.span 
-            className="inline-flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-sm border border-amber-200 rounded-full shadow-sm"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-white/95 backdrop-blur-sm border border-amber-200 rounded-full shadow-sm"
             animate={{ 
               borderColor: ['rgba(245, 158, 11, 0.3)', 'rgba(245, 158, 11, 0.6)', 'rgba(245, 158, 11, 0.3)']
             }}
