@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import {
   Header,
   HeroSection,
+  TrustTicker,
   ProblemSection,
   ApproachSection,
   HowItWorksSection,
