@@ -106,6 +106,16 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Reset state when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setStep('form');
+      setSelectedDate(null);
+      setSelectedTime(null);
+      setCurrentMonth(new Date());
+    }
+  }, [isOpen]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -122,6 +132,8 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
     setFormData({ name: '', email: '', companySize: '', subscribe: true });
     setIsDropdownOpen(false);
     setScheduledTime(null);
+    setSelectedDate(null);
+    setSelectedTime(null);
     onClose();
   };
 
@@ -142,6 +154,11 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
       hour12: true
     });
   };
+
+  const calendarDays = generateCalendarDays();
+  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 
+                      'July', 'August', 'September', 'October', 'November', 'December'];
+  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   return (
     <AnimatePresence>
