@@ -1,6 +1,9 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronDown, ArrowRight } from 'lucide-react';
+import { X, ChevronDown, ArrowRight, Calendar, CheckCircle2 } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
+
+// Calendly URL - Replace with your actual Calendly link
+const CALENDLY_URL = 'https://calendly.com/lawvek/onboarding';
 
 export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }) => {
   const [formData, setFormData] = useState({
@@ -10,9 +13,11 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
     subscribe: true,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [step, setStep] = useState('form'); // 'form' | 'scheduling' | 'confirmed'
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [scheduledTime, setScheduledTime] = useState(null);
   const dropdownRef = useRef(null);
+  const calendlyContainerRef = useRef(null);
   const spotsRemaining = 50 - queueCount;
 
   const companySizes = [
@@ -22,6 +27,40 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
     '201-500 employees',
     '500+ employees',
   ];
+
+  // Load Calendly script and listen for events
+  useEffect(() => {
+    if (step === 'scheduling') {
+      // Load Calendly widget script
+      const script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      document.body.appendChild(script);
+
+      // Listen for Calendly events
+      const handleCalendlyEvent = (e) => {
+        if (e.data.event === 'calendly.event_scheduled') {
+          const eventDetails = e.data.payload;
+          setScheduledTime({
+            date: eventDetails?.event?.start_time || new Date().toISOString(),
+            invitee: eventDetails?.invitee?.name || formData.name
+          });
+          setStep('confirmed');
+        }
+      };
+
+      window.addEventListener('message', handleCalendlyEvent);
+
+      return () => {
+        window.removeEventListener('message', handleCalendlyEvent);
+        // Clean up script if needed
+        const existingScript = document.querySelector('script[src*="calendly"]');
+        if (existingScript) {
+          existingScript.remove();
+        }
+      };
+    }
+  }, [step, formData.name]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -38,17 +77,17 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
     setIsSubmitting(true);
     await new Promise(resolve => setTimeout(resolve, 1200));
     setIsSubmitting(false);
-    setIsSubmitted(true);
-    // Call the onSuccess callback to increment queue
+    setStep('scheduling');
     if (onSuccess) {
       onSuccess();
     }
   };
 
   const handleClose = () => {
-    setIsSubmitted(false);
+    setStep('form');
     setFormData({ name: '', email: '', companySize: '', subscribe: true });
     setIsDropdownOpen(false);
+    setScheduledTime(null);
     onClose();
   };
 
@@ -57,13 +96,26 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
     setIsDropdownOpen(false);
   };
 
+  const formatScheduledDate = (isoString) => {
+    if (!isoString) return '';
+    const date = new Date(isoString);
+    return date.toLocaleDateString('en-US', { 
+      weekday: 'long',
+      month: 'long', 
+      day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true
+    });
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Premium backdrop with gradient */}
+          {/* Premium backdrop - Light theme */}
           <motion.div
-            className="fixed inset-0 bg-gradient-to-br from-black/80 via-slate-900/80 to-black/80 backdrop-blur-md z-50"
+            className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -78,31 +130,31 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="w-full max-w-md"
+              className={`w-full ${step === 'scheduling' ? 'max-w-3xl' : 'max-w-md'}`}
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             >
-              {/* Main Card */}
-              <div className="relative bg-[#0B1120] border border-slate-800 rounded-xl shadow-2xl overflow-hidden">
+              {/* Main Card - Light Theme */}
+              <div className="relative bg-white border border-slate-200 rounded-2xl shadow-2xl shadow-slate-200/50 overflow-hidden">
                 
-                {/* Close button - clearly visible */}
+                {/* Close button */}
                 <button
                   onClick={handleClose}
-                  className="absolute top-4 right-4 z-20 text-slate-400 hover:text-white transition-colors w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800"
+                  className="absolute top-4 right-4 z-20 text-slate-400 hover:text-slate-600 transition-colors w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-100"
                   data-testid="modal-close-btn"
                 >
                   <X className="w-5 h-5" strokeWidth={2} />
                 </button>
 
-                {!isSubmitted ? (
+                {step === 'form' && (
                   <div className="p-6 md:p-8">
                     {/* Header row with badge */}
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30">
-                        <div className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-                        <span className="text-amber-400 text-[11px] font-semibold tracking-wide uppercase">
+                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-50 border border-amber-200">
+                        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                        <span className="text-amber-600 text-[11px] font-semibold tracking-wide uppercase">
                           {spotsRemaining > 0 ? `Only ${spotsRemaining} spots left` : 'Waitlist Full'}
                         </span>
                       </div>
@@ -110,174 +162,251 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
 
                     {/* Header */}
                     <div className="mb-6 pr-8">
-                      <h2 className="text-2xl font-serif text-white mb-2">
+                      <h2 className="text-2xl font-serif text-slate-900 mb-2">
                         Request Priority Access
                       </h2>
-                      <p className="text-slate-400 text-sm">
+                      <p className="text-slate-500 text-sm">
                         Limited to first 50 legal teams. Join the queue now.
                       </p>
                     </div>
 
-                      {/* Form */}
-                      <form onSubmit={handleSubmit} className="space-y-4">
-                        {/* Name Field */}
-                        <div>
-                          <label className="block text-slate-300 text-sm font-medium mb-2">
-                            Full Name
-                          </label>
-                          <input
-                            type="text"
-                            placeholder="John Smith"
-                            value={formData.name}
-                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                            required
-                            className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30 transition-all"
-                          />
-                        </div>
-
-                        {/* Email Field */}
-                        <div>
-                          <label className="block text-slate-300 text-sm font-medium mb-2">
-                            Work Email
-                          </label>
-                          <input
-                            type="email"
-                            placeholder="john@company.com"
-                            value={formData.email}
-                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            required
-                            className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30 transition-all"
-                          />
-                        </div>
-
-                        {/* Company Size Dropdown */}
-                        <div 
-                          className="relative" 
-                          ref={dropdownRef}
-                        >
-                          <label className="block text-slate-300 text-sm font-medium mb-2">
-                            Company Size
-                          </label>
-                          <input type="hidden" value={formData.companySize} required />
-                          <button
-                            type="button"
-                            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                            className={`w-full bg-slate-900/50 border rounded-lg px-4 py-3 text-left flex items-center justify-between transition-all cursor-pointer ${
-                              isDropdownOpen 
-                                ? 'border-emerald-500 ring-1 ring-emerald-500/30' 
-                                : 'border-slate-700 hover:border-slate-600'
-                            } ${formData.companySize ? 'text-white' : 'text-slate-500'}`}
-                          >
-                            <span>{formData.companySize || 'Select team size'}</span>
-                            <ChevronDown className={`w-4 h-4 text-slate-500 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
-                          </button>
-                          
-                          <AnimatePresence>
-                            {isDropdownOpen && (
-                              <motion.div
-                                initial={{ opacity: 0, y: -5 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -5 }}
-                                transition={{ duration: 0.15 }}
-                                className="absolute z-50 w-full bottom-full mb-1.5 bg-slate-900 border border-slate-700 rounded-lg shadow-xl overflow-hidden"
-                              >
-                                {companySizes.map((size, index) => (
-                                  <button
-                                    key={size}
-                                    type="button"
-                                    onClick={() => selectCompanySize(size)}
-                                    className={`w-full px-4 py-2.5 text-sm text-left transition-colors flex items-center justify-between ${
-                                      formData.companySize === size 
-                                        ? 'bg-emerald-500/10 text-emerald-400' 
-                                        : 'text-slate-300 hover:bg-slate-800 hover:text-white'
-                                    } ${index !== companySizes.length - 1 ? 'border-b border-slate-800' : ''}`}
-                                  >
-                                    <span>{size}</span>
-                                    {formData.companySize === size && (
-                                      <svg className="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                                      </svg>
-                                    )}
-                                  </button>
-                                ))}
-                              </motion.div>
-                            )}
-                          </AnimatePresence>
-                        </div>
-
-                        {/* Newsletter Checkbox */}
-                        <div className="flex items-start gap-3 pt-1">
-                          <input
-                            type="checkbox"
-                            id="subscribe"
-                            checked={formData.subscribe}
-                            onChange={(e) => setFormData({ ...formData, subscribe: e.target.checked })}
-                            className="mt-0.5 w-4 h-4 rounded border-slate-600 bg-slate-800 text-emerald-500 focus:ring-emerald-500 focus:ring-offset-0 cursor-pointer"
-                          />
-                          <label htmlFor="subscribe" className="text-slate-500 text-sm cursor-pointer">
-                            Keep me updated on product news
-                          </label>
-                        </div>
-
-                        {/* Submit Button */}
-                        <div className="pt-2">
-                          <motion.button
-                            type="submit"
-                            disabled={isSubmitting}
-                            className="w-full bg-gradient-to-r from-emerald-500 to-emerald-400 text-slate-900 font-semibold py-3 rounded-lg hover:from-emerald-400 hover:to-emerald-300 transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                            whileHover={{ scale: 1.01 }}
-                            whileTap={{ scale: 0.99 }}
-                            data-testid="modal-submit-btn"
-                          >
-                            {isSubmitting ? (
-                              <>
-                                <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
-                                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                                </svg>
-                                Processing...
-                              </>
-                            ) : (
-                              <>
-                                Request Access
-                                <ArrowRight className="w-4 h-4" />
-                              </>
-                            )}
-                          </motion.button>
-                        </div>
-                      </form>
-
-                      {/* Footer */}
-                      <p className="text-slate-600 text-xs text-center mt-5">
-                        By continuing, you agree to our{' '}
-                        <a href="#" className="text-slate-500 hover:text-emerald-400 underline underline-offset-2 transition-colors">Terms</a>
-                        {' '}and{' '}
-                        <a href="#" className="text-slate-500 hover:text-emerald-400 underline underline-offset-2 transition-colors">Privacy Policy</a>
-                      </p>
-                    </div>
-                  ) : (
-                    /* Success State */
-                    <div className="p-8 text-center">
-                      <div className="w-16 h-16 mx-auto mb-6 bg-emerald-500/20 rounded-full flex items-center justify-center">
-                        <svg className="w-8 h-8 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                        </svg>
+                    {/* Form */}
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                      {/* Name Field */}
+                      <div>
+                        <label className="block text-slate-700 text-sm font-medium mb-2">
+                          Full Name
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="John Smith"
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          required
+                          data-testid="modal-name-input"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all"
+                        />
                       </div>
-                      
-                      <h2 className="text-2xl font-serif text-white mb-2">You're #{queueCount} in queue</h2>
-                      <p className="text-slate-400 text-sm mb-6">
-                        We'll reach out within 24 hours with your access details.
-                      </p>
-                      <button
-                        onClick={handleClose}
-                        className="text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors inline-flex items-center gap-1"
+
+                      {/* Email Field */}
+                      <div>
+                        <label className="block text-slate-700 text-sm font-medium mb-2">
+                          Work Email
+                        </label>
+                        <input
+                          type="email"
+                          placeholder="john@company.com"
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          required
+                          data-testid="modal-email-input"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all"
+                        />
+                      </div>
+
+                      {/* Company Size Dropdown */}
+                      <div 
+                        className="relative" 
+                        ref={dropdownRef}
                       >
-                        Done
-                        <ArrowRight className="w-4 h-4" />
-                      </button>
+                        <label className="block text-slate-700 text-sm font-medium mb-2">
+                          Company Size
+                        </label>
+                        <input type="hidden" value={formData.companySize} required />
+                        <button
+                          type="button"
+                          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                          data-testid="modal-company-dropdown"
+                          className={`w-full bg-slate-50 border rounded-lg px-4 py-3 text-left flex items-center justify-between transition-all cursor-pointer ${
+                            isDropdownOpen 
+                              ? 'border-emerald-500 ring-2 ring-emerald-500/20' 
+                              : 'border-slate-200 hover:border-slate-300'
+                          } ${formData.companySize ? 'text-slate-900' : 'text-slate-400'}`}
+                        >
+                          <span>{formData.companySize || 'Select team size'}</span>
+                          <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                        </button>
+                        
+                        <AnimatePresence>
+                          {isDropdownOpen && (
+                            <motion.div
+                              initial={{ opacity: 0, y: -5 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -5 }}
+                              transition={{ duration: 0.15 }}
+                              className="absolute z-50 w-full bottom-full mb-1.5 bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden"
+                            >
+                              {companySizes.map((size, index) => (
+                                <button
+                                  key={size}
+                                  type="button"
+                                  onClick={() => selectCompanySize(size)}
+                                  className={`w-full px-4 py-2.5 text-sm text-left transition-colors flex items-center justify-between ${
+                                    formData.companySize === size 
+                                      ? 'bg-emerald-50 text-emerald-600' 
+                                      : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                                  } ${index !== companySizes.length - 1 ? 'border-b border-slate-100' : ''}`}
+                                >
+                                  <span>{size}</span>
+                                  {formData.companySize === size && (
+                                    <svg className="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                                    </svg>
+                                  )}
+                                </button>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+
+                      {/* Newsletter Checkbox */}
+                      <div className="flex items-start gap-3 pt-1">
+                        <input
+                          type="checkbox"
+                          id="subscribe"
+                          checked={formData.subscribe}
+                          onChange={(e) => setFormData({ ...formData, subscribe: e.target.checked })}
+                          className="mt-0.5 w-4 h-4 rounded border-slate-300 bg-white text-emerald-500 focus:ring-emerald-500 focus:ring-offset-0 cursor-pointer"
+                        />
+                        <label htmlFor="subscribe" className="text-slate-500 text-sm cursor-pointer">
+                          Keep me updated on product news
+                        </label>
+                      </div>
+
+                      {/* Submit Button */}
+                      <div className="pt-2">
+                        <motion.button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="w-full bg-gradient-to-r from-emerald-600 to-emerald-500 text-white font-semibold py-3 rounded-lg hover:from-emerald-500 hover:to-emerald-400 transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/25"
+                          whileHover={{ scale: 1.01 }}
+                          whileTap={{ scale: 0.99 }}
+                          data-testid="modal-submit-btn"
+                        >
+                          {isSubmitting ? (
+                            <>
+                              <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                              </svg>
+                              Processing...
+                            </>
+                          ) : (
+                            <>
+                              Request Access
+                              <ArrowRight className="w-4 h-4" />
+                            </>
+                          )}
+                        </motion.button>
+                      </div>
+                    </form>
+
+                    {/* Footer */}
+                    <p className="text-slate-400 text-xs text-center mt-5">
+                      By continuing, you agree to our{' '}
+                      <a href="#" className="text-slate-500 hover:text-emerald-600 underline underline-offset-2 transition-colors">Terms</a>
+                      {' '}and{' '}
+                      <a href="#" className="text-slate-500 hover:text-emerald-600 underline underline-offset-2 transition-colors">Privacy Policy</a>
+                    </p>
+                  </div>
+                )}
+
+                {step === 'scheduling' && (
+                  <div className="p-6 md:p-8">
+                    {/* Success Header */}
+                    <div className="text-center mb-6">
+                      <motion.div 
+                        className="w-16 h-16 mx-auto mb-4 bg-emerald-50 rounded-full flex items-center justify-center"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                      >
+                        <CheckCircle2 className="w-8 h-8 text-emerald-500" />
+                      </motion.div>
+                      <h2 className="text-2xl font-serif text-slate-900 mb-2">Request Accepted</h2>
+                      <p className="text-slate-500 text-sm">
+                        To begin onboarding, select a time that works best for you.
+                      </p>
                     </div>
-                  )}
-                </div>
+
+                    {/* Calendly Embed Container */}
+                    <div 
+                      ref={calendlyContainerRef}
+                      className="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"
+                      style={{ minHeight: '500px' }}
+                      data-testid="calendly-container"
+                    >
+                      <div 
+                        className="calendly-inline-widget" 
+                        data-url={`${CALENDLY_URL}?hide_gdpr_banner=1&hide_landing_page_details=1&primary_color=10b981&name=${encodeURIComponent(formData.name)}&email=${encodeURIComponent(formData.email)}`}
+                        style={{ minWidth: '320px', height: '500px' }}
+                      />
+                    </div>
+
+                    {/* Skip Option */}
+                    <p className="text-slate-400 text-xs text-center mt-4">
+                      Can't find a suitable time?{' '}
+                      <button 
+                        onClick={() => setStep('confirmed')}
+                        className="text-emerald-600 hover:text-emerald-700 underline underline-offset-2 transition-colors"
+                      >
+                        We'll reach out to you instead
+                      </button>
+                    </p>
+                  </div>
+                )}
+
+                {step === 'confirmed' && (
+                  <div className="p-8 text-center">
+                    <motion.div 
+                      className="w-20 h-20 mx-auto mb-6 bg-emerald-50 rounded-full flex items-center justify-center"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                    >
+                      <Calendar className="w-10 h-10 text-emerald-500" />
+                    </motion.div>
+                    
+                    <h2 className="text-2xl font-serif text-slate-900 mb-3">
+                      {scheduledTime ? "You're All Set!" : "We'll Be in Touch"}
+                    </h2>
+                    
+                    {scheduledTime ? (
+                      <div className="mb-6">
+                        <p className="text-slate-500 text-sm mb-3">
+                          Your onboarding call is scheduled for:
+                        </p>
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 border border-emerald-100 rounded-lg">
+                          <Calendar className="w-4 h-4 text-emerald-600" />
+                          <span className="text-emerald-700 font-medium text-sm">
+                            {formatScheduledDate(scheduledTime.date)}
+                          </span>
+                        </div>
+                      </div>
+                    ) : (
+                      <p className="text-slate-500 text-sm mb-6">
+                        Our team will reach out within 24 hours to schedule your onboarding call.
+                      </p>
+                    )}
+
+                    <p className="text-slate-400 text-sm mb-6">
+                      We're excited to help you transform your contract review process.
+                    </p>
+
+                    <motion.button
+                      onClick={handleClose}
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 text-white font-medium rounded-lg hover:bg-slate-800 transition-colors"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      data-testid="modal-done-btn"
+                    >
+                      Done
+                      <ArrowRight className="w-4 h-4" />
+                    </motion.button>
+                  </div>
+                )}
+              </div>
             </motion.div>
           </motion.div>
         </>
