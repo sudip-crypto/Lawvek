@@ -24,24 +24,24 @@ export const Footer = () => {
 
   return (
     <footer 
-      className="bg-[#0F172A] pt-16 pb-8"
+      className="relative bg-white/80 backdrop-blur-sm border-t border-gray-200 pt-16 pb-8"
       data-testid="footer-section"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <a href="/" className="text-xl font-semibold text-white tracking-tight">
+            <a href="/" className="text-xl font-semibold text-[#1a1a1a] tracking-tight">
               Lawvek
             </a>
-            <p className="mt-4 text-sm text-[#64748B] leading-relaxed">
+            <p className="mt-4 text-sm text-[#666666] leading-relaxed">
               Intelligent contract review for modern legal teams.
             </p>
             <div className="flex gap-4 mt-6">
-              <a href="#" className="w-10 h-10 rounded-lg bg-[#1E293B] border border-[#334155] flex items-center justify-center text-[#64748B] hover:text-white hover:border-[#475569] transition-colors">
+              <a href="#" className="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-[#666666] hover:text-[#1a1a1a] hover:border-gray-300 transition-colors">
                 <Linkedin className="w-4 h-4" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-lg bg-[#1E293B] border border-[#334155] flex items-center justify-center text-[#64748B] hover:text-white hover:border-[#475569] transition-colors">
+              <a href="#" className="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-[#666666] hover:text-[#1a1a1a] hover:border-gray-300 transition-colors">
                 <Twitter className="w-4 h-4" />
               </a>
             </div>
@@ -49,11 +49,11 @@ export const Footer = () => {
 
           {/* Product */}
           <div>
-            <h4 className="text-sm font-semibold text-white mb-4">Product</h4>
+            <h4 className="text-sm font-semibold text-[#1a1a1a] mb-4">Product</h4>
             <ul className="space-y-3">
               {links.product.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-[#64748B] hover:text-white transition-colors">
+                  <a href={link.href} className="text-sm text-[#666666] hover:text-[#1a1a1a] transition-colors">
                     {link.label}
                   </a>
                 </li>
@@ -63,11 +63,11 @@ export const Footer = () => {
 
           {/* Company */}
           <div>
-            <h4 className="text-sm font-semibold text-white mb-4">Company</h4>
+            <h4 className="text-sm font-semibold text-[#1a1a1a] mb-4">Company</h4>
             <ul className="space-y-3">
               {links.company.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-[#64748B] hover:text-white transition-colors">
+                  <a href={link.href} className="text-sm text-[#666666] hover:text-[#1a1a1a] transition-colors">
                     {link.label}
                   </a>
                 </li>
@@ -77,11 +77,11 @@ export const Footer = () => {
 
           {/* Legal */}
           <div>
-            <h4 className="text-sm font-semibold text-white mb-4">Legal</h4>
+            <h4 className="text-sm font-semibold text-[#1a1a1a] mb-4">Legal</h4>
             <ul className="space-y-3">
               {links.legal.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-[#64748B] hover:text-white transition-colors">
+                  <a href={link.href} className="text-sm text-[#666666] hover:text-[#1a1a1a] transition-colors">
                     {link.label}
                   </a>
                 </li>
@@ -91,12 +91,12 @@ export const Footer = () => {
         </div>
 
         {/* Bottom */}
-        <div className="pt-8 border-t border-[#1E293B]">
+        <div className="pt-8 border-t border-gray-200">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-[#64748B]">
+            <p className="text-xs text-[#666666]">
               © {new Date().getFullYear()} Lawvek, Inc. All rights reserved.
             </p>
-            <p className="text-xs text-[#64748B] text-center max-w-xl">
+            <p className="text-xs text-[#666666] text-center max-w-xl">
               Lawvek provides AI-assisted contract analysis. Legal advice is provided only by licensed attorneys where explicitly engaged.
             </p>
           </div>
