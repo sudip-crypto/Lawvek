@@ -15,6 +15,7 @@ import {
   EarlyAccessModal,
   Footer,
 } from "@/components/lawvek";
+import { NetworkBackground } from "@/components/lawvek/NetworkBackground";
 
 const LandingPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,9 +37,12 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0F1A]" data-testid="landing-page">
+    <div className="min-h-screen bg-[#FAFAFA]" data-testid="landing-page">
+      {/* Interactive Network Background */}
+      <NetworkBackground />
+      
       <Header onOpenModal={openModal} />
-      <main>
+      <main className="relative z-10">
         <HeroSection onOpenModal={openModal} queueCount={queueCount} />
         <ProblemSection />
         <ApproachSection />
