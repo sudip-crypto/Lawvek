@@ -1,6 +1,7 @@
 export { Header } from './Header';
 export { HeroSection } from './HeroSection';
 export { TrustStrip } from './TrustStrip';
+export { TrustTicker } from './TrustTicker';
 export { ProblemSection } from './ProblemSection';
 export { ApproachSection } from './ApproachSection';
 export { HowItWorksSection } from './HowItWorksSection';
