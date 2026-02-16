@@ -35,34 +35,9 @@ export const BenefitsSection = () => {
     },
   ];
 
-  // Staggered container animation
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0.1
-      }
-    }
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.5,
-        ease: [0.25, 0.46, 0.45, 0.94]
-      }
-    }
-  };
-
   return (
     <section 
-      className="bg-[#0F172A] py-24 md:py-32"
+      className="relative py-24 md:py-32"
       data-testid="benefits-section"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -74,53 +49,42 @@ export const BenefitsSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-sm font-medium text-emerald-400 tracking-wide uppercase mb-4">
+          <p className="text-sm font-medium text-emerald-600 tracking-wide uppercase mb-4">
             Benefits
           </p>
-          <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-white mb-4">
+          <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-[#1a1a1a] mb-4">
             Why leading teams choose Lawvek
           </h2>
-          <p className="text-base text-[#94A3B8]">
+          <p className="text-base text-[#666666]">
             Join 500+ legal teams that have transformed their contract workflow.
           </p>
         </motion.div>
 
-        {/* Grid with staggered reveal */}
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-        >
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {benefits.map((benefit, index) => (
             <motion.div
               key={benefit.title}
-              className="group p-6 rounded-2xl border border-[#1E293B] bg-gradient-to-b from-[#1E293B]/50 to-transparent hover:border-[#334155] transition-all duration-300"
-              variants={cardVariants}
-              whileHover={{ 
-                y: -6, 
-                borderColor: 'rgba(16, 185, 129, 0.3)',
-                transition: { duration: 0.2 } 
-              }}
+              className="group p-6 rounded-2xl border border-gray-200 bg-white/80 backdrop-blur-sm hover:border-emerald-200 hover:shadow-lg transition-all duration-300"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.05 }}
+              whileHover={{ y: -6, transition: { duration: 0.2 } }}
               data-testid={`benefit-card-${index}`}
             >
-              <motion.div 
-                className="w-12 h-12 rounded-xl bg-[#1E293B] border border-[#334155] flex items-center justify-center mb-4 group-hover:bg-emerald-500/10 group-hover:border-emerald-500/30 transition-colors"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                transition={{ duration: 0.2 }}
-              >
-                <benefit.icon className="h-5 w-5 text-[#94A3B8] group-hover:text-emerald-400 transition-colors" strokeWidth={1.5} />
-              </motion.div>
-              <h3 className="text-lg font-semibold text-white mb-2">
+              <div className="w-12 h-12 rounded-xl bg-gray-100 border border-gray-200 flex items-center justify-center mb-4 group-hover:bg-emerald-50 group-hover:border-emerald-200 transition-colors">
+                <benefit.icon className="h-5 w-5 text-[#666666] group-hover:text-emerald-600 transition-colors" strokeWidth={1.5} />
+              </div>
+              <h3 className="text-lg font-semibold text-[#1a1a1a] mb-2">
                 {benefit.title}
               </h3>
-              <p className="text-[15px] leading-relaxed text-[#94A3B8]">
+              <p className="text-[15px] leading-relaxed text-[#666666]">
                 {benefit.description}
               </p>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
