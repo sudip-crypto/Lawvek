@@ -567,45 +567,73 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
                 {step === 'confirmed' && (
                   <div className="p-8 text-center">
                     <motion.div 
-                      className="w-20 h-20 mx-auto mb-6 bg-emerald-50 rounded-full flex items-center justify-center"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
+                      className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-full flex items-center justify-center shadow-lg shadow-emerald-100"
+                      initial={{ scale: 0, rotate: -180 }}
+                      animate={{ scale: 1, rotate: 0 }}
                       transition={{ type: "spring", stiffness: 200, damping: 15 }}
                     >
                       <Calendar className="w-10 h-10 text-emerald-500" />
                     </motion.div>
                     
-                    <h2 className="text-2xl font-serif text-slate-900 mb-3">
+                    <motion.h2 
+                      className="text-2xl font-serif text-slate-900 mb-3"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 }}
+                    >
                       {scheduledTime ? "You're All Set!" : "We'll Be in Touch"}
-                    </h2>
+                    </motion.h2>
                     
                     {scheduledTime ? (
-                      <div className="mb-6">
-                        <p className="text-slate-500 text-sm mb-3">
-                          Your onboarding call is scheduled for:
+                      <motion.div 
+                        className="mb-6"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 }}
+                      >
+                        <p className="text-slate-500 text-sm mb-4">
+                          Your onboarding call is confirmed for:
                         </p>
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 border border-emerald-100 rounded-lg">
-                          <Calendar className="w-4 h-4 text-emerald-600" />
-                          <span className="text-emerald-700 font-medium text-sm">
-                            {formatScheduledDate(scheduledTime.date)}
+                        <div className="inline-flex flex-col items-center gap-1 px-6 py-4 bg-gradient-to-br from-emerald-50 to-white border border-emerald-100 rounded-xl shadow-sm">
+                          <span className="text-emerald-800 font-semibold">
+                            {scheduledTime.formattedDate}
+                          </span>
+                          <span className="text-emerald-600 text-lg font-bold">
+                            {scheduledTime.time}
                           </span>
                         </div>
-                      </div>
+                        <p className="text-slate-400 text-xs mt-4">
+                          A calendar invite has been sent to {formData.email || 'your email'}
+                        </p>
+                      </motion.div>
                     ) : (
-                      <p className="text-slate-500 text-sm mb-6">
+                      <motion.p 
+                        className="text-slate-500 text-sm mb-6"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 }}
+                      >
                         Our team will reach out within 24 hours to schedule your onboarding call.
-                      </p>
+                      </motion.p>
                     )}
 
-                    <p className="text-slate-400 text-sm mb-6">
+                    <motion.p 
+                      className="text-slate-400 text-sm mb-6"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.4 }}
+                    >
                       We're excited to help you transform your contract review process.
-                    </p>
+                    </motion.p>
 
                     <motion.button
                       onClick={handleClose}
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 text-white font-medium rounded-lg hover:bg-slate-800 transition-colors"
+                      className="inline-flex items-center gap-2 px-8 py-3.5 bg-slate-900 text-white font-semibold rounded-xl hover:bg-slate-800 transition-all shadow-lg shadow-slate-900/20"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5 }}
                       data-testid="modal-done-btn"
                     >
                       Done
