@@ -8,21 +8,18 @@ export const ApproachSection = () => {
       icon: BarChart3,
       title: 'Intelligent Scoring',
       description: 'AI analyzes clauses, jurisdiction, and risk in seconds. Every contract is graded for complexity before review begins.',
-      points: ['Clause analysis', 'Risk grading', 'Complexity scoring'],
     },
     {
       number: '02',
       icon: GitBranch,
       title: 'Right-Sized Review',
       description: 'Each contract is matched to the exact level of legal expertise required. AI, paralegal, or full legal team — nothing more, nothing less.',
-      points: ['AI-only review', 'AI + Paralegal', 'Full legal team'],
     },
     {
       number: '03',
       icon: DollarSign,
       title: 'Predictable Pricing',
       description: 'Know your cost and turnaround before we start. Fixed pricing. Clear timelines. No hourly billing.',
-      points: ['Fixed pricing', 'Clear timelines', 'No surprises'],
     },
   ];
 
@@ -78,26 +75,10 @@ export const ApproachSection = () => {
                 </div>
               </div>
 
-              {/* Description - Fixed height for 2 lines */}
-              <p className="text-sm leading-relaxed text-[#666666] h-[80px]">
+              {/* Description */}
+              <p className="text-sm leading-relaxed text-[#666666]">
                 {step.description}
               </p>
-
-              {/* Divider */}
-              <div className="border-t border-gray-200 my-5" />
-
-              {/* Points */}
-              <div className="space-y-3">
-                {step.points.map((point, i) => (
-                  <div 
-                    key={i} 
-                    className="flex items-center gap-3"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0" />
-                    <span className="text-sm text-[#666666]">{point}</span>
-                  </div>
-                ))}
-              </div>
             </motion.div>
           ))}
         </div>
