@@ -10,7 +10,7 @@ export const BenefitsSection = () => {
     },
     {
       icon: TrendingDown,
-      title: '60% Cost Reduction',
+      title: '80% Cost Reduction',
       description: 'Pay only for the expertise each contract actually requires.',
     },
     {

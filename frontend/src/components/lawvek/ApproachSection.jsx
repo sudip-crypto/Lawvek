@@ -7,21 +7,21 @@ export const ApproachSection = () => {
       number: '01',
       icon: BarChart3,
       title: 'Intelligent Scoring',
-      description: 'AI analyzes clauses, jurisdiction, and risk to assign complexity.',
-      points: ['Low complexity', 'Medium risk', 'High priority'],
+      description: 'AI analyzes clauses, jurisdiction, and risk in seconds. Every contract is graded for complexity before review begins.',
+      points: ['Clause analysis', 'Risk grading', 'Complexity scoring'],
     },
     {
       number: '02',
       icon: GitBranch,
-      title: 'Right-Sized Workflow',
-      description: 'Each contract gets the appropriate level of expert review.',
+      title: 'Right-Sized Review',
+      description: 'Each contract is matched to the exact level of legal expertise required. AI, paralegal, or full legal team — nothing more, nothing less.',
       points: ['AI-only review', 'AI + Paralegal', 'Full legal team'],
     },
     {
       number: '03',
       icon: DollarSign,
       title: 'Predictable Pricing',
-      description: 'Know exactly what you\'ll pay upfront. No hourly billing surprises.',
+      description: 'Know your cost and turnaround before we start. Fixed pricing. Clear timelines. No hourly billing.',
       points: ['Fixed pricing', 'Clear timelines', 'No surprises'],
     },
   ];
@@ -78,8 +78,8 @@ export const ApproachSection = () => {
                 </div>
               </div>
 
-              {/* Description - Fixed height */}
-              <p className="text-sm leading-relaxed text-[#666666] h-[63px] line-clamp-3">
+              {/* Description - Fixed height for 2 lines */}
+              <p className="text-sm leading-relaxed text-[#666666] h-[80px]">
                 {step.description}
               </p>
 
