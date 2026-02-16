@@ -128,15 +128,18 @@ Build a premium B2B SaaS website for an AI-first contract review company called 
 
 ### EarlyAccessModal.jsx
 - **Form Step**: Name, Email, Company Size dropdown, Newsletter checkbox
-- **Scheduling Step**: 
+- **Scheduling Step** (Compact Design):
   - Custom calendar with month navigation
+  - Single-letter day headers (S, M, T, W, T, F, S)
   - Date picker (disables past dates and weekends)
-  - Time slot grid (9AM-4:30PM slots)
-  - Selection summary with "Confirm Time" CTA
+  - 3-column time slot grid (9AM-4:30PM)
+  - Compact selection summary with "Confirm" CTA
 - **Confirmation Step**:
+  - Handshake icon
+  - "We'll wait for you on the call" message
   - Displays scheduled date/time
   - Calendar invite message
-  - Done button
+  - "Return to Homepage" button with home icon
 
 ### NetworkBackground.jsx
 - Canvas-based interactive background
