@@ -39,7 +39,7 @@ export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
             transition={{ duration: 0.2 }}
           >
             <span className="text-sm font-medium text-amber-600 tracking-wide">
-              Lawyer in the Loop
+              Lawyer Assisted AI
             </span>
           </motion.span>
         </motion.div>
@@ -51,9 +51,8 @@ export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
-          90% AI Speed.<br />
-          <span className="text-[#1a1a1a]">100% Human</span><br />
-          <span className="text-[#1a1a1a]">Assurance.</span>
+          Contract review<br />
+          <span className="text-[#1a1a1a]">without hourly billing.</span>
         </motion.h1>
         
         {/* Description */}
@@ -63,7 +62,7 @@ export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
-          The first autonomous contract review platform with a "human-in-the-loop" guarantee. AI handles the grunt work. Licensed attorneys verify the critical 10%.
+          AI-powered contract review with the right level of human legal oversight — fast, transparent, and cost-effective.
         </motion.p>
         
         {/* CTA Button - Dark pill */}
