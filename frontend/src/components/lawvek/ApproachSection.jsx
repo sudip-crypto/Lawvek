@@ -26,10 +26,13 @@ export const ApproachSection = () => {
   return (
     <section 
       id="approach"
-      className="relative py-24 md:py-32"
+      className="relative py-24 md:py-32 bg-[#FAFAFA]"
       data-testid="approach-section"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      {/* Subtle warm gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-[#FAFAFA] to-[#F5F5F5]" />
+
+      <div className="relative max-w-7xl mx-auto px-6 md:px-12">
         {/* Header */}
         <motion.div
           className="max-w-2xl mb-16"
@@ -38,7 +41,7 @@ export const ApproachSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-sm font-medium text-amber-600 tracking-wide uppercase mb-4">
+          <p className="text-sm font-medium text-emerald-600 tracking-wide uppercase mb-4">
             Our Solution
           </p>
           <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-[#1a1a1a] mb-4">
@@ -54,7 +57,7 @@ export const ApproachSection = () => {
           {steps.map((step, index) => (
             <motion.div
               key={step.number}
-              className="group bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-7 hover:border-gray-300 hover:shadow-lg transition-all duration-300"
+              className="group bg-white border border-gray-200 rounded-2xl p-7 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-100/50 transition-all duration-300"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
@@ -64,14 +67,14 @@ export const ApproachSection = () => {
             >
               {/* Header Row - Number + Title + Icon */}
               <div className="flex items-center gap-4 mb-5">
-                <span className="text-sm font-medium text-gray-400 tracking-widest flex-shrink-0">
+                <span className="text-sm font-medium text-emerald-500 tracking-widest flex-shrink-0">
                   {step.number}
                 </span>
                 <h3 className="text-base font-semibold text-[#1a1a1a] flex-1 truncate">
                   {step.title}
                 </h3>
-                <div className="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center group-hover:scale-105 transition-transform duration-300 flex-shrink-0">
-                  <step.icon className="h-4 w-4 text-amber-600" strokeWidth={1.5} />
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center group-hover:scale-105 group-hover:bg-emerald-100 transition-all duration-300 flex-shrink-0">
+                  <step.icon className="h-4 w-4 text-emerald-600" strokeWidth={1.5} />
                 </div>
               </div>
 
