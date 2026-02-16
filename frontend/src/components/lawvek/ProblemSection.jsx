@@ -25,10 +25,19 @@ export const ProblemSection = () => {
 
   return (
     <section 
-      className="relative py-24 md:py-32"
+      className="relative py-24 md:py-32 bg-[#0A0F1A]"
       data-testid="problem-section"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      {/* Subtle gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0F172A] via-[#0A0F1A] to-[#0A0F1A]" />
+      
+      {/* Subtle grid pattern */}
+      <div className="absolute inset-0 opacity-[0.03]" style={{
+        backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+        backgroundSize: '60px 60px'
+      }} />
+
+      <div className="relative max-w-7xl mx-auto px-6 md:px-12">
         {/* Header */}
         <motion.div
           className="max-w-2xl mb-16"
@@ -37,13 +46,13 @@ export const ProblemSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
-          <p className="text-sm font-medium text-red-500 tracking-wide uppercase mb-4">
+          <p className="text-sm font-medium text-red-400 tracking-wide uppercase mb-4">
             The Problem
           </p>
-          <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-[#1a1a1a] mb-4">
+          <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-white mb-4">
             Legal review is broken.
           </h2>
-          <p className="text-base text-[#666666]">
+          <p className="text-base text-slate-400">
             The traditional model treats every contract the same — regardless of complexity, risk, or urgency.
           </p>
         </motion.div>
@@ -53,7 +62,7 @@ export const ProblemSection = () => {
           {problems.map((problem, index) => (
             <motion.div
               key={problem.title}
-              className="relative p-8 rounded-2xl border border-gray-200 bg-white/80 backdrop-blur-sm hover:border-gray-300 hover:shadow-lg transition-all duration-300"
+              className="relative p-8 rounded-2xl border border-slate-800 bg-slate-900/50 backdrop-blur-sm hover:border-slate-700 hover:bg-slate-900/80 transition-all duration-300"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -61,14 +70,14 @@ export const ProblemSection = () => {
               whileHover={{ y: -6, transition: { duration: 0.2 } }}
               data-testid={`problem-item-${index}`}
             >
-              <div className="w-12 h-12 rounded-xl bg-gray-100 border border-gray-200 flex items-center justify-center mb-6">
-                <problem.icon className="h-5 w-5 text-[#666666]" strokeWidth={1.5} />
+              <div className="w-12 h-12 rounded-xl bg-slate-800/80 border border-slate-700 flex items-center justify-center mb-6">
+                <problem.icon className="h-5 w-5 text-slate-400" strokeWidth={1.5} />
               </div>
-              <p className="text-3xl font-semibold text-[#1a1a1a] mb-2">{problem.stat}</p>
-              <h3 className="text-lg font-semibold text-[#1a1a1a] mb-3">
+              <p className="text-3xl font-semibold text-white mb-2">{problem.stat}</p>
+              <h3 className="text-lg font-semibold text-white mb-3">
                 {problem.title}
               </h3>
-              <p className="text-[15px] leading-relaxed text-[#666666]">
+              <p className="text-[15px] leading-relaxed text-slate-400">
                 {problem.description}
               </p>
             </motion.div>
