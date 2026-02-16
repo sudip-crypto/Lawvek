@@ -1,9 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronDown, ArrowRight, Calendar, CheckCircle2 } from 'lucide-react';
+import { X, ChevronDown, ArrowRight, Calendar, CheckCircle2, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
-
-// Calendly URL - Replace with your actual Calendly link
-const CALENDLY_URL = 'https://calendly.com/lawvek/onboarding';
 
 export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }) => {
   const [formData, setFormData] = useState({
@@ -16,8 +13,11 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
   const [step, setStep] = useState('form'); // 'form' | 'scheduling' | 'confirmed'
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [scheduledTime, setScheduledTime] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedTime, setSelectedTime] = useState(null);
+  const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [isBooking, setIsBooking] = useState(false);
   const dropdownRef = useRef(null);
-  const calendlyContainerRef = useRef(null);
   const spotsRemaining = 50 - queueCount;
 
   const companySizes = [
@@ -28,39 +28,73 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
     '500+ employees',
   ];
 
-  // Load Calendly script and listen for events
-  useEffect(() => {
-    if (step === 'scheduling') {
-      // Load Calendly widget script
-      const script = document.createElement('script');
-      script.src = 'https://assets.calendly.com/assets/external/widget.js';
-      script.async = true;
-      document.body.appendChild(script);
+  // Available time slots
+  const timeSlots = [
+    '9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM',
+    '11:00 AM', '11:30 AM', '2:00 PM', '2:30 PM',
+    '3:00 PM', '3:30 PM', '4:00 PM', '4:30 PM'
+  ];
 
-      // Listen for Calendly events
-      const handleCalendlyEvent = (e) => {
-        if (e.data.event === 'calendly.event_scheduled') {
-          const eventDetails = e.data.payload;
-          setScheduledTime({
-            date: eventDetails?.event?.start_time || new Date().toISOString(),
-            invitee: eventDetails?.invitee?.name || formData.name
-          });
-          setStep('confirmed');
-        }
-      };
-
-      window.addEventListener('message', handleCalendlyEvent);
-
-      return () => {
-        window.removeEventListener('message', handleCalendlyEvent);
-        // Clean up script if needed
-        const existingScript = document.querySelector('script[src*="calendly"]');
-        if (existingScript) {
-          existingScript.remove();
-        }
-      };
+  // Generate calendar days
+  const generateCalendarDays = () => {
+    const year = currentMonth.getFullYear();
+    const month = currentMonth.getMonth();
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const startingDay = firstDay.getDay();
+    const totalDays = lastDay.getDate();
+    
+    const days = [];
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    // Add empty slots for days before the first day
+    for (let i = 0; i < startingDay; i++) {
+      days.push(null);
     }
-  }, [step, formData.name]);
+    
+    // Add actual days
+    for (let day = 1; day <= totalDays; day++) {
+      const date = new Date(year, month, day);
+      const isPast = date < today;
+      const isWeekend = date.getDay() === 0 || date.getDay() === 6;
+      days.push({
+        day,
+        date,
+        disabled: isPast || isWeekend
+      });
+    }
+    
+    return days;
+  };
+
+  const navigateMonth = (direction) => {
+    setCurrentMonth(prev => {
+      const newMonth = new Date(prev);
+      newMonth.setMonth(prev.getMonth() + direction);
+      return newMonth;
+    });
+  };
+
+  const handleBooking = async () => {
+    if (!selectedDate || !selectedTime) return;
+    
+    setIsBooking(true);
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
+    const dateObj = new Date(selectedDate);
+    setScheduledTime({
+      date: dateObj.toISOString(),
+      time: selectedTime,
+      formattedDate: dateObj.toLocaleDateString('en-US', { 
+        weekday: 'long', 
+        month: 'long', 
+        day: 'numeric' 
+      })
+    });
+    setIsBooking(false);
+    setStep('confirmed');
+  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
