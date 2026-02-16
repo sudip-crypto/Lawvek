@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronDown, ArrowRight, Calendar, CheckCircle2, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, ChevronDown, ArrowRight, CheckCircle2, Clock, ChevronLeft, ChevronRight, Handshake, Home } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 
 export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }) => {
