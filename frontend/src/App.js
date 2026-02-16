@@ -45,6 +45,7 @@ const LandingPage = () => {
       <Header onOpenModal={openModal} />
       <main className="relative z-10">
         <HeroSection onOpenModal={openModal} queueCount={queueCount} />
+        <TrustTicker />
         <ProblemSection />
         <ApproachSection />
         <HowItWorksSection />
