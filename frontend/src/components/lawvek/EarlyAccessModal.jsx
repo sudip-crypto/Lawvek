@@ -181,7 +181,7 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className={`w-full ${step === 'scheduling' ? 'max-w-3xl' : 'max-w-md'}`}
+              className={`w-full ${step === 'scheduling' ? 'max-w-xl' : 'max-w-md'}`}
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
