@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useRef } from 'react';
+import { NetworkBackground } from './NetworkBackground';
 
 export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
   const spotsRemaining = 50 - queueCount;
@@ -21,6 +22,8 @@ export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       data-testid="hero-section"
     >
+      {/* Network Background - Only in Hero */}
+      <NetworkBackground />
       {/* Premium Depth Gradient Layers - Royal & Lively */}
       <motion.div 
         className="absolute inset-0 pointer-events-none"
