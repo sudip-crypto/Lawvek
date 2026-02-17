@@ -138,17 +138,49 @@ export const NetworkBackground = () => {
                 if (this.y > window.innerHeight + 10) this.y = -10;
                 if (this.y < -10) this.y = window.innerHeight + 10;
 
+                // INVISIBLE SHIELD - bounce particles away from center
+                const dx = this.x - shield.x;
+                const dy = this.y - shield.y;
+                // Normalize to ellipse coordinates
+                const normalizedDist = Math.sqrt(
+                    (dx * dx) / (shield.radiusX * shield.radiusX) + 
+                    (dy * dy) / (shield.radiusY * shield.radiusY)
+                );
+                
+                if (normalizedDist < 1) {
+                    // Particle is inside shield - push it out
+                    const angle = Math.atan2(dy, dx);
+                    const pushX = Math.cos(angle) * shield.strength;
+                    const pushY = Math.sin(angle) * shield.strength;
+                    
+                    // Smoothly push outward
+                    this.x += pushX * (1 - normalizedDist) * 3;
+                    this.y += pushY * (1 - normalizedDist) * 3;
+                    
+                    // Also slightly adjust velocity to bounce away
+                    this.speedX += pushX * 0.02;
+                    this.speedY += pushY * 0.02;
+                    
+                    // Limit speed to prevent erratic movement
+                    const maxSpeed = 0.5;
+                    const currentSpeed = Math.sqrt(this.speedX * this.speedX + this.speedY * this.speedY);
+                    if (currentSpeed > maxSpeed) {
+                        this.speedX = (this.speedX / currentSpeed) * maxSpeed;
+                        this.speedY = (this.speedY / currentSpeed) * maxSpeed;
+                    }
+                }
+
                 // Mouse interaction - smooth push
                 if (mouse.x != null) {
-                    const dx = mouse.x - this.x;
-                    const dy = mouse.y - this.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    const mdx = mouse.x - this.x;
+                    const mdy = mouse.y - this.y;
+                    const dist = Math.sqrt(mdx * mdx + mdy * mdy);
 
                     if (dist < mouse.radius) {
                         const force = (mouse.radius - dist) / mouse.radius;
                         const easedForce = force * force;
-                        const forceX = (dx / dist) * easedForce * this.density * 0.35;
-                        const forceY = (dy / dist) * easedForce * this.density * 0.35;
+                        const forceX = (mdx / dist) * easedForce * this.density * 0.35;
+                        const forceY = (mdy / dist) * easedForce * this.density * 0.35;
                         this.x -= forceX;
                         this.y -= forceY;
                     }
