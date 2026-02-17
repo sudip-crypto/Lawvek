@@ -11,6 +11,15 @@ export const NetworkBackground = () => {
         let animationFrameId;
         let particles = [];
         let mouse = { x: null, y: null, radius: 220 };
+        
+        // Invisible shield around center for readability
+        const shield = {
+            x: 0,
+            y: 0,
+            radiusX: 420, // Horizontal radius (wider)
+            radiusY: 320, // Vertical radius
+            strength: 0.8 // Bounce strength
+        };
 
         const setCanvasSize = () => {
             canvas.width = window.innerWidth * window.devicePixelRatio;
