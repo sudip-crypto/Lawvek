@@ -39,50 +39,75 @@ export const NetworkBackground = () => {
             constructor() {
                 this.x = Math.random() * window.innerWidth;
                 this.y = Math.random() * window.innerHeight;
-                // Larger, more varied particle sizes for depth
-                this.baseSize = Math.random() * 3 + 1.2;
+                // Varied particle sizes for depth
+                this.baseSize = Math.random() * 3.2 + 1.5;
                 this.size = this.baseSize;
-                // Slower, smoother movement
-                this.speedX = (Math.random() - 0.5) * 0.25;
-                this.speedY = (Math.random() - 0.5) * 0.25;
+                // Smooth movement
+                this.speedX = (Math.random() - 0.5) * 0.3;
+                this.speedY = (Math.random() - 0.5) * 0.3;
                 this.density = Math.random() * 30 + 1;
-                // Gold accent for ~10% of particles
-                this.isGold = Math.random() < 0.10;
-                // Large anchor nodes for ~4% of particles
-                this.isAnchor = Math.random() < 0.04;
+                
+                // Royal color distribution
+                const colorRoll = Math.random();
+                if (colorRoll < 0.15) {
+                    this.colorType = 'gold'; // Rich gold - 15%
+                } else if (colorRoll < 0.25) {
+                    this.colorType = 'royal'; // Royal blue - 10%
+                } else if (colorRoll < 0.30) {
+                    this.colorType = 'anchor'; // Large dark anchors - 5%
+                } else {
+                    this.colorType = 'standard'; // Elegant dark - 70%
+                }
+                
                 // Pulsing phase offset
                 this.pulseOffset = Math.random() * Math.PI * 2;
-                // Depth layer (0-1) for parallax effect
+                // Depth layer for parallax
                 this.depth = Math.random();
-                // Target position for smooth interpolation
-                this.targetX = this.x;
-                this.targetY = this.y;
+                // Sparkle effect timing
+                this.sparklePhase = Math.random() * Math.PI * 2;
             }
 
             draw(time) {
-                // Smoother pulsing effect
-                const pulse = Math.sin(time * 0.0015 + this.pulseOffset) * 0.2 + 1;
-                const currentSize = this.isAnchor ? this.baseSize * 1.8 * pulse : this.baseSize * pulse;
+                // Smooth pulsing
+                const pulse = Math.sin(time * 0.0012 + this.pulseOffset) * 0.15 + 1;
+                let currentSize = this.baseSize * pulse;
+                
+                // Sparkle effect for gold particles
+                if (this.colorType === 'gold') {
+                    const sparkle = Math.sin(time * 0.003 + this.sparklePhase);
+                    if (sparkle > 0.7) {
+                        currentSize *= 1.3;
+                    }
+                }
+                
+                if (this.colorType === 'anchor') {
+                    currentSize = this.baseSize * 2 * pulse;
+                }
                 
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, currentSize, 0, Math.PI * 2);
 
-                if (this.isGold) {
-                    // Prominent gold particles
-                    ctx.fillStyle = 'rgba(212, 175, 55, 0.75)';
-                    ctx.shadowColor = 'rgba(212, 175, 55, 0.5)';
+                if (this.colorType === 'gold') {
+                    // Rich, vibrant gold
+                    ctx.fillStyle = 'rgba(218, 165, 32, 0.9)';
+                    ctx.shadowColor = 'rgba(255, 215, 0, 0.7)';
+                    ctx.shadowBlur = 15;
+                } else if (this.colorType === 'royal') {
+                    // Royal blue accent
+                    ctx.fillStyle = 'rgba(65, 105, 180, 0.75)';
+                    ctx.shadowColor = 'rgba(65, 105, 180, 0.5)';
                     ctx.shadowBlur = 12;
-                } else if (this.isAnchor) {
-                    // Large anchor nodes - dark and prominent
-                    ctx.fillStyle = 'rgba(40, 50, 70, 0.6)';
-                    ctx.shadowColor = 'rgba(40, 50, 70, 0.3)';
+                } else if (this.colorType === 'anchor') {
+                    // Deep navy anchors
+                    ctx.fillStyle = 'rgba(25, 40, 65, 0.7)';
+                    ctx.shadowColor = 'rgba(25, 40, 65, 0.4)';
                     ctx.shadowBlur = 10;
                 } else {
-                    // Regular particles - visible but elegant
-                    const depthOpacity = 0.35 + this.depth * 0.3;
-                    ctx.fillStyle = `rgba(60, 70, 90, ${depthOpacity})`;
-                    ctx.shadowColor = 'rgba(60, 70, 90, 0.15)';
-                    ctx.shadowBlur = 4;
+                    // Rich dark particles
+                    const depthOpacity = 0.45 + this.depth * 0.35;
+                    ctx.fillStyle = `rgba(35, 45, 65, ${depthOpacity})`;
+                    ctx.shadowColor = 'rgba(35, 45, 65, 0.2)';
+                    ctx.shadowBlur = 5;
                 }
 
                 ctx.fill();
@@ -90,18 +115,18 @@ export const NetworkBackground = () => {
             }
 
             update(time) {
-                // Smooth parallax movement based on depth
+                // Parallax movement
                 const depthFactor = 0.6 + this.depth * 0.4;
                 this.x += this.speedX * depthFactor;
                 this.y += this.speedY * depthFactor;
 
-                // Wrap around edges smoothly
+                // Wrap around edges
                 if (this.x > window.innerWidth + 10) this.x = -10;
                 if (this.x < -10) this.x = window.innerWidth + 10;
                 if (this.y > window.innerHeight + 10) this.y = -10;
                 if (this.y < -10) this.y = window.innerHeight + 10;
 
-                // Mouse interaction - smoother, gentler push
+                // Mouse interaction - smooth push
                 if (mouse.x != null) {
                     const dx = mouse.x - this.x;
                     const dy = mouse.y - this.y;
@@ -109,10 +134,9 @@ export const NetworkBackground = () => {
 
                     if (dist < mouse.radius) {
                         const force = (mouse.radius - dist) / mouse.radius;
-                        // Eased force for smoother interaction
-                        const easedForce = force * force; // Quadratic easing
-                        const forceX = (dx / dist) * easedForce * this.density * 0.3;
-                        const forceY = (dy / dist) * easedForce * this.density * 0.3;
+                        const easedForce = force * force;
+                        const forceX = (dx / dist) * easedForce * this.density * 0.35;
+                        const forceY = (dy / dist) * easedForce * this.density * 0.35;
                         this.x -= forceX;
                         this.y -= forceY;
                     }
