@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback, memo } from 'react';
+import { useEffect, useRef, memo } from 'react';
 
 export const NetworkBackground = memo(() => {
     const canvasRef = useRef(null);
