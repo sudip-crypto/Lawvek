@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Zap, TrendingDown, ShieldCheck, Users, FileText, BarChart } from 'lucide-react';
+import { SubtleNetworkBg } from './SubtleNetworkBg';
 
 export const BenefitsSection = () => {
   const benefits = [
@@ -37,10 +38,13 @@ export const BenefitsSection = () => {
 
   return (
     <section 
-      className="relative py-24 md:py-32"
+      className="relative py-24 md:py-32 overflow-hidden"
       data-testid="benefits-section"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      {/* Subtle network background */}
+      <SubtleNetworkBg />
+      
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
         {/* Header */}
         <motion.div
           className="max-w-2xl mb-16"
