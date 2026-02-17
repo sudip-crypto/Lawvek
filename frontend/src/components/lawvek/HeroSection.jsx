@@ -138,23 +138,25 @@ export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
       {/* Bottom fade for seamless transition to ticker */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#FAFAFA] via-[#FAFAFA]/80 to-transparent pointer-events-none" />
 
-      {/* Content - Centered */}
+      {/* Content - Centered with protective backdrop */}
       <motion.div 
         className="relative z-10 max-w-4xl mx-auto px-6 text-center py-32"
         style={{ y: textY, opacity }}
       >
+        {/* Subtle protective backdrop for readability */}
+        <div className="absolute inset-0 -mx-12 -my-8 bg-gradient-radial from-white/70 via-white/40 to-transparent rounded-3xl blur-xl pointer-events-none" />
         
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="mb-10"
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="relative mb-10"
         >
           <motion.span 
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/95 backdrop-blur-sm border border-amber-200/80 rounded-full shadow-sm shadow-amber-100/50"
             whileHover={{ scale: 1.05, borderColor: 'rgba(245, 158, 11, 0.5)' }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.3 }}
           >
             <span className="text-sm font-medium text-amber-600 tracking-wide">
               Lawyer Assisted AI
@@ -164,10 +166,10 @@ export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
         
         {/* Headline */}
         <motion.h1 
-          className="text-5xl sm:text-6xl lg:text-7xl font-serif tracking-[-0.02em] leading-[1.05] text-[#1a1a1a] mb-8"
+          className="relative text-5xl sm:text-6xl lg:text-7xl font-serif tracking-[-0.02em] leading-[1.05] text-[#1a1a1a] mb-8"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{ duration: 1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
         >
           Contract review<br />
           <span className="text-[#1a1a1a]">without hourly billing.</span>
@@ -175,24 +177,26 @@ export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
         
         {/* Description */}
         <motion.p 
-          className="text-lg md:text-xl font-sans leading-relaxed text-[#555555] max-w-2xl mx-auto mb-12"
+          className="relative text-lg md:text-xl font-sans leading-relaxed text-[#555555] max-w-2xl mx-auto mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
         >
           AI-powered contract review with the right level of human legal oversight — fast, transparent, and cost-effective.
         </motion.p>
         
-        {/* CTA Button - Dark pill */}
+        {/* CTA Button - Dark pill with enhanced backdrop */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.35 }}
-          className="mb-8"
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="relative mb-8"
         >
+          {/* CTA backdrop glow */}
+          <div className="absolute inset-0 -inset-x-8 -inset-y-4 bg-white/60 rounded-full blur-2xl pointer-events-none" />
           <motion.button
             onClick={onOpenModal}
-            className="group relative inline-flex items-center gap-3 px-8 py-4 bg-[#1a1a1a] text-white rounded-full font-semibold text-base overflow-hidden transition-all duration-500 shadow-xl hover:shadow-2xl"
+            className="relative group inline-flex items-center gap-3 px-8 py-4 bg-[#1a1a1a] text-white rounded-full font-semibold text-base overflow-hidden transition-all duration-500 shadow-xl hover:shadow-2xl"
             whileHover={{ 
               scale: 1.02, 
             }}
@@ -210,14 +214,15 @@ export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.45 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="relative"
         >
           <motion.span 
             className="inline-flex items-center gap-2 px-4 py-2 bg-white/95 backdrop-blur-sm border border-amber-200 rounded-full shadow-sm"
             animate={{ 
               borderColor: ['rgba(245, 158, 11, 0.3)', 'rgba(245, 158, 11, 0.6)', 'rgba(245, 158, 11, 0.3)']
             }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
           >
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-500 opacity-75"></span>
