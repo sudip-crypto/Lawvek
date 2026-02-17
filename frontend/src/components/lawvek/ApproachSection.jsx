@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { BarChart3, GitBranch, DollarSign } from 'lucide-react';
+import { SubtleNetworkBg } from './SubtleNetworkBg';
 
 export const ApproachSection = () => {
   const steps = [
@@ -26,13 +27,16 @@ export const ApproachSection = () => {
   return (
     <section 
       id="approach"
-      className="relative py-24 md:py-32 bg-[#FAFAFA]"
+      className="relative py-24 md:py-32 overflow-hidden"
       data-testid="approach-section"
     >
-      {/* Subtle warm gradient */}
+      {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-white via-[#FAFAFA] to-[#F5F5F5]" />
+      
+      {/* Subtle network background */}
+      <SubtleNetworkBg />
 
-      <div className="relative max-w-7xl mx-auto px-6 md:px-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
         {/* Header */}
         <motion.div
           className="max-w-2xl mb-16"
