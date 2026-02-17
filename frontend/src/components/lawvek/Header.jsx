@@ -66,24 +66,27 @@ export const Header = ({ onOpenModal }) => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-40 pt-5 md:pt-6">
+      <header className="fixed top-0 left-0 right-0 z-40 py-5 md:py-6">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
+          {/* Aligned row: Logo - Nav - CTA */}
           <div className="flex items-center justify-between">
-            {/* Logo - Standalone elegant */}
-            <a href="/" className="flex items-center z-50 group" data-testid="header-logo">
-              <span className={`text-2xl md:text-[1.7rem] font-semibold tracking-tight transition-all duration-300 ${mobileMenuOpen ? 'text-white' : 'text-[#1a1a1a]'}`}>
-                Lawvek
-              </span>
-            </a>
+            {/* Logo - Left aligned */}
+            <div className="flex-shrink-0 w-[180px]">
+              <a href="/" className="flex items-center z-50 group" data-testid="header-logo">
+                <span className={`text-2xl md:text-[1.7rem] font-semibold tracking-tight transition-all duration-300 ${mobileMenuOpen ? 'text-white' : 'text-[#1a1a1a]'}`}>
+                  Lawvek
+                </span>
+              </a>
+            </div>
 
-            {/* Desktop Navigation - Floating pill */}
-            <nav className="hidden md:flex items-center" data-testid="desktop-nav">
-              <div className="flex items-center gap-1 px-2 py-1.5 rounded-full bg-white/60 backdrop-blur-lg border border-white/40 shadow-[0_2px_20px_rgba(0,0,0,0.06)]">
+            {/* Desktop Navigation - Center aligned floating pill */}
+            <nav className="hidden md:flex items-center justify-center flex-1" data-testid="desktop-nav">
+              <div className="flex items-center gap-1 px-2 py-1.5 rounded-full bg-white/70 backdrop-blur-lg border border-gray-200/50 shadow-[0_2px_16px_rgba(0,0,0,0.06)]">
                 {navLinks.map((link) => (
                   <a
                     key={link.label}
                     href={link.href}
-                    className="px-5 py-2 text-[14px] font-medium text-[#444444] hover:text-[#1a1a1a] hover:bg-white/70 rounded-full transition-all duration-300"
+                    className="px-5 py-2 text-[14px] font-medium text-[#555555] hover:text-[#1a1a1a] hover:bg-white/80 rounded-full transition-all duration-300"
                     data-testid={`nav-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
                   >
                     {link.label}
@@ -92,13 +95,13 @@ export const Header = ({ onOpenModal }) => {
               </div>
             </nav>
 
-            {/* Desktop CTA - Premium floating button */}
-            <div className="hidden md:flex items-center">
+            {/* Desktop CTA - Right aligned */}
+            <div className="hidden md:flex items-center justify-end flex-shrink-0 w-[180px]">
               <motion.button
                 onClick={onOpenModal}
-                className="group relative flex items-center gap-2.5 px-6 py-3 rounded-full overflow-hidden font-semibold text-[14px] bg-[#1a1a1a] text-white transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
+                className="group relative flex items-center gap-2.5 px-6 py-3 rounded-full overflow-hidden font-semibold text-[14px] bg-[#1a1a1a] text-white transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.12)]"
                 data-testid="header-cta"
-                whileHover={{ scale: 1.03, y: -1, boxShadow: '0 8px 30px rgba(0,0,0,0.2)' }}
+                whileHover={{ scale: 1.03, y: -1, boxShadow: '0 8px 30px rgba(0,0,0,0.18)' }}
                 whileTap={{ scale: 0.98 }}
               >
                 <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
@@ -109,7 +112,7 @@ export const Header = ({ onOpenModal }) => {
 
             {/* Mobile Menu Button */}
             <motion.button
-              className={`md:hidden p-2 z-50 rounded-full transition-colors ${mobileMenuOpen ? 'text-white' : 'text-[#1a1a1a] bg-white/60 backdrop-blur-sm shadow-sm'}`}
+              className={`md:hidden p-2.5 z-50 rounded-full transition-colors ${mobileMenuOpen ? 'text-white' : 'text-[#1a1a1a] bg-white/70 backdrop-blur-sm border border-gray-200/50 shadow-sm'}`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
               data-testid="mobile-menu-toggle"
@@ -124,7 +127,7 @@ export const Header = ({ onOpenModal }) => {
                     exit={{ rotate: 90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <X size={24} strokeWidth={2} />
+                    <X size={22} strokeWidth={2} />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -134,7 +137,7 @@ export const Header = ({ onOpenModal }) => {
                     exit={{ rotate: -90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Menu size={24} strokeWidth={2} />
+                    <Menu size={22} strokeWidth={2} />
                   </motion.div>
                 )}
               </AnimatePresence>
