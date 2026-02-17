@@ -7,66 +7,57 @@ export const IntegrationsSection = () => {
     {
       name: 'Slack',
       logo: (
-        <svg viewBox="0 0 54 54" className="w-9 h-9">
-          <path d="M19.712.133a5.381 5.381 0 0 0-5.376 5.387 5.381 5.381 0 0 0 5.376 5.386h5.376V5.52A5.381 5.381 0 0 0 19.712.133m0 14.365H5.376A5.381 5.381 0 0 0 0 19.884a5.381 5.381 0 0 0 5.376 5.387h14.336a5.381 5.381 0 0 0 5.376-5.387 5.381 5.381 0 0 0-5.376-5.386" fill="#36C5F0"/>
-          <path d="M53.76 19.884a5.381 5.381 0 0 0-5.376-5.386 5.381 5.381 0 0 0-5.376 5.386v5.387h5.376a5.381 5.381 0 0 0 5.376-5.387m-14.336 0V5.52A5.381 5.381 0 0 0 34.048.133a5.381 5.381 0 0 0-5.376 5.387v14.364a5.381 5.381 0 0 0 5.376 5.387 5.381 5.381 0 0 0 5.376-5.387" fill="#2EB67D"/>
-          <path d="M34.048 54a5.381 5.381 0 0 0 5.376-5.387 5.381 5.381 0 0 0-5.376-5.386h-5.376v5.386A5.381 5.381 0 0 0 34.048 54m0-14.365h14.336a5.381 5.381 0 0 0 5.376-5.386 5.381 5.381 0 0 0-5.376-5.387H34.048a5.381 5.381 0 0 0-5.376 5.387 5.381 5.381 0 0 0 5.376 5.386" fill="#ECB22E"/>
-          <path d="M0 34.249a5.381 5.381 0 0 0 5.376 5.386 5.381 5.381 0 0 0 5.376-5.386v-5.387H5.376A5.381 5.381 0 0 0 0 34.25m14.336-.001v14.364A5.381 5.381 0 0 0 19.712 54a5.381 5.381 0 0 0 5.376-5.387V34.249a5.381 5.381 0 0 0-5.376-5.387 5.381 5.381 0 0 0-5.376 5.387" fill="#E01E5A"/>
+        <svg viewBox="0 0 127 127" className="w-10 h-10">
+          <path d="M27.2 80c0 7.3-5.9 13.2-13.2 13.2C6.7 93.2.8 87.3.8 80c0-7.3 5.9-13.2 13.2-13.2h13.2V80zm6.6 0c0-7.3 5.9-13.2 13.2-13.2 7.3 0 13.2 5.9 13.2 13.2v33c0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V80z" fill="#E01E5A"/>
+          <path d="M47 27c-7.3 0-13.2-5.9-13.2-13.2C33.8 6.5 39.7.6 47 .6c7.3 0 13.2 5.9 13.2 13.2V27H47zm0 6.7c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H13.9C6.6 60.1.7 54.2.7 46.9c0-7.3 5.9-13.2 13.2-13.2H47z" fill="#36C5F0"/>
+          <path d="M99.9 46.9c0-7.3 5.9-13.2 13.2-13.2 7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H99.9V46.9zm-6.6 0c0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V13.8C66.9 6.5 72.8.6 80.1.6c7.3 0 13.2 5.9 13.2 13.2v33.1z" fill="#2EB67D"/>
+          <path d="M80.1 99.8c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V99.8h13.2zm0-6.6c-7.3 0-13.2-5.9-13.2-13.2 0-7.3 5.9-13.2 13.2-13.2h33.1c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H80.1z" fill="#ECB22E"/>
         </svg>
       )
     },
     {
       name: 'Gmail',
       logo: (
-        <svg viewBox="0 0 48 48" className="w-9 h-9">
+        <svg viewBox="0 0 48 48" className="w-10 h-10">
           <path fill="#4caf50" d="M45,16.2l-5,2.75l-5,4.75L35,40h7c1.657,0,3-1.343,3-3V16.2z"/>
           <path fill="#1e88e5" d="M3,16.2l3.614,1.71L13,23.7V40H6c-1.657,0-3-1.343-3-3V16.2z"/>
           <polygon fill="#e53935" points="35,11.2 24,19.45 13,11.2 12,17 13,23.7 24,31.95 35,23.7 36,17"/>
           <path fill="#c62828" d="M3,12.298V16.2l10,7.5V11.2L9.876,8.859C9.132,8.301,8.228,8,7.298,8h0C4.924,8,3,9.924,3,12.298z"/>
-          <path fill="#fbc02d" d="M45,12.298V16.2l-10,7.5V11.2l3.124-2.341C38.868,8.301,39.772,8,40.702,8h0 C43.076,8,45,9.924,45,12.298z"/>
+          <path fill="#fbc02d" d="M45,12.298V16.2l-10,7.5V11.2l3.124-2.341C38.868,8.301,39.772,8,40.702,8h0C43.076,8,45,9.924,45,12.298z"/>
         </svg>
       )
     },
     {
       name: 'Microsoft Teams',
       logo: (
-        <svg viewBox="0 0 48 48" className="w-9 h-9">
-          <path fill="#5c6bc0" d="M41.5,13h-4.2c0.4,0.9,0.7,1.9,0.7,3c0,4.1-3.4,7.5-7.5,7.5c-1.4,0-2.6-0.4-3.7-1l0,0l-2.8,1.4v8.5 l-4.7,2.3l-2.3-1.2l0-9.6l-2.8-1.4c-1.1,0.6-2.4,1-3.7,1c-4.1,0-7.5-3.4-7.5-7.5c0-1.1,0.2-2.1,0.7-3H3.5C2.1,13,1,14.1,1,15.5 v17C1,33.9,2.1,35,3.5,35H17v9.5c0,1.4,1.1,2.5,2.5,2.5h9c1.4,0,2.5-1.1,2.5-2.5V35h10.5c1.4,0,2.5-1.1,2.5-2.5v-17 C44,14.1,42.9,13,41.5,13z"/>
-          <circle fill="#7986cb" cx="30.5" cy="8.5" r="5.5"/>
-          <circle fill="#5c6bc0" cx="10.5" cy="8.5" r="5.5"/>
-          <path fill="#7986cb" d="M17,16c0,3.9,3.1,7,7,7s7-3.1,7-7s-3.1-7-7-7S17,12.1,17,16z"/>
+        <svg viewBox="0 0 48 48" className="w-10 h-10">
+          <path fill="#5059C9" d="M44,22v11c0,1.105-0.895,2-2,2H32l0-15h10C43.105,20,44,20.895,44,22z"/>
+          <circle fill="#5059C9" cx="38" cy="14" r="4"/>
+          <circle fill="#7B83EB" cx="24" cy="14" r="6"/>
+          <path fill="#7B83EB" d="M32,22v14c0,1.105-0.895,2-2,2H12c-1.105,0-2-0.895-2-2V22c0-1.105,0.895-2,2-2h18C31.105,20,32,20.895,32,22z"/>
+          <path fill="#fff" d="M25,26h-3v7h-2v-7h-3v-2h8V26z"/>
         </svg>
       )
     },
     {
       name: 'Ironclad',
       logo: (
-        <svg viewBox="0 0 48 48" className="w-9 h-9">
-          <defs>
-            <linearGradient id="ironclad-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#6366F1"/>
-              <stop offset="100%" stopColor="#8B5CF6"/>
-            </linearGradient>
-          </defs>
-          <rect width="48" height="48" rx="8" fill="url(#ironclad-grad)"/>
-          <path d="M14 16h20v3H14v-3zm0 6h20v3H14v-3zm0 6h14v3H14v-3z" fill="white" opacity="0.9"/>
-          <circle cx="36" cy="31" r="4" fill="white"/>
+        <svg viewBox="0 0 48 48" className="w-10 h-10">
+          <rect width="48" height="48" rx="10" fill="#1E1E2E"/>
+          <path d="M12 14h24v2H12zM12 20h24v2H12zM12 26h18v2H12zM12 32h14v2H12z" fill="#6366F1"/>
+          <circle cx="36" cy="33" r="5" fill="#818CF8"/>
+          <path d="M34 33l2 2 4-4" stroke="#1E1E2E" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       )
     },
     {
       name: 'SpotDraft',
       logo: (
-        <svg viewBox="0 0 48 48" className="w-9 h-9">
-          <defs>
-            <linearGradient id="spotdraft-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#3B82F6"/>
-              <stop offset="100%" stopColor="#1D4ED8"/>
-            </linearGradient>
-          </defs>
-          <rect width="48" height="48" rx="8" fill="url(#spotdraft-grad)"/>
-          <path d="M24 10l12 7v14l-12 7-12-7V17l12-7z" fill="none" stroke="white" strokeWidth="2.5"/>
-          <circle cx="24" cy="24" r="6" fill="white"/>
+        <svg viewBox="0 0 48 48" className="w-10 h-10">
+          <rect width="48" height="48" rx="10" fill="#2563EB"/>
+          <circle cx="24" cy="24" r="10" fill="none" stroke="#fff" strokeWidth="2.5"/>
+          <circle cx="24" cy="24" r="4" fill="#fff"/>
+          <path d="M24 10V6M24 42v-4M10 24H6M42 24h-4" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>
         </svg>
       )
     }
@@ -77,52 +68,65 @@ export const IntegrationsSection = () => {
     {
       name: 'HubSpot',
       logo: (
-        <svg viewBox="0 0 48 48" className="w-9 h-9">
-          <path fill="#ff7a59" d="M35.5,16.5v-3.8c1.2-0.7,2-1.9,2-3.4c0-2.2-1.8-4-4-4s-4,1.8-4,4c0,1.5,0.8,2.7,2,3.4v3.8 c-1.5,0.4-2.9,1.1-4,2.1l-10.7-8.3c0.1-0.4,0.2-0.8,0.2-1.3c0-2.8-2.2-5-5-5s-5,2.2-5,5s2.2,5,5,5c1.1,0,2.2-0.4,3-1l10.4,8.1 c-0.7,1.3-1.1,2.7-1.1,4.2c0,5,4,9,9,9c4.3,0,7.8-3,8.7-6.9l3.5,1.4c0.4,0.2,0.9,0.1,1.2-0.2c0.3-0.3,0.4-0.8,0.2-1.2l-3.4-8.5 C42.3,21.3,39.4,17.7,35.5,16.5z M33.5,35c-2.8,0-5-2.2-5-5s2.2-5,5-5s5,2.2,5,5S36.3,35,33.5,35z"/>
+        <svg viewBox="0 0 48 48" className="w-10 h-10">
+          <path fill="#FF7A59" d="M33.5,19.5v-3.8c1.2-0.7,2-2,2-3.4c0-2.2-1.8-4-4-4s-4,1.8-4,4c0,1.4,0.8,2.7,2,3.4v3.8c-2.1,0.5-3.9,1.6-5.3,3.1L14.1,15c0.1-0.4,0.2-0.8,0.2-1.2c0-2.5-2-4.5-4.5-4.5S5.3,11.3,5.3,13.8s2,4.5,4.5,4.5c0.8,0,1.6-0.2,2.3-0.6l10,7.6c-0.9,1.5-1.4,3.3-1.4,5.2c0,5.5,4.5,10,10,10c4.8,0,8.7-3.4,9.7-7.9l4.1,1.6c0.2,0.1,0.5,0,0.6-0.1c0.2-0.2,0.2-0.4,0.1-0.6l-3.9-9.7C39.4,21.5,36.7,19.9,33.5,19.5z M30.8,36.3c-3,0-5.5-2.5-5.5-5.5s2.5-5.5,5.5-5.5s5.5,2.5,5.5,5.5S33.8,36.3,30.8,36.3z"/>
         </svg>
       )
     },
     {
       name: 'Google Docs',
       logo: (
-        <svg viewBox="0 0 48 48" className="w-9 h-9">
-          <path fill="#2196f3" d="M37,45H11c-1.657,0-3-1.343-3-3V6c0-1.657,1.343-3,3-3h19l10,10v29C40,43.657,38.657,45,37,45z"/>
-          <path fill="#bbdefb" d="M40 13L30 13 30 3z"/>
-          <path fill="#1565c0" d="M30 13L40 23 40 13z"/>
-          <path fill="#e3f2fd" d="M15 23H33V25H15zM15 27H33V29H15zM15 31H33V33H15zM15 35H25V37H15z"/>
+        <svg viewBox="0 0 48 48" className="w-10 h-10">
+          <path fill="#2196F3" d="M37,45H11c-1.657,0-3-1.343-3-3V6c0-1.657,1.343-3,3-3h19l10,10v29C40,43.657,38.657,45,37,45z"/>
+          <path fill="#BBDEFB" d="M40,13H30V3L40,13z"/>
+          <path fill="#1565C0" d="M30,13l10,10V13H30z"/>
+          <rect x="14" y="23" fill="#E3F2FD" width="20" height="2"/>
+          <rect x="14" y="28" fill="#E3F2FD" width="20" height="2"/>
+          <rect x="14" y="33" fill="#E3F2FD" width="20" height="2"/>
+          <rect x="14" y="38" fill="#E3F2FD" width="12" height="2"/>
         </svg>
       )
     },
     {
       name: 'Microsoft Word',
       logo: (
-        <svg viewBox="0 0 48 48" className="w-9 h-9">
-          <path fill="#2196F3" d="M41,10H25v28h16c0.553,0,1-0.447,1-1V11C42,10.447,41.553,10,41,10z"/>
-          <path fill="#FFF" d="M25 15.001H39V17H25zM25 19H39V21H25zM25 23.001H39V25.001H25zM25 27.001H39V29H25zM25 31H39V33.001H25z"/>
-          <path fill="#0D47A1" d="M27 42L6 38V10l21-4V42z"/>
-          <path fill="#FFF" d="M21.167 31.012L18.453 21.012 15.609 31.012 12.172 31.012 8.167 17.012 11.262 17.012 13.776 27.012 16.667 17.012 20.167 17.012 22.833 27.012 25.333 17.012 28.167 17.012 24.167 31.012z"/>
+        <svg viewBox="0 0 48 48" className="w-10 h-10">
+          <rect x="8" y="8" width="32" height="32" rx="2" fill="#185ABD"/>
+          <path d="M41,10H23v28h18c0.553,0,1-0.447,1-1V11C42,10.447,41.553,10,41,10z" fill="#2B579A"/>
+          <rect x="27" y="15" width="11" height="2" fill="#fff"/>
+          <rect x="27" y="20" width="11" height="2" fill="#fff"/>
+          <rect x="27" y="25" width="11" height="2" fill="#fff"/>
+          <rect x="27" y="30" width="11" height="2" fill="#fff"/>
+          <polygon fill="#fff" points="22,34 19.5,22 17.5,34 15.5,34 12,18 14.5,18 16.5,30 18.5,18 20.5,18 22.5,30 24.5,18 27,18 23.5,34"/>
         </svg>
       )
     },
     {
       name: 'Notion',
       logo: (
-        <svg viewBox="0 0 48 48" className="w-9 h-9">
-          <path fill="#fff" d="M42,37c0,2.762-2.238,5-5,5H11c-2.762,0-5-2.238-5-5V11c0-2.762,2.238-5,5-5h26c2.762,0,5,2.238,5,5V37z"/>
-          <path fill="#1a1a1a" d="M37,40H11c-1.657,0-3-1.343-3-3V11c0-1.657,1.343-3,3-3h26c1.657,0,3,1.343,3,3v26C40,38.657,38.657,40,37,40z M11,10c-0.552,0-1,0.448-1,1v26c0,0.552,0.448,1,1,1h26c0.552,0,1-0.448,1-1V11c0-0.552-0.448-1-1-1H11z"/>
-          <path fill="#1a1a1a" d="M13.5,12l5,0.5l0,0.5l-1,0.5v19l5-6.5l0-13l-1-0.5l0-0.5l7,0l0,0.5l-1,0.5l0,16l1,0.5l0,0.5l-5.5,0l0-0.5l1-0.5l0-11l-5.5,7.5l0,4l1,0.5l0,0.5l-6,0l0-0.5l1-0.5l0-16l-1-0.5L13.5,12z"/>
-          <path fill="#1a1a1a" d="M29 18H33V20H29z"/>
+        <svg viewBox="0 0 48 48" className="w-10 h-10">
+          <rect width="48" height="48" rx="8" fill="#fff"/>
+          <path fill="#000" d="M10 10h2l10 14V10h2.5v20H22L12 15.8V30H10V10zM28 10h10v2.5H31v5.5h6v2.5h-6V25h7v2.5H28V10z"/>
+          <rect x="4" y="4" width="40" height="40" rx="6" stroke="#000" strokeWidth="2" fill="none"/>
         </svg>
       )
     },
     {
       name: 'Jira',
       logo: (
-        <svg viewBox="0 0 48 48" className="w-9 h-9">
-          <path fill="#2196f3" d="M24.5,7L24.5,7c-0.2,0-0.3,0-0.5,0L7.3,23.7c-0.4,0.4-0.4,1.1,0,1.5l16.7,16.7c0.1,0.1,0.3,0.1,0.5,0.1 l0,0c0.2,0,0.3,0,0.5-0.1l16.7-16.7c0.4-0.4,0.4-1.1,0-1.5L25,7C24.8,7,24.7,7,24.5,7z"/>
-          <path fill="#1565c0" d="M24,24.5L14.6,34c-0.1,0.1-0.1,0.3,0,0.4l9.4,9.4c0.2,0.2,0.5,0.2,0.6,0c0,0,0,0,0,0l9.4-9.4 c0.1-0.1,0.1-0.3,0-0.4l-9.4-9.5C24.4,24.3,24.2,24.3,24,24.5C24,24.5,24,24.5,24,24.5z"/>
-          <path fill="#2196f3" d="M24,4L7.3,20.7c-0.4,0.4-0.4,1.1,0,1.5L24,39l16.7-16.7c0.4-0.4,0.4-1.1,0-1.5L24,4z"/>
-          <path fill="#1565c0" d="M24,4L24,4L14.6,13.5c-0.1,0.1-0.1,0.3,0,0.4l9.4,9.4l0,0l9.4-9.4c0.1-0.1,0.1-0.3,0-0.4L24,4z"/>
+        <svg viewBox="0 0 48 48" className="w-10 h-10">
+          <defs>
+            <linearGradient id="jira-blue-1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#2684FF"/>
+              <stop offset="100%" stopColor="#0052CC"/>
+            </linearGradient>
+            <linearGradient id="jira-blue-2" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#2684FF"/>
+              <stop offset="100%" stopColor="#0052CC"/>
+            </linearGradient>
+          </defs>
+          <path d="M24.5 4L44 23.5 24.5 43 5 23.5 24.5 4z" fill="url(#jira-blue-1)"/>
+          <path d="M24.5 18L31 24.5 24.5 31 18 24.5 24.5 18z" fill="#fff"/>
         </svg>
       )
     }
@@ -184,7 +188,7 @@ export const IntegrationsSection = () => {
               {leftIntegrations.map((integration, index) => (
                 <motion.div 
                   key={integration.name}
-                  className="absolute left-0 w-16 h-16 rounded-xl border border-[#334155] flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 hover:border-emerald-500/50 transition-all duration-300 cursor-pointer z-10 bg-[#1E293B]"
+                  className="absolute left-0 w-[72px] h-[72px] rounded-2xl border border-[#334155] flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-105 hover:border-emerald-500/50 transition-all duration-300 cursor-pointer z-10 bg-[#1E293B] overflow-hidden"
                   style={{ top: startOffset + index * iconSpacing }}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -200,7 +204,7 @@ export const IntegrationsSection = () => {
               {rightIntegrations.map((integration, index) => (
                 <motion.div 
                   key={integration.name}
-                  className="absolute right-0 w-16 h-16 rounded-xl border border-[#334155] flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 hover:border-emerald-500/50 transition-all duration-300 cursor-pointer z-10 bg-[#1E293B]"
+                  className="absolute right-0 w-[72px] h-[72px] rounded-2xl border border-[#334155] flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-105 hover:border-emerald-500/50 transition-all duration-300 cursor-pointer z-10 bg-[#1E293B] overflow-hidden"
                   style={{ top: startOffset + index * iconSpacing }}
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -233,13 +237,13 @@ export const IntegrationsSection = () => {
               <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 520 450" fill="none">
                 {/* Left paths - from icons to hub */}
                 {leftIntegrations.map((_, index) => {
-                  const iconY = startOffset + index * iconSpacing + 32;
+                  const iconY = startOffset + index * iconSpacing + 36;
                   const hubX = 260;
                   const hubY = 225;
                   return (
                     <path 
                       key={`left-path-${index}`}
-                      d={`M 64 ${iconY} C 140 ${iconY}, 180 ${hubY}, ${hubX - 28} ${hubY}`}
+                      d={`M 72 ${iconY} C 150 ${iconY}, 190 ${hubY}, ${hubX - 28} ${hubY}`}
                       stroke="#334155" 
                       strokeWidth="1.5" 
                       fill="none"
@@ -250,13 +254,13 @@ export const IntegrationsSection = () => {
                 
                 {/* Right paths - from hub to icons */}
                 {rightIntegrations.map((_, index) => {
-                  const iconY = startOffset + index * iconSpacing + 32;
+                  const iconY = startOffset + index * iconSpacing + 36;
                   const hubX = 260;
                   const hubY = 225;
                   return (
                     <path 
                       key={`right-path-${index}`}
-                      d={`M ${hubX + 28} ${hubY} C 340 ${hubY}, 380 ${iconY}, 456 ${iconY}`}
+                      d={`M ${hubX + 28} ${hubY} C 330 ${hubY}, 370 ${iconY}, 448 ${iconY}`}
                       stroke="#334155" 
                       strokeWidth="1.5" 
                       fill="none"
@@ -267,9 +271,9 @@ export const IntegrationsSection = () => {
 
                 {/* Animated dots on left paths */}
                 {leftIntegrations.map((_, index) => {
-                  const iconY = startOffset + index * iconSpacing + 32;
+                  const iconY = startOffset + index * iconSpacing + 36;
                   const hubY = 225;
-                  const path = `M 64 ${iconY} C 140 ${iconY}, 180 ${hubY}, 232 ${hubY}`;
+                  const path = `M 72 ${iconY} C 150 ${iconY}, 190 ${hubY}, 232 ${hubY}`;
                   return (
                     <motion.circle
                       key={`left-dot-${index}`}
@@ -296,9 +300,9 @@ export const IntegrationsSection = () => {
 
                 {/* Animated dots on right paths */}
                 {rightIntegrations.map((_, index) => {
-                  const iconY = startOffset + index * iconSpacing + 32;
+                  const iconY = startOffset + index * iconSpacing + 36;
                   const hubY = 225;
-                  const path = `M 288 ${hubY} C 340 ${hubY}, 380 ${iconY}, 456 ${iconY}`;
+                  const path = `M 288 ${hubY} C 330 ${hubY}, 370 ${iconY}, 448 ${iconY}`;
                   return (
                     <motion.circle
                       key={`right-dot-${index}`}
