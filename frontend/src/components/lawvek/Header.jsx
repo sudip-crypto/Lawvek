@@ -67,51 +67,60 @@ export const Header = ({ onOpenModal }) => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-40">
-        <div className="max-w-[1400px] mx-auto px-8 md:px-16 py-6">
-          {/* Premium spread layout */}
-          <div className="flex items-center">
-            {/* Logo - Far left with presence */}
-            <a href="/" className="flex items-center z-50 group" data-testid="header-logo">
-              <span className={`text-[1.6rem] font-semibold tracking-tight transition-all duration-300 ${mobileMenuOpen ? 'text-white' : 'text-[#1a1a1a]'}`}>
+        {/* Subtle gradient backdrop */}
+        <div className={`absolute inset-0 transition-all duration-700 ${
+          scrolled 
+            ? 'bg-white/80 backdrop-blur-xl border-b border-gray-100' 
+            : 'bg-gradient-to-b from-white/40 to-transparent'
+        }`} />
+        
+        <div className="relative max-w-[1440px] mx-auto px-8 lg:px-16">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo with subtle accent */}
+            <a href="/" className="flex items-center gap-2 z-50 group" data-testid="header-logo">
+              <span className={`text-[1.5rem] font-semibold tracking-[-0.02em] transition-all duration-300 ${mobileMenuOpen ? 'text-white' : 'text-[#0f0f0f]'}`}>
                 Lawvek
               </span>
+              <span className="hidden sm:block w-1.5 h-1.5 rounded-full bg-amber-500" />
             </a>
 
-            {/* Spacer */}
-            <div className="flex-1" />
-
-            {/* Desktop Navigation - Elegant spread links */}
-            <nav className="hidden md:flex items-center gap-12 mr-14" data-testid="desktop-nav">
+            {/* Desktop Navigation - Clean minimal links */}
+            <nav className="hidden lg:flex items-center gap-10" data-testid="desktop-nav">
               {navLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-[15px] font-medium text-[#666666] hover:text-[#1a1a1a] transition-all duration-300 relative group"
+                  className="text-[14px] text-[#52525b] hover:text-[#0f0f0f] transition-colors duration-200 font-medium"
                   data-testid={`nav-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
                 >
                   {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-[#1a1a1a] group-hover:w-full transition-all duration-300" />
                 </a>
               ))}
             </nav>
 
-            {/* Desktop CTA - Clean pill button */}
-            <div className="hidden md:block">
+            {/* Desktop CTA - Premium with golden border accent */}
+            <div className="hidden lg:flex items-center gap-4">
+              <a 
+                href="#approach" 
+                className="text-[14px] text-[#52525b] hover:text-[#0f0f0f] transition-colors duration-200 font-medium"
+              >
+                Learn more
+              </a>
               <motion.button
                 onClick={onOpenModal}
-                className="group relative flex items-center gap-2 px-6 py-2.5 rounded-full overflow-hidden font-medium text-[14px] bg-[#1a1a1a] text-white whitespace-nowrap"
+                className="group relative flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-[14px] bg-[#0f0f0f] text-white border border-[#0f0f0f] hover:bg-[#1a1a1a] transition-all duration-300"
                 data-testid="header-cta"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <span className="relative z-10">Get Priority Access</span>
-                <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" strokeWidth={2} />
+                <span>Get Early Access</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-200" strokeWidth={2.5} />
               </motion.button>
             </div>
 
             {/* Mobile Menu Button */}
             <motion.button
-              className={`md:hidden p-2 z-50 rounded-lg transition-colors ${mobileMenuOpen ? 'text-white' : 'text-[#1a1a1a]'}`}
+              className={`lg:hidden p-2 z-50 transition-colors ${mobileMenuOpen ? 'text-white' : 'text-[#0f0f0f]'}`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
               data-testid="mobile-menu-toggle"
@@ -126,7 +135,7 @@ export const Header = ({ onOpenModal }) => {
                     exit={{ rotate: 90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <X size={24} strokeWidth={2} />
+                    <X size={24} strokeWidth={1.5} />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -136,7 +145,7 @@ export const Header = ({ onOpenModal }) => {
                     exit={{ rotate: -90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Menu size={24} strokeWidth={2} />
+                    <Menu size={24} strokeWidth={1.5} />
                   </motion.div>
                 )}
               </AnimatePresence>
