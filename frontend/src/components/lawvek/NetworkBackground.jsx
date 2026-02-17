@@ -198,7 +198,7 @@ export const NetworkBackground = () => {
                     }
                 }
 
-                this.draw(time);
+                this.draw(time, currentOpacity);
             }
         }
 
@@ -212,7 +212,7 @@ export const NetworkBackground = () => {
             }
         };
 
-        const connectParticles = (time) => {
+        const connectParticles = (time, opacity = 1) => {
             const maxDist = 150;
 
             for (let a = 0; a < particles.length; a++) {
@@ -238,12 +238,12 @@ export const NetworkBackground = () => {
                         // Fade lines near shield edge
                         const shieldFade = Math.min(1, (midNormalizedDist - 0.85) / 0.3);
                         
-                        // Smooth opacity falloff
+                        // Smooth opacity falloff - multiply by scroll opacity
                         const distRatio = dist / maxDist;
-                        const opacity = (1 - distRatio * distRatio) * 0.32 * shieldFade;
+                        const baseOpacity = (1 - distRatio * distRatio) * 0.32 * shieldFade * opacity;
 
                         // Brighter line if near mouse
-                        let lineOpacity = opacity;
+                        let lineOpacity = baseOpacity;
                         if (mouse.x != null) {
                             const mouseDist = Math.sqrt(
                                 (mouse.x - midX) ** 2 + (mouse.y - midY) ** 2
