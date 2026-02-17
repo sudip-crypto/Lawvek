@@ -1,7 +1,22 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export const NetworkBackground = () => {
     const canvasRef = useRef(null);
+    const [scrollOpacity, setScrollOpacity] = useState(1);
+
+    // Track scroll to fade the network
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollY = window.scrollY;
+            const heroHeight = window.innerHeight;
+            // Full opacity in hero, fade to 0.25 as we scroll past
+            const opacity = Math.max(0.25, 1 - (scrollY / heroHeight) * 0.75);
+            setScrollOpacity(opacity);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -11,14 +26,15 @@ export const NetworkBackground = () => {
         let animationFrameId;
         let particles = [];
         let mouse = { x: null, y: null, radius: 220 };
+        let currentOpacity = 1;
         
         // Invisible shield around center for readability
         const shield = {
             x: 0,
             y: 0,
-            radiusX: 600, // Slightly reduced width
-            radiusY: 420, // Slightly reduced height
-            strength: 1.5 // Strong bounce
+            radiusX: 600,
+            radiusY: 420,
+            strength: 1.5
         };
 
         const setCanvasSize = () => {
