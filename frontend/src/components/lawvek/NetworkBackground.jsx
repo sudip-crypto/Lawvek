@@ -218,46 +218,74 @@ export const NetworkBackground = () => {
 
     return (
         <>
-            {/* Flowing gradient background */}
+            {/* Flowing gradient background - Royal & Premium */}
             <div 
                 className="fixed inset-0 pointer-events-none"
                 style={{ zIndex: -1 }}
             >
+                {/* Base gradient - warm ivory */}
                 <div 
-                    className="absolute inset-0 animate-gradient-flow"
+                    className="absolute inset-0"
+                    style={{
+                        background: 'linear-gradient(180deg, #FFFEF8 0%, #FDF9F3 50%, #F8F6F0 100%)',
+                    }}
+                />
+                {/* Primary flowing gradient - royal blue & gold hints */}
+                <div 
+                    className="absolute inset-0"
                     style={{
                         background: `
                             linear-gradient(
                                 135deg,
-                                #F8FAFC 0%,
-                                #EEF4F8 15%,
-                                #F5F0E8 30%,
-                                #FAFAFA 45%,
-                                #E8F0F5 60%,
-                                #FDF8F3 75%,
-                                #F0F5F8 90%,
-                                #F8FAFC 100%
+                                rgba(255, 254, 250, 0.9) 0%,
+                                rgba(230, 240, 255, 0.7) 15%,
+                                rgba(255, 248, 235, 0.8) 30%,
+                                rgba(240, 248, 255, 0.6) 45%,
+                                rgba(255, 245, 225, 0.7) 60%,
+                                rgba(235, 245, 255, 0.8) 75%,
+                                rgba(255, 250, 240, 0.9) 90%,
+                                rgba(255, 254, 250, 0.9) 100%
                             )`,
                         backgroundSize: '400% 400%',
-                        animation: 'gradientFlow 20s ease-in-out infinite',
+                        animation: 'gradientFlow 18s ease-in-out infinite',
                     }}
                 />
-                {/* Secondary wave layer */}
+                {/* Secondary wave - gold shimmer */}
                 <div 
-                    className="absolute inset-0 opacity-50"
+                    className="absolute inset-0"
                     style={{
                         background: `
                             linear-gradient(
                                 225deg,
                                 transparent 0%,
-                                rgba(212, 175, 55, 0.05) 20%,
-                                transparent 40%,
-                                rgba(180, 200, 220, 0.08) 60%,
-                                transparent 80%,
-                                rgba(212, 175, 55, 0.04) 100%
+                                rgba(212, 175, 55, 0.12) 20%,
+                                transparent 35%,
+                                rgba(180, 150, 80, 0.08) 50%,
+                                transparent 65%,
+                                rgba(212, 175, 55, 0.1) 80%,
+                                transparent 100%
                             )`,
                         backgroundSize: '300% 300%',
-                        animation: 'gradientFlow 15s ease-in-out infinite reverse',
+                        animation: 'gradientFlow 12s ease-in-out infinite reverse',
+                    }}
+                />
+                {/* Tertiary wave - royal blue accent */}
+                <div 
+                    className="absolute inset-0"
+                    style={{
+                        background: `
+                            linear-gradient(
+                                45deg,
+                                transparent 0%,
+                                rgba(65, 105, 175, 0.06) 25%,
+                                transparent 40%,
+                                rgba(70, 130, 180, 0.08) 55%,
+                                transparent 70%,
+                                rgba(65, 105, 175, 0.05) 85%,
+                                transparent 100%
+                            )`,
+                        backgroundSize: '350% 350%',
+                        animation: 'gradientFlow 22s ease-in-out infinite',
                     }}
                 />
             </div>
