@@ -157,7 +157,7 @@ export const NetworkBackground = () => {
         };
 
         const connectParticles = (time) => {
-            const maxDist = 160;
+            const maxDist = 150;
 
             for (let a = 0; a < particles.length; a++) {
                 for (let b = a + 1; b < particles.length; b++) {
@@ -168,9 +168,9 @@ export const NetworkBackground = () => {
                     if (dist < maxDist) {
                         // Smooth opacity falloff
                         const distRatio = dist / maxDist;
-                        const opacity = (1 - distRatio * distRatio) * 0.28;
+                        const opacity = (1 - distRatio * distRatio) * 0.32;
 
-                        // Brighter line if near mouse - smoother transition
+                        // Brighter line if near mouse
                         let lineOpacity = opacity;
                         if (mouse.x != null) {
                             const midX = (particles[a].x + particles[b].x) / 2;
@@ -180,33 +180,45 @@ export const NetworkBackground = () => {
                             );
                             if (mouseDist < mouse.radius) {
                                 const mouseRatio = mouseDist / mouse.radius;
-                                const boost = (1 - mouseRatio * mouseRatio) * 0.35;
+                                const boost = (1 - mouseRatio * mouseRatio) * 0.4;
                                 lineOpacity = opacity + boost;
                             }
                         }
 
-                        // Thicker lines for anchor nodes
-                        let lineWidth = 0.8;
-                        if (particles[a].isAnchor || particles[b].isAnchor) {
+                        let lineWidth = 0.9;
+                        const pA = particles[a];
+                        const pB = particles[b];
+                        
+                        // Gold connections
+                        if (pA.colorType === 'gold' && pB.colorType === 'gold') {
+                            ctx.strokeStyle = `rgba(218, 165, 32, ${lineOpacity * 2})`;
                             lineWidth = 1.4;
-                            lineOpacity *= 1.2;
+                        } else if (pA.colorType === 'gold' || pB.colorType === 'gold') {
+                            ctx.strokeStyle = `rgba(200, 160, 50, ${lineOpacity * 1.5})`;
+                            lineWidth = 1.1;
                         }
-
-                        // Gold line if both particles are gold
-                        if (particles[a].isGold && particles[b].isGold) {
-                            ctx.strokeStyle = `rgba(212, 175, 55, ${lineOpacity * 1.8})`;
-                            lineWidth = 1.2;
-                        } else if (particles[a].isGold || particles[b].isGold) {
-                            // Subtle gold tint if one particle is gold
-                            ctx.strokeStyle = `rgba(180, 160, 80, ${lineOpacity * 1.3})`;
-                        } else {
-                            ctx.strokeStyle = `rgba(60, 70, 90, ${lineOpacity})`;
+                        // Royal blue connections
+                        else if (pA.colorType === 'royal' && pB.colorType === 'royal') {
+                            ctx.strokeStyle = `rgba(65, 105, 180, ${lineOpacity * 1.8})`;
+                            lineWidth = 1.3;
+                        } else if (pA.colorType === 'royal' || pB.colorType === 'royal') {
+                            ctx.strokeStyle = `rgba(80, 110, 160, ${lineOpacity * 1.3})`;
+                            lineWidth = 1;
+                        }
+                        // Anchor connections
+                        else if (pA.colorType === 'anchor' || pB.colorType === 'anchor') {
+                            ctx.strokeStyle = `rgba(35, 50, 75, ${lineOpacity * 1.4})`;
+                            lineWidth = 1.5;
+                        }
+                        // Standard connections
+                        else {
+                            ctx.strokeStyle = `rgba(45, 55, 75, ${lineOpacity})`;
                         }
 
                         ctx.lineWidth = lineWidth;
                         ctx.beginPath();
-                        ctx.moveTo(particles[a].x, particles[a].y);
-                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.moveTo(pA.x, pA.y);
+                        ctx.lineTo(pB.x, pB.y);
                         ctx.stroke();
                     }
                 }
