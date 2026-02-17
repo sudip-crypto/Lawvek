@@ -7,65 +7,51 @@ export const IntegrationsSection = () => {
     {
       name: 'Slack',
       logo: (
-        <svg viewBox="0 0 24 24" className="w-10 h-10">
-           <path d="M5.042 15.165a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 17.686a2.528 2.528 0 0 1 2.522-2.521zm13.917-3.33a2.528 2.528 0 0 1 2.522 2.521 2.528 2.528 0 0 1-2.522 2.521h-2.52a2.528 2.528 0 0 1-2.521-2.521 2.528 2.528 0 0 1 2.521-2.521zM5.042 5.17a2.528 2.528 0 0 1 2.521-2.521 2.528 2.528 0 0 1 2.521 2.521v2.52a2.528 2.528 0 0 1-2.521 2.521 2.528 2.528 0 0 1-2.521-2.521zm13.917 3.33a2.528 2.528 0 0 1 2.522-2.521 2.528 2.528 0 0 1 2.521 2.521H21.48a2.528 2.528 0 0 1-2.521 2.521 2.528 2.528 0 0 1-2.521-2.521zM8.834 18.478a2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 17.686a2.528 2.528 0 0 1 2.522-2.521h3.791a2.528 2.528 0 0 1 2.521 2.521z" fill="#E01E5A"/>
-           <path d="M5.042 15.165a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 17.686a2.528 2.528 0 0 1 2.522-2.521zm13.917-3.33a2.528 2.528 0 0 1 2.522 2.521 2.528 2.528 0 0 1-2.522 2.521h-2.52a2.528 2.528 0 0 1-2.521-2.521 2.528 2.528 0 0 1 2.521-2.521z" fill="#36C5F0"/>
-           <path d="M2.522 15.165h2.521a2.528 2.528 0 0 1 2.521 2.521v2.52a2.528 2.528 0 0 1-2.521 2.521 2.528 2.528 0 0 1-2.521-2.521v-2.52z" fill="#2EB67D"/>
-           <path d="M18.959 8.5H16.44a2.528 2.528 0 0 1-2.522-2.521V3.46a2.528 2.528 0 0 1 2.522-2.521 2.528 2.528 0 0 1 2.521 2.521v2.52a2.528 2.528 0 0 1-2.521 2.52z" fill="#ECB22E"/>
-           <g>
-            <path fill="#E01E5A" d="M5.042,15.165c1.392,0,2.521,1.129,2.521,2.521c0,1.392-1.129,2.521-2.521,2.521H2.522 C1.13,20.207,0,19.078,0,17.686c0-1.392,1.13-2.521,2.522-2.521H5.042z"></path>
-            <path fill="#E01E5A" d="M8.834,18.478c0-1.392-1.129-2.521-2.521-2.521c-1.392,0-2.522,1.129-2.522,2.521v2.52 c0,1.392,1.13,2.521,2.522,2.521c1.392,0,2.521-1.129,2.521-2.521V18.478z"></path>
-            <path fill="#36C5F0" d="M18.959,11.835c-1.392,0-2.522-1.129-2.522-2.521c0-1.392,1.13-2.521,2.522-2.521h2.52 c1.392,0,2.521,1.129,2.521,2.521c0,1.392-1.129,2.521-2.521,2.521H18.959z"></path>
-            <path fill="#36C5F0" d="M15.166,8.5c0,1.392,1.129,2.521,2.522,2.521c1.392,0,2.521-1.129,2.521-2.521V3.46 c0-1.392-1.129-2.521-2.521-2.521c-1.392,0-2.522,1.129-2.522,2.521V8.5z"></path>
-            <path fill="#2EB67D" d="M5.042,5.17c-1.392,0-2.521,1.129-2.521,2.521c0,1.392,1.129,2.521,2.521,2.521h2.521 c1.392,0,2.521-1.129,2.521-2.521c0-1.392-1.129-2.521-2.521-2.521H5.042z"></path>
-            <path fill="#2EB67D" d="M8.834,8.834c0,1.392-1.129,2.521-2.521,2.521H2.522C1.13,11.355,0,10.226,0,8.834 c0-1.392,1.13-2.521,2.522-2.521h3.791C7.705,6.313,8.834,7.442,8.834,8.834z"></path>
-            <path fill="#ECB22E" d="M18.959,18.478c1.392,0,2.521-1.129,2.521-2.521c0-1.392-1.129-2.521-2.521-2.521h-2.522 c-1.392,0-2.522,1.129-2.522,2.521c0,1.392,1.13,2.521,2.522,2.521H18.959z"></path>
-            <path fill="#ECB22E" d="M15.166,15.165c0-1.392,1.129-2.521,2.522-2.521h3.791c1.392,0,2.521,1.129,2.521,2.521 c0,1.392-1.129,2.521-2.521,2.521h-3.791C16.295,17.686,15.166,16.557,15.166,15.165z"></path>
-           </g>
-        </svg>
+        <img 
+          src="https://cdn.worldvectorlogo.com/logos/slack-new-logo.svg" 
+          alt="Slack" 
+          className="w-10 h-10 object-contain"
+        />
       )
     },
     {
       name: 'Gmail',
       logo: (
-        <svg viewBox="0 0 24 24" className="w-10 h-10">
-          <path fill="#EA4335" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z" opacity="0"/>
-          <path fill="#4285F4" d="M4 6v12h4.5V10.5L12 13.25 15.5 10.5V18H20V6l-8 5z"/>
-          <path fill="#34A853" d="M15.5 18H20v-7.5l-4.5 3.375"/>
-          <path fill="#FBBC04" d="M4 10.5V18h4.5v-7.5"/>
-          <path fill="#EA4335" d="M12 13.25L4 7.25V6h.025l7.975 6 7.975-6H20v1.25z"/>
-        </svg>
+        <img 
+          src="https://cdn.worldvectorlogo.com/logos/gmail-icon.svg" 
+          alt="Gmail" 
+          className="w-10 h-10 object-contain"
+        />
       )
     },
     {
       name: 'Microsoft Teams',
       logo: (
-        <svg viewBox="0 0 24 24" className="w-10 h-10">
-          <path fill="#5059C9" d="M17.5 11c1.38 0 2.5-1.12 2.5-2.5S18.88 6 17.5 6s-2.5 1.12-2.5 2.5 1.12 2.5 2.5 2.5zm0 1c-1.67 0-5 1.08-5 3.25V17h10v-1.75c0-2.17-3.33-3.25-5-3.25z"/>
-          <path fill="#7B83EB" d="M9 11c1.66 0 3-1.34 3-3S10.66 5 9 5 6 6.34 6 8s1.34 3 3 3zm0 1c-2.33 0-7 1.17-7 3.5V18h14v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
-        </svg>
+        <img 
+          src="https://cdn.worldvectorlogo.com/logos/microsoft-teams-1.svg" 
+          alt="Microsoft Teams" 
+          className="w-10 h-10 object-contain"
+        />
       )
     },
     {
       name: 'Ironclad',
       logo: (
-        <svg viewBox="0 0 24 24" className="w-10 h-10">
-           {/* Green stylized H shape */}
-           <path fill="#22C55E" d="M6 4h3v16H6V4zm9 0h3v16h-3V4z"/>
-           <path fill="#22C55E" d="M6 11h12v2H6z"/> 
-           {/* Decorative elements to match the specific logo in screenshot - stylized pillars */}
-           <rect x="5" y="4" width="14" height="2" fill="#22C55E" opacity="0.2"/>
-           <rect x="5" y="18" width="14" height="2" fill="#22C55E" opacity="0.2"/>
-        </svg>
+        <img 
+          src="https://logo.clearbit.com/ironcladapp.com" 
+          alt="Ironclad" 
+          className="w-10 h-10 object-contain rounded-md" 
+        />
       )
     },
     {
       name: 'SpotDraft',
       logo: (
-        <svg viewBox="0 0 24 24" className="w-10 h-10">
-          <rect width="24" height="24" rx="4" fill="#2563EB"/>
-          <path d="M13 7l-5 6h4v4l5-6h-4V7z" fill="white"/>
-        </svg>
+        <img 
+          src="https://logo.clearbit.com/spotdraft.com" 
+          alt="SpotDraft" 
+          className="w-10 h-10 object-contain rounded-md" 
+        />
       )
     }
   ];
@@ -75,55 +61,51 @@ export const IntegrationsSection = () => {
     {
       name: 'HubSpot',
       logo: (
-        <svg viewBox="0 0 24 24" className="w-10 h-10">
-           <path fill="#FF7A59" d="M19.5 7.5c1.38 0 2.5-1.12 2.5-2.5S20.88 2.5 19.5 2.5 17 3.62 17 5c0 .35.07.69.2 1l-3.3 2.48c-.52-.31-1.12-.48-1.75-.48-1.57 0-2.9 1.02-3.32 2.42l-4.14-1.25C4.89 9.06 5 8.94 5 8.81c0-1.28-1.04-2.31-2.31-2.31C1.41 6.5.38 7.54.38 8.81c0 1.28 1.04 2.31 2.31 2.31.85 0 1.6-.44 2.01-1.11l4.18 1.26c.07 2.19 1.86 3.95 4.07 3.95 2.15 0 3.9-1.68 4.04-3.81l2.45-.74c.12.2.28.38.46.53.53.44 1.21.7 1.95.7 1.66 0 3-1.34 3-3s-1.34-3-3-3c-.95 0-1.8.44-2.38 1.13l-2.6.78c-.28-1.5-1.46-2.69-2.94-2.93l3.49-2.62c.12.01.24.03.37.03z"/>
-        </svg>
+        <img 
+          src="https://cdn.worldvectorlogo.com/logos/hubspot.svg" 
+          alt="HubSpot" 
+          className="w-10 h-10 object-contain"
+        />
       )
     },
     {
       name: 'Google Docs',
       logo: (
-        <svg viewBox="0 0 24 24" className="w-10 h-10">
-          <path fill="#4285F4" d="M14.5 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V7.5L14.5 2z"/>
-          <path fill="#E0E0E0" d="M14.5 2V7.5H20"/>
-          <path fill="#F1F1F1" d="M8 12h8v1.5H8zm0 3h8v1.5H8zm0 3h5v1.5H8z"/>
-        </svg>
+        <img 
+          src="https://cdn.worldvectorlogo.com/logos/google-docs-icon-1.svg" 
+          alt="Google Docs" 
+          className="w-10 h-10 object-contain"
+        />
       )
     },
     {
       name: 'Microsoft Word',
       logo: (
-        <svg viewBox="0 0 24 24" className="w-10 h-10">
-          <rect x="2" y="2" width="20" height="20" rx="4" fill="#185ABD"/>
-          <path fill="#FFF" d="M16.5 16.5L14.5 8h-2l-1.5 6-1.5-6h-2l-2 8.5h2l1-5 1.5 5h2l1.5-5 1-3.5h.05z"/>
-          <path fill="#FFF" d="M7 6h10v2H7z" opacity="0.3"/> 
-           {/* Improved "W" letter to match the official icon */}
-           <path fill="white" d="M6.5 18h2.2l1.3-6.2h.1L11.5 18h2l1.4-6.2h.1l1.3 6.2h2.2l-2.5-10H13l-1.5 7h-.1L9.9 8H7.5z"/>
-        </svg>
+        <img 
+          src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Microsoft_Office_Word_%282019%E2%80%93present%29.svg" 
+          alt="Microsoft Word" 
+          className="w-10 h-10 object-contain"
+        />
       )
     },
     {
       name: 'Notion',
       logo: (
-        <svg viewBox="0 0 24 24" className="w-10 h-10">
-          <path d="M4.459 4.208c.746.606.933.933.933 1.814v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-.998.933.28.28.374.466.374.747v.14c0 .28-.093.606-.374.747-.28.28-.747.514-.998.514h-1.214c-.374 0-.84-.233-1.121-.56-.233-.28-.374-.606-.374-.933v-10.264l-.747-.14c-.42-.047-.56-.466-.42-.887.093-.466.56-.747 1.028-.747h13.957z" fill="white"/>
-        </svg>
+        <img 
+          src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" 
+          alt="Notion" 
+          className="w-10 h-10 object-contain rounded-sm"
+        />
       )
     },
     {
       name: 'Jira',
       logo: (
-        <svg viewBox="0 0 24 24" className="w-10 h-10">
-           <path d="M11.53 2C11.68 2.05 11.79 2.19 11.79 2.35V11.83C11.79 14.69 9.47 17.01 6.61 17.01C3.75 17.01 1.43 14.69 1.43 11.83C1.43 8.97 3.75 6.65 6.61 6.65C6.73 6.65 6.84 6.65 6.96 6.66V2.35C6.96 2.16 7.11 2 7.3 2H11.53Z" fill="#0052CC"/>
-           <path d="M12.19 12.02V2.35C12.19 2.16 12.34 2 12.53 2H16.76C16.91 2.05 17.02 2.19 17.02 2.35V11.83C17.02 14.69 14.7 17.01 11.84 17.01C12.07 15.35 12.19 13.68 12.19 12.02Z" fill="#2684FF"/>
-           <path d="M17.42 21.65V12.16C17.42 12 17.57 11.84 17.76 11.84H21.99C22.14 11.89 22.25 12.03 22.25 12.19V21.67C22.25 24.53 19.93 26.85 17.07 26.85C14.21 26.85 11.89 24.53 11.89 21.67C11.89 21.66 11.89 21.65 11.89 21.65H17.42Z" fill="#0052CC"/>
-           {/* Adjusted viewBox and path for the standard icon, simplified for clarity */}
-           <path d="M12 2L2 12h10v10l10-10H12V2z" fill="#0052CC" opacity="0"/> 
-           {/* Using the standard Atlassian Jira shape paths more accurately */}
-           <path d="M11.5 2H6.5v10l5-5V2z" fill="#2684FF"/> 
-           <path d="M17 2h-5v15l5-5V2z" fill="#0052CC"/>
-           <path d="M22.5 12h-5v10l5-5V12z" fill="#0052CC"/>
-        </svg>
+        <img 
+          src="https://cdn.worldvectorlogo.com/logos/jira-3.svg" 
+          alt="Jira" 
+          className="w-10 h-10 object-contain"
+        />
       )
     }
   ];
