@@ -16,9 +16,9 @@ export const NetworkBackground = () => {
         const shield = {
             x: 0,
             y: 0,
-            radiusX: 420, // Horizontal radius (wider)
-            radiusY: 320, // Vertical radius
-            strength: 0.8 // Bounce strength
+            radiusX: 580, // Wider to cover headline
+            radiusY: 420, // Taller to cover from badge to spots indicator
+            strength: 1.2 // Stronger bounce
         };
 
         const setCanvasSize = () => {
