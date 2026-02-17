@@ -133,7 +133,7 @@ export const NetworkBackground = () => {
         };
 
         const connectParticles = (time) => {
-            const maxDist = 180;
+            const maxDist = 160;
 
             for (let a = 0; a < particles.length; a++) {
                 for (let b = a + 1; b < particles.length; b++) {
@@ -142,10 +142,11 @@ export const NetworkBackground = () => {
                     const dist = Math.sqrt(dx * dx + dy * dy);
 
                     if (dist < maxDist) {
-                        // Much stronger base opacity
-                        const opacity = (1 - dist / maxDist) * 0.35;
+                        // Smooth opacity falloff
+                        const distRatio = dist / maxDist;
+                        const opacity = (1 - distRatio * distRatio) * 0.28;
 
-                        // Brighter line if near mouse
+                        // Brighter line if near mouse - smoother transition
                         let lineOpacity = opacity;
                         if (mouse.x != null) {
                             const midX = (particles[a].x + particles[b].x) / 2;
@@ -154,27 +155,28 @@ export const NetworkBackground = () => {
                                 (mouse.x - midX) ** 2 + (mouse.y - midY) ** 2
                             );
                             if (mouseDist < mouse.radius) {
-                                const boost = (1 - mouseDist / mouse.radius) * 0.45;
+                                const mouseRatio = mouseDist / mouse.radius;
+                                const boost = (1 - mouseRatio * mouseRatio) * 0.35;
                                 lineOpacity = opacity + boost;
                             }
                         }
 
                         // Thicker lines for anchor nodes
-                        let lineWidth = 1;
+                        let lineWidth = 0.8;
                         if (particles[a].isAnchor || particles[b].isAnchor) {
-                            lineWidth = 1.8;
-                            lineOpacity *= 1.3;
+                            lineWidth = 1.4;
+                            lineOpacity *= 1.2;
                         }
 
                         // Gold line if both particles are gold
                         if (particles[a].isGold && particles[b].isGold) {
-                            ctx.strokeStyle = `rgba(212, 175, 55, ${lineOpacity * 2})`;
-                            lineWidth = 1.5;
+                            ctx.strokeStyle = `rgba(212, 175, 55, ${lineOpacity * 1.8})`;
+                            lineWidth = 1.2;
                         } else if (particles[a].isGold || particles[b].isGold) {
                             // Subtle gold tint if one particle is gold
-                            ctx.strokeStyle = `rgba(180, 155, 70, ${lineOpacity * 1.4})`;
+                            ctx.strokeStyle = `rgba(180, 160, 80, ${lineOpacity * 1.3})`;
                         } else {
-                            ctx.strokeStyle = `rgba(50, 60, 80, ${lineOpacity})`;
+                            ctx.strokeStyle = `rgba(60, 70, 90, ${lineOpacity})`;
                         }
 
                         ctx.lineWidth = lineWidth;
