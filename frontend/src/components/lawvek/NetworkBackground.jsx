@@ -210,22 +210,36 @@ export const NetworkBackground = () => {
                     const dist = Math.sqrt(dx * dx + dy * dy);
 
                     if (dist < maxDist) {
+                        // Check if line would cross through shield
+                        const midX = (particles[a].x + particles[b].x) / 2;
+                        const midY = (particles[a].y + particles[b].y) / 2;
+                        const midDx = midX - shield.x;
+                        const midDy = midY - shield.y;
+                        const midNormalizedDist = Math.sqrt(
+                            (midDx * midDx) / (shield.radiusX * shield.radiusX) + 
+                            (midDy * midDy) / (shield.radiusY * shield.radiusY)
+                        );
+                        
+                        // Skip drawing lines that cross shield center
+                        if (midNormalizedDist < 0.85) continue;
+                        
+                        // Fade lines near shield edge
+                        const shieldFade = Math.min(1, (midNormalizedDist - 0.85) / 0.3);
+                        
                         // Smooth opacity falloff
                         const distRatio = dist / maxDist;
-                        const opacity = (1 - distRatio * distRatio) * 0.32;
+                        const opacity = (1 - distRatio * distRatio) * 0.32 * shieldFade;
 
                         // Brighter line if near mouse
                         let lineOpacity = opacity;
                         if (mouse.x != null) {
-                            const midX = (particles[a].x + particles[b].x) / 2;
-                            const midY = (particles[a].y + particles[b].y) / 2;
                             const mouseDist = Math.sqrt(
                                 (mouse.x - midX) ** 2 + (mouse.y - midY) ** 2
                             );
                             if (mouseDist < mouse.radius) {
                                 const mouseRatio = mouseDist / mouse.radius;
                                 const boost = (1 - mouseRatio * mouseRatio) * 0.4;
-                                lineOpacity = opacity + boost;
+                                lineOpacity = opacity + boost * shieldFade;
                             }
                         }
 
