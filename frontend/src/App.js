@@ -1,6 +1,6 @@
 import "@/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Header,
   HeroSection,
@@ -16,7 +16,6 @@ import {
   EarlyAccessModal,
   Footer,
 } from "@/components/lawvek";
-import { NetworkBackground } from "@/components/lawvek/NetworkBackground";
 
 const LandingPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -38,12 +37,9 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA]" data-testid="landing-page">
-      {/* Interactive Network Background */}
-      <NetworkBackground />
-      
+    <div className="min-h-screen bg-[#FAFAF8]" data-testid="landing-page">
       <Header onOpenModal={openModal} />
-      <main className="relative z-10">
+      <main className="relative">
         <HeroSection onOpenModal={openModal} queueCount={queueCount} />
         <TrustTicker />
         <ProblemSection />
