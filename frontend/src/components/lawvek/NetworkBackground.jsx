@@ -27,6 +27,9 @@ export const NetworkBackground = () => {
             canvas.style.width = window.innerWidth + 'px';
             canvas.style.height = window.innerHeight + 'px';
             ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+            // Update shield center position
+            shield.x = window.innerWidth / 2;
+            shield.y = window.innerHeight / 2;
         };
 
         const handleResize = () => {
