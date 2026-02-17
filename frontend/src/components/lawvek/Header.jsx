@@ -70,30 +70,27 @@ export const Header = ({ onOpenModal }) => {
         {/* Elegant backdrop on scroll */}
         <div className={`absolute inset-0 transition-all duration-500 ${
           scrolled 
-            ? 'bg-[#FFFEFA]/90 backdrop-blur-2xl shadow-[0_1px_0_rgba(0,0,0,0.04)]' 
+            ? 'bg-[#FFFEFA]/95 backdrop-blur-2xl shadow-[0_1px_2px_rgba(0,0,0,0.03)]' 
             : ''
         }`} />
         
-        <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12 xl:px-16">
-          <div className="flex items-center h-[72px]">
+        <div className="relative max-w-[1320px] mx-auto px-6 lg:px-10">
+          <div className="flex items-center justify-between h-[76px]">
             {/* Logo */}
             <a href="/" className="flex items-center z-50" data-testid="header-logo">
-              <span className={`text-[22px] font-semibold tracking-[-0.03em] ${mobileMenuOpen ? 'text-white' : 'text-[#111111]'}`}>
+              <span className={`text-[21px] font-semibold tracking-[-0.02em] ${mobileMenuOpen ? 'text-white' : 'text-[#18181b]'}`}>
                 Lawvek
               </span>
             </a>
 
-            {/* Center spacer */}
-            <div className="flex-1" />
-
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center" data-testid="desktop-nav">
-              <div className="flex items-center gap-1 px-1.5 py-1 rounded-full bg-[#f4f4f5]/80 backdrop-blur-sm">
+            {/* Desktop Navigation - Centered pill */}
+            <nav className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2" data-testid="desktop-nav">
+              <div className="flex items-center gap-0.5 p-1 rounded-full bg-white/80 backdrop-blur-md border border-gray-200/60 shadow-sm">
                 {navLinks.map((link) => (
                   <a
                     key={link.label}
                     href={link.href}
-                    className="px-4 py-2 text-[13px] text-[#3f3f46] hover:text-[#111111] hover:bg-white rounded-full transition-all duration-200 font-medium"
+                    className="px-5 py-2 text-[13px] text-[#52525b] hover:text-[#18181b] hover:bg-gray-50 rounded-full transition-all duration-200 font-medium"
                     data-testid={`nav-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
                   >
                     {link.label}
@@ -102,23 +99,14 @@ export const Header = ({ onOpenModal }) => {
               </div>
             </nav>
 
-            {/* Right spacer */}
-            <div className="flex-1" />
-
             {/* Desktop CTA */}
-            <div className="hidden lg:flex items-center gap-5">
-              <a 
-                href="#approach" 
-                className="text-[13px] text-[#52525b] hover:text-[#111111] transition-colors duration-200 font-medium"
-              >
-                How it works
-              </a>
+            <div className="hidden lg:flex items-center">
               <motion.button
                 onClick={onOpenModal}
-                className="group flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-[13px] bg-[#111111] text-white"
+                className="group flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-[13px] bg-[#18181b] text-white shadow-sm hover:shadow-md transition-shadow duration-200"
                 data-testid="header-cta"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <span>Get Early Access</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-200" strokeWidth={2} />
@@ -127,7 +115,7 @@ export const Header = ({ onOpenModal }) => {
 
             {/* Mobile Menu Button */}
             <motion.button
-              className={`lg:hidden p-2 z-50 ${mobileMenuOpen ? 'text-white' : 'text-[#111111]'}`}
+              className={`lg:hidden p-2 z-50 ${mobileMenuOpen ? 'text-white' : 'text-[#18181b]'}`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
               data-testid="mobile-menu-toggle"
