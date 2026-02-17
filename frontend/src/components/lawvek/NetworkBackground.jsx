@@ -209,13 +209,74 @@ export const NetworkBackground = () => {
     }, []);
 
     return (
-        <canvas
-            ref={canvasRef}
-            className="fixed inset-0 pointer-events-none"
-            style={{
-                zIndex: 0,
-                background: 'linear-gradient(180deg, #FAFAFA 0%, #F5F5F5 100%)',
-            }}
-        />
+        <>
+            {/* Flowing gradient background */}
+            <div 
+                className="fixed inset-0 pointer-events-none"
+                style={{ zIndex: -1 }}
+            >
+                <div 
+                    className="absolute inset-0 animate-gradient-flow"
+                    style={{
+                        background: `
+                            linear-gradient(
+                                135deg,
+                                #F8FAFC 0%,
+                                #EEF4F8 15%,
+                                #F5F0E8 30%,
+                                #FAFAFA 45%,
+                                #E8F0F5 60%,
+                                #FDF8F3 75%,
+                                #F0F5F8 90%,
+                                #F8FAFC 100%
+                            )`,
+                        backgroundSize: '400% 400%',
+                        animation: 'gradientFlow 20s ease-in-out infinite',
+                    }}
+                />
+                {/* Secondary wave layer */}
+                <div 
+                    className="absolute inset-0 opacity-50"
+                    style={{
+                        background: `
+                            linear-gradient(
+                                225deg,
+                                transparent 0%,
+                                rgba(212, 175, 55, 0.05) 20%,
+                                transparent 40%,
+                                rgba(180, 200, 220, 0.08) 60%,
+                                transparent 80%,
+                                rgba(212, 175, 55, 0.04) 100%
+                            )`,
+                        backgroundSize: '300% 300%',
+                        animation: 'gradientFlow 15s ease-in-out infinite reverse',
+                    }}
+                />
+            </div>
+            <canvas
+                ref={canvasRef}
+                className="fixed inset-0 pointer-events-none"
+                style={{ zIndex: 0 }}
+            />
+            <style>{`
+                @keyframes gradientFlow {
+                    0% {
+                        background-position: 0% 0%;
+                    }
+                    25% {
+                        background-position: 100% 50%;
+                    }
+                    50% {
+                        background-position: 100% 100%;
+                    }
+                    75% {
+                        background-position: 0% 50%;
+                    }
+                    100% {
+                        background-position: 0% 0%;
+                    }
+                }
+            `}</style>
+        </>
     );
 };
