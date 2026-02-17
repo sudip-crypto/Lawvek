@@ -298,12 +298,16 @@ export const NetworkBackground = () => {
         const animate = (time) => {
             animationFrameId = requestAnimationFrame(animate);
             ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+            
+            // Get current scroll-based opacity from canvas data attribute
+            const opacityAttr = canvas.getAttribute('data-opacity');
+            currentOpacity = opacityAttr ? parseFloat(opacityAttr) : 1;
 
             for (let i = 0; i < particles.length; i++) {
-                particles[i].update(time);
+                particles[i].update(time, currentOpacity);
             }
 
-            connectParticles(time);
+            connectParticles(time, currentOpacity);
         };
 
         window.addEventListener('resize', handleResize);
