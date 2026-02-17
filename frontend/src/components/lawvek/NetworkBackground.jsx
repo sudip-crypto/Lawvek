@@ -95,7 +95,7 @@ export const NetworkBackground = () => {
                 this.sparklePhase = Math.random() * Math.PI * 2;
             }
 
-            draw(time) {
+            draw(time, opacity = 1) {
                 // Smooth pulsing
                 const pulse = Math.sin(time * 0.0012 + this.pulseOffset) * 0.15 + 1;
                 let currentSize = this.baseSize * pulse;
@@ -116,33 +116,29 @@ export const NetworkBackground = () => {
                 ctx.arc(this.x, this.y, currentSize, 0, Math.PI * 2);
 
                 if (this.colorType === 'gold') {
-                    // Rich, vibrant gold
-                    ctx.fillStyle = 'rgba(218, 165, 32, 0.9)';
-                    ctx.shadowColor = 'rgba(255, 215, 0, 0.7)';
-                    ctx.shadowBlur = 15;
+                    ctx.fillStyle = `rgba(218, 165, 32, ${0.9 * opacity})`;
+                    ctx.shadowColor = `rgba(255, 215, 0, ${0.7 * opacity})`;
+                    ctx.shadowBlur = 15 * opacity;
                 } else if (this.colorType === 'royal') {
-                    // Royal blue accent
-                    ctx.fillStyle = 'rgba(65, 105, 180, 0.75)';
-                    ctx.shadowColor = 'rgba(65, 105, 180, 0.5)';
-                    ctx.shadowBlur = 12;
+                    ctx.fillStyle = `rgba(65, 105, 180, ${0.75 * opacity})`;
+                    ctx.shadowColor = `rgba(65, 105, 180, ${0.5 * opacity})`;
+                    ctx.shadowBlur = 12 * opacity;
                 } else if (this.colorType === 'anchor') {
-                    // Deep navy anchors
-                    ctx.fillStyle = 'rgba(25, 40, 65, 0.7)';
-                    ctx.shadowColor = 'rgba(25, 40, 65, 0.4)';
-                    ctx.shadowBlur = 10;
+                    ctx.fillStyle = `rgba(25, 40, 65, ${0.7 * opacity})`;
+                    ctx.shadowColor = `rgba(25, 40, 65, ${0.4 * opacity})`;
+                    ctx.shadowBlur = 10 * opacity;
                 } else {
-                    // Rich dark particles
-                    const depthOpacity = 0.45 + this.depth * 0.35;
+                    const depthOpacity = (0.45 + this.depth * 0.35) * opacity;
                     ctx.fillStyle = `rgba(35, 45, 65, ${depthOpacity})`;
-                    ctx.shadowColor = 'rgba(35, 45, 65, 0.2)';
-                    ctx.shadowBlur = 5;
+                    ctx.shadowColor = `rgba(35, 45, 65, ${0.2 * opacity})`;
+                    ctx.shadowBlur = 5 * opacity;
                 }
 
                 ctx.fill();
                 ctx.shadowBlur = 0;
             }
 
-            update(time) {
+            update(time, opacity = 1) {
                 // Parallax movement
                 const depthFactor = 0.6 + this.depth * 0.4;
                 this.x += this.speedX * depthFactor;
