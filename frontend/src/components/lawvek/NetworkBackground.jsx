@@ -426,4 +426,4 @@ export const NetworkBackground = memo(() => {
             `}</style>
         </>
     );
-};
+});
