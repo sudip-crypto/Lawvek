@@ -198,7 +198,7 @@ export const NetworkBackground = () => {
                     }
                 }
 
-                this.draw(time, currentOpacity);
+                this.draw(time, opacity);
             }
         }
 
