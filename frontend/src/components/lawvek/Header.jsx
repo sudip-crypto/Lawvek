@@ -67,60 +67,67 @@ export const Header = ({ onOpenModal }) => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-40">
-        {/* Subtle gradient backdrop */}
-        <div className={`absolute inset-0 transition-all duration-700 ${
+        {/* Elegant backdrop on scroll */}
+        <div className={`absolute inset-0 transition-all duration-500 ${
           scrolled 
-            ? 'bg-white/80 backdrop-blur-xl border-b border-gray-100' 
-            : 'bg-gradient-to-b from-white/40 to-transparent'
+            ? 'bg-[#FFFEFA]/90 backdrop-blur-2xl shadow-[0_1px_0_rgba(0,0,0,0.04)]' 
+            : ''
         }`} />
         
-        <div className="relative max-w-[1440px] mx-auto px-8 lg:px-16">
-          <div className="flex items-center justify-between h-20">
-            {/* Logo with subtle accent */}
-            <a href="/" className="flex items-center gap-2 z-50 group" data-testid="header-logo">
-              <span className={`text-[1.5rem] font-semibold tracking-[-0.02em] transition-all duration-300 ${mobileMenuOpen ? 'text-white' : 'text-[#0f0f0f]'}`}>
+        <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12 xl:px-16">
+          <div className="flex items-center h-[72px]">
+            {/* Logo */}
+            <a href="/" className="flex items-center z-50" data-testid="header-logo">
+              <span className={`text-[22px] font-semibold tracking-[-0.03em] ${mobileMenuOpen ? 'text-white' : 'text-[#111111]'}`}>
                 Lawvek
               </span>
-              <span className="hidden sm:block w-1.5 h-1.5 rounded-full bg-amber-500" />
             </a>
 
-            {/* Desktop Navigation - Clean minimal links */}
-            <nav className="hidden lg:flex items-center gap-10" data-testid="desktop-nav">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-[14px] text-[#52525b] hover:text-[#0f0f0f] transition-colors duration-200 font-medium"
-                  data-testid={`nav-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
-                >
-                  {link.label}
-                </a>
-              ))}
+            {/* Center spacer */}
+            <div className="flex-1" />
+
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center" data-testid="desktop-nav">
+              <div className="flex items-center gap-1 px-1.5 py-1 rounded-full bg-[#f4f4f5]/80 backdrop-blur-sm">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="px-4 py-2 text-[13px] text-[#3f3f46] hover:text-[#111111] hover:bg-white rounded-full transition-all duration-200 font-medium"
+                    data-testid={`nav-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
             </nav>
 
-            {/* Desktop CTA - Premium with golden border accent */}
-            <div className="hidden lg:flex items-center gap-4">
+            {/* Right spacer */}
+            <div className="flex-1" />
+
+            {/* Desktop CTA */}
+            <div className="hidden lg:flex items-center gap-5">
               <a 
                 href="#approach" 
-                className="text-[14px] text-[#52525b] hover:text-[#0f0f0f] transition-colors duration-200 font-medium"
+                className="text-[13px] text-[#52525b] hover:text-[#111111] transition-colors duration-200 font-medium"
               >
-                Learn more
+                How it works
               </a>
               <motion.button
                 onClick={onOpenModal}
-                className="group relative flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-[14px] bg-[#0f0f0f] text-white border border-[#0f0f0f] hover:bg-[#1a1a1a] transition-all duration-300"
+                className="group flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-[13px] bg-[#111111] text-white"
                 data-testid="header-cta"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
               >
                 <span>Get Early Access</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-200" strokeWidth={2.5} />
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-200" strokeWidth={2} />
               </motion.button>
             </div>
 
             {/* Mobile Menu Button */}
             <motion.button
-              className={`lg:hidden p-2 z-50 transition-colors ${mobileMenuOpen ? 'text-white' : 'text-[#0f0f0f]'}`}
+              className={`lg:hidden p-2 z-50 ${mobileMenuOpen ? 'text-white' : 'text-[#111111]'}`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
               data-testid="mobile-menu-toggle"
@@ -135,7 +142,7 @@ export const Header = ({ onOpenModal }) => {
                     exit={{ rotate: 90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <X size={24} strokeWidth={1.5} />
+                    <X size={22} strokeWidth={1.5} />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -145,7 +152,7 @@ export const Header = ({ onOpenModal }) => {
                     exit={{ rotate: -90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Menu size={24} strokeWidth={1.5} />
+                    <Menu size={22} strokeWidth={1.5} />
                   </motion.div>
                 )}
               </AnimatePresence>
