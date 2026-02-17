@@ -250,8 +250,8 @@ export const NetworkBackground = () => {
                             );
                             if (mouseDist < mouse.radius) {
                                 const mouseRatio = mouseDist / mouse.radius;
-                                const boost = (1 - mouseRatio * mouseRatio) * 0.4;
-                                lineOpacity = opacity + boost * shieldFade;
+                                const boost = (1 - mouseRatio * mouseRatio) * 0.4 * opacity;
+                                lineOpacity = baseOpacity + boost * shieldFade;
                             }
                         }
 
