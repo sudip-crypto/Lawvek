@@ -10,7 +10,7 @@ export const NetworkBackground = () => {
         const ctx = canvas.getContext('2d');
         let animationFrameId;
         let particles = [];
-        let mouse = { x: null, y: null, radius: 180 };
+        let mouse = { x: null, y: null, radius: 220 };
 
         const setCanvasSize = () => {
             canvas.width = window.innerWidth * window.devicePixelRatio;
@@ -39,36 +39,57 @@ export const NetworkBackground = () => {
             constructor() {
                 this.x = Math.random() * window.innerWidth;
                 this.y = Math.random() * window.innerHeight;
-                this.size = Math.random() * 2 + 1;
-                this.speedX = (Math.random() - 0.5) * 0.5;
-                this.speedY = (Math.random() - 0.5) * 0.5;
+                // Larger, more varied particle sizes for depth
+                this.baseSize = Math.random() * 3.5 + 1.5;
+                this.size = this.baseSize;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.speedY = (Math.random() - 0.5) * 0.4;
                 this.density = Math.random() * 30 + 1;
-                // Gold accent for ~8% of particles
-                this.isGold = Math.random() < 0.08;
+                // Gold accent for ~12% of particles
+                this.isGold = Math.random() < 0.12;
+                // Large anchor nodes for ~5% of particles
+                this.isAnchor = Math.random() < 0.05;
+                // Pulsing phase offset
+                this.pulseOffset = Math.random() * Math.PI * 2;
+                // Depth layer (0-1) for parallax effect
+                this.depth = Math.random();
             }
 
-            draw() {
+            draw(time) {
+                // Pulsing effect for size
+                const pulse = Math.sin(time * 0.002 + this.pulseOffset) * 0.3 + 1;
+                const currentSize = this.isAnchor ? this.baseSize * 2 * pulse : this.baseSize * pulse;
+                
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.arc(this.x, this.y, currentSize, 0, Math.PI * 2);
 
                 if (this.isGold) {
-                    ctx.fillStyle = 'rgba(212, 175, 55, 0.5)';
-                    // Subtle glow for gold particles
-                    ctx.shadowColor = 'rgba(212, 175, 55, 0.3)';
-                    ctx.shadowBlur = 8;
+                    // Prominent gold particles
+                    ctx.fillStyle = 'rgba(212, 175, 55, 0.85)';
+                    ctx.shadowColor = 'rgba(212, 175, 55, 0.6)';
+                    ctx.shadowBlur = 15;
+                } else if (this.isAnchor) {
+                    // Large anchor nodes - dark and prominent
+                    ctx.fillStyle = 'rgba(30, 40, 60, 0.7)';
+                    ctx.shadowColor = 'rgba(30, 40, 60, 0.4)';
+                    ctx.shadowBlur = 12;
                 } else {
-                    ctx.fillStyle = 'rgba(30, 30, 30, 0.2)';
-                    ctx.shadowColor = 'rgba(0, 0, 0, 0.05)';
-                    ctx.shadowBlur = 3;
+                    // Regular particles - much more visible
+                    const depthOpacity = 0.4 + this.depth * 0.35;
+                    ctx.fillStyle = `rgba(50, 60, 80, ${depthOpacity})`;
+                    ctx.shadowColor = 'rgba(50, 60, 80, 0.2)';
+                    ctx.shadowBlur = 6;
                 }
 
                 ctx.fill();
                 ctx.shadowBlur = 0;
             }
 
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
+            update(time) {
+                // Parallax movement based on depth
+                const depthFactor = 0.5 + this.depth * 0.5;
+                this.x += this.speedX * depthFactor;
+                this.y += this.speedY * depthFactor;
 
                 // Wrap around edges smoothly
                 if (this.x > window.innerWidth + 10) this.x = -10;
@@ -76,7 +97,7 @@ export const NetworkBackground = () => {
                 if (this.y > window.innerHeight + 10) this.y = -10;
                 if (this.y < -10) this.y = window.innerHeight + 10;
 
-                // Mouse interaction - gentle push away
+                // Mouse interaction - more prominent push
                 if (mouse.x != null) {
                     const dx = mouse.x - this.x;
                     const dy = mouse.y - this.y;
@@ -84,28 +105,29 @@ export const NetworkBackground = () => {
 
                     if (dist < mouse.radius) {
                         const force = (mouse.radius - dist) / mouse.radius;
-                        const forceX = (dx / dist) * force * this.density * 0.35;
-                        const forceY = (dy / dist) * force * this.density * 0.35;
+                        const forceX = (dx / dist) * force * this.density * 0.5;
+                        const forceY = (dy / dist) * force * this.density * 0.5;
                         this.x -= forceX;
                         this.y -= forceY;
                     }
                 }
 
-                this.draw();
+                this.draw(time);
             }
         }
 
         const initParticles = () => {
             particles = [];
             const area = window.innerWidth * window.innerHeight;
-            const count = Math.min(Math.floor(area / 10000), 200);
+            // More particles for denser network
+            const count = Math.min(Math.floor(area / 7000), 280);
             for (let i = 0; i < count; i++) {
                 particles.push(new Particle());
             }
         };
 
-        const connectParticles = () => {
-            const maxDist = 140;
+        const connectParticles = (time) => {
+            const maxDist = 180;
 
             for (let a = 0; a < particles.length; a++) {
                 for (let b = a + 1; b < particles.length; b++) {
@@ -114,7 +136,8 @@ export const NetworkBackground = () => {
                     const dist = Math.sqrt(dx * dx + dy * dy);
 
                     if (dist < maxDist) {
-                        const opacity = (1 - dist / maxDist) * 0.12;
+                        // Much stronger base opacity
+                        const opacity = (1 - dist / maxDist) * 0.35;
 
                         // Brighter line if near mouse
                         let lineOpacity = opacity;
@@ -125,22 +148,30 @@ export const NetworkBackground = () => {
                                 (mouse.x - midX) ** 2 + (mouse.y - midY) ** 2
                             );
                             if (mouseDist < mouse.radius) {
-                                const boost = (1 - mouseDist / mouse.radius) * 0.25;
+                                const boost = (1 - mouseDist / mouse.radius) * 0.45;
                                 lineOpacity = opacity + boost;
                             }
                         }
 
-                        // Gold line if both particles are gold
-                        if (particles[a].isGold && particles[b].isGold) {
-                            ctx.strokeStyle = `rgba(212, 175, 55, ${lineOpacity * 2.5})`;
-                        } else if (particles[a].isGold || particles[b].isGold) {
-                            // Subtle gold tint if one particle is gold
-                            ctx.strokeStyle = `rgba(180, 160, 80, ${lineOpacity * 1.2})`;
-                        } else {
-                            ctx.strokeStyle = `rgba(30, 30, 30, ${lineOpacity})`;
+                        // Thicker lines for anchor nodes
+                        let lineWidth = 1;
+                        if (particles[a].isAnchor || particles[b].isAnchor) {
+                            lineWidth = 1.8;
+                            lineOpacity *= 1.3;
                         }
 
-                        ctx.lineWidth = 0.6;
+                        // Gold line if both particles are gold
+                        if (particles[a].isGold && particles[b].isGold) {
+                            ctx.strokeStyle = `rgba(212, 175, 55, ${lineOpacity * 2})`;
+                            lineWidth = 1.5;
+                        } else if (particles[a].isGold || particles[b].isGold) {
+                            // Subtle gold tint if one particle is gold
+                            ctx.strokeStyle = `rgba(180, 155, 70, ${lineOpacity * 1.4})`;
+                        } else {
+                            ctx.strokeStyle = `rgba(50, 60, 80, ${lineOpacity})`;
+                        }
+
+                        ctx.lineWidth = lineWidth;
                         ctx.beginPath();
                         ctx.moveTo(particles[a].x, particles[a].y);
                         ctx.lineTo(particles[b].x, particles[b].y);
@@ -150,15 +181,15 @@ export const NetworkBackground = () => {
             }
         };
 
-        const animate = () => {
+        const animate = (time) => {
             animationFrameId = requestAnimationFrame(animate);
             ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
             for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
+                particles[i].update(time);
             }
 
-            connectParticles();
+            connectParticles(time);
         };
 
         window.addEventListener('resize', handleResize);
