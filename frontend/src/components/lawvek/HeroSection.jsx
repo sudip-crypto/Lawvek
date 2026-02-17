@@ -27,22 +27,22 @@ export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
         style={{ y: bgY }}
       >
         {/* Sky gradient overlay - top atmospheric depth */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#E3EEF7]/70 via-[#EDF4F9]/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#E8F1F8]/50 via-transparent to-transparent" />
         
         {/* Horizon warmth - bottom warm glow */}
-        <div className="absolute bottom-0 left-0 right-0 h-[45%] bg-gradient-to-t from-[#FDF8F3]/60 via-[#FEF7ED]/40 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-[35%] bg-gradient-to-t from-[#FDF8F3]/40 via-[#FEF7ED]/20 to-transparent" />
         
-        {/* Central radial glow - focus area */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[700px]">
-          <div className="absolute inset-0 bg-gradient-radial from-white/50 via-white/20 to-transparent rounded-full blur-3xl" />
+        {/* Central radial glow - focus area - more subtle */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px]">
+          <div className="absolute inset-0 bg-gradient-radial from-white/35 via-white/10 to-transparent rounded-full blur-3xl" />
         </div>
       </motion.div>
 
-      {/* Floating depth layers - ethereal clouds */}
+      {/* Floating depth layers - more subtle ethereal clouds */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Top left cloud */}
+        {/* Top left cloud - subtle */}
         <motion.div 
-          className="absolute -top-20 -left-20 w-[500px] h-[400px] rounded-full bg-gradient-to-br from-[#D6E6F2]/40 via-[#E8F1F8]/20 to-transparent blur-3xl"
+          className="absolute -top-20 -left-20 w-[400px] h-[300px] rounded-full bg-gradient-to-br from-[#D6E6F2]/25 via-[#E8F1F8]/10 to-transparent blur-3xl"
           animate={{ 
             x: [0, 30, 0],
             y: [0, -15, 0],
@@ -51,9 +51,9 @@ export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
         />
         
-        {/* Top right cloud */}
+        {/* Top right cloud - subtle */}
         <motion.div 
-          className="absolute -top-10 right-0 w-[450px] h-[350px] rounded-full bg-gradient-to-bl from-[#E0EBF5]/35 via-[#EDF3F9]/15 to-transparent blur-3xl"
+          className="absolute -top-10 right-0 w-[350px] h-[280px] rounded-full bg-gradient-to-bl from-[#E0EBF5]/20 via-[#EDF3F9]/10 to-transparent blur-3xl"
           animate={{ 
             x: [0, -20, 0],
             y: [0, 20, 0],
@@ -62,19 +62,19 @@ export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
           transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", delay: 3 }}
         />
         
-        {/* Center floating orb */}
+        {/* Center floating orb - subtle */}
         <motion.div 
-          className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-gradient-to-b from-white/40 via-[#F5F9FC]/20 to-transparent blur-2xl"
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[350px] rounded-full bg-gradient-to-b from-white/25 via-[#F5F9FC]/10 to-transparent blur-2xl"
           animate={{ 
             scale: [1, 1.1, 1],
-            opacity: [0.4, 0.6, 0.4],
+            opacity: [0.25, 0.4, 0.25],
           }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 1 }}
         />
         
-        {/* Bottom warm glow */}
+        {/* Bottom warm glow - subtle */}
         <motion.div 
-          className="absolute bottom-20 left-1/3 w-[400px] h-[300px] rounded-full bg-gradient-to-t from-[#FEF3C7]/25 via-[#FDF6E3]/15 to-transparent blur-3xl"
+          className="absolute bottom-20 left-1/3 w-[350px] h-[250px] rounded-full bg-gradient-to-t from-[#FEF3C7]/15 via-[#FDF6E3]/10 to-transparent blur-3xl"
           animate={{ 
             x: [0, 25, 0],
             y: [0, -20, 0],
@@ -82,11 +82,57 @@ export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
           transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 5 }}
         />
 
-        {/* Light rays - subtle beams from top */}
-        <div className="absolute top-0 left-[20%] w-[2px] h-[350px] bg-gradient-to-b from-[#C5DAE9]/40 via-[#D6E6F2]/20 to-transparent transform -rotate-12 blur-sm" />
-        <div className="absolute top-0 left-[40%] w-[1px] h-[400px] bg-gradient-to-b from-white/30 via-white/10 to-transparent blur-sm" />
-        <div className="absolute top-0 right-[30%] w-[2px] h-[300px] bg-gradient-to-b from-[#D0E2EF]/35 via-[#E3EEF7]/15 to-transparent transform rotate-6 blur-sm" />
-        <div className="absolute top-0 right-[15%] w-[1px] h-[280px] bg-gradient-to-b from-[#E8F1F8]/40 to-transparent transform rotate-12 blur-sm" />
+        {/* Light rays - more prominent beams from top */}
+        <div className="absolute top-0 left-[15%] w-[3px] h-[450px] bg-gradient-to-b from-[#B8D4E8]/50 via-[#D6E6F2]/25 to-transparent transform -rotate-12 blur-[2px]" />
+        <div className="absolute top-0 left-[35%] w-[2px] h-[500px] bg-gradient-to-b from-[#C8DFF0]/45 via-[#E0ECF5]/15 to-transparent blur-[1px]" />
+        <div className="absolute top-0 left-[55%] w-[2px] h-[380px] bg-gradient-to-b from-[#D4A574]/30 via-[#E8C9A0]/10 to-transparent transform rotate-3 blur-[1px]" />
+        <div className="absolute top-0 right-[25%] w-[3px] h-[420px] bg-gradient-to-b from-[#C5DAE9]/45 via-[#E3EEF7]/20 to-transparent transform rotate-8 blur-[2px]" />
+        <div className="absolute top-0 right-[10%] w-[2px] h-[350px] bg-gradient-to-b from-[#E8F1F8]/50 to-transparent transform rotate-15 blur-[1px]" />
+      </div>
+      
+      {/* Additional depth: Geometric accent shapes */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Large hexagonal glow - left side depth */}
+        <motion.div
+          className="absolute top-1/4 -left-20 w-[300px] h-[300px] opacity-20"
+          style={{
+            background: 'conic-gradient(from 0deg, transparent, rgba(212, 175, 55, 0.3), transparent, rgba(50, 60, 80, 0.2), transparent)',
+            clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+          }}
+          animate={{
+            rotate: [0, 360],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+        />
+        
+        {/* Right side depth element */}
+        <motion.div
+          className="absolute top-1/3 -right-10 w-[200px] h-[200px] opacity-15"
+          style={{
+            background: 'radial-gradient(circle, rgba(212, 175, 55, 0.4) 0%, rgba(50, 60, 80, 0.2) 50%, transparent 70%)',
+            borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%',
+          }}
+          animate={{
+            scale: [1, 1.15, 1],
+            rotate: [0, 180, 360],
+          }}
+          transition={{ duration: 40, repeat: Infinity, ease: "easeInOut" }}
+        />
+        
+        {/* Bottom accent ring */}
+        <motion.div
+          className="absolute bottom-[15%] left-1/2 -translate-x-1/2 w-[600px] h-[100px] opacity-10"
+          style={{
+            background: 'linear-gradient(90deg, transparent, rgba(50, 60, 80, 0.5), rgba(212, 175, 55, 0.3), rgba(50, 60, 80, 0.5), transparent)',
+            borderRadius: '50%',
+          }}
+          animate={{
+            scaleX: [1, 1.1, 1],
+            opacity: [0.1, 0.15, 0.1],
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
       </div>
 
       {/* Bottom fade for seamless transition to ticker */}
