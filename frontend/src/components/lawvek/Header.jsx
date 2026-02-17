@@ -85,15 +85,16 @@ export const Header = ({ onOpenModal }) => {
 
             {/* Desktop Navigation - Centered pill */}
             <nav className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2" data-testid="desktop-nav">
-              <div className="flex items-center gap-0.5 p-1 rounded-full bg-white/80 backdrop-blur-md border border-gray-200/60 shadow-sm">
+              <div className="flex items-center gap-0.5 p-1.5 rounded-full bg-white/50 backdrop-blur-xl border border-white/60 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
                 {navLinks.map((link) => (
                   <a
                     key={link.label}
                     href={link.href}
-                    className="px-5 py-2 text-[13px] text-[#52525b] hover:text-[#18181b] hover:bg-gray-50 rounded-full transition-all duration-200 font-medium"
+                    className="relative px-5 py-2 text-[13px] text-[#52525b] hover:text-[#18181b] rounded-full transition-all duration-300 font-medium group"
                     data-testid={`nav-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
                   >
-                    {link.label}
+                    <span className="absolute inset-0 rounded-full bg-white/0 group-hover:bg-white/80 group-hover:shadow-sm transition-all duration-300" />
+                    <span className="relative z-10">{link.label}</span>
                   </a>
                 ))}
               </div>
@@ -108,7 +109,7 @@ export const Header = ({ onOpenModal }) => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <span>Get Early Access</span>
+                <span>Get Priority Access</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-200" strokeWidth={2} />
               </motion.button>
             </div>
