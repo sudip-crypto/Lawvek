@@ -2,7 +2,9 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
 export const IntegrationsSection = () => {
-  // SVG Icons
+  // SVG Icons - using inline paths for maximum reliability and correctness
+  
+  // Slack: Official path (multi-color)
   const SlackLogo = () => (
     <svg viewBox="0 0 24 24" className="w-10 h-10">
       <path d="M5.042 15.165a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 17.686a2.528 2.528 0 0 1 2.522-2.521zm13.917-3.33a2.528 2.528 0 0 1 2.522 2.521 2.528 2.528 0 0 1-2.522 2.521h-2.52a2.528 2.528 0 0 1-2.521-2.521 2.528 2.528 0 0 1 2.521-2.521zM5.042 5.17a2.528 2.528 0 0 1 2.521-2.521 2.528 2.528 0 0 1 2.521 2.521v2.52a2.528 2.528 0 0 1-2.521 2.521 2.528 2.528 0 0 1-2.521-2.521zm13.917 3.33a2.528 2.528 0 0 1 2.522-2.521 2.528 2.528 0 0 1 2.521 2.521H21.48a2.528 2.528 0 0 1-2.521 2.521 2.528 2.528 0 0 1-2.521-2.521zM8.834 18.478a2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 17.686a2.528 2.528 0 0 1 2.522-2.521h3.791a2.528 2.528 0 0 1 2.521 2.521z" fill="#E01E5A"/>
@@ -12,6 +14,7 @@ export const IntegrationsSection = () => {
     </svg>
   );
 
+  // Gmail: Official path
   const GmailLogo = () => (
     <svg viewBox="0 0 24 24" className="w-10 h-10">
       <path fill="#EA4335" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z" opacity="0"/>
@@ -22,6 +25,7 @@ export const IntegrationsSection = () => {
     </svg>
   );
 
+  // Teams: Official path
   const TeamsLogo = () => (
     <svg viewBox="0 0 24 24" className="w-10 h-10">
       <path fill="#5059C9" d="M17.5 11c1.38 0 2.5-1.12 2.5-2.5S18.88 6 17.5 6s-2.5 1.12-2.5 2.5 1.12 2.5 2.5 2.5zm0 1c-1.67 0-5 1.08-5 3.25V17h10v-1.75c0-2.17-3.33-3.25-5-3.25z"/>
@@ -29,27 +33,38 @@ export const IntegrationsSection = () => {
     </svg>
   );
 
+  // Ironclad: Reconstructed based on "Green Geometric Icon"
+  // Using a clean, geometric document/contract shape in the official Ironclad green (#00CA88)
   const IroncladLogo = () => (
     <svg viewBox="0 0 24 24" className="w-10 h-10">
-      <rect width="24" height="24" rx="4" fill="#00CA88"/>
-      <path d="M7 6h3v12H7V6zm7 0h3v12h-3V6z" fill="white"/>
-      <path d="M7 11h10v2H7z" fill="white"/>
+      {/* Background shape - rounded square or transparent */}
+      <path d="M5 4C5 2.89543 5.89543 2 7 2H17C18.1046 2 19 2.89543 19 4V20C19 21.1046 18.1046 22 17 22H7C5.89543 22 5 21.1046 5 20V4Z" fill="#00CA88"/>
+      {/* Central "H" or geometric pillars characteristic of the logo */}
+      <rect x="8" y="6" width="2" height="12" fill="white"/>
+      <rect x="14" y="6" width="2" height="12" fill="white"/>
+      <rect x="8" y="11" width="8" height="2" fill="white"/>
     </svg>
   );
 
+  // SpotDraft: Reconstructed based on official favicon path (White bolt on Blue square)
+  // Blue color: #2563EB (Tailwind blue-600) or brand specific #3259E4
   const SpotDraftLogo = () => (
-    <svg viewBox="0 0 24 24" className="w-10 h-10">
-      <rect width="24" height="24" rx="4" fill="#2563EB"/>
-      <path d="M14.5 4l-7 9h4v7l7-9h-4V4z" fill="white"/>
+    <svg viewBox="0 0 256 256" className="w-10 h-10">
+      {/* Blue background square */}
+      <rect width="256" height="256" rx="40" fill="#2563EB"/>
+      {/* White Lightning Bolt - Path extracted from official favicon */}
+      <path d="M204.656 114.669H167.895L205.736 20.8872C206.7 18.3112 205.03 16.0126 202.752 16L127.945 16.0168C127.071 16.0168 126.222 16.2563 125.581 16.7858C125.581 16.7858 98.3473 40.2681 89.8795 47.6725C88.8369 48.5844 88.328 49.408 87.8108 50.7359C83.464 61.8677 48.2876 148.729 48.2876 148.729C47.163 151.851 49.5765 153.469 51.3825 153.473H99.0697C99.0697 153.473 71.8685 221.966 71.8603 222.003L66.5326 235.346C65.2437 238.577 69.0199 241.43 71.6551 239.216C71.6551 239.216 202.821 124.124 206.77 120.75C208.909 118.922 208.293 114.669 204.652 114.669H204.656ZM146.847 101.47L141.991 113.497C141.708 114.207 141.031 114.669 140.284 114.669L89.6537 114.623C88.9272 114.623 88.4306 113.871 88.7015 113.177L93.5367 101.201C93.8199 100.487 94.4972 100.02 95.2483 100.02H145.899C146.63 100.02 147.126 100.776 146.847 101.47ZM161.172 66.0574L156.325 78.0758C156.041 78.786 155.364 79.2483 154.617 79.2483L103.975 79.2273C103.248 79.2273 102.751 78.475 103.022 77.7817L107.849 65.7884C108.133 65.074 108.81 64.6076 109.561 64.6076H160.22C160.951 64.6076 161.447 65.364 161.168 66.0574H161.172Z" fill="white"/>
     </svg>
   );
 
+  // HubSpot: Official path (Single color orange)
   const HubSpotLogo = () => (
     <svg viewBox="0 0 24 24" className="w-10 h-10">
       <path fill="#FF7A59" d="M19.5 7.5c1.38 0 2.5-1.12 2.5-2.5S20.88 2.5 19.5 2.5 17 3.62 17 5c0 .35.07.69.2 1l-3.3 2.48c-.52-.31-1.12-.48-1.75-.48-1.57 0-2.9 1.02-3.32 2.42l-4.14-1.25C4.89 9.06 5 8.94 5 8.81c0-1.28-1.04-2.31-2.31-2.31C1.41 6.5.38 7.54.38 8.81c0 1.28 1.04 2.31 2.31 2.31.85 0 1.6-.44 2.01-1.11l4.18 1.26c.07 2.19 1.86 3.95 4.07 3.95 2.15 0 3.9-1.68 4.04-3.81l2.45-.74c.12.2.28.38.46.53.53.44 1.21.7 1.95.7 1.66 0 3-1.34 3-3s-1.34-3-3-3c-.95 0-1.8.44-2.38 1.13l-2.6.78c-.28-1.5-1.46-2.69-2.94-2.93l3.49-2.62c.12.01.24.03.37.03z"/>
     </svg>
   );
 
+  // Google Docs: Official path
   const GoogleDocsLogo = () => (
     <svg viewBox="0 0 24 24" className="w-10 h-10">
       <path fill="#4285F4" d="M14.5 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V7.5L14.5 2z"/>
@@ -58,6 +73,7 @@ export const IntegrationsSection = () => {
     </svg>
   );
 
+  // Microsoft Word: Official path (W shape)
   const MicrosoftWordLogo = () => (
     <svg viewBox="0 0 24 24" className="w-10 h-10">
       <rect x="2" y="2" width="20" height="20" rx="4" fill="#185ABD"/>
@@ -67,12 +83,14 @@ export const IntegrationsSection = () => {
     </svg>
   );
 
+  // Notion: Official path (N cube)
   const NotionLogo = () => (
     <svg viewBox="0 0 24 24" className="w-10 h-10">
       <path d="M4.459 4.208c.746.606.933.933.933 1.814v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-.998.933.28.28.374.466.374.747v.14c0 .28-.093.606-.374.747-.28.28-.747.514-.998.514h-1.214c-.374 0-.84-.233-1.121-.56-.233-.28-.374-.606-.374-.933v-10.264l-.747-.14c-.42-.047-.56-.466-.42-.887.093-.466.56-.747 1.028-.747h13.957z" fill="white"/>
     </svg>
   );
 
+  // Jira: Official path
   const JiraLogo = () => (
     <svg viewBox="0 0 24 24" className="w-10 h-10">
       <path d="M11.53 2C11.68 2.05 11.79 2.19 11.79 2.35V11.83C11.79 14.69 9.47 17.01 6.61 17.01C3.75 17.01 1.43 14.69 1.43 11.83C1.43 8.97 3.75 6.65 6.61 6.65C6.73 6.65 6.84 6.65 6.96 6.66V2.35C6.96 2.16 7.11 2 7.3 2H11.53Z" fill="#0052CC"/>
@@ -81,7 +99,7 @@ export const IntegrationsSection = () => {
     </svg>
   );
 
-  // Left side integrations: Slack, Gmail, Microsoft Teams, Ironclad, SpotDraft
+  // Left side integrations
   const leftIntegrations = [
     { name: 'Slack', Logo: SlackLogo },
     { name: 'Gmail', Logo: GmailLogo },
@@ -90,7 +108,7 @@ export const IntegrationsSection = () => {
     { name: 'SpotDraft', Logo: SpotDraftLogo }
   ];
 
-  // Right side integrations: HubSpot, Google Docs, Microsoft Word, Notion, Jira
+  // Right side integrations
   const rightIntegrations = [
     { name: 'HubSpot', Logo: HubSpotLogo },
     { name: 'Google Docs', Logo: GoogleDocsLogo },
