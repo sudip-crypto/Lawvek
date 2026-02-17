@@ -1,34 +1,46 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback, memo } from 'react';
 
-export const NetworkBackground = () => {
+export const NetworkBackground = memo(() => {
     const canvasRef = useRef(null);
+    const animationRef = useRef(null);
+    const particlesRef = useRef([]);
+    const mouseRef = useRef({ x: null, y: null, radius: 220 });
+    const shieldRef = useRef({ x: 0, y: 0, radiusX: 600, radiusY: 420, strength: 1.5 });
+    const dimensionsRef = useRef({ width: 0, height: 0 });
+    const lastFrameTimeRef = useRef(0);
+    const gridRef = useRef({});
 
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
 
-        const ctx = canvas.getContext('2d');
-        let animationFrameId;
-        let particles = [];
-        let mouse = { x: null, y: null, radius: 220 };
+        const ctx = canvas.getContext('2d', { alpha: false });
+        const shield = shieldRef.current;
+        const mouse = mouseRef.current;
         
-        // Invisible shield around center for readability
-        const shield = {
-            x: 0,
-            y: 0,
-            radiusX: 600,
-            radiusY: 420,
-            strength: 1.5
-        };
+        // Grid cell size for spatial partitioning (performance optimization)
+        const CELL_SIZE = 160;
+        const MAX_DIST = 150;
+        const MAX_DIST_SQ = MAX_DIST * MAX_DIST;
+        
+        // Pre-calculate shield squared values
+        const shieldRadiusXSq = shield.radiusX * shield.radiusX;
+        const shieldRadiusYSq = shield.radiusY * shield.radiusY;
 
         const setCanvasSize = () => {
-            canvas.width = window.innerWidth * window.devicePixelRatio;
-            canvas.height = window.innerHeight * window.devicePixelRatio;
-            canvas.style.width = window.innerWidth + 'px';
-            canvas.style.height = window.innerHeight + 'px';
-            ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-            shield.x = window.innerWidth / 2;
-            shield.y = window.innerHeight / 2;
+            const dpr = Math.min(window.devicePixelRatio, 2); // Cap DPR for performance
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            
+            canvas.width = width * dpr;
+            canvas.height = height * dpr;
+            canvas.style.width = width + 'px';
+            canvas.style.height = height + 'px';
+            ctx.scale(dpr, dpr);
+            
+            dimensionsRef.current = { width, height };
+            shield.x = width / 2;
+            shield.y = height / 2;
         };
 
         const handleResize = () => {
@@ -46,12 +58,12 @@ export const NetworkBackground = () => {
             mouse.y = null;
         };
 
+        // Particle class with optimized methods
         class Particle {
-            constructor() {
-                this.x = Math.random() * window.innerWidth;
-                this.y = Math.random() * window.innerHeight;
+            constructor(width, height) {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
                 this.baseSize = Math.random() * 3.2 + 1.5;
-                this.size = this.baseSize;
                 this.speedX = (Math.random() - 0.5) * 0.3;
                 this.speedY = (Math.random() - 0.5) * 0.3;
                 this.density = Math.random() * 30 + 1;
@@ -59,210 +71,246 @@ export const NetworkBackground = () => {
                 // Royal color distribution
                 const colorRoll = Math.random();
                 if (colorRoll < 0.15) {
-                    this.colorType = 'gold';
+                    this.colorType = 0; // gold
+                    this.fillStyle = 'rgba(218, 165, 32, 0.9)';
+                    this.shadowColor = 'rgba(255, 215, 0, 0.7)';
+                    this.shadowBlur = 15;
                 } else if (colorRoll < 0.25) {
-                    this.colorType = 'royal';
+                    this.colorType = 1; // royal
+                    this.fillStyle = 'rgba(65, 105, 180, 0.75)';
+                    this.shadowColor = 'rgba(65, 105, 180, 0.5)';
+                    this.shadowBlur = 12;
                 } else if (colorRoll < 0.30) {
-                    this.colorType = 'anchor';
+                    this.colorType = 2; // anchor
+                    this.fillStyle = 'rgba(25, 40, 65, 0.7)';
+                    this.shadowColor = 'rgba(25, 40, 65, 0.4)';
+                    this.shadowBlur = 10;
                 } else {
-                    this.colorType = 'standard';
+                    this.colorType = 3; // standard
+                    const depthOpacity = 0.45 + Math.random() * 0.35;
+                    this.fillStyle = `rgba(35, 45, 65, ${depthOpacity})`;
+                    this.shadowColor = 'rgba(35, 45, 65, 0.2)';
+                    this.shadowBlur = 5;
                 }
                 
                 this.pulseOffset = Math.random() * Math.PI * 2;
                 this.depth = Math.random();
+                this.depthFactor = 0.6 + this.depth * 0.4;
                 this.sparklePhase = Math.random() * Math.PI * 2;
-            }
-
-            draw(time) {
-                const pulse = Math.sin(time * 0.0012 + this.pulseOffset) * 0.15 + 1;
-                let currentSize = this.baseSize * pulse;
-                
-                if (this.colorType === 'gold') {
-                    const sparkle = Math.sin(time * 0.003 + this.sparklePhase);
-                    if (sparkle > 0.7) {
-                        currentSize *= 1.3;
-                    }
-                }
-                
-                if (this.colorType === 'anchor') {
-                    currentSize = this.baseSize * 2 * pulse;
-                }
-                
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, currentSize, 0, Math.PI * 2);
-
-                if (this.colorType === 'gold') {
-                    ctx.fillStyle = 'rgba(218, 165, 32, 0.9)';
-                    ctx.shadowColor = 'rgba(255, 215, 0, 0.7)';
-                    ctx.shadowBlur = 15;
-                } else if (this.colorType === 'royal') {
-                    ctx.fillStyle = 'rgba(65, 105, 180, 0.75)';
-                    ctx.shadowColor = 'rgba(65, 105, 180, 0.5)';
-                    ctx.shadowBlur = 12;
-                } else if (this.colorType === 'anchor') {
-                    ctx.fillStyle = 'rgba(25, 40, 65, 0.7)';
-                    ctx.shadowColor = 'rgba(25, 40, 65, 0.4)';
-                    ctx.shadowBlur = 10;
-                } else {
-                    const depthOpacity = 0.45 + this.depth * 0.35;
-                    ctx.fillStyle = `rgba(35, 45, 65, ${depthOpacity})`;
-                    ctx.shadowColor = 'rgba(35, 45, 65, 0.2)';
-                    ctx.shadowBlur = 5;
-                }
-
-                ctx.fill();
-                ctx.shadowBlur = 0;
-            }
-
-            update(time) {
-                const depthFactor = 0.6 + this.depth * 0.4;
-                this.x += this.speedX * depthFactor;
-                this.y += this.speedY * depthFactor;
-
-                if (this.x > window.innerWidth + 10) this.x = -10;
-                if (this.x < -10) this.x = window.innerWidth + 10;
-                if (this.y > window.innerHeight + 10) this.y = -10;
-                if (this.y < -10) this.y = window.innerHeight + 10;
-
-                // Shield bounce
-                const dx = this.x - shield.x;
-                const dy = this.y - shield.y;
-                const normalizedDist = Math.sqrt(
-                    (dx * dx) / (shield.radiusX * shield.radiusX) + 
-                    (dy * dy) / (shield.radiusY * shield.radiusY)
-                );
-                
-                if (normalizedDist < 1) {
-                    const angle = Math.atan2(dy, dx);
-                    const pushX = Math.cos(angle) * shield.strength;
-                    const pushY = Math.sin(angle) * shield.strength;
-                    
-                    this.x += pushX * (1 - normalizedDist) * 3;
-                    this.y += pushY * (1 - normalizedDist) * 3;
-                    
-                    this.speedX += pushX * 0.02;
-                    this.speedY += pushY * 0.02;
-                    
-                    const maxSpeed = 0.5;
-                    const currentSpeed = Math.sqrt(this.speedX * this.speedX + this.speedY * this.speedY);
-                    if (currentSpeed > maxSpeed) {
-                        this.speedX = (this.speedX / currentSpeed) * maxSpeed;
-                        this.speedY = (this.speedY / currentSpeed) * maxSpeed;
-                    }
-                }
-
-                // Mouse interaction
-                if (mouse.x != null) {
-                    const mdx = mouse.x - this.x;
-                    const mdy = mouse.y - this.y;
-                    const dist = Math.sqrt(mdx * mdx + mdy * mdy);
-
-                    if (dist < mouse.radius) {
-                        const force = (mouse.radius - dist) / mouse.radius;
-                        const easedForce = force * force;
-                        const forceX = (mdx / dist) * easedForce * this.density * 0.35;
-                        const forceY = (mdy / dist) * easedForce * this.density * 0.35;
-                        this.x -= forceX;
-                        this.y -= forceY;
-                    }
-                }
-
-                this.draw(time);
+                this.anchorSizeMultiplier = this.colorType === 2 ? 2 : 1;
             }
         }
 
         const initParticles = () => {
-            particles = [];
-            const area = window.innerWidth * window.innerHeight;
-            const count = Math.min(Math.floor(area / 7000), 280);
+            const { width, height } = dimensionsRef.current;
+            const area = width * height;
+            const count = Math.min(Math.floor(area / 7500), 250); // Slightly reduced for performance
+            
+            particlesRef.current = [];
             for (let i = 0; i < count; i++) {
-                particles.push(new Particle());
+                particlesRef.current.push(new Particle(width, height));
             }
         };
 
-        const connectParticles = (time) => {
-            const maxDist = 150;
+        // Build spatial grid for O(n) neighbor lookup instead of O(n²)
+        const buildGrid = (particles) => {
+            const grid = {};
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                const cellX = Math.floor(p.x / CELL_SIZE);
+                const cellY = Math.floor(p.y / CELL_SIZE);
+                const key = `${cellX},${cellY}`;
+                if (!grid[key]) grid[key] = [];
+                grid[key].push(i);
+            }
+            return grid;
+        };
 
-            for (let a = 0; a < particles.length; a++) {
-                for (let b = a + 1; b < particles.length; b++) {
-                    const dx = particles[a].x - particles[b].x;
-                    const dy = particles[a].y - particles[b].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
+        const animate = (time) => {
+            animationRef.current = requestAnimationFrame(animate);
+            
+            // Frame rate limiting - target ~45fps for smooth but performant animation
+            const elapsed = time - lastFrameTimeRef.current;
+            if (elapsed < 22) return; // ~45fps
+            lastFrameTimeRef.current = time;
+            
+            const { width, height } = dimensionsRef.current;
+            const particles = particlesRef.current;
+            
+            // Clear with background color (faster than clearRect + separate bg)
+            ctx.fillStyle = '#FFFEF8';
+            ctx.fillRect(0, 0, width, height);
+            
+            // Update and draw particles
+            const pulse = Math.sin(time * 0.0012) * 0.15 + 1;
+            const sparkleTime = Math.sin(time * 0.003);
+            
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                
+                // Update position
+                p.x += p.speedX * p.depthFactor;
+                p.y += p.speedY * p.depthFactor;
 
-                    if (dist < maxDist) {
-                        const midX = (particles[a].x + particles[b].x) / 2;
-                        const midY = (particles[a].y + particles[b].y) / 2;
-                        const midDx = midX - shield.x;
-                        const midDy = midY - shield.y;
-                        const midNormalizedDist = Math.sqrt(
-                            (midDx * midDx) / (shield.radiusX * shield.radiusX) + 
-                            (midDy * midDy) / (shield.radiusY * shield.radiusY)
-                        );
+                // Wrap around
+                if (p.x > width + 10) p.x = -10;
+                else if (p.x < -10) p.x = width + 10;
+                if (p.y > height + 10) p.y = -10;
+                else if (p.y < -10) p.y = height + 10;
+
+                // Shield bounce
+                const dx = p.x - shield.x;
+                const dy = p.y - shield.y;
+                const normalizedDistSq = (dx * dx) / shieldRadiusXSq + (dy * dy) / shieldRadiusYSq;
+                
+                if (normalizedDistSq < 1) {
+                    const normalizedDist = Math.sqrt(normalizedDistSq);
+                    const angle = Math.atan2(dy, dx);
+                    const pushFactor = (1 - normalizedDist) * 3;
+                    const pushX = Math.cos(angle) * shield.strength;
+                    const pushY = Math.sin(angle) * shield.strength;
+                    
+                    p.x += pushX * pushFactor;
+                    p.y += pushY * pushFactor;
+                    
+                    p.speedX += pushX * 0.02;
+                    p.speedY += pushY * 0.02;
+                    
+                    const speedSq = p.speedX * p.speedX + p.speedY * p.speedY;
+                    if (speedSq > 0.25) {
+                        const speed = Math.sqrt(speedSq);
+                        p.speedX = (p.speedX / speed) * 0.5;
+                        p.speedY = (p.speedY / speed) * 0.5;
+                    }
+                }
+
+                // Mouse interaction
+                if (mouse.x !== null) {
+                    const mdx = mouse.x - p.x;
+                    const mdy = mouse.y - p.y;
+                    const distSq = mdx * mdx + mdy * mdy;
+
+                    if (distSq < mouse.radius * mouse.radius && distSq > 0) {
+                        const dist = Math.sqrt(distSq);
+                        const force = (mouse.radius - dist) / mouse.radius;
+                        const easedForce = force * force * p.density * 0.35;
+                        p.x -= (mdx / dist) * easedForce;
+                        p.y -= (mdy / dist) * easedForce;
+                    }
+                }
+
+                // Draw particle
+                const particlePulse = Math.sin(time * 0.0012 + p.pulseOffset) * 0.15 + 1;
+                let currentSize = p.baseSize * particlePulse * p.anchorSizeMultiplier;
+                
+                if (p.colorType === 0 && sparkleTime > 0.7) {
+                    currentSize *= 1.3;
+                }
+                
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, currentSize, 0, Math.PI * 2);
+                ctx.fillStyle = p.fillStyle;
+                ctx.shadowColor = p.shadowColor;
+                ctx.shadowBlur = p.shadowBlur;
+                ctx.fill();
+            }
+            
+            // Reset shadow for lines
+            ctx.shadowBlur = 0;
+            
+            // Build spatial grid for efficient neighbor lookup
+            const grid = buildGrid(particles);
+            
+            // Connect particles using spatial partitioning
+            const drawnConnections = new Set();
+            
+            for (let i = 0; i < particles.length; i++) {
+                const pA = particles[i];
+                const cellX = Math.floor(pA.x / CELL_SIZE);
+                const cellY = Math.floor(pA.y / CELL_SIZE);
+                
+                // Check neighboring cells (including current)
+                for (let nx = cellX - 1; nx <= cellX + 1; nx++) {
+                    for (let ny = cellY - 1; ny <= cellY + 1; ny++) {
+                        const key = `${nx},${ny}`;
+                        const cell = grid[key];
+                        if (!cell) continue;
                         
-                        if (midNormalizedDist < 0.85) continue;
-                        
-                        const shieldFade = Math.min(1, (midNormalizedDist - 0.85) / 0.3);
-                        const distRatio = dist / maxDist;
-                        const opacity = (1 - distRatio * distRatio) * 0.32 * shieldFade;
+                        for (let j = 0; j < cell.length; j++) {
+                            const bIdx = cell[j];
+                            if (bIdx <= i) continue; // Avoid duplicate checks
+                            
+                            const connectionKey = i < bIdx ? `${i}-${bIdx}` : `${bIdx}-${i}`;
+                            if (drawnConnections.has(connectionKey)) continue;
+                            
+                            const pB = particles[bIdx];
+                            const dx = pA.x - pB.x;
+                            const dy = pA.y - pB.y;
+                            const distSq = dx * dx + dy * dy;
 
-                        let lineOpacity = opacity;
-                        if (mouse.x != null) {
-                            const mouseDist = Math.sqrt(
-                                (mouse.x - midX) ** 2 + (mouse.y - midY) ** 2
-                            );
-                            if (mouseDist < mouse.radius) {
-                                const mouseRatio = mouseDist / mouse.radius;
-                                const boost = (1 - mouseRatio * mouseRatio) * 0.4;
-                                lineOpacity = opacity + boost * shieldFade;
+                            if (distSq < MAX_DIST_SQ) {
+                                const midX = (pA.x + pB.x) * 0.5;
+                                const midY = (pA.y + pB.y) * 0.5;
+                                const midDx = midX - shield.x;
+                                const midDy = midY - shield.y;
+                                const midNormalizedDistSq = (midDx * midDx) / shieldRadiusXSq + (midDy * midDy) / shieldRadiusYSq;
+                                
+                                if (midNormalizedDistSq < 0.7225) continue; // 0.85^2
+                                
+                                const midNormalizedDist = Math.sqrt(midNormalizedDistSq);
+                                const shieldFade = Math.min(1, (midNormalizedDist - 0.85) / 0.3);
+                                const dist = Math.sqrt(distSq);
+                                const distRatio = dist / MAX_DIST;
+                                const opacity = (1 - distRatio * distRatio) * 0.32 * shieldFade;
+
+                                let lineOpacity = opacity;
+                                if (mouse.x !== null) {
+                                    const mouseDistSq = (mouse.x - midX) ** 2 + (mouse.y - midY) ** 2;
+                                    if (mouseDistSq < mouse.radius * mouse.radius) {
+                                        const mouseRatio = Math.sqrt(mouseDistSq) / mouse.radius;
+                                        lineOpacity = opacity + (1 - mouseRatio * mouseRatio) * 0.4 * shieldFade;
+                                    }
+                                }
+
+                                let lineWidth = 0.9;
+                                const colorA = pA.colorType;
+                                const colorB = pB.colorType;
+                                
+                                if (colorA === 0 && colorB === 0) {
+                                    ctx.strokeStyle = `rgba(218, 165, 32, ${lineOpacity * 2})`;
+                                    lineWidth = 1.4;
+                                } else if (colorA === 0 || colorB === 0) {
+                                    ctx.strokeStyle = `rgba(200, 160, 50, ${lineOpacity * 1.5})`;
+                                    lineWidth = 1.1;
+                                } else if (colorA === 1 && colorB === 1) {
+                                    ctx.strokeStyle = `rgba(65, 105, 180, ${lineOpacity * 1.8})`;
+                                    lineWidth = 1.3;
+                                } else if (colorA === 1 || colorB === 1) {
+                                    ctx.strokeStyle = `rgba(80, 110, 160, ${lineOpacity * 1.3})`;
+                                    lineWidth = 1;
+                                } else if (colorA === 2 || colorB === 2) {
+                                    ctx.strokeStyle = `rgba(35, 50, 75, ${lineOpacity * 1.4})`;
+                                    lineWidth = 1.5;
+                                } else {
+                                    ctx.strokeStyle = `rgba(45, 55, 75, ${lineOpacity})`;
+                                }
+
+                                ctx.lineWidth = lineWidth;
+                                ctx.beginPath();
+                                ctx.moveTo(pA.x, pA.y);
+                                ctx.lineTo(pB.x, pB.y);
+                                ctx.stroke();
+                                
+                                drawnConnections.add(connectionKey);
                             }
                         }
-
-                        let lineWidth = 0.9;
-                        const pA = particles[a];
-                        const pB = particles[b];
-                        
-                        if (pA.colorType === 'gold' && pB.colorType === 'gold') {
-                            ctx.strokeStyle = `rgba(218, 165, 32, ${lineOpacity * 2})`;
-                            lineWidth = 1.4;
-                        } else if (pA.colorType === 'gold' || pB.colorType === 'gold') {
-                            ctx.strokeStyle = `rgba(200, 160, 50, ${lineOpacity * 1.5})`;
-                            lineWidth = 1.1;
-                        } else if (pA.colorType === 'royal' && pB.colorType === 'royal') {
-                            ctx.strokeStyle = `rgba(65, 105, 180, ${lineOpacity * 1.8})`;
-                            lineWidth = 1.3;
-                        } else if (pA.colorType === 'royal' || pB.colorType === 'royal') {
-                            ctx.strokeStyle = `rgba(80, 110, 160, ${lineOpacity * 1.3})`;
-                            lineWidth = 1;
-                        } else if (pA.colorType === 'anchor' || pB.colorType === 'anchor') {
-                            ctx.strokeStyle = `rgba(35, 50, 75, ${lineOpacity * 1.4})`;
-                            lineWidth = 1.5;
-                        } else {
-                            ctx.strokeStyle = `rgba(45, 55, 75, ${lineOpacity})`;
-                        }
-
-                        ctx.lineWidth = lineWidth;
-                        ctx.beginPath();
-                        ctx.moveTo(pA.x, pA.y);
-                        ctx.lineTo(pB.x, pB.y);
-                        ctx.stroke();
                     }
                 }
             }
         };
 
-        const animate = (time) => {
-            animationFrameId = requestAnimationFrame(animate);
-            ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update(time);
-            }
-
-            connectParticles(time);
-        };
-
         window.addEventListener('resize', handleResize);
-        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('mousemove', handleMouseMove, { passive: true });
         window.addEventListener('mouseout', handleMouseLeave);
 
         setCanvasSize();
@@ -273,7 +321,9 @@ export const NetworkBackground = () => {
             window.removeEventListener('resize', handleResize);
             window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('mouseout', handleMouseLeave);
-            cancelAnimationFrame(animationFrameId);
+            if (animationRef.current) {
+                cancelAnimationFrame(animationRef.current);
+            }
         };
     }, []);
 
