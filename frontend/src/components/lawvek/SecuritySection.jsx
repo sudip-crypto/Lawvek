@@ -12,10 +12,10 @@ export const SecuritySection = () => {
   return (
     <section 
       id="security"
-      className="relative py-24 md:py-32"
+      className="relative py-24 md:py-32 bg-[#FAFAF8]"
       data-testid="security-section"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
         <motion.div
           className="text-center max-w-2xl mx-auto mb-16"
           initial={{ opacity: 0, y: 20 }}

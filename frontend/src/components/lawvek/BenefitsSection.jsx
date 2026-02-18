@@ -37,10 +37,10 @@ export const BenefitsSection = () => {
 
   return (
     <section 
-      className="relative py-24 md:py-32"
+      className="relative py-24 md:py-32 bg-[#FAFAF8]"
       data-testid="benefits-section"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
         {/* Header */}
         <motion.div
           className="max-w-2xl mb-16"

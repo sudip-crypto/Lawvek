@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FileText, Bot, User, UserCheck, CheckCircle, Paperclip } from 'lucide-react';
+import { FileText, Bot, UserCheck, CheckCircle, Paperclip } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export const HowItWorksSection = () => {
@@ -7,7 +7,7 @@ export const HowItWorksSection = () => {
   
   useEffect(() => {
     const interval = setInterval(() => {
-      setStep((prev) => (prev + 1) % 6);
+      setStep((prev) => (prev + 1) % 5);
     }, 2500);
     return () => clearInterval(interval);
   }, []);
@@ -124,10 +124,10 @@ export const HowItWorksSection = () => {
                     {/* Progress indicator */}
                     <motion.div 
                       className="mt-2 bg-[#222529] border border-[#333] rounded-lg p-3 max-w-[320px]"
-                      animate={step >= 1 && step <= 3 ? { 
+                      animate={step >= 1 && step <= 2 ? { 
                         borderColor: ['#333', '#10B981', '#333']
                       } : {}}
-                      transition={{ duration: 2, repeat: step >= 1 && step <= 3 ? Infinity : 0 }}
+                      transition={{ duration: 2, repeat: step >= 1 && step <= 2 ? Infinity : 0 }}
                     >
                       <div className="flex items-center gap-2 mb-2">
                         <motion.div 
@@ -137,15 +137,14 @@ export const HowItWorksSection = () => {
                         />
                         <span className="text-[#D1D2D3] text-sm">
                           {step === 1 && "AI analyzing document..."}
-                          {step === 2 && "Paralegal reviewing..."}
-                          {step === 3 && "Senior attorney sign-off..."}
-                          {step >= 4 && "Review complete"}
+                          {step === 2 && "Licensed attorney reviewing..."}
+                          {step >= 3 && "Review complete"}
                         </span>
                       </div>
                       <div className="w-full bg-[#333] rounded-full h-1.5">
                         <motion.div 
                           className="bg-emerald-500 h-1.5 rounded-full"
-                          animate={{ width: `${Math.min((step) * 25, 100)}%` }}
+                          animate={{ width: `${Math.min((step) * 33, 100)}%` }}
                           transition={{ duration: 0.5 }}
                         />
                       </div>
@@ -157,7 +156,7 @@ export const HowItWorksSection = () => {
                 <motion.div 
                   className="flex gap-3"
                   initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: step >= 4 ? 1 : 0, y: step >= 4 ? 0 : 10 }}
+                  animate={{ opacity: step >= 3 ? 1 : 0, y: step >= 3 ? 0 : 10 }}
                   transition={{ duration: 0.4 }}
                 >
                   <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center flex-shrink-0">
@@ -175,10 +174,10 @@ export const HowItWorksSection = () => {
                     {/* Reviewed File */}
                     <motion.div 
                       className="bg-[#222529] border border-emerald-500/30 rounded-lg p-3 max-w-[280px] flex items-center gap-3"
-                      animate={step >= 4 ? { 
+                      animate={step >= 3 ? { 
                         boxShadow: ['0 0 0 rgba(16, 185, 129, 0)', '0 0 15px rgba(16, 185, 129, 0.2)', '0 0 0 rgba(16, 185, 129, 0)']
                       } : {}}
-                      transition={{ duration: 2, repeat: step >= 4 ? Infinity : 0 }}
+                      transition={{ duration: 2, repeat: step >= 3 ? Infinity : 0 }}
                     >
                       <div className="w-10 h-10 bg-emerald-600 rounded flex items-center justify-center">
                         <CheckCircle className="w-5 h-5 text-white" />
@@ -214,20 +213,13 @@ export const HowItWorksSection = () => {
                 },
                 { 
                   id: 2, 
-                  title: 'Paralegal Review', 
-                  desc: 'Initial review & standard issue flagging',
-                  icon: User,
-                  time: '~1 hour'
-                },
-                { 
-                  id: 3, 
-                  title: 'Senior Attorney', 
+                  title: 'Licensed Attorney', 
                   desc: 'Expert sign-off on high-risk clauses',
                   icon: UserCheck,
                   time: '~2 hours'
                 },
                 { 
-                  id: 4, 
+                  id: 3, 
                   title: 'Delivered', 
                   desc: 'Redlined contract ready in your chat',
                   icon: CheckCircle,
@@ -247,7 +239,7 @@ export const HowItWorksSection = () => {
                   transition={{ duration: 0.4, delay: 0.1 * index }}
                 >
                   {/* Connector Line */}
-                  {index < 3 && (
+                  {index < 2 && (
                     <div className="absolute left-7 top-full w-0.5 h-4 bg-[#334155] z-0">
                       <motion.div 
                         className="w-full bg-emerald-500"
