@@ -156,7 +156,7 @@ export const HowItWorksSection = () => {
                 <motion.div 
                   className="flex gap-3"
                   initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: step >= 4 ? 1 : 0, y: step >= 4 ? 0 : 10 }}
+                  animate={{ opacity: step >= 3 ? 1 : 0, y: step >= 3 ? 0 : 10 }}
                   transition={{ duration: 0.4 }}
                 >
                   <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center flex-shrink-0">
