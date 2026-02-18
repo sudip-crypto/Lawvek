@@ -7,7 +7,7 @@ export const HowItWorksSection = () => {
   
   useEffect(() => {
     const interval = setInterval(() => {
-      setStep((prev) => (prev + 1) % 6);
+      setStep((prev) => (prev + 1) % 5);
     }, 2500);
     return () => clearInterval(interval);
   }, []);
