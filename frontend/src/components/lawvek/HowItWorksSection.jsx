@@ -137,15 +137,14 @@ export const HowItWorksSection = () => {
                         />
                         <span className="text-[#D1D2D3] text-sm">
                           {step === 1 && "AI analyzing document..."}
-                          {step === 2 && "Paralegal reviewing..."}
-                          {step === 3 && "Senior attorney sign-off..."}
-                          {step >= 4 && "Review complete"}
+                          {step === 2 && "Licensed attorney reviewing..."}
+                          {step >= 3 && "Review complete"}
                         </span>
                       </div>
                       <div className="w-full bg-[#333] rounded-full h-1.5">
                         <motion.div 
                           className="bg-emerald-500 h-1.5 rounded-full"
-                          animate={{ width: `${Math.min((step) * 25, 100)}%` }}
+                          animate={{ width: `${Math.min((step) * 33, 100)}%` }}
                           transition={{ duration: 0.5 }}
                         />
                       </div>
