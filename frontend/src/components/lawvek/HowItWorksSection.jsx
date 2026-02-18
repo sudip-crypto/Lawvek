@@ -214,20 +214,13 @@ export const HowItWorksSection = () => {
                 },
                 { 
                   id: 2, 
-                  title: 'Paralegal Review', 
-                  desc: 'Initial review & standard issue flagging',
-                  icon: User,
-                  time: '~1 hour'
-                },
-                { 
-                  id: 3, 
-                  title: 'Senior Attorney', 
+                  title: 'Licensed Attorney', 
                   desc: 'Expert sign-off on high-risk clauses',
                   icon: UserCheck,
                   time: '~2 hours'
                 },
                 { 
-                  id: 4, 
+                  id: 3, 
                   title: 'Delivered', 
                   desc: 'Redlined contract ready in your chat',
                   icon: CheckCircle,
