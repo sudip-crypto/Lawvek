@@ -240,7 +240,7 @@ export const HowItWorksSection = () => {
                   transition={{ duration: 0.4, delay: 0.1 * index }}
                 >
                   {/* Connector Line */}
-                  {index < 3 && (
+                  {index < 2 && (
                     <div className="absolute left-7 top-full w-0.5 h-4 bg-[#334155] z-0">
                       <motion.div 
                         className="w-full bg-emerald-500"
