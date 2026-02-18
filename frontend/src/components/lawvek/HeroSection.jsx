@@ -221,7 +221,7 @@ export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
         >
-          AI-powered contract review with the right level of human legal oversight — fast, transparent, and cost-effective.
+          AI-powered contract review with the right level of human legal oversight. Attorney-validated contract review from $250.
         </motion.p>
         
         {/* CTA Button - Dark pill with enhanced backdrop */}
