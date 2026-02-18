@@ -124,10 +124,10 @@ export const HowItWorksSection = () => {
                     {/* Progress indicator */}
                     <motion.div 
                       className="mt-2 bg-[#222529] border border-[#333] rounded-lg p-3 max-w-[320px]"
-                      animate={step >= 1 && step <= 3 ? { 
+                      animate={step >= 1 && step <= 2 ? { 
                         borderColor: ['#333', '#10B981', '#333']
                       } : {}}
-                      transition={{ duration: 2, repeat: step >= 1 && step <= 3 ? Infinity : 0 }}
+                      transition={{ duration: 2, repeat: step >= 1 && step <= 2 ? Infinity : 0 }}
                     >
                       <div className="flex items-center gap-2 mb-2">
                         <motion.div 
