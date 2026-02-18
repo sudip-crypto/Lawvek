@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FileText, Bot, User, UserCheck, CheckCircle, Paperclip } from 'lucide-react';
+import { FileText, Bot, UserCheck, CheckCircle, Paperclip } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export const HowItWorksSection = () => {
