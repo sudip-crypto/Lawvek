@@ -174,10 +174,10 @@ export const HowItWorksSection = () => {
                     {/* Reviewed File */}
                     <motion.div 
                       className="bg-[#222529] border border-emerald-500/30 rounded-lg p-3 max-w-[280px] flex items-center gap-3"
-                      animate={step >= 4 ? { 
+                      animate={step >= 3 ? { 
                         boxShadow: ['0 0 0 rgba(16, 185, 129, 0)', '0 0 15px rgba(16, 185, 129, 0.2)', '0 0 0 rgba(16, 185, 129, 0)']
                       } : {}}
-                      transition={{ duration: 2, repeat: step >= 4 ? Infinity : 0 }}
+                      transition={{ duration: 2, repeat: step >= 3 ? Infinity : 0 }}
                     >
                       <div className="w-10 h-10 bg-emerald-600 rounded flex items-center justify-center">
                         <CheckCircle className="w-5 h-5 text-white" />
