@@ -229,7 +229,7 @@ export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="relative mb-8"
+          className="relative"
         >
           {/* CTA backdrop glow */}
           <div className="absolute inset-0 -inset-x-8 -inset-y-4 bg-white/60 rounded-full blur-2xl pointer-events-none" />
@@ -247,28 +247,6 @@ export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
             <span className="relative z-10">Get Priority Access</span>
             <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" strokeWidth={2} />
           </motion.button>
-        </motion.div>
-        
-        {/* Spots Left - Amber indicator */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="relative"
-        >
-          <motion.span 
-            className="inline-flex items-center gap-2 px-4 py-2 bg-white/95 backdrop-blur-sm border border-amber-200 rounded-full shadow-sm"
-            animate={{ 
-              borderColor: ['rgba(245, 158, 11, 0.3)', 'rgba(245, 158, 11, 0.6)', 'rgba(245, 158, 11, 0.3)']
-            }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-500 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
-            </span>
-            <span className="text-sm font-semibold text-amber-700">{spotsRemaining} spots left</span>
-          </motion.span>
         </motion.div>
         
       </motion.div>
