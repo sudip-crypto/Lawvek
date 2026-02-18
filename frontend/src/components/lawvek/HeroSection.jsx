@@ -3,8 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import { useRef } from 'react';
 import { NetworkBackground } from './NetworkBackground';
 
-export const HeroSection = ({ onOpenModal, queueCount = 37 }) => {
-  const spotsRemaining = 50 - queueCount;
+export const HeroSection = ({ onOpenModal }) => {
   const sectionRef = useRef(null);
   
   const { scrollYProgress } = useScroll({
