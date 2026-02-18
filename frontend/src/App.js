@@ -40,7 +40,7 @@ const LandingPage = () => {
     <div className="min-h-screen bg-[#FAFAF8]" data-testid="landing-page">
       <Header onOpenModal={openModal} />
       <main className="relative">
-        <HeroSection onOpenModal={openModal} queueCount={queueCount} />
+        <HeroSection onOpenModal={openModal} />
         <TrustTicker />
         <ProblemSection />
         <ApproachSection />
