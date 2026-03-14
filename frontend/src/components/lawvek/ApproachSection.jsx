@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { BarChart3, GitBranch, DollarSign } from 'lucide-react';
+import { BarChart3, GitBranch, DollarSign, Sparkles } from 'lucide-react';
 
 export const ApproachSection = () => {
   const steps = [
@@ -24,7 +24,7 @@ export const ApproachSection = () => {
   ];
 
   return (
-    <section 
+    <section
       id="approach"
       className="relative py-24 md:py-32 bg-gradient-to-b from-white via-[#FAFAFA] to-[#F5F5F5]"
       data-testid="approach-section"
@@ -32,19 +32,28 @@ export const ApproachSection = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
         {/* Header */}
         <motion.div
-          className="max-w-2xl mb-16"
+          className="max-w-4xl mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-sm font-medium text-emerald-600 tracking-wide uppercase mb-4">
-            Our Solution
-          </p>
+          {/* Badge */}
+          <motion.span
+            className="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full mb-6"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+            <span className="text-xs font-semibold text-emerald-600 tracking-wider uppercase">Our Solution</span>
+          </motion.span>
+
           <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-[#1a1a1a] mb-4">
-            Intelligent contract review.
+            Intelligent <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-cyan-600">Contract Review.</span>
           </h2>
-          <p className="text-base text-[#666666]">
+          <p className="text-base md:text-lg text-[#666666] leading-relaxed max-w-2xl">
             We match each contract with the right level of expertise — saving you time and money.
           </p>
         </motion.div>

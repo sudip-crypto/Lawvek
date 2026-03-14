@@ -26,7 +26,7 @@
         --input: 214 32% 91%;
         --ring: 217 33% 17%;
         --radius: 0.125rem;
-        
+
         --lawvek-bg: #F9F9F9;
         --lawvek-paper: #FFFFFF;
         --lawvek-primary: #1E293B;
@@ -41,21 +41,27 @@
     * {
         @apply border-border;
     }
-    
+
     html {
         scroll-behavior: smooth;
     }
-    
+
     body {
         @apply bg-[#F9F9F9] text-[#1A1A1A] antialiased;
         font-family: 'Manrope', sans-serif;
     }
-    
-    h1, h2, h3, h4, h5, h6 {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         font-family: 'Playfair Display', serif;
     }
-    
-    code, pre {
+
+    code,
+    pre {
         font-family: 'JetBrains Mono', monospace;
     }
 }
@@ -64,11 +70,11 @@
     .font-serif {
         font-family: 'Playfair Display', serif;
     }
-    
+
     .font-sans {
         font-family: 'Manrope', sans-serif;
     }
-    
+
     .font-mono {
         font-family: 'JetBrains Mono', monospace;
     }
@@ -94,9 +100,12 @@
 
 /* Animated gradient for premium buttons */
 @keyframes gradient-x {
-    0%, 100% {
+
+    0%,
+    100% {
         background-position: 0% 50%;
     }
+
     50% {
         background-position: 100% 50%;
     }

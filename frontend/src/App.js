@@ -1,17 +1,18 @@
 import "@/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import PriorityAccess from "@/pages/PriorityAccess";
+import Confirmation from "@/pages/Confirmation";
 import {
   Header,
   HeroSection,
   TrustTicker,
-  ProblemSection,
+  WhyLawvekSection,
   ApproachSection,
   HowItWorksSection,
   BenefitsSection,
   IntegrationsSection,
-  ComparisonSection,
-  SecuritySection,
+  FAQSection,
   CTASection,
   EarlyAccessModal,
   Footer,
@@ -19,7 +20,7 @@ import {
 
 const LandingPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
+
   // Queue counter state - persisted in localStorage
   const [queueCount, setQueueCount] = useState(() => {
     const saved = localStorage.getItem('lawvek_queue_count');
@@ -42,19 +43,18 @@ const LandingPage = () => {
       <main className="relative">
         <HeroSection onOpenModal={openModal} />
         <TrustTicker />
-        <ProblemSection />
+        <WhyLawvekSection />
         <ApproachSection />
         <HowItWorksSection />
         <BenefitsSection />
         <IntegrationsSection />
-        <ComparisonSection />
-        <SecuritySection />
+        <FAQSection />
         <CTASection onOpenModal={openModal} />
       </main>
       <Footer />
-      <EarlyAccessModal 
-        isOpen={isModalOpen} 
-        onClose={closeModal} 
+      <EarlyAccessModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
         onSuccess={incrementQueue}
         queueCount={queueCount}
       />
@@ -62,12 +62,15 @@ const LandingPage = () => {
   );
 };
 
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/priority-access" element={<PriorityAccess />} />
+          <Route path="/confirmation" element={<Confirmation />} />
         </Routes>
       </BrowserRouter>
     </div>

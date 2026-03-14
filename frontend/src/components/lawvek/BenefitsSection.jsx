@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Zap, TrendingDown, ShieldCheck, Users, FileText, BarChart } from 'lucide-react';
+import { Zap, TrendingDown, ShieldCheck, Users, FileText, BarChart, Sparkles } from 'lucide-react';
 
 export const BenefitsSection = () => {
   const benefits = [
@@ -20,8 +20,8 @@ export const BenefitsSection = () => {
     },
     {
       icon: Users,
-      title: 'Expert Network',
-      description: '500+ licensed attorneys available for complex reviews.',
+      title: 'Built in Risk Scoring',
+      description: 'Instant visibility into legal and commercial risk exposure.',
     },
     {
       icon: FileText,
@@ -36,27 +36,37 @@ export const BenefitsSection = () => {
   ];
 
   return (
-    <section 
+    <section
+      id="benefits"
       className="relative py-24 md:py-32 bg-[#FAFAF8]"
       data-testid="benefits-section"
     >
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
         {/* Header */}
         <motion.div
-          className="max-w-2xl mb-16"
+          className="max-w-4xl mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-sm font-medium text-emerald-600 tracking-wide uppercase mb-4">
-            Benefits
-          </p>
+          {/* Badge */}
+          <motion.span
+            className="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full mb-6"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+            <span className="text-xs font-semibold text-emerald-600 tracking-wider uppercase">Benefits</span>
+          </motion.span>
+
           <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-[#1a1a1a] mb-4">
-            Why leading teams choose Lawvek
+            Why leading teams <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-cyan-600">choose Lawvek.</span>
           </h2>
-          <p className="text-base text-[#666666]">
-            Join 500+ legal teams that have transformed their contract workflow.
+          <p className="text-base md:text-lg text-[#666666] leading-relaxed max-w-2xl">
+            Join fast moving teams that have transformed their contract workflow.
           </p>
         </motion.div>
 

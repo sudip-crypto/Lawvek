@@ -5,18 +5,18 @@ import { NetworkBackground } from './NetworkBackground';
 
 export const HeroSection = ({ onOpenModal }) => {
   const sectionRef = useRef(null);
-  
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"]
   });
-  
+
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-  
+
   return (
-    <section 
+    <section
       ref={sectionRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       data-testid="hero-section"
@@ -24,16 +24,16 @@ export const HeroSection = ({ onOpenModal }) => {
       {/* Network Background - Only in Hero */}
       <NetworkBackground />
       {/* Premium Depth Gradient Layers - Royal & Lively */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 pointer-events-none"
         style={{ y: bgY }}
       >
         {/* Top atmospheric depth - soft royal blue */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#E8F0FA]/40 via-transparent to-transparent" />
-        
+
         {/* Warm golden horizon glow */}
         <div className="absolute bottom-0 left-0 right-0 h-[40%] bg-gradient-to-t from-[#FFF8E8]/50 via-[#FFFBF0]/30 to-transparent" />
-        
+
         {/* Central focus glow - warm ivory */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px]">
           <div className="absolute inset-0 bg-gradient-radial from-white/60 via-[#FFFEF5]/30 to-transparent rounded-full blur-3xl" />
@@ -43,51 +43,51 @@ export const HeroSection = ({ onOpenModal }) => {
       {/* Floating depth layers - Royal elegance */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Top left - soft royal blue cloud */}
-        <motion.div 
+        <motion.div
           className="absolute -top-20 -left-20 w-[450px] h-[350px] rounded-full bg-gradient-to-br from-[#C5D8F0]/40 via-[#D8E8FA]/20 to-transparent blur-3xl"
-          animate={{ 
+          animate={{
             x: [0, 40, 0],
             y: [0, -20, 0],
             scale: [1, 1.08, 1],
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         />
-        
+
         {/* Top right - golden warmth */}
-        <motion.div 
+        <motion.div
           className="absolute -top-10 right-0 w-[400px] h-[320px] rounded-full bg-gradient-to-bl from-[#FFF0D4]/50 via-[#FFE8C0]/25 to-transparent blur-3xl"
-          animate={{ 
+          animate={{
             x: [0, -30, 0],
             y: [0, 25, 0],
             scale: [1, 1.1, 1],
           }}
           transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         />
-        
+
         {/* Center floating orb - premium glow */}
-        <motion.div 
+        <motion.div
           className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[550px] h-[380px] rounded-full bg-gradient-to-b from-white/50 via-[#FFFEF8]/25 to-transparent blur-2xl"
-          animate={{ 
+          animate={{
             scale: [1, 1.12, 1],
             opacity: [0.4, 0.6, 0.4],
           }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
         />
-        
+
         {/* Bottom golden accent */}
-        <motion.div 
+        <motion.div
           className="absolute bottom-10 left-1/4 w-[400px] h-[280px] rounded-full bg-gradient-to-t from-[#FFE4A8]/35 via-[#FFF0C8]/20 to-transparent blur-3xl"
-          animate={{ 
+          animate={{
             x: [0, 35, 0],
             y: [0, -25, 0],
           }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 4 }}
         />
-        
+
         {/* Right side royal blue accent */}
-        <motion.div 
+        <motion.div
           className="absolute bottom-1/4 right-10 w-[300px] h-[250px] rounded-full bg-gradient-to-l from-[#B8D0F0]/30 via-[#D0E4FA]/15 to-transparent blur-3xl"
-          animate={{ 
+          animate={{
             x: [0, -25, 0],
             y: [0, 20, 0],
           }}
@@ -101,7 +101,7 @@ export const HeroSection = ({ onOpenModal }) => {
         <div className="absolute top-0 right-[22%] w-[3px] h-[450px] bg-gradient-to-b from-[#B0D0F0]/50 via-[#D0E8FA]/25 to-transparent transform rotate-10 blur-[2px]" />
         <div className="absolute top-0 right-[8%] w-[2px] h-[380px] bg-gradient-to-b from-[#FFD890]/45 to-transparent transform rotate-15 blur-[1px]" />
       </div>
-      
+
       {/* Geometric accent shapes - Royal & Premium */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Rotating hexagonal glow - gold */}
@@ -117,7 +117,7 @@ export const HeroSection = ({ onOpenModal }) => {
           }}
           transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
         />
-        
+
         {/* Right organic blob - royal blue */}
         <motion.div
           className="absolute top-1/3 -right-8 w-[220px] h-[220px] opacity-20"
@@ -131,7 +131,7 @@ export const HeroSection = ({ onOpenModal }) => {
           }}
           transition={{ duration: 35, repeat: Infinity, ease: "easeInOut" }}
         />
-        
+
         {/* Bottom accent ring - golden */}
         <motion.div
           className="absolute bottom-[12%] left-1/2 -translate-x-1/2 w-[700px] h-[120px] opacity-15"
@@ -145,7 +145,7 @@ export const HeroSection = ({ onOpenModal }) => {
           }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         />
-        
+
         {/* Sparkle dots */}
         <motion.div
           className="absolute top-[20%] left-[25%] w-3 h-3 rounded-full bg-[#FFD700]"
@@ -177,13 +177,13 @@ export const HeroSection = ({ onOpenModal }) => {
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#FAFAFA] via-[#FAFAFA]/80 to-transparent pointer-events-none" />
 
       {/* Content - Centered with protective backdrop */}
-      <motion.div 
+      <motion.div
         className="relative z-10 max-w-4xl mx-auto px-6 text-center py-32"
         style={{ y: textY, opacity }}
       >
         {/* Subtle protective backdrop for readability */}
         <div className="absolute inset-0 -mx-12 -my-8 bg-gradient-radial from-white/70 via-white/40 to-transparent rounded-3xl blur-xl pointer-events-none" />
-        
+
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20, scale: 0.9 }}
@@ -191,7 +191,7 @@ export const HeroSection = ({ onOpenModal }) => {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="relative mb-10"
         >
-          <motion.span 
+          <motion.span
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/95 backdrop-blur-sm border border-amber-200/80 rounded-full shadow-sm shadow-amber-100/50"
             whileHover={{ scale: 1.05, borderColor: 'rgba(245, 158, 11, 0.5)' }}
             transition={{ duration: 0.3 }}
@@ -201,20 +201,35 @@ export const HeroSection = ({ onOpenModal }) => {
             </span>
           </motion.span>
         </motion.div>
-        
+
         {/* Headline */}
-        <motion.h1 
+        <motion.h1
           className="relative text-5xl sm:text-6xl lg:text-7xl font-serif tracking-[-0.02em] leading-[1.05] text-[#1a1a1a] mb-8"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
         >
           Contract review<br />
-          <span className="text-[#1a1a1a]">without hourly billing.</span>
+          <span className="text-[#1a1a1a]">without </span>
+          <motion.span
+            className="text-transparent bg-clip-text bg-gradient-to-r from-[#1e3a8a] via-[#3b82f6] via-[#60a5fa] to-[#1e3a8a] inline-block pb-1"
+            animate={{
+              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+            }}
+            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+            style={{
+              backgroundSize: '200% auto',
+              textShadow: '0 0 10px rgba(59, 130, 246, 0.1)',
+              display: 'inline-block',
+              paddingBottom: '0.15em',
+            }}
+          >
+            hourly billing.
+          </motion.span>
         </motion.h1>
-        
+
         {/* Description */}
-        <motion.p 
+        <motion.p
           className="relative text-lg md:text-xl font-sans leading-relaxed text-[#555555] max-w-2xl mx-auto mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -222,7 +237,7 @@ export const HeroSection = ({ onOpenModal }) => {
         >
           AI-powered contract review with the right level of human legal oversight. Attorney-validated contract review from $250.
         </motion.p>
-        
+
         {/* CTA Button - Dark pill with enhanced backdrop */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -235,19 +250,19 @@ export const HeroSection = ({ onOpenModal }) => {
           <motion.button
             onClick={onOpenModal}
             className="relative group inline-flex items-center gap-3 px-8 py-4 bg-[#1a1a1a] text-white rounded-full font-semibold text-base overflow-hidden transition-all duration-500 shadow-xl hover:shadow-2xl"
-            whileHover={{ 
-              scale: 1.02, 
+            whileHover={{
+              scale: 1.02,
             }}
             whileTap={{ scale: 0.98 }}
             data-testid="hero-primary-cta"
           >
             <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-            
-            <span className="relative z-10">Get Priority Access</span>
+
+            <span className="relative z-10">Talk to Us</span>
             <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" strokeWidth={2} />
           </motion.button>
         </motion.div>
-        
+
       </motion.div>
     </section>
   );

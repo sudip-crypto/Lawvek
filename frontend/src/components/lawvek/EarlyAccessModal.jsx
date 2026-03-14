@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronDown, ArrowRight, CheckCircle2, Clock, ChevronLeft, ChevronRight, Handshake, Home } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
+import axios from 'axios';
 
 export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }) => {
   const [formData, setFormData] = useState({
@@ -43,16 +44,16 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
     const lastDay = new Date(year, month + 1, 0);
     const startingDay = firstDay.getDay();
     const totalDays = lastDay.getDate();
-    
+
     const days = [];
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    
+
     // Add empty slots for days before the first day
     for (let i = 0; i < startingDay; i++) {
       days.push(null);
     }
-    
+
     // Add actual days
     for (let day = 1; day <= totalDays; day++) {
       const date = new Date(year, month, day);
@@ -64,7 +65,7 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
         disabled: isPast || isWeekend
       });
     }
-    
+
     return days;
   };
 
@@ -78,22 +79,55 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
 
   const handleBooking = async () => {
     if (!selectedDate || !selectedTime) return;
-    
+
     setIsBooking(true);
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    const dateObj = new Date(selectedDate);
-    setScheduledTime({
-      date: dateObj.toISOString(),
-      time: selectedTime,
-      formattedDate: dateObj.toLocaleDateString('en-US', { 
-        weekday: 'long', 
-        month: 'long', 
-        day: 'numeric' 
-      })
-    });
-    setIsBooking(false);
-    setStep('confirmed');
+
+    try {
+      const dateObj = new Date(selectedDate);
+
+      // Parse time for calculations
+      const [time, modifier] = selectedTime.split(' ');
+      let [hours, minutes] = time.split(':');
+      if (modifier === 'PM' && hours !== '12') hours = parseInt(hours, 10) + 12;
+      if (modifier === 'AM' && hours === '12') hours = '00';
+
+      dateObj.setHours(parseInt(hours, 10));
+      dateObj.setMinutes(parseInt(minutes, 10));
+      dateObj.setSeconds(0);
+
+      // 1. Sync with your Backend
+      console.log("Attemping to sync with backend...", formData.email);
+      await axios.post('/api/bookings', {
+        name: formData.name,
+        email: formData.email,
+        company_size: formData.companySize,
+        scheduled_at: dateObj.toISOString(),
+        time_slot: selectedTime
+      }, { timeout: 5000 }).then(res => {
+        console.log("Backend sync successful:", res.data);
+      }).catch(err => {
+        console.error("Backend sync failed:", err.message);
+      });
+
+      // 2. Update UI state (Handshake message)
+      // Even if the backend fails, we show success to the user so they are not stuck
+      setScheduledTime({
+        date: dateObj.toISOString(),
+        time: selectedTime,
+        formattedDate: dateObj.toLocaleDateString('en-US', {
+          weekday: 'long',
+          month: 'long',
+          day: 'numeric'
+        })
+      });
+
+      setIsBooking(false);
+      setStep('confirmed');
+
+    } catch (error) {
+      console.error("Booking process error:", error);
+      setIsBooking(false);
+    }
   };
 
   useEffect(() => {
@@ -119,7 +153,21 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 1200));
+
+    // Capture the lead immediately
+    try {
+      await axios.post('/api/leads', {
+        name: formData.name,
+        email: formData.email,
+        company_size: formData.companySize,
+        type: 'lead'
+      }, { timeout: 5000 });
+      console.log("Initial lead captured");
+    } catch (err) {
+      console.error("Initial lead capture failed (continuing):", err.message);
+    }
+
+    await new Promise(resolve => setTimeout(resolve, 800));
     setIsSubmitting(false);
     setStep('scheduling');
     if (onSuccess) {
@@ -145,9 +193,9 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
   const formatScheduledDate = (isoString) => {
     if (!isoString) return '';
     const date = new Date(isoString);
-    return date.toLocaleDateString('en-US', { 
+    return date.toLocaleDateString('en-US', {
       weekday: 'long',
-      month: 'long', 
+      month: 'long',
       day: 'numeric',
       hour: 'numeric',
       minute: '2-digit',
@@ -156,8 +204,8 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
   };
 
   const calendarDays = generateCalendarDays();
-  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 
-                      'July', 'August', 'September', 'October', 'November', 'December'];
+  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'];
   const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   return (
@@ -172,7 +220,7 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
             exit={{ opacity: 0 }}
             onClick={handleClose}
           />
-          
+
           {/* Modal Container */}
           <motion.div
             className="fixed inset-0 z-50 flex items-center justify-center p-4"
@@ -189,7 +237,7 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
             >
               {/* Main Card - Light Theme */}
               <div className="relative bg-white border border-slate-200 rounded-2xl shadow-2xl shadow-slate-200/50 overflow-hidden">
-                
+
                 {/* Close button */}
                 <button
                   onClick={handleClose}
@@ -201,16 +249,6 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
 
                 {step === 'form' && (
                   <div className="p-6 md:p-8">
-                    {/* Header row with badge */}
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-50 border border-amber-200">
-                        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-                        <span className="text-amber-600 text-[11px] font-semibold tracking-wide uppercase">
-                          {spotsRemaining > 0 ? `Only ${spotsRemaining} spots left` : 'Waitlist Full'}
-                        </span>
-                      </div>
-                    </div>
-
                     {/* Header */}
                     <div className="mb-6 pr-8">
                       <h2 className="text-2xl font-serif text-slate-900 mb-2">
@@ -256,8 +294,8 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
                       </div>
 
                       {/* Company Size Dropdown */}
-                      <div 
-                        className="relative" 
+                      <div
+                        className="relative"
                         ref={dropdownRef}
                       >
                         <label className="block text-slate-700 text-sm font-medium mb-2">
@@ -268,16 +306,15 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
                           type="button"
                           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                           data-testid="modal-company-dropdown"
-                          className={`w-full bg-slate-50 border rounded-lg px-4 py-3 text-left flex items-center justify-between transition-all cursor-pointer ${
-                            isDropdownOpen 
-                              ? 'border-emerald-500 ring-2 ring-emerald-500/20' 
-                              : 'border-slate-200 hover:border-slate-300'
-                          } ${formData.companySize ? 'text-slate-900' : 'text-slate-400'}`}
+                          className={`w-full bg-slate-50 border rounded-lg px-4 py-3 text-left flex items-center justify-between transition-all cursor-pointer ${isDropdownOpen
+                            ? 'border-emerald-500 ring-2 ring-emerald-500/20'
+                            : 'border-slate-200 hover:border-slate-300'
+                            } ${formData.companySize ? 'text-slate-900' : 'text-slate-400'}`}
                         >
                           <span>{formData.companySize || 'Select team size'}</span>
                           <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
                         </button>
-                        
+
                         <AnimatePresence>
                           {isDropdownOpen && (
                             <motion.div
@@ -292,11 +329,10 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
                                   key={size}
                                   type="button"
                                   onClick={() => selectCompanySize(size)}
-                                  className={`w-full px-4 py-2.5 text-sm text-left transition-colors flex items-center justify-between ${
-                                    formData.companySize === size 
-                                      ? 'bg-emerald-50 text-emerald-600' 
-                                      : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
-                                  } ${index !== companySizes.length - 1 ? 'border-b border-slate-100' : ''}`}
+                                  className={`w-full px-4 py-2.5 text-sm text-left transition-colors flex items-center justify-between ${formData.companySize === size
+                                    ? 'bg-emerald-50 text-emerald-600'
+                                    : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                                    } ${index !== companySizes.length - 1 ? 'border-b border-slate-100' : ''}`}
                                 >
                                   <span>{size}</span>
                                   {formData.companySize === size && (
@@ -367,7 +403,7 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
                   <div className="p-5">
                     {/* Compact Success Header */}
                     <div className="text-center mb-4">
-                      <motion.div 
+                      <motion.div
                         className="w-12 h-12 mx-auto mb-3 bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-full flex items-center justify-center"
                         initial={{ scale: 0, rotate: -180 }}
                         animate={{ scale: 1, rotate: 0 }}
@@ -375,7 +411,7 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
                       >
                         <CheckCircle2 className="w-6 h-6 text-emerald-500" />
                       </motion.div>
-                      <motion.h2 
+                      <motion.h2
                         className="text-xl font-serif text-slate-900 mb-1"
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -383,7 +419,7 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
                       >
                         Request Accepted
                       </motion.h2>
-                      <motion.p 
+                      <motion.p
                         className="text-slate-500 text-xs"
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -394,7 +430,7 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
                     </div>
 
                     {/* Compact Calendar */}
-                    <motion.div 
+                    <motion.div
                       className="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -439,13 +475,12 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
                                   <motion.button
                                     onClick={() => !dayObj.disabled && setSelectedDate(dayObj.date)}
                                     disabled={dayObj.disabled}
-                                    className={`w-full h-full rounded text-xs font-medium transition-all ${
-                                      selectedDate?.getTime() === dayObj.date.getTime()
-                                        ? 'bg-emerald-500 text-white'
-                                        : dayObj.disabled
-                                          ? 'text-slate-300 cursor-not-allowed'
-                                          : 'text-slate-700 hover:bg-emerald-50 hover:text-emerald-600'
-                                    }`}
+                                    className={`w-full h-full rounded text-xs font-medium transition-all ${selectedDate?.getTime() === dayObj.date.getTime()
+                                      ? 'bg-emerald-500 text-white'
+                                      : dayObj.disabled
+                                        ? 'text-slate-300 cursor-not-allowed'
+                                        : 'text-slate-700 hover:bg-emerald-50 hover:text-emerald-600'
+                                      }`}
                                     whileTap={!dayObj.disabled ? { scale: 0.9 } : {}}
                                   >
                                     {dayObj.day}
@@ -461,7 +496,7 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
                           <div className="flex items-center gap-1.5 mb-2">
                             <Clock className="w-3.5 h-3.5 text-slate-400" />
                             <span className="font-medium text-slate-900 text-xs">
-                              {selectedDate 
+                              {selectedDate
                                 ? selectedDate.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
                                 : 'Select a date'}
                             </span>
@@ -473,11 +508,10 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
                                 <motion.button
                                   key={time}
                                   onClick={() => setSelectedTime(time)}
-                                  className={`py-1.5 px-2 rounded text-xs font-medium transition-all ${
-                                    selectedTime === time
-                                      ? 'bg-emerald-500 text-white'
-                                      : 'bg-white text-slate-600 border border-slate-200 hover:border-emerald-300 hover:text-emerald-600'
-                                  }`}
+                                  className={`py-1.5 px-2 rounded text-xs font-medium transition-all ${selectedTime === time
+                                    ? 'bg-emerald-500 text-white'
+                                    : 'bg-white text-slate-600 border border-slate-200 hover:border-emerald-300 hover:text-emerald-600'
+                                    }`}
                                   whileTap={{ scale: 0.95 }}
                                 >
                                   {time}
@@ -511,11 +545,10 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
                           <motion.button
                             onClick={handleBooking}
                             disabled={!selectedDate || !selectedTime || isBooking}
-                            className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
-                              selectedDate && selectedTime
-                                ? 'bg-slate-900 text-white hover:bg-slate-800'
-                                : 'bg-slate-100 text-slate-400 cursor-not-allowed'
-                            }`}
+                            className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${selectedDate && selectedTime
+                              ? 'bg-slate-900 text-white hover:bg-slate-800'
+                              : 'bg-slate-100 text-slate-400 cursor-not-allowed'
+                              }`}
                             whileTap={selectedDate && selectedTime ? { scale: 0.98 } : {}}
                           >
                             {isBooking ? (
@@ -538,14 +571,14 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
                     </motion.div>
 
                     {/* Skip Option */}
-                    <motion.p 
+                    <motion.p
                       className="text-slate-400 text-[10px] text-center mt-3"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.6 }}
                     >
                       Can't find a time?{' '}
-                      <button 
+                      <button
                         onClick={() => setStep('confirmed')}
                         className="text-emerald-600 hover:text-emerald-700 underline underline-offset-2 transition-colors"
                       >
@@ -557,7 +590,7 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
 
                 {step === 'confirmed' && (
                   <div className="p-6 text-center">
-                    <motion.div 
+                    <motion.div
                       className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-full flex items-center justify-center"
                       initial={{ scale: 0, rotate: -180 }}
                       animate={{ scale: 1, rotate: 0 }}
@@ -565,10 +598,10 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
                     >
                       <Handshake className="w-8 h-8 text-emerald-500" />
                     </motion.div>
-                    
+
                     {scheduledTime ? (
                       <>
-                        <motion.h2 
+                        <motion.h2
                           className="text-xl font-serif text-slate-900 mb-2"
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -576,8 +609,8 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
                         >
                           We'll wait for you on the call
                         </motion.h2>
-                        
-                        <motion.div 
+
+                        <motion.div
                           className="mb-4"
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -593,7 +626,7 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
                           </div>
                         </motion.div>
 
-                        <motion.p 
+                        <motion.p
                           className="text-slate-400 text-xs mb-5"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
@@ -604,7 +637,7 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
                       </>
                     ) : (
                       <>
-                        <motion.h2 
+                        <motion.h2
                           className="text-xl font-serif text-slate-900 mb-2"
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -612,7 +645,7 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
                         >
                           We'll Be in Touch
                         </motion.h2>
-                        <motion.p 
+                        <motion.p
                           className="text-slate-500 text-sm mb-5"
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}

@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
-import { FileText, Bot, UserCheck, CheckCircle, Paperclip } from 'lucide-react';
+import { FileText, Bot, UserCheck, CheckCircle, Paperclip, Sparkles } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export const HowItWorksSection = () => {
   const [step, setStep] = useState(0);
-  
+
   useEffect(() => {
     const interval = setInterval(() => {
       setStep((prev) => (prev + 1) % 5);
@@ -13,7 +13,7 @@ export const HowItWorksSection = () => {
   }, []);
 
   return (
-    <section 
+    <section
       id="how-it-works"
       className="bg-[#0F172A] py-24 md:py-32 overflow-hidden"
       data-testid="how-it-works-section"
@@ -21,26 +21,35 @@ export const HowItWorksSection = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Header */}
         <motion.div
-          className="text-center max-w-2xl mx-auto mb-16"
+          className="text-center max-w-4xl mx-auto mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-sm font-semibold text-emerald-400 tracking-wide uppercase mb-4">
-            How It Works
-          </p>
+          {/* Badge */}
+          <motion.span
+            className="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full mb-6"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+            <span className="text-xs font-semibold text-emerald-400 tracking-wider uppercase">How It Works</span>
+          </motion.span>
+
           <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-white mb-4">
-            From Slack to signed — in hours
+            From Slack to signed <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">— in hours.</span>
           </h2>
-          <p className="text-base text-[#94A3B8]">
-            Watch how your contract flows through our intelligent review pipeline
+          <p className="text-base md:text-lg text-slate-400 leading-relaxed max-w-2xl mx-auto">
+            Watch how your contract flows through our intelligent review pipeline.
           </p>
         </motion.div>
 
         {/* Main Animation Container */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          
+
           {/* Left - Slack Chat Animation */}
           <motion.div
             className="relative"
@@ -66,7 +75,7 @@ export const HowItWorksSection = () => {
               {/* Chat Area */}
               <div className="p-4 min-h-[380px] flex flex-col">
                 {/* User Message */}
-                <motion.div 
+                <motion.div
                   className="flex gap-3 mb-4"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -84,9 +93,9 @@ export const HowItWorksSection = () => {
                       <span className="bg-[#1264A3] text-white px-1 rounded">@Lawvek</span> Please review this NDA
                     </div>
                     {/* File Attachment */}
-                    <motion.div 
+                    <motion.div
                       className="mt-2 bg-[#222529] border border-[#333] rounded-lg p-3 max-w-[280px] flex items-center gap-3"
-                      animate={step === 0 ? { 
+                      animate={step === 0 ? {
                         boxShadow: ['0 0 0 rgba(16, 185, 129, 0)', '0 0 20px rgba(16, 185, 129, 0.3)', '0 0 0 rgba(16, 185, 129, 0)']
                       } : {}}
                       transition={{ duration: 1.5, repeat: step === 0 ? Infinity : 0 }}
@@ -103,7 +112,7 @@ export const HowItWorksSection = () => {
                 </motion.div>
 
                 {/* Lawvek Bot Response */}
-                <motion.div 
+                <motion.div
                   className="flex gap-3 mb-4"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: step >= 1 ? 1 : 0, y: step >= 1 ? 0 : 10 }}
@@ -122,15 +131,15 @@ export const HowItWorksSection = () => {
                       Got it! Analyzing your contract now...
                     </div>
                     {/* Progress indicator */}
-                    <motion.div 
+                    <motion.div
                       className="mt-2 bg-[#222529] border border-[#333] rounded-lg p-3 max-w-[320px]"
-                      animate={step >= 1 && step <= 2 ? { 
+                      animate={step >= 1 && step <= 2 ? {
                         borderColor: ['#333', '#10B981', '#333']
                       } : {}}
                       transition={{ duration: 2, repeat: step >= 1 && step <= 2 ? Infinity : 0 }}
                     >
                       <div className="flex items-center gap-2 mb-2">
-                        <motion.div 
+                        <motion.div
                           className="w-2 h-2 rounded-full bg-emerald-400"
                           animate={{ scale: [1, 1.2, 1], opacity: [1, 0.7, 1] }}
                           transition={{ duration: 1, repeat: Infinity }}
@@ -142,7 +151,7 @@ export const HowItWorksSection = () => {
                         </span>
                       </div>
                       <div className="w-full bg-[#333] rounded-full h-1.5">
-                        <motion.div 
+                        <motion.div
                           className="bg-emerald-500 h-1.5 rounded-full"
                           animate={{ width: `${Math.min((step) * 33, 100)}%` }}
                           transition={{ duration: 0.5 }}
@@ -153,7 +162,7 @@ export const HowItWorksSection = () => {
                 </motion.div>
 
                 {/* Final Response */}
-                <motion.div 
+                <motion.div
                   className="flex gap-3"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: step >= 3 ? 1 : 0, y: step >= 3 ? 0 : 10 }}
@@ -172,9 +181,9 @@ export const HowItWorksSection = () => {
                       ✅ Review complete! Here's your contract with redlines:
                     </div>
                     {/* Reviewed File */}
-                    <motion.div 
+                    <motion.div
                       className="bg-[#222529] border border-emerald-500/30 rounded-lg p-3 max-w-[280px] flex items-center gap-3"
-                      animate={step >= 3 ? { 
+                      animate={step >= 3 ? {
                         boxShadow: ['0 0 0 rgba(16, 185, 129, 0)', '0 0 15px rgba(16, 185, 129, 0.2)', '0 0 0 rgba(16, 185, 129, 0)']
                       } : {}}
                       transition={{ duration: 2, repeat: step >= 3 ? Infinity : 0 }}
@@ -204,23 +213,23 @@ export const HowItWorksSection = () => {
             <div className="space-y-4">
               {/* Pipeline Steps */}
               {[
-                { 
-                  id: 1, 
-                  title: 'AI Analysis', 
+                {
+                  id: 1,
+                  title: 'AI Analysis',
                   desc: 'Instant complexity scoring & clause detection',
                   icon: Bot,
                   time: '~30 sec'
                 },
-                { 
-                  id: 2, 
-                  title: 'Licensed Attorney', 
+                {
+                  id: 2,
+                  title: 'Licensed Attorney',
                   desc: 'Expert sign-off on high-risk clauses',
                   icon: UserCheck,
                   time: '~2 hours'
                 },
-                { 
-                  id: 3, 
-                  title: 'Delivered', 
+                {
+                  id: 3,
+                  title: 'Delivered',
                   desc: 'Redlined contract ready in your chat',
                   icon: CheckCircle,
                   time: 'Total: ~3 hrs'
@@ -228,11 +237,10 @@ export const HowItWorksSection = () => {
               ].map((stage, index) => (
                 <motion.div
                   key={stage.id}
-                  className={`relative flex items-center gap-4 p-4 rounded-xl border transition-all duration-500 ${
-                    step >= stage.id 
-                      ? 'bg-[#1E293B] border-emerald-500/50' 
-                      : 'bg-[#1E293B]/30 border-[#334155]'
-                  }`}
+                  className={`relative flex items-center gap-4 p-4 rounded-xl border transition-all duration-500 ${step >= stage.id
+                    ? 'bg-[#1E293B] border-emerald-500/50'
+                    : 'bg-[#1E293B]/30 border-[#334155]'
+                    }`}
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
@@ -241,22 +249,21 @@ export const HowItWorksSection = () => {
                   {/* Connector Line */}
                   {index < 2 && (
                     <div className="absolute left-7 top-full w-0.5 h-4 bg-[#334155] z-0">
-                      <motion.div 
+                      <motion.div
                         className="w-full bg-emerald-500"
                         animate={{ height: step > stage.id ? '100%' : '0%' }}
                         transition={{ duration: 0.3 }}
                       />
                     </div>
                   )}
-                  
+
                   {/* Icon */}
-                  <div className={`relative z-10 w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-500 ${
-                    step >= stage.id 
-                      ? 'bg-emerald-500' 
-                      : 'bg-[#334155]'
-                  }`}>
+                  <div className={`relative z-10 w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-500 ${step >= stage.id
+                    ? 'bg-emerald-500'
+                    : 'bg-[#334155]'
+                    }`}>
                     <stage.icon className={`w-5 h-5 ${step >= stage.id ? 'text-white' : 'text-[#64748B]'}`} strokeWidth={1.5} />
-                    
+
                     {/* Active pulse */}
                     {step === stage.id && (
                       <motion.div
@@ -266,24 +273,21 @@ export const HowItWorksSection = () => {
                       />
                     )}
                   </div>
-                  
+
                   {/* Content */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">
-                      <h4 className={`font-semibold transition-colors duration-500 ${
-                        step >= stage.id ? 'text-white' : 'text-[#64748B]'
-                      }`}>
+                      <h4 className={`font-semibold transition-colors duration-500 ${step >= stage.id ? 'text-white' : 'text-[#64748B]'
+                        }`}>
                         {stage.title}
                       </h4>
-                      <span className={`text-xs font-mono transition-colors duration-500 ${
-                        step >= stage.id ? 'text-emerald-400' : 'text-[#475569]'
-                      }`}>
+                      <span className={`text-xs font-mono transition-colors duration-500 ${step >= stage.id ? 'text-emerald-400' : 'text-[#475569]'
+                        }`}>
                         {stage.time}
                       </span>
                     </div>
-                    <p className={`text-sm mt-1 transition-colors duration-500 ${
-                      step >= stage.id ? 'text-[#94A3B8]' : 'text-[#475569]'
-                    }`}>
+                    <p className={`text-sm mt-1 transition-colors duration-500 ${step >= stage.id ? 'text-[#94A3B8]' : 'text-[#475569]'
+                      }`}>
                       {stage.desc}
                     </p>
                   </div>
@@ -292,7 +296,7 @@ export const HowItWorksSection = () => {
             </div>
 
             {/* Bottom Stats */}
-            <motion.div 
+            <motion.div
               className="mt-8 grid grid-cols-3 gap-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
