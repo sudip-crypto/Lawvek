@@ -30,7 +30,7 @@ const PriorityAccess = () => {
         navigate('/confirmation');
 
         try {
-            await axios.post('http://localhost:8000/api/leads', {
+            await axios.post('/api/leads', {
                 name: formData.companyName,
                 email: formData.email,
                 company_size: formData.companySize,

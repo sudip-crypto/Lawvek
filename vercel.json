@@ -7,11 +7,11 @@
     },
     {
       "source": "/priority-access",
-      "destination": "/"
+      "destination": "/frontend/index.html"
     },
     {
       "source": "/confirmation",
-      "destination": "/"
+      "destination": "/frontend/index.html"
     },
     {
       "source": "/(.*)",
