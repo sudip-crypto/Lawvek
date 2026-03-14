@@ -6,14 +6,6 @@
       "destination": "/backend/server.py"
     },
     {
-      "source": "/priority-access",
-      "destination": "/frontend/index.html"
-    },
-    {
-      "source": "/confirmation",
-      "destination": "/frontend/index.html"
-    },
-    {
       "source": "/(.*)",
       "destination": "/frontend/$1"
     }
