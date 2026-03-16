@@ -70,6 +70,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/priority-access" element={<PriorityAccess />} />
+          <Route path="/priorityaccess" element={<PriorityAccess />} />
           <Route path="/confirmation" element={<Confirmation />} />
         </Routes>
       </BrowserRouter>
